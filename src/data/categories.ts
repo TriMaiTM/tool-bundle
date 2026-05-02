@@ -96,6 +96,15 @@ export const categories: Category[] = [
     color: "#10b981",
     toolCount: 0,
   },
+  {
+    id: "fun",
+    name: "Fun & Utility",
+    description:
+      "Random generators, dice rollers, wheel spinners, and fun tools.",
+    icon: "sparkles",
+    color: "#f97316",
+    toolCount: 0,
+  },
 ];
 
 export function getCategoryById(id: string): Category | undefined {

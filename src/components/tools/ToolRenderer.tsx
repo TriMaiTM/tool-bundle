@@ -48,6 +48,21 @@ import SitemapGenerator from "./SitemapGenerator";
 import CsvToJson from "./CsvToJson";
 import JsonToCsv from "./JsonToCsv";
 import CsvFormatter from "./CsvFormatter";
+import ImageToBase64 from "./ImageToBase64";
+import ImageRotator from "./ImageRotator";
+import ImageWatermark from "./ImageWatermark";
+import PhotoFilters from "./PhotoFilters";
+import SvgOptimizer from "./SvgOptimizer";
+import HtmlFormatter from "./HtmlFormatter";
+import SqlFormatter from "./SqlFormatter";
+import XmlFormatter from "./XmlFormatter";
+import RandomNumberGenerator from "./RandomNumberGenerator";
+import DiceRoller from "./DiceRoller";
+import CoinFlipper from "./CoinFlipper";
+import RandomNamePicker from "./RandomNamePicker";
+import WheelSpinner from "./WheelSpinner";
+import DecisionMaker from "./DecisionMaker";
+import PlaceholderImage from "./PlaceholderImage";
 
 interface Props {
   toolId: string;
@@ -209,6 +224,36 @@ export default function ToolRenderer({ toolId }: Props) {
       return <JsonToCsv />;
     case "csv-formatter":
       return <CsvFormatter />;
+    case "image-to-base64":
+      return <ImageToBase64 />;
+    case "image-rotator":
+      return <ImageRotator />;
+    case "image-watermark":
+      return <ImageWatermark />;
+    case "photo-filters":
+      return <PhotoFilters />;
+    case "svg-optimizer":
+      return <SvgOptimizer />;
+    case "html-formatter":
+      return <HtmlFormatter />;
+    case "sql-formatter":
+      return <SqlFormatter />;
+    case "xml-formatter":
+      return <XmlFormatter />;
+    case "random-number-generator":
+      return <RandomNumberGenerator />;
+    case "dice-roller":
+      return <DiceRoller />;
+    case "coin-flipper":
+      return <CoinFlipper />;
+    case "random-name-picker":
+      return <RandomNamePicker />;
+    case "wheel-spinner":
+      return <WheelSpinner />;
+    case "decision-maker":
+      return <DecisionMaker />;
+    case "placeholder-image":
+      return <PlaceholderImage />;
     default:
       return (
         <div class="text-center py-12">

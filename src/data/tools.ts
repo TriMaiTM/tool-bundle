@@ -575,6 +575,157 @@ export const tools: Tool[] = [
     slug: "csv-formatter",
     tags: ["csv", "format", "validate"],
   },
+
+  // ============================================
+  // Image Tools (Extended Phase 5)
+  // ============================================
+  {
+    id: "image-to-base64",
+    name: "Image to Base64",
+    description: "Convert images to Base64 — data URI or raw.",
+    category: "image",
+    icon: "binary",
+    slug: "image-to-base64",
+    tags: ["image", "base64", "encode"],
+  },
+  {
+    id: "image-rotator",
+    name: "Image Rotator & Flipper",
+    description: "Rotate and flip images — 90, 180, 270 or custom.",
+    category: "image",
+    icon: "rotate-cw",
+    slug: "image-rotator",
+    tags: ["rotate", "flip", "image"],
+  },
+  {
+    id: "image-watermark",
+    name: "Image Watermark Adder",
+    description: "Add text watermarks to images — position, opacity, rotation.",
+    category: "image",
+    icon: "stamp",
+    slug: "image-watermark",
+    tags: ["watermark", "image", "text"],
+  },
+  {
+    id: "photo-filters",
+    name: "Photo Filters",
+    description:
+      "Apply photo filters — Vintage, Cool, Warm, Dramatic and more.",
+    category: "image",
+    icon: "aperture",
+    slug: "photo-filters",
+    tags: ["filters", "photo", "instagram"],
+  },
+  {
+    id: "svg-optimizer",
+    name: "SVG Optimizer",
+    description: "Optimize SVG — remove comments, whitespace, shorten colors.",
+    category: "image",
+    icon: "file-code-2",
+    slug: "svg-optimizer",
+    tags: ["svg", "optimize", "compress"],
+  },
+
+  // ============================================
+  // Developer Tools (Extended Phase 5)
+  // ============================================
+  {
+    id: "html-formatter",
+    name: "HTML Formatter",
+    description: "Format and beautify HTML with custom indentation.",
+    category: "developer",
+    icon: "code-2",
+    slug: "html-formatter",
+    tags: ["html", "format", "beautify"],
+  },
+  {
+    id: "sql-formatter",
+    name: "SQL Formatter",
+    description:
+      "Format SQL queries with uppercase keywords and proper indentation.",
+    category: "developer",
+    icon: "database",
+    slug: "sql-formatter",
+    tags: ["sql", "format", "database"],
+  },
+  {
+    id: "xml-formatter",
+    name: "XML Formatter",
+    description: "Format, beautify, and minify XML with validation.",
+    category: "developer",
+    icon: "file-code",
+    slug: "xml-formatter",
+    tags: ["xml", "format", "validate"],
+  },
+
+  // ============================================
+  // Fun & Utility Tools
+  // ============================================
+  {
+    id: "random-number-generator",
+    name: "Random Number Generator",
+    description:
+      "Generate secure random numbers with batch mode and formatting.",
+    category: "fun",
+    icon: "dices",
+    slug: "random-number-generator",
+    featured: true,
+    tags: ["random", "number", "generate"],
+  },
+  {
+    id: "dice-roller",
+    name: "Dice Roller",
+    description: "Roll virtual dice — D4 to D100 with stats and history.",
+    category: "fun",
+    icon: "dice-5",
+    slug: "dice-roller",
+    tags: ["dice", "roll", "game"],
+  },
+  {
+    id: "coin-flipper",
+    name: "Coin Flipper",
+    description: "Flip a coin with animation — track history and stats.",
+    category: "fun",
+    icon: "circle-dot",
+    slug: "coin-flipper",
+    tags: ["coin", "flip", "random"],
+  },
+  {
+    id: "random-name-picker",
+    name: "Random Name Picker",
+    description: "Pick random names with animation from a list.",
+    category: "fun",
+    icon: "shuffle",
+    slug: "random-name-picker",
+    tags: ["name", "picker", "random"],
+  },
+  {
+    id: "wheel-spinner",
+    name: "Wheel Spinner",
+    description: "Spin the wheel to pick a random winner.",
+    category: "fun",
+    icon: "disc-3",
+    slug: "wheel-spinner",
+    tags: ["wheel", "spinner", "random"],
+  },
+  {
+    id: "decision-maker",
+    name: "Decision Maker Spinner",
+    description: "Spin the wheel to decide — add custom options.",
+    category: "fun",
+    icon: "git-branch",
+    slug: "decision-maker",
+    tags: ["decision", "decide", "random"],
+  },
+  {
+    id: "placeholder-image",
+    name: "Placeholder Image Generator",
+    description: "Generate custom placeholder images instantly.",
+    category: "fun",
+    icon: "image",
+    slug: "placeholder-image",
+    tags: ["placeholder", "image", "dummy"],
+  },
 ];
 
 /**
