@@ -511,6 +511,70 @@ export const tools: Tool[] = [
     slug: "unix-timestamp-converter",
     tags: ["unix", "timestamp", "epoch"],
   },
+
+  // ============================================
+  // SEO & Marketing Tools
+  // ============================================
+  {
+    id: "meta-tag-generator",
+    name: "Meta Tag Generator",
+    description: "Generate SEO meta tags with Open Graph and SERP preview.",
+    category: "seo",
+    icon: "tags",
+    slug: "meta-tag-generator",
+    featured: true,
+    tags: ["meta", "seo", "opengraph"],
+  },
+  {
+    id: "robots-txt-generator",
+    name: "Robots.txt Generator",
+    description: "Generate robots.txt with rules and sitemap.",
+    category: "seo",
+    icon: "bot",
+    slug: "robots-txt-generator",
+    tags: ["robots", "seo", "crawl"],
+  },
+  {
+    id: "sitemap-generator",
+    name: "Sitemap Generator",
+    description: "Generate XML sitemaps with priority and frequency.",
+    category: "seo",
+    icon: "map",
+    slug: "sitemap-generator",
+    tags: ["sitemap", "seo", "xml"],
+  },
+
+  // ============================================
+  // Data & Spreadsheet Tools
+  // ============================================
+  {
+    id: "csv-to-json",
+    name: "CSV to JSON",
+    description: "Convert CSV to JSON with auto-delimiter detection.",
+    category: "data",
+    icon: "file-json",
+    slug: "csv-to-json",
+    featured: true,
+    tags: ["csv", "json", "convert"],
+  },
+  {
+    id: "json-to-csv",
+    name: "JSON to CSV",
+    description: "Convert JSON arrays to CSV with nested object flattening.",
+    category: "data",
+    icon: "file-spreadsheet",
+    slug: "json-to-csv",
+    tags: ["json", "csv", "convert"],
+  },
+  {
+    id: "csv-formatter",
+    name: "CSV Formatter",
+    description: "Format, validate, and preview CSV data with table view.",
+    category: "data",
+    icon: "table",
+    slug: "csv-formatter",
+    tags: ["csv", "format", "validate"],
+  },
 ];
 
 /**

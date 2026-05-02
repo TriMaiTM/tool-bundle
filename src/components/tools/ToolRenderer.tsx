@@ -42,6 +42,12 @@ import CountdownTimer from "./CountdownTimer";
 import TimezoneConverter from "./TimezoneConverter";
 import DateDifferenceCalculator from "./DateDifferenceCalculator";
 import UnixTimestampConverter from "./UnixTimestampConverter";
+import MetaTagGenerator from "./MetaTagGenerator";
+import RobotsTxtGenerator from "./RobotsTxtGenerator";
+import SitemapGenerator from "./SitemapGenerator";
+import CsvToJson from "./CsvToJson";
+import JsonToCsv from "./JsonToCsv";
+import CsvFormatter from "./CsvFormatter";
 
 interface Props {
   toolId: string;
@@ -191,6 +197,18 @@ export default function ToolRenderer({ toolId }: Props) {
       return <DateDifferenceCalculator />;
     case "unix-timestamp-converter":
       return <UnixTimestampConverter />;
+    case "meta-tag-generator":
+      return <MetaTagGenerator />;
+    case "robots-txt-generator":
+      return <RobotsTxtGenerator />;
+    case "sitemap-generator":
+      return <SitemapGenerator />;
+    case "csv-to-json":
+      return <CsvToJson />;
+    case "json-to-csv":
+      return <JsonToCsv />;
+    case "csv-formatter":
+      return <CsvFormatter />;
     default:
       return (
         <div class="text-center py-12">

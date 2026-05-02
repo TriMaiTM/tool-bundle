@@ -79,6 +79,23 @@ export const categories: Category[] = [
     color: "#14b8a6",
     toolCount: 0,
   },
+  {
+    id: "seo",
+    name: "SEO & Marketing",
+    description:
+      "Generate meta tags, robots.txt, sitemaps, and optimize for search engines.",
+    icon: "search",
+    color: "#8b5cf6",
+    toolCount: 0,
+  },
+  {
+    id: "data",
+    name: "Data & Spreadsheet",
+    description: "Convert between CSV, JSON, and other data formats instantly.",
+    icon: "table",
+    color: "#10b981",
+    toolCount: 0,
+  },
 ];
 
 export function getCategoryById(id: string): Category | undefined {
