@@ -1,0 +1,34 @@
+---
+import type { Tool } from "../../data/tools";
+import { getCategoryById } from "../../data/categories";
+
+interface Props {
+  tool: Tool;
+}
+
+const { tool } = Astro.props;
+const cat = getCategoryById(tool.category);
+const href = `/${tool.category}/${tool.slug}`;
+---
+
+<a
+  href={href}
+  class="block bg-surface-card border border-hairline rounded-lg p-5 transition-all duration-200 hover:border-hairline-strong hover:-translate-y-0.5 group no-underline"
+>
+  <div class="flex items-start justify-between mb-3">
+    {/* Icon */}
+    <div
+      class="w-10 h-10 rounded-lg flex items-center justify-center"
+      style={`background-color: ${cat?.color}15; color: ${cat?.color}`}
+    >
+      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>
+      </svg>
+    </div>
+    {/* Category badge */}
+    <span class="text-caption-uppercase text-muted-soft">{cat?.name.replace(" Tools", "")}</span>
+  </div>
+
+  <h3 class="text-title-sm text-on-dark mb-1.5 group-hover:text-primary transition-colors">{tool.name}</h3>
+  <p class="text-body-sm text-muted leading-relaxed">{tool.description}</p>
+</a>

@@ -1,0 +1,52 @@
+---
+import Base from "./Base.astro";
+import { getCategoryById } from "../data/categories";
+
+interface Props {
+  title: string;
+  description: string;
+  category: string;
+}
+
+const { title, description, category } = Astro.props;
+const cat = getCategoryById(category);
+---
+
+<Base title={title} description={description}>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+    {/* Breadcrumb */}
+    <nav class="flex items-center gap-2 text-caption mb-8">
+      <a href="/" class="hover:text-on-dark transition-colors">Home</a>
+      <span class="text-muted-soft">/</span>
+      {cat && (
+        <>
+          <a href={`/${cat.id}`} class="hover:text-on-dark transition-colors">{cat.name}</a>
+          <span class="text-muted-soft">/</span>
+        </>
+      )}
+      <span class="text-on-dark">{title}</span>
+    </nav>
+
+    {/* Tool Header */}
+    <header class="mb-8">
+      {cat && (
+        <span class="badge mb-3" style={`color: ${cat.color}`}>
+          {cat.name}
+        </span>
+      )}
+      <h1 class="text-display-sm mb-3">{title}</h1>
+      <p class="text-body-md text-muted max-w-2xl">{description}</p>
+    </header>
+
+    {/* Privacy Badge */}
+    <div class="flex items-center gap-2 mb-8 text-caption">
+      <span class="inline-block w-2 h-2 rounded-full bg-accent-emerald"></span>
+      <span>100% client-side — your files never leave your browser</span>
+    </div>
+
+    {/* Tool Content */}
+    <div class="card">
+      <slot />
+    </div>
+  </div>
+</Base>
