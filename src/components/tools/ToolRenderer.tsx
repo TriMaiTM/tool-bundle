@@ -13,6 +13,19 @@ import ImageConverter from "./ImageConverter";
 import ImageResizer from "./ImageResizer";
 import ImageCompressor from "./ImageCompressor";
 import ImageCropper from "./ImageCropper";
+import PercentageCalculator from "./PercentageCalculator";
+import UnitConverter from "./UnitConverter";
+import BmiCalculator from "./BmiCalculator";
+import LoanCalculator from "./LoanCalculator";
+import AgeCalculator from "./AgeCalculator";
+import PdfMerger from "./PdfMerger";
+import PdfSplitter from "./PdfSplitter";
+import PdfCompressor from "./PdfCompressor";
+import PdfRotator from "./PdfRotator";
+import PdfToText from "./PdfToText";
+import PasswordGenerator from "./PasswordGenerator";
+import PasswordStrengthChecker from "./PasswordStrengthChecker";
+import OtpGenerator from "./OtpGenerator";
 
 interface Props {
   toolId: string;
@@ -104,6 +117,32 @@ export default function ToolRenderer({ toolId }: Props) {
       return <HashGenerator />;
     case "regex-tester":
       return <RegexTester />;
+    case "percentage-calculator":
+      return <PercentageCalculator />;
+    case "unit-converter":
+      return <UnitConverter />;
+    case "bmi-calculator":
+      return <BmiCalculator />;
+    case "loan-calculator":
+      return <LoanCalculator />;
+    case "age-calculator":
+      return <AgeCalculator />;
+    case "pdf-merger":
+      return <PdfMerger />;
+    case "pdf-splitter":
+      return <PdfSplitter />;
+    case "pdf-compressor":
+      return <PdfCompressor />;
+    case "pdf-rotator":
+      return <PdfRotator />;
+    case "pdf-to-text":
+      return <PdfToText />;
+    case "password-generator":
+      return <PasswordGenerator />;
+    case "password-strength-checker":
+      return <PasswordStrengthChecker />;
+    case "otp-generator":
+      return <OtpGenerator />;
     default:
       return (
         <div class="text-center py-12">

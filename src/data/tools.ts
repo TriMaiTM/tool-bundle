@@ -16,7 +16,8 @@ export const tools: Tool[] = [
   {
     id: "png-to-jpg",
     name: "PNG to JPG",
-    description: "Convert PNG images to JPG with quality control and batch support.",
+    description:
+      "Convert PNG images to JPG with quality control and batch support.",
     category: "image",
     icon: "image",
     slug: "png-to-jpg",
@@ -63,7 +64,8 @@ export const tools: Tool[] = [
   {
     id: "image-resizer",
     name: "Image Resizer",
-    description: "Resize images by pixels, percentage, or social media presets.",
+    description:
+      "Resize images by pixels, percentage, or social media presets.",
     category: "image",
     icon: "maximize-2",
     slug: "image-resizer",
@@ -73,7 +75,8 @@ export const tools: Tool[] = [
   {
     id: "image-compressor",
     name: "Image Compressor",
-    description: "Compress images with quality control and before/after preview.",
+    description:
+      "Compress images with quality control and before/after preview.",
     category: "image",
     icon: "minimize-2",
     slug: "image-compressor",
@@ -96,7 +99,8 @@ export const tools: Tool[] = [
   {
     id: "word-counter",
     name: "Word Counter",
-    description: "Count words, characters, sentences, and paragraphs instantly.",
+    description:
+      "Count words, characters, sentences, and paragraphs instantly.",
     category: "text",
     icon: "hash",
     slug: "word-counter",
@@ -106,7 +110,8 @@ export const tools: Tool[] = [
   {
     id: "case-converter",
     name: "Case Converter",
-    description: "Convert text between uppercase, lowercase, title case, and more.",
+    description:
+      "Convert text between uppercase, lowercase, title case, and more.",
     category: "text",
     icon: "case-upper",
     slug: "case-converter",
@@ -185,7 +190,8 @@ export const tools: Tool[] = [
   {
     id: "regex-tester",
     name: "Regex Tester",
-    description: "Test regular expressions with live highlighting and match details.",
+    description:
+      "Test regular expressions with live highlighting and match details.",
     category: "developer",
     icon: "regex",
     slug: "regex-tester",
@@ -195,11 +201,151 @@ export const tools: Tool[] = [
   {
     id: "lorem-generator",
     name: "Lorem Ipsum Generator",
-    description: "Generate placeholder text by paragraphs, sentences, or words.",
+    description:
+      "Generate placeholder text by paragraphs, sentences, or words.",
     category: "developer",
     icon: "text",
     slug: "lorem-generator",
     tags: ["lorem", "placeholder", "dummy"],
+  },
+
+  // ============================================
+  // PDF Tools
+  // ============================================
+  {
+    id: "pdf-merger",
+    name: "PDF Merger",
+    description: "Combine multiple PDFs into one — private and instant.",
+    category: "pdf",
+    icon: "file-text",
+    slug: "pdf-merger",
+    featured: true,
+    tags: ["pdf", "merge", "combine"],
+  },
+  {
+    id: "pdf-splitter",
+    name: "PDF Splitter",
+    description: "Split PDFs by page range or extract specific pages.",
+    category: "pdf",
+    icon: "scissors",
+    slug: "pdf-splitter",
+    tags: ["pdf", "split", "pages"],
+  },
+  {
+    id: "pdf-compressor",
+    name: "PDF Compressor",
+    description: "Reduce PDF file size — no uploads, instant compression.",
+    category: "pdf",
+    icon: "minimize-2",
+    slug: "pdf-compressor",
+    tags: ["pdf", "compress", "optimize"],
+  },
+  {
+    id: "pdf-rotator",
+    name: "PDF Rotator",
+    description: "Rotate PDF pages — 90°, 180°, 270° clockwise.",
+    category: "pdf",
+    icon: "rotate-cw",
+    slug: "pdf-rotator",
+    tags: ["pdf", "rotate", "pages"],
+  },
+  {
+    id: "pdf-to-text",
+    name: "PDF to Text",
+    description: "Extract text from any PDF — search, copy, or download.",
+    category: "pdf",
+    icon: "file-type",
+    slug: "pdf-to-text",
+    tags: ["pdf", "text", "extract"],
+  },
+
+  // ============================================
+  // Math Tools
+  // ============================================
+  {
+    id: "percentage-calculator",
+    name: "Percentage Calculator",
+    description: "Calculate percentages, tips, discounts, and tax instantly.",
+    category: "math",
+    icon: "percent",
+    slug: "percentage-calculator",
+    featured: true,
+    tags: ["percentage", "tip", "discount"],
+  },
+  {
+    id: "unit-converter",
+    name: "Unit Converter",
+    description:
+      "Convert units across 5 categories: length, weight, temperature, speed, data.",
+    category: "math",
+    icon: "arrow-left-right",
+    slug: "unit-converter",
+    featured: true,
+    tags: ["convert", "units", "measurement"],
+  },
+  {
+    id: "bmi-calculator",
+    name: "BMI Calculator",
+    description:
+      "Calculate Body Mass Index with ideal weight and health insights.",
+    category: "math",
+    icon: "heart-pulse",
+    slug: "bmi-calculator",
+    tags: ["bmi", "health", "weight"],
+  },
+  {
+    id: "loan-calculator",
+    name: "Loan Calculator",
+    description: "Calculate loan payments with amortization schedule.",
+    category: "math",
+    icon: "landmark",
+    slug: "loan-calculator",
+    tags: ["loan", "mortgage", "payment"],
+  },
+  {
+    id: "age-calculator",
+    name: "Age Calculator",
+    description:
+      "Calculate exact age with zodiac sign and next birthday countdown.",
+    category: "math",
+    icon: "cake",
+    slug: "age-calculator",
+    tags: ["age", "birthday", "zodiac"],
+  },
+
+  // ============================================
+  // Security Tools
+  // ============================================
+  {
+    id: "password-generator",
+    name: "Password Generator",
+    description:
+      "Generate secure passwords with custom length and character sets.",
+    category: "security",
+    icon: "key-round",
+    slug: "password-generator",
+    featured: true,
+    tags: ["password", "generate", "secure"],
+  },
+  {
+    id: "password-strength-checker",
+    name: "Password Strength Checker",
+    description:
+      "Test password strength with entropy and crack time estimates.",
+    category: "security",
+    icon: "shield-check",
+    slug: "password-strength-checker",
+    tags: ["password", "strength", "security"],
+  },
+  {
+    id: "otp-generator",
+    name: "OTP Generator",
+    description:
+      "Generate TOTP 2FA codes with countdown timer and auto-refresh.",
+    category: "security",
+    icon: "timer",
+    slug: "otp-generator",
+    tags: ["otp", "totp", "2fa", "authenticator"],
   },
 ];
 
@@ -213,7 +359,10 @@ export function getToolsByCategory(categoryId: string): Tool[] {
 /**
  * Get a tool by its slug and category
  */
-export function getToolBySlug(categoryId: string, slug: string): Tool | undefined {
+export function getToolBySlug(
+  categoryId: string,
+  slug: string,
+): Tool | undefined {
   return tools.find((t) => t.category === categoryId && t.slug === slug);
 }
 
@@ -233,6 +382,6 @@ export function searchTools(query: string): Tool[] {
     (t) =>
       t.name.toLowerCase().includes(q) ||
       t.description.toLowerCase().includes(q) ||
-      t.tags?.some((tag) => tag.includes(q))
+      t.tags?.some((tag) => tag.includes(q)),
   );
 }
