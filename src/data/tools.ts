@@ -428,6 +428,89 @@ export const tools: Tool[] = [
     slug: "yaml-formatter",
     tags: ["yaml", "format", "validate"],
   },
+
+  // ============================================
+  // Color Tools
+  // ============================================
+  {
+    id: "color-picker",
+    name: "Color Picker",
+    description:
+      "Pick and convert colors between HEX, RGB, and HSL with live preview.",
+    category: "color",
+    icon: "pipette",
+    slug: "color-picker",
+    featured: true,
+    tags: ["color", "hex", "rgb", "hsl"],
+  },
+  {
+    id: "color-palette-generator",
+    name: "Color Palette Generator",
+    description: "Generate harmonious color palettes from any base color.",
+    category: "color",
+    icon: "palette",
+    slug: "color-palette-generator",
+    tags: ["color", "palette", "harmony"],
+  },
+  {
+    id: "contrast-checker",
+    name: "Contrast Checker WCAG",
+    description: "Check WCAG color contrast — AA and AAA compliance.",
+    category: "color",
+    icon: "eye",
+    slug: "contrast-checker",
+    tags: ["contrast", "wcag", "accessibility"],
+  },
+  {
+    id: "css-gradient-generator",
+    name: "CSS Gradient Generator",
+    description: "Create CSS gradients with live preview and presets.",
+    category: "color",
+    icon: "blend",
+    slug: "css-gradient-generator",
+    tags: ["gradient", "css", "linear", "radial"],
+  },
+
+  // ============================================
+  // Date & Time Tools
+  // ============================================
+  {
+    id: "countdown-timer",
+    name: "Countdown Timer",
+    description: "Countdown to any date with presets and alerts.",
+    category: "datetime",
+    icon: "timer",
+    slug: "countdown-timer",
+    featured: true,
+    tags: ["countdown", "timer", "date"],
+  },
+  {
+    id: "timezone-converter",
+    name: "Timezone Converter",
+    description: "Convert time between timezones with world clock.",
+    category: "datetime",
+    icon: "globe",
+    slug: "timezone-converter",
+    tags: ["timezone", "convert", "world"],
+  },
+  {
+    id: "date-difference-calculator",
+    name: "Date Difference Calculator",
+    description: "Calculate the exact difference between two dates.",
+    category: "datetime",
+    icon: "calendar-days",
+    slug: "date-difference-calculator",
+    tags: ["date", "difference", "duration"],
+  },
+  {
+    id: "unix-timestamp-converter",
+    name: "Unix Timestamp Converter",
+    description: "Convert Unix timestamps to dates and back.",
+    category: "datetime",
+    icon: "clock",
+    slug: "unix-timestamp-converter",
+    tags: ["unix", "timestamp", "epoch"],
+  },
 ];
 
 /**

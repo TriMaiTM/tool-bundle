@@ -34,6 +34,14 @@ import MarkdownToHtml from "./MarkdownToHtml";
 import HtmlToMarkdown from "./HtmlToMarkdown";
 import CssFormatter from "./CssFormatter";
 import YamlFormatter from "./YamlFormatter";
+import ColorPicker from "./ColorPicker";
+import ColorPaletteGenerator from "./ColorPaletteGenerator";
+import ContrastChecker from "./ContrastChecker";
+import CssGradientGenerator from "./CssGradientGenerator";
+import CountdownTimer from "./CountdownTimer";
+import TimezoneConverter from "./TimezoneConverter";
+import DateDifferenceCalculator from "./DateDifferenceCalculator";
+import UnixTimestampConverter from "./UnixTimestampConverter";
 
 interface Props {
   toolId: string;
@@ -167,6 +175,22 @@ export default function ToolRenderer({ toolId }: Props) {
       return <CssFormatter />;
     case "yaml-formatter":
       return <YamlFormatter />;
+    case "color-picker":
+      return <ColorPicker />;
+    case "color-palette-generator":
+      return <ColorPaletteGenerator />;
+    case "contrast-checker":
+      return <ContrastChecker />;
+    case "css-gradient-generator":
+      return <CssGradientGenerator />;
+    case "countdown-timer":
+      return <CountdownTimer />;
+    case "timezone-converter":
+      return <TimezoneConverter />;
+    case "date-difference-calculator":
+      return <DateDifferenceCalculator />;
+    case "unix-timestamp-converter":
+      return <UnixTimestampConverter />;
     default:
       return (
         <div class="text-center py-12">
