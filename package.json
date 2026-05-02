@@ -12,19 +12,20 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "astro": "^5.7.10",
     "@astrojs/preact": "^4.0.8",
-    "preact": "^10.26.6",
-    "tailwindcss": "^4.1.4",
     "@tailwindcss/vite": "^4.1.4",
+    "astro": "^5.7.10",
+    "js-yaml": "^4.1.0",
     "lucide": "^0.503.0",
+    "marked": "18.0.3",
     "pdf-lib": "^1.17.1",
-    "js-yaml": "^4.1.0"
+    "preact": "^10.26.6",
+    "tailwindcss": "^4.1.4"
   },
   "devDependencies": {
-    "typescript": "^5.8.3",
     "@biomejs/biome": "^1.9.4",
-    "vitest": "^3.1.2",
-    "@types/js-yaml": "^4.0.9"
+    "@types/js-yaml": "^4.0.9",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.2"
   }
 }

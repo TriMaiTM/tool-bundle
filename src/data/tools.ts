@@ -347,6 +347,87 @@ export const tools: Tool[] = [
     slug: "otp-generator",
     tags: ["otp", "totp", "2fa", "authenticator"],
   },
+
+  // ============================================
+  // Text Tools (Extended)
+  // ============================================
+  {
+    id: "text-repeater",
+    name: "Text Repeater",
+    description: "Repeat text N times with custom separator options.",
+    category: "text",
+    icon: "repeat",
+    slug: "text-repeater",
+    tags: ["repeat", "duplicate", "text"],
+  },
+  {
+    id: "remove-duplicate-lines",
+    name: "Remove Duplicate Lines",
+    description:
+      "Remove duplicate lines from text — case-sensitive or insensitive.",
+    category: "text",
+    icon: "list-minus",
+    slug: "remove-duplicate-lines",
+    tags: ["duplicate", "lines", "dedupe"],
+  },
+  {
+    id: "text-sorter",
+    name: "Text Sorter",
+    description: "Sort lines alphabetically, by length, or randomly.",
+    category: "text",
+    icon: "arrow-up-down",
+    slug: "text-sorter",
+    tags: ["sort", "alphabetical", "lines"],
+  },
+  {
+    id: "reading-time-calculator",
+    name: "Reading Time Calculator",
+    description: "Estimate reading and speaking time with adjustable WPM.",
+    category: "text",
+    icon: "clock",
+    slug: "reading-time-calculator",
+    tags: ["reading", "time", "wpm"],
+  },
+
+  // ============================================
+  // Developer Tools (Extended)
+  // ============================================
+  {
+    id: "markdown-to-html",
+    name: "Markdown to HTML",
+    description: "Convert Markdown to HTML with live preview.",
+    category: "developer",
+    icon: "file-code",
+    slug: "markdown-to-html",
+    tags: ["markdown", "html", "convert"],
+  },
+  {
+    id: "html-to-markdown",
+    name: "HTML to Markdown",
+    description: "Convert HTML to clean Markdown — all elements supported.",
+    category: "developer",
+    icon: "code",
+    slug: "html-to-markdown",
+    tags: ["html", "markdown", "convert"],
+  },
+  {
+    id: "css-formatter",
+    name: "CSS Formatter",
+    description: "Format, beautify, and minify CSS with custom indentation.",
+    category: "developer",
+    icon: "paintbrush",
+    slug: "css-formatter",
+    tags: ["css", "format", "minify"],
+  },
+  {
+    id: "yaml-formatter",
+    name: "YAML Formatter",
+    description: "Format, validate, and beautify YAML with error details.",
+    category: "developer",
+    icon: "file-cog",
+    slug: "yaml-formatter",
+    tags: ["yaml", "format", "validate"],
+  },
 ];
 
 /**

@@ -26,6 +26,14 @@ import PdfToText from "./PdfToText";
 import PasswordGenerator from "./PasswordGenerator";
 import PasswordStrengthChecker from "./PasswordStrengthChecker";
 import OtpGenerator from "./OtpGenerator";
+import TextRepeater from "./TextRepeater";
+import RemoveDuplicateLines from "./RemoveDuplicateLines";
+import TextSorter from "./TextSorter";
+import ReadingTimeCalculator from "./ReadingTimeCalculator";
+import MarkdownToHtml from "./MarkdownToHtml";
+import HtmlToMarkdown from "./HtmlToMarkdown";
+import CssFormatter from "./CssFormatter";
+import YamlFormatter from "./YamlFormatter";
 
 interface Props {
   toolId: string;
@@ -143,6 +151,22 @@ export default function ToolRenderer({ toolId }: Props) {
       return <PasswordStrengthChecker />;
     case "otp-generator":
       return <OtpGenerator />;
+    case "text-repeater":
+      return <TextRepeater />;
+    case "remove-duplicate-lines":
+      return <RemoveDuplicateLines />;
+    case "text-sorter":
+      return <TextSorter />;
+    case "reading-time-calculator":
+      return <ReadingTimeCalculator />;
+    case "markdown-to-html":
+      return <MarkdownToHtml />;
+    case "html-to-markdown":
+      return <HtmlToMarkdown />;
+    case "css-formatter":
+      return <CssFormatter />;
+    case "yaml-formatter":
+      return <YamlFormatter />;
     default:
       return (
         <div class="text-center py-12">
