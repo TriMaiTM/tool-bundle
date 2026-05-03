@@ -726,6 +726,145 @@ export const tools: Tool[] = [
     slug: "placeholder-image",
     tags: ["placeholder", "image", "dummy"],
   },
+
+  // ============================================
+  // Text Tools (Extended Phase 6)
+  // ============================================
+  {
+    id: "fancy-text",
+    name: "Fancy Text Generator",
+    description: "Generate fancy Unicode text — multiple styles.",
+    category: "text",
+    icon: "sparkles",
+    slug: "fancy-text",
+    tags: ["fancy", "unicode", "text"],
+  },
+  {
+    id: "readability-score",
+    name: "Readability Score",
+    description: "Calculate readability scores — 6 formulas with grade levels.",
+    category: "text",
+    icon: "book-open",
+    slug: "readability-score",
+    tags: ["readability", "score", "grade"],
+  },
+  {
+    id: "text-to-hashtags",
+    name: "Text to Hashtags",
+    description: "Generate hashtags from text — keywords extraction.",
+    category: "text",
+    icon: "hash",
+    slug: "text-to-hashtags",
+    tags: ["hashtag", "keywords", "social"],
+  },
+  {
+    id: "emoji-picker",
+    name: "Emoji Picker & Search",
+    description: "Browse and search emojis — click to copy.",
+    category: "text",
+    icon: "smile",
+    slug: "emoji-picker",
+    tags: ["emoji", "picker", "search"],
+  },
+
+  // ============================================
+  // Developer Tools (Extended Phase 6)
+  // ============================================
+  {
+    id: "js-formatter",
+    name: "JS Formatter",
+    description: "Format and beautify JavaScript with proper indentation.",
+    category: "developer",
+    icon: "braces",
+    slug: "js-formatter",
+    tags: ["javascript", "format", "beautify"],
+  },
+  {
+    id: "typescript-to-js",
+    name: "TypeScript to JS Converter",
+    description: "Convert TypeScript to JavaScript — strip type annotations.",
+    category: "developer",
+    icon: "file-type-2",
+    slug: "typescript-to-js",
+    tags: ["typescript", "javascript", "convert"],
+  },
+  {
+    id: "color-system-generator",
+    name: "Color System Generator",
+    description: "Generate a full color system from one color.",
+    category: "developer",
+    icon: "palette",
+    slug: "color-system-generator",
+    tags: ["color", "design", "system"],
+  },
+
+  // ============================================
+  // Education & Students Tools
+  // ============================================
+  {
+    id: "flashcard-maker",
+    name: "Flashcard Maker",
+    description: "Create and study flashcards — saved locally.",
+    category: "education",
+    icon: "layers",
+    slug: "flashcard-maker",
+    featured: true,
+    tags: ["flashcard", "study", "memory"],
+  },
+  {
+    id: "quiz-maker",
+    name: "Quiz Maker",
+    description: "Create and take quizzes — free and private.",
+    category: "education",
+    icon: "clipboard-list",
+    slug: "quiz-maker",
+    tags: ["quiz", "test", "education"],
+  },
+  {
+    id: "grade-calculator",
+    name: "Grade Calculator",
+    description: "Calculate weighted average grades.",
+    category: "education",
+    icon: "calculator",
+    slug: "grade-calculator",
+    tags: ["grade", "average", "school"],
+  },
+  {
+    id: "gpa-calculator",
+    name: "GPA Calculator",
+    description: "Calculate GPA from course grades.",
+    category: "education",
+    icon: "award",
+    slug: "gpa-calculator",
+    tags: ["gpa", "grade", "university"],
+  },
+  {
+    id: "citation-generator",
+    name: "Citation Generator",
+    description: "Generate APA, MLA, Chicago citations instantly.",
+    category: "education",
+    icon: "quote",
+    slug: "citation-generator",
+    tags: ["citation", "apa", "mla"],
+  },
+  {
+    id: "study-planner",
+    name: "Study Planner",
+    description: "Plan your study schedule around exams.",
+    category: "education",
+    icon: "calendar-check",
+    slug: "study-planner",
+    tags: ["study", "plan", "exam"],
+  },
+  {
+    id: "fraction-calculator",
+    name: "Fraction Calculator",
+    description: "Calculate fractions with step-by-step solutions.",
+    category: "education",
+    icon: "divide",
+    slug: "fraction-calculator",
+    tags: ["fraction", "math", "calculator"],
+  },
 ];
 
 /**

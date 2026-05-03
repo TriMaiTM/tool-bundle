@@ -63,6 +63,20 @@ import RandomNamePicker from "./RandomNamePicker";
 import WheelSpinner from "./WheelSpinner";
 import DecisionMaker from "./DecisionMaker";
 import PlaceholderImage from "./PlaceholderImage";
+import FancyTextGenerator from "./FancyTextGenerator";
+import ReadabilityScore from "./ReadabilityScore";
+import TextToHashtags from "./TextToHashtags";
+import EmojiPicker from "./EmojiPicker";
+import JavaScriptFormatter from "./JavaScriptFormatter";
+import TypeScriptToJs from "./TypeScriptToJs";
+import ColorSystemGenerator from "./ColorSystemGenerator";
+import FlashcardMaker from "./FlashcardMaker";
+import QuizMaker from "./QuizMaker";
+import GradeCalculator from "./GradeCalculator";
+import GpaCalculator from "./GpaCalculator";
+import CitationGenerator from "./CitationGenerator";
+import StudyPlanner from "./StudyPlanner";
+import FractionCalculator from "./FractionCalculator";
 
 interface Props {
   toolId: string;
@@ -254,6 +268,34 @@ export default function ToolRenderer({ toolId }: Props) {
       return <DecisionMaker />;
     case "placeholder-image":
       return <PlaceholderImage />;
+    case "fancy-text":
+      return <FancyTextGenerator />;
+    case "readability-score":
+      return <ReadabilityScore />;
+    case "text-to-hashtags":
+      return <TextToHashtags />;
+    case "emoji-picker":
+      return <EmojiPicker />;
+    case "js-formatter":
+      return <JavaScriptFormatter />;
+    case "typescript-to-js":
+      return <TypeScriptToJs />;
+    case "color-system-generator":
+      return <ColorSystemGenerator />;
+    case "flashcard-maker":
+      return <FlashcardMaker />;
+    case "quiz-maker":
+      return <QuizMaker />;
+    case "grade-calculator":
+      return <GradeCalculator />;
+    case "gpa-calculator":
+      return <GpaCalculator />;
+    case "citation-generator":
+      return <CitationGenerator />;
+    case "study-planner":
+      return <StudyPlanner />;
+    case "fraction-calculator":
+      return <FractionCalculator />;
     default:
       return (
         <div class="text-center py-12">

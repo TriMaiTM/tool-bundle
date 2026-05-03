@@ -20,7 +20,7 @@ Complete list of all tools in ToolBundle, organized by category.
 | Photo Filters | `/image/photo-filters` | Apply filters — Vintage, Cool, Warm, Dramatic & more | ✅ Live |
 | SVG Optimizer | `/image/svg-optimizer` | Optimize SVG — remove comments, whitespace, shorten colors | ✅ Live |
 
-## Text Tools (9)
+## Text Tools (13)
 
 | Tool | Slug | Description | Status |
 |---|---|---|---|
@@ -33,8 +33,12 @@ Complete list of all tools in ToolBundle, organized by category.
 | Remove Duplicate Lines | `/text/remove-duplicate-lines` | Remove duplicate lines — case-sensitive or insensitive | ✅ Live |
 | Text Sorter | `/text/text-sorter` | Sort lines alphabetically, by length, or randomly | ✅ Live |
 | Reading Time Calculator | `/text/reading-time-calculator` | Estimate reading and speaking time with adjustable WPM | ✅ Live |
+| Fancy Text Generator | `/text/fancy-text` | Generate fancy Unicode text — multiple styles | ✅ Live |
+| Readability Score | `/text/readability-score` | Calculate readability scores — 6 formulas | ✅ Live |
+| Text to Hashtags | `/text/text-to-hashtags` | Generate hashtags from text — keywords extraction | ✅ Live |
+| Emoji Picker & Search | `/text/emoji-picker` | Browse and search emojis — click to copy | ✅ Live |
 
-## Developer Tools (13)
+## Developer Tools (16)
 
 | Tool | Slug | Description | Status |
 |---|---|---|---|
@@ -51,6 +55,9 @@ Complete list of all tools in ToolBundle, organized by category.
 | HTML Formatter | `/developer/html-formatter` | Format and beautify HTML with custom indentation | ✅ Live |
 | SQL Formatter | `/developer/sql-formatter` | Format SQL queries with uppercase keywords | ✅ Live |
 | XML Formatter | `/developer/xml-formatter` | Format, beautify, and minify XML with validation | ✅ Live |
+| JavaScript Formatter | `/developer/js-formatter` | Format and beautify JavaScript | ✅ Live |
+| TypeScript to JS | `/developer/typescript-to-js` | Strip TypeScript type annotations | ✅ Live |
+| Color System Generator | `/developer/color-system-generator` | Generate full color system from one color | ✅ Live |
 
 ## PDF Tools (5)
 
@@ -79,7 +86,20 @@ Complete list of all tools in ToolBundle, organized by category.
 | Password Generator | `/security/password-generator` | Generate secure passwords with batch mode | ✅ Live |
 | Password Strength Checker | `/security/password-strength-checker` | Test password strength with entropy and crack time | ✅ Live |
 | OTP Generator | `/security/otp-generator` | Generate TOTP 2FA codes with countdown timer | ✅ Live |
+| Placeholder Image | `/fun/placeholder-image` | Generate placeholder images with custom size/colors | ✅ Live |
+
+## Education & Students (7)
+
+| Tool | Slug | Description | Status |
+|---|---|---|---|
+| Flashcard Maker | `/education/flashcard-maker` | Create and study flashcards — saved locally | ✅ Live |
+| Quiz Maker | `/education/quiz-maker` | Create and take quizzes — free and private | ✅ Live |
+| Grade Calculator | `/education/grade-calculator` | Calculate weighted average grades | ✅ Live |
+| GPA Calculator | `/education/gpa-calculator` | Calculate GPA from course grades | ✅ Live |
+| Citation Generator | `/education/citation-generator` | Generate APA, MLA, Chicago citations | ✅ Live |
+| Study Planner | `/education/study-planner` | Plan study schedule around exams | ✅ Live |
+| Fraction Calculator | `/education/fraction-calculator` | Calculate fractions with step-by-step solutions | ✅ Live |
 
 ---
 
-**Total: 32 tools** — all live and working, 100% client-side.
+**Total: 83 tools** — all live and working, 100% client-side.

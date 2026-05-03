@@ -10,7 +10,7 @@ A collection of free, privacy-first browser tools for images, text, PDFs, math, 
 - **Privacy First** — No server uploads, no data collection, no cookies. What you process stays on your device.
 - **Instant Results** — No upload waits, no queues. Results appear instantly because everything runs on your machine.
 - **Free Forever** — No accounts, no subscriptions, no paywalls. Every tool is free for everyone.
-- **69 Tools** — Across 11 categories: Image, Text, Developer, PDF, Math, Security, Color, Date & Time, SEO, Data, and Fun & Utility.
+- **83 Tools** — Across 12 categories: Image, Text, Developer, PDF, Math, Security, Color, Date & Time, SEO, Data, Fun & Utility, and Education.
 - **Dark UI** — Clean dark canvas with electric yellow accent. Built with a consistent design system.
 
 ## Tech Stack
@@ -52,11 +52,11 @@ Full documentation is available in the [`docs/`](./docs/) directory:
 ### Image Tools (13)
 PNG to JPG, JPG to PNG, JPG to WebP, PNG to WebP, WebP to PNG, Image Resizer, Image Compressor, Image Cropper, Image to Base64, Image Rotator & Flipper, Image Watermark, Photo Filters, SVG Optimizer
 
-### Text Tools (9)
-Word Counter, Case Converter, Slug Generator, Text Reverser, Line Counter, Text Repeater, Remove Duplicate Lines, Text Sorter, Reading Time Calculator
+### Text Tools (13)
+Word Counter, Case Converter, Slug Generator, Text Reverser, Line Counter, Text Repeater, Remove Duplicate Lines, Text Sorter, Reading Time Calculator, Fancy Text Generator, Readability Score, Text to Hashtags, Emoji Picker
 
-### Developer Tools (13)
-JSON Formatter, Base64 Encoder/Decoder, URL Encoder/Decoder, Hash Generator, Regex Tester, Lorem Ipsum Generator, Markdown to HTML, HTML to Markdown, CSS Formatter, YAML Formatter, HTML Formatter, SQL Formatter, XML Formatter
+### Developer Tools (16)
+JSON Formatter, Base64 Encoder/Decoder, URL Encoder/Decoder, Hash Generator, Regex Tester, Lorem Ipsum Generator, Markdown to HTML, HTML to Markdown, CSS Formatter, YAML Formatter, HTML Formatter, SQL Formatter, XML Formatter, JavaScript Formatter, TypeScript to JS, Color System Generator
 
 ### PDF Tools (5)
 PDF Merger, PDF Splitter, PDF Compressor, PDF Rotator, PDF to Text
@@ -81,6 +81,9 @@ CSV to JSON, JSON to CSV, CSV Formatter
 
 ### Fun & Utility (7)
 Random Number Generator, Dice Roller, Coin Flipper, Random Name Picker, Wheel Spinner, Decision Maker, Placeholder Image Generator
+
+### Education & Students (7)
+Flashcard Maker, Quiz Maker, Grade Calculator, GPA Calculator, Citation Generator, Study Planner, Fraction Calculator
 
 ## License
 

@@ -105,6 +105,15 @@ export const categories: Category[] = [
     color: "#f97316",
     toolCount: 0,
   },
+  {
+    id: "education",
+    name: "Education & Students",
+    description:
+      "Flashcards, quizzes, grade calculators, citation generators, and study tools.",
+    icon: "graduation-cap",
+    color: "#6366f1",
+    toolCount: 0,
+  },
 ];
 
 export function getCategoryById(id: string): Category | undefined {
