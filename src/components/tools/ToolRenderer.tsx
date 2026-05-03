@@ -132,6 +132,12 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
   "volume-booster": lazy(() => import("./VolumeBooster")),
   "audio-converter": lazy(() => import("./AudioConverter")),
   "video-speed-changer": lazy(() => import("./VideoSpeedChanger")),
+
+  // AI Tools
+  ocr: lazy(() => import("./OcrTool")),
+  "background-remover": lazy(() => import("./BackgroundRemover")),
+  "text-summarizer": lazy(() => import("./TextSummarizer")),
+  "object-detection": lazy(() => import("./ObjectDetection")),
 };
 
 // Image converter tools with their specific configurations

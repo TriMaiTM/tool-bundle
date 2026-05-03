@@ -1033,6 +1033,51 @@ export const tools: Tool[] = [
     slug: "video-speed-changer",
     tags: ["video", "speed", "slow"],
   },
+
+  // ============================================
+  // AI Tools
+  // ============================================
+  {
+    id: "ocr",
+    name: "OCR — Image to Text",
+    description:
+      "Extract text from images using AI-powered OCR. Supports 15 languages.",
+    category: "ai",
+    icon: "scan-text",
+    slug: "ocr",
+    featured: true,
+    tags: ["ocr", "text", "image", "ai", "recognize"],
+  },
+  {
+    id: "background-remover",
+    name: "Background Remover",
+    description: "Remove image backgrounds instantly with AI. 100% in-browser.",
+    category: "ai",
+    icon: "eraser",
+    slug: "background-remover",
+    featured: true,
+    tags: ["background", "remove", "image", "ai", "transparent"],
+  },
+  {
+    id: "text-summarizer",
+    name: "Text Summarizer",
+    description:
+      "Summarize long articles and texts using AI. Adjustable length.",
+    category: "ai",
+    icon: "text-quote",
+    slug: "text-summarizer",
+    tags: ["summarize", "text", "ai", "article"],
+  },
+  {
+    id: "object-detection",
+    name: "Object Detection",
+    description:
+      "Detect and label objects in images using AI. Annotated results.",
+    category: "ai",
+    icon: "scan",
+    slug: "object-detection",
+    tags: ["detect", "object", "image", "ai", "yolo"],
+  },
 ];
 
 /**

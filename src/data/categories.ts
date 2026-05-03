@@ -141,6 +141,15 @@ export const categories: Category[] = [
     color: "#d946ef",
     toolCount: 0,
   },
+  {
+    id: "ai",
+    name: "AI Tools",
+    description:
+      "AI-powered tools running 100% in your browser — private, fast, free.",
+    icon: "brain",
+    color: "#8b5cf6",
+    toolCount: 0,
+  },
 ];
 
 export function getCategoryById(id: string): Category | undefined {
