@@ -6,6 +6,18 @@ export default defineConfig({
   integrations: [preact()],
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            "vendor-preact": ["preact", "preact/hooks", "preact/compat"],
+            "vendor-pdf": ["pdf-lib"],
+            "vendor-marked": ["marked"],
+            "vendor-yaml": ["js-yaml"],
+          },
+        },
+      },
+    },
   },
   output: "static",
   compressHTML: true,

@@ -1,103 +1,138 @@
-import WordCounter from "./WordCounter";
-import CaseConverter from "./CaseConverter";
-import JsonFormatter from "./JsonFormatter";
-import Base64Encoder from "./Base64Encoder";
-import LoremGenerator from "./LoremGenerator";
-import TextReverser from "./TextReverser";
-import LineCounter from "./LineCounter";
-import SlugGenerator from "./SlugGenerator";
-import UrlEncoder from "./UrlEncoder";
-import HashGenerator from "./HashGenerator";
-import RegexTester from "./RegexTester";
-import ImageConverter from "./ImageConverter";
-import ImageResizer from "./ImageResizer";
-import ImageCompressor from "./ImageCompressor";
-import ImageCropper from "./ImageCropper";
-import PercentageCalculator from "./PercentageCalculator";
-import UnitConverter from "./UnitConverter";
-import BmiCalculator from "./BmiCalculator";
-import LoanCalculator from "./LoanCalculator";
-import AgeCalculator from "./AgeCalculator";
-import PdfMerger from "./PdfMerger";
-import PdfSplitter from "./PdfSplitter";
-import PdfCompressor from "./PdfCompressor";
-import PdfRotator from "./PdfRotator";
-import PdfToText from "./PdfToText";
-import PasswordGenerator from "./PasswordGenerator";
-import PasswordStrengthChecker from "./PasswordStrengthChecker";
-import OtpGenerator from "./OtpGenerator";
-import TextRepeater from "./TextRepeater";
-import RemoveDuplicateLines from "./RemoveDuplicateLines";
-import TextSorter from "./TextSorter";
-import ReadingTimeCalculator from "./ReadingTimeCalculator";
-import MarkdownToHtml from "./MarkdownToHtml";
-import HtmlToMarkdown from "./HtmlToMarkdown";
-import CssFormatter from "./CssFormatter";
-import YamlFormatter from "./YamlFormatter";
-import ColorPicker from "./ColorPicker";
-import ColorPaletteGenerator from "./ColorPaletteGenerator";
-import ContrastChecker from "./ContrastChecker";
-import CssGradientGenerator from "./CssGradientGenerator";
-import CountdownTimer from "./CountdownTimer";
-import TimezoneConverter from "./TimezoneConverter";
-import DateDifferenceCalculator from "./DateDifferenceCalculator";
-import UnixTimestampConverter from "./UnixTimestampConverter";
-import MetaTagGenerator from "./MetaTagGenerator";
-import RobotsTxtGenerator from "./RobotsTxtGenerator";
-import SitemapGenerator from "./SitemapGenerator";
-import CsvToJson from "./CsvToJson";
-import JsonToCsv from "./JsonToCsv";
-import CsvFormatter from "./CsvFormatter";
-import ImageToBase64 from "./ImageToBase64";
-import ImageRotator from "./ImageRotator";
-import ImageWatermark from "./ImageWatermark";
-import PhotoFilters from "./PhotoFilters";
-import SvgOptimizer from "./SvgOptimizer";
-import HtmlFormatter from "./HtmlFormatter";
-import SqlFormatter from "./SqlFormatter";
-import XmlFormatter from "./XmlFormatter";
-import RandomNumberGenerator from "./RandomNumberGenerator";
-import DiceRoller from "./DiceRoller";
-import CoinFlipper from "./CoinFlipper";
-import RandomNamePicker from "./RandomNamePicker";
-import WheelSpinner from "./WheelSpinner";
-import DecisionMaker from "./DecisionMaker";
-import PlaceholderImage from "./PlaceholderImage";
-import FancyTextGenerator from "./FancyTextGenerator";
-import ReadabilityScore from "./ReadabilityScore";
-import TextToHashtags from "./TextToHashtags";
-import EmojiPicker from "./EmojiPicker";
-import JavaScriptFormatter from "./JavaScriptFormatter";
-import TypeScriptToJs from "./TypeScriptToJs";
-import ColorSystemGenerator from "./ColorSystemGenerator";
-import FlashcardMaker from "./FlashcardMaker";
-import QuizMaker from "./QuizMaker";
-import GradeCalculator from "./GradeCalculator";
-import GpaCalculator from "./GpaCalculator";
-import CitationGenerator from "./CitationGenerator";
-import StudyPlanner from "./StudyPlanner";
-import FractionCalculator from "./FractionCalculator";
-import CurrencyConverter from "./CurrencyConverter";
-import CompoundInterest from "./CompoundInterest";
-import TaxCalculator from "./TaxCalculator";
-import BudgetTracker from "./BudgetTracker";
-import InvestmentCalculator from "./InvestmentCalculator";
-import NetWorthCalculator from "./NetWorthCalculator";
-import BreakEvenCalculator from "./BreakEvenCalculator";
-import CalorieCalculator from "./CalorieCalculator";
-import WaterIntakeCalculator from "./WaterIntakeCalculator";
-import SleepCycleCalculator from "./SleepCycleCalculator";
-import BodyFatCalculator from "./BodyFatCalculator";
-import PregnancyDueDate from "./PregnancyDueDate";
-import VideoToAudio from "./VideoToAudio";
-import AudioTrimmer from "./AudioTrimmer";
-import VolumeBooster from "./VolumeBooster";
-import AudioConverter from "./AudioConverter";
-import VideoSpeedChanger from "./VideoSpeedChanger";
+import { lazy, Suspense } from "preact/compat";
 
 interface Props {
   toolId: string;
 }
+
+// Lazy-loaded tool components — each becomes its own chunk
+const toolComponents: Record<string, ReturnType<typeof lazy>> = {
+  // Image Tools
+  "image-resizer": lazy(() => import("./ImageResizer")),
+  "image-compressor": lazy(() => import("./ImageCompressor")),
+  "image-cropper": lazy(() => import("./ImageCropper")),
+  "image-to-base64": lazy(() => import("./ImageToBase64")),
+  "image-rotator": lazy(() => import("./ImageRotator")),
+  "image-watermark": lazy(() => import("./ImageWatermark")),
+  "photo-filters": lazy(() => import("./PhotoFilters")),
+  "svg-optimizer": lazy(() => import("./SvgOptimizer")),
+
+  // Text Tools
+  "word-counter": lazy(() => import("./WordCounter")),
+  "case-converter": lazy(() => import("./CaseConverter")),
+  "slug-generator": lazy(() => import("./SlugGenerator")),
+  "text-reverser": lazy(() => import("./TextReverser")),
+  "line-counter": lazy(() => import("./LineCounter")),
+  "text-repeater": lazy(() => import("./TextRepeater")),
+  "remove-duplicate-lines": lazy(() => import("./RemoveDuplicateLines")),
+  "text-sorter": lazy(() => import("./TextSorter")),
+  "reading-time-calculator": lazy(() => import("./ReadingTimeCalculator")),
+  "fancy-text": lazy(() => import("./FancyTextGenerator")),
+  "readability-score": lazy(() => import("./ReadabilityScore")),
+  "text-to-hashtags": lazy(() => import("./TextToHashtags")),
+  "emoji-picker": lazy(() => import("./EmojiPicker")),
+
+  // Developer Tools
+  "json-formatter": lazy(() => import("./JsonFormatter")),
+  "base64-encoder": lazy(() => import("./Base64Encoder")),
+  "url-encoder": lazy(() => import("./UrlEncoder")),
+  "hash-generator": lazy(() => import("./HashGenerator")),
+  "regex-tester": lazy(() => import("./RegexTester")),
+  "lorem-generator": lazy(() => import("./LoremGenerator")),
+  "markdown-to-html": lazy(() => import("./MarkdownToHtml")),
+  "html-to-markdown": lazy(() => import("./HtmlToMarkdown")),
+  "css-formatter": lazy(() => import("./CssFormatter")),
+  "yaml-formatter": lazy(() => import("./YamlFormatter")),
+  "html-formatter": lazy(() => import("./HtmlFormatter")),
+  "sql-formatter": lazy(() => import("./SqlFormatter")),
+  "xml-formatter": lazy(() => import("./XmlFormatter")),
+  "js-formatter": lazy(() => import("./JavaScriptFormatter")),
+  "typescript-to-js": lazy(() => import("./TypeScriptToJs")),
+  "color-system-generator": lazy(() => import("./ColorSystemGenerator")),
+
+  // PDF Tools
+  "pdf-merger": lazy(() => import("./PdfMerger")),
+  "pdf-splitter": lazy(() => import("./PdfSplitter")),
+  "pdf-compressor": lazy(() => import("./PdfCompressor")),
+  "pdf-rotator": lazy(() => import("./PdfRotator")),
+  "pdf-to-text": lazy(() => import("./PdfToText")),
+
+  // Math Tools
+  "percentage-calculator": lazy(() => import("./PercentageCalculator")),
+  "unit-converter": lazy(() => import("./UnitConverter")),
+  "bmi-calculator": lazy(() => import("./BmiCalculator")),
+  "loan-calculator": lazy(() => import("./LoanCalculator")),
+  "age-calculator": lazy(() => import("./AgeCalculator")),
+
+  // Security Tools
+  "password-generator": lazy(() => import("./PasswordGenerator")),
+  "password-strength-checker": lazy(() => import("./PasswordStrengthChecker")),
+  "otp-generator": lazy(() => import("./OtpGenerator")),
+
+  // Color Tools
+  "color-picker": lazy(() => import("./ColorPicker")),
+  "color-palette-generator": lazy(() => import("./ColorPaletteGenerator")),
+  "contrast-checker": lazy(() => import("./ContrastChecker")),
+  "css-gradient-generator": lazy(() => import("./CssGradientGenerator")),
+
+  // Date & Time Tools
+  "countdown-timer": lazy(() => import("./CountdownTimer")),
+  "timezone-converter": lazy(() => import("./TimezoneConverter")),
+  "date-difference-calculator": lazy(
+    () => import("./DateDifferenceCalculator"),
+  ),
+  "unix-timestamp-converter": lazy(() => import("./UnixTimestampConverter")),
+
+  // SEO Tools
+  "meta-tag-generator": lazy(() => import("./MetaTagGenerator")),
+  "robots-txt-generator": lazy(() => import("./RobotsTxtGenerator")),
+  "sitemap-generator": lazy(() => import("./SitemapGenerator")),
+
+  // Data Tools
+  "csv-to-json": lazy(() => import("./CsvToJson")),
+  "json-to-csv": lazy(() => import("./JsonToCsv")),
+  "csv-formatter": lazy(() => import("./CsvFormatter")),
+
+  // Fun Tools
+  "random-number-generator": lazy(() => import("./RandomNumberGenerator")),
+  "dice-roller": lazy(() => import("./DiceRoller")),
+  "coin-flipper": lazy(() => import("./CoinFlipper")),
+  "random-name-picker": lazy(() => import("./RandomNamePicker")),
+  "wheel-spinner": lazy(() => import("./WheelSpinner")),
+  "decision-maker": lazy(() => import("./DecisionMaker")),
+  "placeholder-image": lazy(() => import("./PlaceholderImage")),
+
+  // Education Tools
+  "flashcard-maker": lazy(() => import("./FlashcardMaker")),
+  "quiz-maker": lazy(() => import("./QuizMaker")),
+  "grade-calculator": lazy(() => import("./GradeCalculator")),
+  "gpa-calculator": lazy(() => import("./GpaCalculator")),
+  "citation-generator": lazy(() => import("./CitationGenerator")),
+  "study-planner": lazy(() => import("./StudyPlanner")),
+  "fraction-calculator": lazy(() => import("./FractionCalculator")),
+
+  // Finance Tools
+  "currency-converter": lazy(() => import("./CurrencyConverter")),
+  "compound-interest": lazy(() => import("./CompoundInterest")),
+  "tax-calculator": lazy(() => import("./TaxCalculator")),
+  "budget-tracker": lazy(() => import("./BudgetTracker")),
+  "investment-calculator": lazy(() => import("./InvestmentCalculator")),
+  "net-worth-calculator": lazy(() => import("./NetWorthCalculator")),
+  "break-even-calculator": lazy(() => import("./BreakEvenCalculator")),
+
+  // Health Tools
+  "calorie-calculator": lazy(() => import("./CalorieCalculator")),
+  "water-intake": lazy(() => import("./WaterIntakeCalculator")),
+  "sleep-cycle": lazy(() => import("./SleepCycleCalculator")),
+  "body-fat-calculator": lazy(() => import("./BodyFatCalculator")),
+  "pregnancy-due-date": lazy(() => import("./PregnancyDueDate")),
+
+  // Video & Audio Tools
+  "video-to-audio": lazy(() => import("./VideoToAudio")),
+  "audio-trimmer": lazy(() => import("./AudioTrimmer")),
+  "volume-booster": lazy(() => import("./VolumeBooster")),
+  "audio-converter": lazy(() => import("./AudioConverter")),
+  "video-speed-changer": lazy(() => import("./VideoSpeedChanger")),
+};
 
 // Image converter tools with their specific configurations
 const IMAGE_CONVERTER_CONFIGS: Record<
@@ -141,217 +176,50 @@ const IMAGE_CONVERTER_CONFIGS: Record<
   },
 };
 
+// Lazy-loaded ImageConverter
+const LazyImageConverter = lazy(() => import("./ImageConverter"));
+
+function LoadingSpinner() {
+  return (
+    <div class="flex items-center justify-center py-16">
+      <div class="flex flex-col items-center gap-3">
+        <div class="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+        <span class="text-caption text-muted">Loading tool...</span>
+      </div>
+    </div>
+  );
+}
+
 export default function ToolRenderer({ toolId }: Props) {
   // Check if it's an image converter tool
   const converterConfig = IMAGE_CONVERTER_CONFIGS[toolId];
   if (converterConfig) {
     return (
-      <ImageConverter
-        fromFormat={converterConfig.from}
-        toFormat={converterConfig.to}
-        targetMime={converterConfig.mime}
-        accept={converterConfig.accept}
-      />
+      <Suspense fallback={<LoadingSpinner />}>
+        <LazyImageConverter
+          fromFormat={converterConfig.from}
+          toFormat={converterConfig.to}
+          targetMime={converterConfig.mime}
+          accept={converterConfig.accept}
+        />
+      </Suspense>
     );
   }
 
-  // Map other tool IDs to components
-  switch (toolId) {
-    case "image-resizer":
-      return <ImageResizer />;
-    case "image-compressor":
-      return <ImageCompressor />;
-    case "image-cropper":
-      return <ImageCropper />;
-    case "word-counter":
-      return <WordCounter />;
-    case "case-converter":
-      return <CaseConverter />;
-    case "json-formatter":
-      return <JsonFormatter />;
-    case "base64-encoder":
-      return <Base64Encoder />;
-    case "lorem-generator":
-      return <LoremGenerator />;
-    case "text-reverser":
-      return <TextReverser />;
-    case "line-counter":
-      return <LineCounter />;
-    case "slug-generator":
-      return <SlugGenerator />;
-    case "url-encoder":
-      return <UrlEncoder />;
-    case "hash-generator":
-      return <HashGenerator />;
-    case "regex-tester":
-      return <RegexTester />;
-    case "percentage-calculator":
-      return <PercentageCalculator />;
-    case "unit-converter":
-      return <UnitConverter />;
-    case "bmi-calculator":
-      return <BmiCalculator />;
-    case "loan-calculator":
-      return <LoanCalculator />;
-    case "age-calculator":
-      return <AgeCalculator />;
-    case "pdf-merger":
-      return <PdfMerger />;
-    case "pdf-splitter":
-      return <PdfSplitter />;
-    case "pdf-compressor":
-      return <PdfCompressor />;
-    case "pdf-rotator":
-      return <PdfRotator />;
-    case "pdf-to-text":
-      return <PdfToText />;
-    case "password-generator":
-      return <PasswordGenerator />;
-    case "password-strength-checker":
-      return <PasswordStrengthChecker />;
-    case "otp-generator":
-      return <OtpGenerator />;
-    case "text-repeater":
-      return <TextRepeater />;
-    case "remove-duplicate-lines":
-      return <RemoveDuplicateLines />;
-    case "text-sorter":
-      return <TextSorter />;
-    case "reading-time-calculator":
-      return <ReadingTimeCalculator />;
-    case "markdown-to-html":
-      return <MarkdownToHtml />;
-    case "html-to-markdown":
-      return <HtmlToMarkdown />;
-    case "css-formatter":
-      return <CssFormatter />;
-    case "yaml-formatter":
-      return <YamlFormatter />;
-    case "color-picker":
-      return <ColorPicker />;
-    case "color-palette-generator":
-      return <ColorPaletteGenerator />;
-    case "contrast-checker":
-      return <ContrastChecker />;
-    case "css-gradient-generator":
-      return <CssGradientGenerator />;
-    case "countdown-timer":
-      return <CountdownTimer />;
-    case "timezone-converter":
-      return <TimezoneConverter />;
-    case "date-difference-calculator":
-      return <DateDifferenceCalculator />;
-    case "unix-timestamp-converter":
-      return <UnixTimestampConverter />;
-    case "meta-tag-generator":
-      return <MetaTagGenerator />;
-    case "robots-txt-generator":
-      return <RobotsTxtGenerator />;
-    case "sitemap-generator":
-      return <SitemapGenerator />;
-    case "csv-to-json":
-      return <CsvToJson />;
-    case "json-to-csv":
-      return <JsonToCsv />;
-    case "csv-formatter":
-      return <CsvFormatter />;
-    case "image-to-base64":
-      return <ImageToBase64 />;
-    case "image-rotator":
-      return <ImageRotator />;
-    case "image-watermark":
-      return <ImageWatermark />;
-    case "photo-filters":
-      return <PhotoFilters />;
-    case "svg-optimizer":
-      return <SvgOptimizer />;
-    case "html-formatter":
-      return <HtmlFormatter />;
-    case "sql-formatter":
-      return <SqlFormatter />;
-    case "xml-formatter":
-      return <XmlFormatter />;
-    case "random-number-generator":
-      return <RandomNumberGenerator />;
-    case "dice-roller":
-      return <DiceRoller />;
-    case "coin-flipper":
-      return <CoinFlipper />;
-    case "random-name-picker":
-      return <RandomNamePicker />;
-    case "wheel-spinner":
-      return <WheelSpinner />;
-    case "decision-maker":
-      return <DecisionMaker />;
-    case "placeholder-image":
-      return <PlaceholderImage />;
-    case "fancy-text":
-      return <FancyTextGenerator />;
-    case "readability-score":
-      return <ReadabilityScore />;
-    case "text-to-hashtags":
-      return <TextToHashtags />;
-    case "emoji-picker":
-      return <EmojiPicker />;
-    case "js-formatter":
-      return <JavaScriptFormatter />;
-    case "typescript-to-js":
-      return <TypeScriptToJs />;
-    case "color-system-generator":
-      return <ColorSystemGenerator />;
-    case "flashcard-maker":
-      return <FlashcardMaker />;
-    case "quiz-maker":
-      return <QuizMaker />;
-    case "grade-calculator":
-      return <GradeCalculator />;
-    case "gpa-calculator":
-      return <GpaCalculator />;
-    case "citation-generator":
-      return <CitationGenerator />;
-    case "study-planner":
-      return <StudyPlanner />;
-    case "fraction-calculator":
-      return <FractionCalculator />;
-    case "currency-converter":
-      return <CurrencyConverter />;
-    case "compound-interest":
-      return <CompoundInterest />;
-    case "tax-calculator":
-      return <TaxCalculator />;
-    case "budget-tracker":
-      return <BudgetTracker />;
-    case "investment-calculator":
-      return <InvestmentCalculator />;
-    case "net-worth-calculator":
-      return <NetWorthCalculator />;
-    case "break-even-calculator":
-      return <BreakEvenCalculator />;
-    case "calorie-calculator":
-      return <CalorieCalculator />;
-    case "water-intake":
-      return <WaterIntakeCalculator />;
-    case "sleep-cycle":
-      return <SleepCycleCalculator />;
-    case "body-fat-calculator":
-      return <BodyFatCalculator />;
-    case "pregnancy-due-date":
-      return <PregnancyDueDate />;
-    case "video-to-audio":
-      return <VideoToAudio />;
-    case "audio-trimmer":
-      return <AudioTrimmer />;
-    case "volume-booster":
-      return <VolumeBooster />;
-    case "audio-converter":
-      return <AudioConverter />;
-    case "video-speed-changer":
-      return <VideoSpeedChanger />;
-    default:
-      return (
-        <div class="text-center py-12">
-          <p class="text-muted">This tool is coming soon.</p>
-        </div>
-      );
+  // Look up the lazy component
+  const Component = toolComponents[toolId];
+
+  if (!Component) {
+    return (
+      <div class="text-center py-12">
+        <p class="text-muted">This tool is coming soon.</p>
+      </div>
+    );
   }
+
+  return (
+    <Suspense fallback={<LoadingSpinner />}>
+      <Component />
+    </Suspense>
+  );
 }
