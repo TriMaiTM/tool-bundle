@@ -100,6 +100,38 @@ Complete list of all tools in ToolBundle, organized by category.
 | Study Planner | `/education/study-planner` | Plan study schedule around exams | ✅ Live |
 | Fraction Calculator | `/education/fraction-calculator` | Calculate fractions with step-by-step solutions | ✅ Live |
 
+## Finance & Money (7)
+
+| Tool | Slug | Description | Status |
+|---|---|---|---|
+| Currency Converter | `/finance/currency-converter` | Convert between major currencies | ✅ Live |
+| Compound Interest Calculator | `/finance/compound-interest` | Calculate compound interest with charts | ✅ Live |
+| Tax Calculator | `/finance/tax-calculator` | Calculate US federal income tax with brackets | ✅ Live |
+| Budget Tracker | `/finance/budget-tracker` | Track income and expenses with categories | ✅ Live |
+| Investment Calculator | `/finance/investment-calculator` | Project investment growth with compound returns | ✅ Live |
+| Net Worth Calculator | `/finance/net-worth-calculator` | Calculate net worth — assets minus liabilities | ✅ Live |
+| Break Even Calculator | `/finance/break-even-calculator` | Calculate break-even point for business | ✅ Live |
+
+## Health & Medical (5)
+
+| Tool | Slug | Description | Status |
+|---|---|---|---|
+| Calorie Calculator TDEE | `/health/calorie-calculator` | Calculate daily calorie needs — BMR and TDEE | ✅ Live |
+| Water Intake Calculator | `/health/water-intake` | Calculate daily water intake needs | ✅ Live |
+| Sleep Cycle Calculator | `/health/sleep-cycle` | Calculate optimal sleep and wake times | ✅ Live |
+| Body Fat Calculator | `/health/body-fat-calculator` | Calculate body fat percentage — Navy method | ✅ Live |
+| Pregnancy Due Date | `/health/pregnancy-due-date` | Calculate due date and track milestones | ✅ Live |
+
+## Video & Audio (5)
+
+| Tool | Slug | Description | Status |
+|---|---|---|---|
+| Video to MP3 | `/video/video-to-audio` | Extract audio from any video file | ✅ Live |
+| Audio Trimmer | `/video/audio-trimmer` | Trim and cut audio files — browser-based | ✅ Live |
+| Audio Volume Booster | `/video/volume-booster` | Boost or reduce audio volume | ✅ Live |
+| Audio Converter | `/video/audio-converter` | Convert audio files to WAV or OGG | ✅ Live |
+| Video Speed Changer | `/video/video-speed-changer` | Speed up or slow down any video | ✅ Live |
+
 ---
 
-**Total: 83 tools** — all live and working, 100% client-side.
+**Total: 100 tools** — all live and working, 100% client-side.

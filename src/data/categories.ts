@@ -114,6 +114,33 @@ export const categories: Category[] = [
     color: "#6366f1",
     toolCount: 0,
   },
+  {
+    id: "finance",
+    name: "Finance & Money",
+    description:
+      "Currency converters, loan calculators, budget trackers, and investment tools.",
+    icon: "wallet",
+    color: "#84cc16",
+    toolCount: 0,
+  },
+  {
+    id: "health",
+    name: "Health & Medical",
+    description:
+      "BMI, calorie, sleep cycle, body fat calculators and health tools.",
+    icon: "heart-pulse",
+    color: "#f43f5e",
+    toolCount: 0,
+  },
+  {
+    id: "video",
+    name: "Video & Audio",
+    description:
+      "Convert, trim, compress video and audio files in your browser.",
+    icon: "film",
+    color: "#d946ef",
+    toolCount: 0,
+  },
 ];
 
 export function getCategoryById(id: string): Category | undefined {

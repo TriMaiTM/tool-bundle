@@ -77,6 +77,23 @@ import GpaCalculator from "./GpaCalculator";
 import CitationGenerator from "./CitationGenerator";
 import StudyPlanner from "./StudyPlanner";
 import FractionCalculator from "./FractionCalculator";
+import CurrencyConverter from "./CurrencyConverter";
+import CompoundInterest from "./CompoundInterest";
+import TaxCalculator from "./TaxCalculator";
+import BudgetTracker from "./BudgetTracker";
+import InvestmentCalculator from "./InvestmentCalculator";
+import NetWorthCalculator from "./NetWorthCalculator";
+import BreakEvenCalculator from "./BreakEvenCalculator";
+import CalorieCalculator from "./CalorieCalculator";
+import WaterIntakeCalculator from "./WaterIntakeCalculator";
+import SleepCycleCalculator from "./SleepCycleCalculator";
+import BodyFatCalculator from "./BodyFatCalculator";
+import PregnancyDueDate from "./PregnancyDueDate";
+import VideoToAudio from "./VideoToAudio";
+import AudioTrimmer from "./AudioTrimmer";
+import VolumeBooster from "./VolumeBooster";
+import AudioConverter from "./AudioConverter";
+import VideoSpeedChanger from "./VideoSpeedChanger";
 
 interface Props {
   toolId: string;
@@ -296,6 +313,40 @@ export default function ToolRenderer({ toolId }: Props) {
       return <StudyPlanner />;
     case "fraction-calculator":
       return <FractionCalculator />;
+    case "currency-converter":
+      return <CurrencyConverter />;
+    case "compound-interest":
+      return <CompoundInterest />;
+    case "tax-calculator":
+      return <TaxCalculator />;
+    case "budget-tracker":
+      return <BudgetTracker />;
+    case "investment-calculator":
+      return <InvestmentCalculator />;
+    case "net-worth-calculator":
+      return <NetWorthCalculator />;
+    case "break-even-calculator":
+      return <BreakEvenCalculator />;
+    case "calorie-calculator":
+      return <CalorieCalculator />;
+    case "water-intake":
+      return <WaterIntakeCalculator />;
+    case "sleep-cycle":
+      return <SleepCycleCalculator />;
+    case "body-fat-calculator":
+      return <BodyFatCalculator />;
+    case "pregnancy-due-date":
+      return <PregnancyDueDate />;
+    case "video-to-audio":
+      return <VideoToAudio />;
+    case "audio-trimmer":
+      return <AudioTrimmer />;
+    case "volume-booster":
+      return <VolumeBooster />;
+    case "audio-converter":
+      return <AudioConverter />;
+    case "video-speed-changer":
+      return <VideoSpeedChanger />;
     default:
       return (
         <div class="text-center py-12">

@@ -10,7 +10,7 @@ A collection of free, privacy-first browser tools for images, text, PDFs, math, 
 - **Privacy First** — No server uploads, no data collection, no cookies. What you process stays on your device.
 - **Instant Results** — No upload waits, no queues. Results appear instantly because everything runs on your machine.
 - **Free Forever** — No accounts, no subscriptions, no paywalls. Every tool is free for everyone.
-- **83 Tools** — Across 12 categories: Image, Text, Developer, PDF, Math, Security, Color, Date & Time, SEO, Data, Fun & Utility, and Education.
+- **100 Tools** — Across 15 categories: Image, Text, Developer, PDF, Math, Security, Color, Date & Time, SEO, Data, Fun & Utility, Education, Finance, Health, and Video & Audio.
 - **Dark UI** — Clean dark canvas with electric yellow accent. Built with a consistent design system.
 
 ## Tech Stack
@@ -84,6 +84,15 @@ Random Number Generator, Dice Roller, Coin Flipper, Random Name Picker, Wheel Sp
 
 ### Education & Students (7)
 Flashcard Maker, Quiz Maker, Grade Calculator, GPA Calculator, Citation Generator, Study Planner, Fraction Calculator
+
+### Finance & Money (7)
+Currency Converter, Compound Interest Calculator, Tax Calculator, Budget Tracker, Investment Calculator, Net Worth Calculator, Break Even Calculator
+
+### Health & Medical (5)
+Calorie Calculator, Water Intake Calculator, Sleep Cycle Calculator, Body Fat Calculator, Pregnancy Due Date Calculator
+
+### Video & Audio (5)
+Video to MP3, Audio Trimmer, Volume Booster, Audio Converter, Video Speed Changer
 
 ## License
 
