@@ -1,5 +1,7 @@
 ---
 import { categories } from "../../data/categories";
+import { tools } from "../../data/tools";
+import SearchModal from "../ui/SearchModal";
 ---
 
 <header class="sticky top-0 z-50 bg-canvas/95 backdrop-blur-sm border-b border-hairline">
@@ -36,18 +38,9 @@ import { categories } from "../../data/categories";
       </div>
     </nav>
 
-    {/* Search hint */}
+    {/* Search + Mobile menu */}
     <div class="flex items-center gap-3">
-      <button
-        id="search-toggle"
-        class="flex items-center gap-2 px-3 py-1.5 bg-surface-card border border-hairline rounded-md text-body-sm text-muted hover:border-hairline-strong transition-colors"
-      >
-        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-        </svg>
-        <span class="hidden sm:inline">Search tools...</span>
-        <kbd class="hidden sm:inline text-xs bg-surface-elevated px-1.5 py-0.5 rounded text-muted-soft">⌘K</kbd>
-      </button>
+      <SearchModal client:load tools={tools} categories={categories} />
 
       {/* Mobile menu toggle */}
       <button id="mobile-menu-toggle" class="md:hidden p-2 text-muted hover:text-on-dark">
