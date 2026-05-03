@@ -3,6 +3,8 @@
 > Every tool you need. Zero uploads. 100% client-side.
 
 A collection of free, privacy-first browser tools for images, text, PDFs, math, developer utilities, and security. Every tool runs entirely in your browser — no file uploads, no accounts, no limits.
+![Preview](./preview1.png)
+![Preview](./preview2.png)
 
 ## Features
 
