@@ -6,6 +6,9 @@ export default defineConfig({
   integrations: [preact()],
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      include: ["marked", "js-yaml"],
+    },
     build: {
       rollupOptions: {
         output: {
