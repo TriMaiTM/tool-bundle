@@ -1,6 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import ToolCard from "../components/ui/ToolCard.astro";
+import FavoritesSection from "../components/ui/FavoritesSection";
 import { categories } from "../data/categories";
 import { getFeaturedTools, tools } from "../data/tools";
 
@@ -78,6 +79,9 @@ const featuredTools = getFeaturedTools();
       ))}
     </div>
   </section>
+
+  {/* Favorites & Recent */}
+  <FavoritesSection client:load tools={tools} categories={categories} />
 
   {/* Categories */}
   <section id="categories" class="max-w-7xl mx-auto px-4 sm:px-6 py-16">

@@ -1,0 +1,146 @@
+import { useState, useEffect, useCallback } from "preact/hooks";
+
+interface Tool {
+  id: string;
+  name: string;
+  description: string;
+  category: string;
+  slug: string;
+}
+
+interface Category {
+  id: string;
+  name: string;
+  color: string;
+}
+
+interface Props {
+  tools: Tool[];
+  categories: Category[];
+}
+
+export default function FavoritesSection({ tools, categories }: Props) {
+  const [favoriteIds, setFavoriteIds] = useState<string[]>([]);
+  const [recentIds, setRecentIds] = useState<string[]>([]);
+  const [activeTab, setActiveTab] = useState<"favorites" | "recent">("favorites");
+
+  const loadData = useCallback(() => {
+    try {
+      setFavoriteIds(JSON.parse(localStorage.getItem("toolbundle_favorites") || "[]"));
+      const history = JSON.parse(localStorage.getItem("toolbundle_history") || "[]");
+      setRecentIds(history.map((h: { toolId: string }) => h.toolId));
+    } catch {}
+  }, []);
+
+  useEffect(() => {
+    loadData();
+    // Listen for storage changes from other components
+    const handler = () => loadData();
+    window.addEventListener("storage", handler);
+    // Also poll for same-tab changes
+    const interval = setInterval(loadData, 1000);
+    return () => {
+      window.removeEventListener("storage", handler);
+      clearInterval(interval);
+    };
+  }, [loadData]);
+
+  const getCategory = (catId: string) => categories.find((c) => c.id === catId);
+
+  const favoriteTools = favoriteIds
+    .map((id) => tools.find((t) => t.id === id))
+    .filter(Boolean) as Tool[];
+
+  const recentTools = recentIds
+    .map((id) => tools.find((t) => t.id === id))
+    .filter(Boolean)
+    .slice(0, 12) as Tool[];
+
+  const removeFavorite = useCallback((toolId: string) => {
+    try {
+      const favorites: string[] = JSON.parse(
+        localStorage.getItem("toolbundle_favorites") || "[]"
+      );
+      const updated = favorites.filter((id) => id !== toolId);
+      localStorage.setItem("toolbundle_favorites", JSON.stringify(updated));
+      setFavoriteIds(updated);
+    } catch {}
+  }, []);
+
+  const displayTools = activeTab === "favorites" ? favoriteTools : recentTools;
+  const isEmpty = displayTools.length === 0;
+
+  return (
+    <section style="max-width: 80rem; margin: 0 auto; padding: 48px 16px 0;">
+      {/* Tabs */}
+      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px;">
+        <h2 style="font-size: 24px; font-weight: 600; color: #ffffff; margin: 0;">
+          {activeTab === "favorites" ? "⭐ Your Favorites" : "🕐 Recently Used"}
+        </h2>
+        <div style="display: flex; gap: 4px; margin-left: auto;">
+          <button
+            onClick={() => setActiveTab("favorites")}
+            style={`padding: 6px 14px; border-radius: 6px; border: none; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s ease; background: ${activeTab === "favorites" ? "#faff69" : "#1a1a1a"}; color: ${activeTab === "favorites" ? "#0a0a0a" : "#888888"};`}
+          >
+            Favorites {favoriteIds.length > 0 && `(${favoriteIds.length})`}
+          </button>
+          <button
+            onClick={() => setActiveTab("recent")}
+            style={`padding: 6px 14px; border-radius: 6px; border: none; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s ease; background: ${activeTab === "recent" ? "#faff69" : "#1a1a1a"}; color: ${activeTab === "recent" ? "#0a0a0a" : "#888888"};`}
+          >
+            Recent {recentIds.length > 0 && `(${recentIds.length})`}
+          </button>
+        </div>
+      </div>
+
+      {isEmpty ? (
+        <div style="text-align: center; padding: 48px 0;">
+          <p style="font-size: 14px; color: #5a5a5a;">
+            {activeTab === "favorites"
+              ? "No favorites yet. Click the heart icon on any tool to save it here."
+              : "No recently visited tools yet. Start using tools to see your history."}
+          </p>
+        </div>
+      ) : (
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px;">
+          {displayTools.map((tool) => {
+            const cat = getCategory(tool.category);
+            return (
+              <a
+                href={`/${tool.category}/${tool.slug}`}
+                style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 10px; text-decoration: none; transition: all 0.15s ease;"
+              >
+                <span
+                  style={`width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; background: ${cat?.color || "#888"};`}
+                />
+                <div style="flex: 1; min-width: 0;">
+                  <div style="font-size: 14px; font-weight: 500; color: #ffffff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                    {tool.name}
+                  </div>
+                  <div style="font-size: 12px; color: #5a5a5a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                    {cat?.name?.replace(" Tools", "")}
+                  </div>
+                </div>
+                {activeTab === "favorites" && (
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      removeFavorite(tool.id);
+                    }}
+                    style="width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border: none; background: transparent; color: #faff69; cursor: pointer; flex-shrink: 0;"
+                    title="Remove from favorites"
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
+                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                    </svg>
+                  </button>
+                )}
+              </a>
+            );
+          })}
+        </div>
+      )}
+    </section>
+  );
+}

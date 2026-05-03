@@ -1,14 +1,16 @@
 ---
 import Base from "./Base.astro";
 import { getCategoryById } from "../data/categories";
+import FavoriteButton from "../components/ui/FavoriteButton";
 
 interface Props {
   title: string;
   description: string;
   category: string;
+  toolId: string;
 }
 
-const { title, description, category } = Astro.props;
+const { title, description, category, toolId } = Astro.props;
 const cat = getCategoryById(category);
 ---
 
@@ -34,7 +36,10 @@ const cat = getCategoryById(category);
           {cat.name}
         </span>
       )}
-      <h1 class="text-display-sm mb-3">{title}</h1>
+      <div class="flex items-center gap-3 mb-3">
+        <h1 class="text-display-sm">{title}</h1>
+        <FavoriteButton toolId={toolId} client:load />
+      </div>
       <p class="text-body-md text-muted max-w-2xl">{description}</p>
     </header>
 
@@ -49,4 +54,15 @@ const cat = getCategoryById(category);
       <slot />
     </div>
   </div>
+
+  <script define:vars={{ toolId, category }}>
+    // Track tool visit history
+    try {
+      const key = "toolbundle_history";
+      const history = JSON.parse(localStorage.getItem(key) || "[]");
+      const filtered = history.filter(function(h) { return h.toolId !== toolId; });
+      filtered.unshift({ toolId: toolId, visitedAt: Date.now(), path: "/" + category + "/" });
+      localStorage.setItem(key, JSON.stringify(filtered.slice(0, 30)));
+    } catch {}
+  </script>
 </Base>

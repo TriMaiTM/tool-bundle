@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline — ToolBundle</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0a0a;
+      color: #cccccc;
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+    .container { max-width: 400px; padding: 2rem; }
+    .icon { font-size: 4rem; margin-bottom: 1rem; }
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+    p { color: #888888; line-height: 1.6; margin-bottom: 1.5rem; }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      color: #888888;
+    }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: #ef4444; }
+    a {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 12px 24px;
+      background: #faff69;
+      color: #0a0a0a;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon">📡</div>
+    <h1>You're Offline</h1>
+    <p>No internet connection detected. Some tools work offline, but you'll need a connection for the full experience.</p>
+    <div class="badge">
+      <span class="dot"></span>
+      Check your connection and try again
+    </div>
+    <br>
+    <a href="/">Try Again</a>
+  </div>
+</body>
+</html>

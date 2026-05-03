@@ -25,6 +25,6 @@ const toolData = getToolBySlug(category!, toolSlug!);
 if (!toolData) return Astro.redirect("/");
 ---
 
-<ToolLayout title={toolData.name} description={toolData.description} category={toolData.category}>
+<ToolLayout title={toolData.name} description={toolData.description} category={toolData.category} toolId={toolId}>
   <ToolRenderer toolId={toolId} client:load />
 </ToolLayout>
