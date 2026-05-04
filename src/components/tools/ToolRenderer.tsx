@@ -138,6 +138,10 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
   "background-remover": lazy(() => import("./BackgroundRemover")),
   "text-summarizer": lazy(() => import("./TextSummarizer")),
   "object-detection": lazy(() => import("./ObjectDetection")),
+  "grammar-checker": lazy(() => import("./GrammarChecker")),
+  "image-captioning": lazy(() => import("./ImageCaptioning")),
+  "sentiment-analysis": lazy(() => import("./SentimentAnalysis")),
+  "question-answering": lazy(() => import("./QuestionAnswering")),
 };
 
 // Image converter tools with their specific configurations

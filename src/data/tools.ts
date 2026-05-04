@@ -1078,6 +1078,46 @@ export const tools: Tool[] = [
     slug: "object-detection",
     tags: ["detect", "object", "image", "ai", "yolo"],
   },
+  {
+    id: "grammar-checker",
+    name: "Grammar Checker",
+    description:
+      "Check and fix grammar mistakes using AI. Supports English text.",
+    category: "ai",
+    icon: "spell-check",
+    slug: "grammar-checker",
+    tags: ["grammar", "check", "ai", "spelling", "correct"],
+  },
+  {
+    id: "image-captioning",
+    name: "Image Captioning",
+    description:
+      "Generate natural language descriptions for any image using AI.",
+    category: "ai",
+    icon: "message-square-text",
+    slug: "image-captioning",
+    tags: ["caption", "image", "ai", "describe", "vision"],
+  },
+  {
+    id: "sentiment-analysis",
+    name: "Sentiment Analysis",
+    description:
+      "Analyze the emotional tone of text — positive, negative, or neutral.",
+    category: "ai",
+    icon: "heart",
+    slug: "sentiment-analysis",
+    tags: ["sentiment", "analysis", "ai", "emotion", "nlp"],
+  },
+  {
+    id: "question-answering",
+    name: "Question Answering",
+    description:
+      "Ask questions about a passage and get AI-powered answers instantly.",
+    category: "ai",
+    icon: "help-circle",
+    slug: "question-answering",
+    tags: ["question", "answer", "ai", "qa", "nlp"],
+  },
 ];
 
 /**
