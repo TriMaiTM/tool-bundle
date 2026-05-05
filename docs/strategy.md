@@ -105,31 +105,37 @@ Mục tiêu: Mở rộng lên 200+ tools, thêm categories theo nhu cầu thực
 
 | Category | Tools mới tiềm năng | Ưu tiên |
 |---|---|---|
-| Image | Background Remover (AI), Image Upscaler (AI), OCR | Cao |
+| Image | Image Upscaler (AI), Favicon Generator, Image to ASCII | Cao |
 | Developer | Docker Compose Generator, .gitignore Generator, Regex Explainer | Cao |
 | PDF | PDF Password Protection, PDF Merge with Preview | TB |
 | Security | QR Code Generator, Barcode Generator, AES Encrypt | Cao |
 | Text | Text to Speech, Speech to Text, Translation | TB |
 | Video | Screen Recorder, Webcam Recorder, GIF Maker | TB |
 
-### B3. AI Tools (tách riêng)
+### B3. AI Tools (tách riêng) ✅ DONE
 
-**Tại sao:** AI tools là trend lớn, nhưng cần model downloads (50-300MB). Nên tách riêng UX.
+**Trạng thái:** Đã hoàn thành 8 AI tools chạy 100% client-side.
 
-**Approach:**
-- Sử dụng ONNX Runtime Web hoặc TensorFlow.js
+**Đã implement:**
+- ✅ OCR — Image to Text (Tesseract.js)
+- ✅ Background Remover (RMBG-1.4 + Transformers.js)
+- ✅ Text Summarizer (distilbart-cnn-6-6 + Transformers.js)
+- ✅ Object Detection (detr-resnet-50 + Transformers.js)
+- ✅ Grammar Checker (T5-small + Transformers.js)
+- ✅ Image Captioning (vit-gpt2 + Transformers.js)
+- ✅ Sentiment Analysis (DistilBERT SST-2 + Transformers.js)
+- ✅ Question Answering (DistilBERT QA + Transformers.js)
+
+**Architecture:**
 - Models load lazy (chỉ khi user mở AI tool)
 - Progress bar cho model download
-- IndexedDB cache cho models
+- IndexedDB cache cho models (download 1 lần, dùng mãi)
+- Fallback models nếu primary fail
 
-**AI Tools tiềm năng:**
-- Background Remover (rembg model)
+**Cần làm thêm:**
 - Image Upscaler (Real-ESRGAN)
-- Text Summarization (BART/T5)
-- Grammar Checker
-- Object Detection (YOLO)
 - Face Detection/Blur
-- OCR (Tesseract.js)
+- Text Translation
 
 ---
 

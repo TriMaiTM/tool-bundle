@@ -40,15 +40,15 @@
 
 | Metric | Value |
 |---|---|
-| **Tổng tools** | 100 |
-| **Tổng categories** | 15 |
-| **Tổng pages** | 117 |
+| **Tổng tools** | 108 |
+| **Tổng categories** | 16 |
+| **Tổng pages** | 126 |
 | **Tests** | 182 (all pass) |
 | **JS per tool page** | ~6-10 KB gzip (code-split) |
-| **Build time** | ~9s |
+| **Build time** | ~11s |
 | **Bundle size** | ToolRenderer ~6KB gzip + mỗi tool 1-5KB gzip |
 
-### 15 Categories hiện có
+### 16 Categories hiện có
 
 | # | Category | ID | Tools | Color |
 |---|---|---|---|---|
@@ -67,8 +67,9 @@
 | 13 | Finance & Money | `finance` | 7 | `#84cc16` |
 | 14 | Health & Medical | `health` | 5 | `#f43f5e` |
 | 15 | Video & Audio | `video` | 5 | `#d946ef` |
+| 16 | AI Tools | `ai` | 8 | `#8b5cf6` |
 
-### Danh sách đầy đủ 100 tools
+### Danh sách đầy đủ 108 tools
 
 Xem chi tiết tại `docs/tools-list.md`.
 
@@ -103,6 +104,11 @@ Xem chi tiết tại `docs/tools-list.md`.
 - Health (new category): Calorie Calculator, Water Intake Calculator, Sleep Cycle Calculator, Body Fat Calculator, Pregnancy Due Date
 - Video & Audio (new category): Video to MP3, Audio Trimmer, Volume Booster, Audio Converter, Video Speed Changer
 
+### Phase 8: AI Tools (8 tools)
+- AI Tools (new category): OCR — Image to Text, Background Remover, Text Summarizer, Object Detection, Grammar Checker, Image Captioning, Sentiment Analysis, Question Answering
+- Tech: Tesseract.js (OCR), @huggingface/transformers (Transformers.js) — ONNX Runtime WASM/WebGPU
+- Features: lazy model loading, IndexedDB cache, progress bar, fallback models, 100% client-side
+
 ### Infrastructure & Features
 - ✅ Astro SSG với dynamic routing (`/[category]/[tool]`)
 - ✅ Code splitting — mỗi tool là 1 chunk riêng (lazy loading với `preact/compat.lazy`)
@@ -127,7 +133,7 @@ Xem chi tiết tại `docs/tools-list.md`.
 - ✅ `docs/tech-stack.md` — Technologies and architecture decisions
 - ✅ `docs/project-structure.md` — Directory layout and data flow
 - ✅ `docs/adding-tools.md` — Step-by-step guide to add new tools
-- ✅ `docs/tools-list.md` — Complete list of all 100 tools
+- ✅ `docs/tools-list.md` — Complete list of all 108 tools
 - ✅ `docs/design-system.md` — UI components, colors, typography
 - ✅ `docs/roadmap.md` — Phase 5-7 roadmap (all completed)
 - ✅ `docs/strategy.md` — Future development strategy
@@ -147,14 +153,14 @@ Xem chi tiết tại `docs/tools-list.md`.
 | CI/CD | E2 | ❌ Chưa làm | GitHub Actions, auto deploy, Lighthouse CI |
 | Ads integration | D1 | ❌ Chưa làm | Google AdSense / Carbon Ads |
 | Premium tier | D2 | ❌ Chưa làm | No ads, API access, bulk processing |
-| AI Tools | B3 | ❌ Chưa làm | Background Remover, OCR, Upscaler (cần ONNX/TensorFlow.js) |
+| AI Tools | B3 | ✅ Done | 8 AI tools: OCR, BG Remover, Summarizer, Object Detection, Grammar, Captioning, Sentiment, QA |
 | More categories | B1 | ❌ Chưa làm | CSS & Design, Social Media, Science, Home, Travel |
 
 ### Tools chưa implement (trong categories hiện có)
 
 | Category | Tools tiềm năng |
 |---|---|
-| Image | Background Remover (AI), Image Upscaler (AI), OCR, Favicon Generator, Image to ASCII |
+| Image | Image Upscaler (AI), Favicon Generator, Image to ASCII |
 | Developer | Docker Compose Generator, .gitignore Generator, .htaccess Generator, Regex Explainer |
 | PDF | PDF Password Protection, PDF Annotator, PDF Metadata Editor |
 | Security | QR Code Generator, Barcode Generator, AES Encrypt/Decrypt |

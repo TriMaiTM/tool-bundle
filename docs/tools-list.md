@@ -132,6 +132,19 @@ Complete list of all tools in ToolBundle, organized by category.
 | Audio Converter | `/video/audio-converter` | Convert audio files to WAV or OGG | ✅ Live |
 | Video Speed Changer | `/video/video-speed-changer` | Speed up or slow down any video | ✅ Live |
 
+## AI Tools (8)
+
+| Tool | Slug | Description | Status |
+|---|---|---|---|
+| OCR — Image to Text | `/ai/ocr` | Extract text from images using AI-powered OCR — 15 languages | ✅ Live |
+| Background Remover | `/ai/background-remover` | Remove image backgrounds instantly with AI — 100% in-browser | ✅ Live |
+| Text Summarizer | `/ai/text-summarizer` | Summarize long articles and texts using AI — adjustable length | ✅ Live |
+| Object Detection | `/ai/object-detection` | Detect and label objects in images using AI — annotated results | ✅ Live |
+| Grammar Checker | `/ai/grammar-checker` | Check and fix grammar mistakes using AI — English text | ✅ Live |
+| Image Captioning | `/ai/image-captioning` | Generate natural language descriptions for any image using AI | ✅ Live |
+| Sentiment Analysis | `/ai/sentiment-analysis` | Analyze the emotional tone of text — positive, negative, or neutral | ✅ Live |
+| Question Answering | `/ai/question-answering` | Ask questions about a passage and get AI-powered answers | ✅ Live |
+
 ---
 
-**Total: 100 tools** — all live and working, 100% client-side.
+**Total: 108 tools** — all live and working, 100% client-side.

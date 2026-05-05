@@ -12,7 +12,7 @@ A collection of free, privacy-first browser tools for images, text, PDFs, math, 
 - **Privacy First** — No server uploads, no data collection, no cookies. What you process stays on your device.
 - **Instant Results** — No upload waits, no queues. Results appear instantly because everything runs on your machine.
 - **Free Forever** — No accounts, no subscriptions, no paywalls. Every tool is free for everyone.
-- **100 Tools** — Across 15 categories: Image, Text, Developer, PDF, Math, Security, Color, Date & Time, SEO, Data, Fun & Utility, Education, Finance, Health, and Video & Audio.
+- **108 Tools** — Across 16 categories: Image, Text, Developer, PDF, Math, Security, Color, Date & Time, SEO, Data, Fun & Utility, Education, Finance, Health, Video & Audio, and **AI Tools**.
 - **Dark UI** — Clean dark canvas with electric yellow accent. Built with a consistent design system.
 
 ## Tech Stack
@@ -95,6 +95,9 @@ Calorie Calculator, Water Intake Calculator, Sleep Cycle Calculator, Body Fat Ca
 
 ### Video & Audio (5)
 Video to MP3, Audio Trimmer, Volume Booster, Audio Converter, Video Speed Changer
+
+### AI Tools (8)
+OCR — Image to Text, Background Remover, Text Summarizer, Object Detection, Grammar Checker, Image Captioning, Sentiment Analysis, Question Answering
 
 ## License
 
