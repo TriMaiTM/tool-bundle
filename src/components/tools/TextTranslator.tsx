@@ -20,13 +20,25 @@ const LANGUAGES: Language[] = [
   { code: "ru", name: "Russian", flag: "🇷🇺" },
 ];
 
-// Build model name from source-target pair
-function getModelId(source: string, target: string): string {
-  return `Xenova/opus-mt-${source}-${target}`;
-}
+// Multilingual models — 1 model handles ALL languages
+const MODEL_TO_EN = "Xenova/opus-mt-mul-en"; // any language → English
+const MODEL_FROM_EN = "Xenova/opus-mt-en-mul"; // English → any language
 
-// Cache loaded translators per language pair
-const translatorCache: Record<string, any> = {};
+// MarianMT language tags (ISO 639-3) — required by en-mul model
+const LANG_TAGS: Record<string, string> = {
+  en: "eng",
+  vi: "vie",
+  zh: "zho",
+  ja: "jpn",
+  ko: "kor",
+  fr: "fra",
+  de: "deu",
+  es: "spa",
+  ru: "rus",
+};
+
+// Cache: only 2 models ever needed
+const modelCache: Record<string, any> = {};
 
 export default function TextTranslator() {
   const [input, setInput] = useState("");
@@ -38,6 +50,47 @@ export default function TextTranslator() {
   const [result, setResult] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+
+  // Load a multilingual model with caching
+  const loadModel = useCallback(
+    async (modelId: string, onProgress: (p: number) => void) => {
+      if (modelCache[modelId]) return modelCache[modelId];
+
+      const { pipeline } = await import("@huggingface/transformers");
+      const translator = await pipeline("translation", modelId, {
+        progress_callback: (progressData: any) => {
+          if (progressData.status === "progress" && progressData.progress) {
+            onProgress(progressData.progress);
+          }
+        },
+      } as any);
+
+      modelCache[modelId] = translator;
+      return translator;
+    },
+    [],
+  );
+
+  // Translate text with a loaded translator
+  const translateText = useCallback(
+    async (translator: any, text: string, langTag?: string) => {
+      const sentences = text.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [text];
+      const parts: string[] = [];
+      for (const sentence of sentences) {
+        const trimmed = sentence.trim();
+        if (!trimmed) continue;
+        // Prepend language tag if needed (e.g., ">>vie<< Hello")
+        const input = langTag ? `>>${langTag}<< ${trimmed}` : trimmed;
+        const output = await translator(input);
+        const translated = Array.isArray(output)
+          ? (output[0] as any).translation_text
+          : (output as any).translation_text;
+        parts.push(translated || trimmed);
+      }
+      return parts.join(" ");
+    },
+    [],
+  );
 
   const handleTranslate = useCallback(async () => {
     if (!input.trim()) return;
@@ -53,69 +106,95 @@ export default function TextTranslator() {
     setResult("");
     setCopied(false);
 
+    const srcName = LANGUAGES.find((l) => l.code === sourceLang)?.name;
+    const tgtName = LANGUAGES.find((l) => l.code === targetLang)?.name;
+    const isDirectToEn = targetLang === "en";
+    const isDirectFromEn = sourceLang === "en";
+    const needsPivot = !isDirectToEn && !isDirectFromEn;
+
     try {
-      const { pipeline } = await import("@huggingface/transformers");
-      const cacheKey = `${sourceLang}-${targetLang}`;
-      const modelId = getModelId(sourceLang, targetLang);
+      let finalText: string;
 
-      // Check cache first
-      let translator = translatorCache[cacheKey];
+      if (isDirectFromEn) {
+        // English → Any language (1 model)
+        const cached = !!modelCache[MODEL_FROM_EN];
+        setStatusText(
+          cached
+            ? "Translating..."
+            : "Loading English → Multi-language model (~300MB)...",
+        );
+        const translator = await loadModel(MODEL_FROM_EN, (p) =>
+          setProgress(cached ? 0.5 : 0.1 + (p / 100) * 0.7),
+        );
+        setStatus("processing");
+        setProgress(0.85);
+        setStatusText(`Translating English → ${tgtName}...`);
+        finalText = await translateText(
+          translator,
+          input,
+          LANG_TAGS[targetLang],
+        );
+      } else if (isDirectToEn) {
+        // Any language → English (1 model)
+        const cached = !!modelCache[MODEL_TO_EN];
+        setStatusText(
+          cached
+            ? "Translating..."
+            : "Loading Multi-language → English model (~300MB)...",
+        );
+        const translator = await loadModel(MODEL_TO_EN, (p) =>
+          setProgress(cached ? 0.5 : 0.1 + (p / 100) * 0.7),
+        );
+        setStatus("processing");
+        setProgress(0.85);
+        setStatusText(`Translating ${srcName} → English...`);
+        finalText = await translateText(translator, input);
+      } else {
+        // Pivot: Any → English → Any (2 models, both shared)
+        const cachedToEn = !!modelCache[MODEL_TO_EN];
+        const cachedFromEn = !!modelCache[MODEL_FROM_EN];
 
-      if (!translator) {
-        const srcName = LANGUAGES.find((l) => l.code === sourceLang)?.name;
-        const tgtName = LANGUAGES.find((l) => l.code === targetLang)?.name;
-        setStatusText(`Loading ${srcName} → ${tgtName} model (~300MB)...`);
+        // Step 1: source → English
+        setStatusText(
+          cachedToEn
+            ? `Step 1/2: Translating ${srcName} → English...`
+            : `Step 1/2: Loading Multi-language → English model (~300MB)...`,
+        );
+        const translatorToEn = await loadModel(MODEL_TO_EN, (p) =>
+          setProgress(cachedToEn ? 0.2 : 0.05 + (p / 100) * 0.35),
+        );
+        setStatus("processing");
+        setProgress(0.4);
+        setStatusText(`Step 1/2: Translating ${srcName} → English...`);
+        const englishText = await translateText(translatorToEn, input);
 
-        try {
-          translator = await pipeline("translation", modelId, {
-            progress_callback: (progressData: any) => {
-              if (progressData.status === "progress" && progressData.progress) {
-                setProgress(0.1 + (progressData.progress / 100) * 0.7);
-              } else if (progressData.status === "done") {
-                setProgress(0.8);
-              }
-            },
-          } as any);
-          translatorCache[cacheKey] = translator;
-        } catch (loadErr) {
-          const msg =
-            loadErr instanceof Error ? loadErr.message : String(loadErr);
-          if (msg.includes("not found") || msg.includes("404")) {
-            throw new Error(
-              `Model for ${srcName} → ${tgtName} is not available. Try a different language pair.`,
-            );
-          }
-          throw loadErr;
-        }
+        // Step 2: English → target
+        setStatusText(
+          cachedFromEn
+            ? `Step 2/2: Translating English → ${tgtName}...`
+            : `Step 2/2: Loading English → Multi-language model (~300MB)...`,
+        );
+        const translatorFromEn = await loadModel(MODEL_FROM_EN, (p) =>
+          setProgress(cachedFromEn ? 0.7 : 0.45 + (p / 100) * 0.35),
+        );
+        setProgress(0.85);
+        setStatusText(`Step 2/2: Translating English → ${tgtName}...`);
+        finalText = await translateText(
+          translatorFromEn,
+          englishText,
+          LANG_TAGS[targetLang],
+        );
       }
 
-      setStatus("processing");
-      setProgress(0.85);
-      setStatusText("Translating...");
-
-      // Split input into sentences for better translation
-      const sentences = input.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [input];
-      const translatedParts: string[] = [];
-
-      for (const sentence of sentences) {
-        const trimmed = sentence.trim();
-        if (!trimmed) continue;
-        const output = await translator(trimmed);
-        const text = Array.isArray(output)
-          ? (output[0] as any).translation_text
-          : (output as any).translation_text;
-        translatedParts.push(text || trimmed);
-      }
-
-      setResult(translatedParts.join(" "));
+      setResult(finalText);
       setStatus("done");
       setProgress(1);
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err);
-      setError(msg);
+      setError(`Translation failed: ${msg}`);
       setStatus("error");
     }
-  }, [input, sourceLang, targetLang]);
+  }, [input, sourceLang, targetLang, loadModel, translateText]);
 
   const handleSwapLanguages = useCallback(() => {
     setSourceLang(targetLang);

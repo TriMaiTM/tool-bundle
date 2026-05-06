@@ -1122,7 +1122,7 @@ export const tools: Tool[] = [
     id: "text-translator",
     name: "AI Translator",
     description:
-      "Translate text between 8 languages using AI — EN, VI, ZH, JA, KO, FR, DE, ES, RU.",
+      "Translate text between 9 languages using AI — EN, VI, ZH, JA, KO, FR, DE, ES, RU. Multilingual models, only 2 models for all languages.",
     category: "ai",
     icon: "languages",
     slug: "text-translator",
