@@ -97,7 +97,7 @@ Calorie Calculator, Water Intake Calculator, Sleep Cycle Calculator, Body Fat Ca
 Video to MP3, Audio Trimmer, Volume Booster, Audio Converter, Video Speed Changer
 
 ### AI Tools (11)
-OCR — Image to Text, Background Remover, Text Summarizer, Object Detection, Grammar Checker, Image Captioning, Sentiment Analysis, Question Answering, AI Translator, Speech to Text, Text to Speech
+OCR — Image to Text, Background Remover, Text Summarizer, Object Detection, Grammar Checker, Image Captioning, Sentiment Analysis, Question Answering, AI Translator, Speech to Text, Text to Speech (WAV export)
 
 ## License
 

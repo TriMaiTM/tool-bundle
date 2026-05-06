@@ -1,40 +1,37 @@
-import { useState, useCallback, useRef } from "preact/hooks";
+import { useState, useCallback } from "preact/hooks";
 
 type Status = "idle" | "loading-model" | "processing" | "done" | "error";
 
-interface LangPair {
-  id: string;
-  label: string;
-  model: string;
-  source: string;
-  target: string;
+interface Language {
+  code: string;
+  name: string;
+  flag: string;
 }
 
-const LANG_PAIRS: LangPair[] = [
-  { id: "en-vi", label: "English → Vietnamese", model: "Xenova/opus-mt-en-vi", source: "en", target: "vi" },
-  { id: "vi-en", label: "Vietnamese → English", model: "Xenova/opus-mt-vi-en", source: "vi", target: "en" },
-  { id: "en-zh", label: "English → Chinese", model: "Xenova/opus-mt-en-zh", source: "en", target: "zh" },
-  { id: "zh-en", label: "Chinese → English", model: "Xenova/opus-mt-zh-en", source: "zh", target: "en" },
-  { id: "en-ja", label: "English → Japanese", model: "Xenova/opus-mt-en-ja", source: "en", target: "ja" },
-  { id: "ja-en", label: "Japanese → English", model: "Xenova/opus-mt-ja-en", source: "ja", target: "en" },
-  { id: "en-ko", label: "English → Korean", model: "Xenova/opus-mt-en-ko", source: "en", target: "ko" },
-  { id: "ko-en", label: "Korean → English", model: "Xenova/opus-mt-ko-en", source: "ko", target: "en" },
-  { id: "en-fr", label: "English → French", model: "Xenova/opus-mt-en-fr", source: "en", target: "fr" },
-  { id: "fr-en", label: "French → English", model: "Xenova/opus-mt-fr-en", source: "fr", target: "en" },
-  { id: "en-de", label: "English → German", model: "Xenova/opus-mt-en-de", source: "en", target: "de" },
-  { id: "de-en", label: "German → English", model: "Xenova/opus-mt-de-en", source: "de", target: "en" },
-  { id: "en-es", label: "English → Spanish", model: "Xenova/opus-mt-en-es", source: "en", target: "es" },
-  { id: "es-en", label: "Spanish → English", model: "Xenova/opus-mt-es-en", source: "es", target: "en" },
-  { id: "en-ru", label: "English → Russian", model: "Xenova/opus-mt-en-ru", source: "en", target: "ru" },
-  { id: "ru-en", label: "Russian → English", model: "Xenova/opus-mt-ru-en", source: "ru", target: "en" },
+const LANGUAGES: Language[] = [
+  { code: "en", name: "English", flag: "🇬🇧" },
+  { code: "vi", name: "Vietnamese", flag: "🇻🇳" },
+  { code: "zh", name: "Chinese", flag: "🇨🇳" },
+  { code: "ja", name: "Japanese", flag: "🇯🇵" },
+  { code: "ko", name: "Korean", flag: "🇰🇷" },
+  { code: "fr", name: "French", flag: "🇫🇷" },
+  { code: "de", name: "German", flag: "🇩🇪" },
+  { code: "es", name: "Spanish", flag: "🇪🇸" },
+  { code: "ru", name: "Russian", flag: "🇷🇺" },
 ];
+
+// Build model name from source-target pair
+function getModelId(source: string, target: string): string {
+  return `Xenova/opus-mt-${source}-${target}`;
+}
 
 // Cache loaded translators per language pair
 const translatorCache: Record<string, any> = {};
 
 export default function TextTranslator() {
   const [input, setInput] = useState("");
-  const [pairId, setPairId] = useState("en-vi");
+  const [sourceLang, setSourceLang] = useState("en");
+  const [targetLang, setTargetLang] = useState("vi");
   const [status, setStatus] = useState<Status>("idle");
   const [progress, setProgress] = useState(0);
   const [statusText, setStatusText] = useState("");
@@ -44,6 +41,12 @@ export default function TextTranslator() {
 
   const handleTranslate = useCallback(async () => {
     if (!input.trim()) return;
+
+    if (sourceLang === targetLang) {
+      setError("Source and target languages must be different.");
+      return;
+    }
+
     setStatus("loading-model");
     setProgress(0);
     setError(null);
@@ -52,27 +55,38 @@ export default function TextTranslator() {
 
     try {
       const { pipeline } = await import("@huggingface/transformers");
-      const pair = LANG_PAIRS.find((p) => p.id === pairId)!;
+      const cacheKey = `${sourceLang}-${targetLang}`;
+      const modelId = getModelId(sourceLang, targetLang);
 
       // Check cache first
-      let translator = translatorCache[pairId];
+      let translator = translatorCache[cacheKey];
 
       if (!translator) {
-        setStatus("loading-model");
-        setProgress(0.1);
-        setStatusText(`Loading translation model for ${pair.label} (~300MB)...`);
+        const srcName = LANGUAGES.find((l) => l.code === sourceLang)?.name;
+        const tgtName = LANGUAGES.find((l) => l.code === targetLang)?.name;
+        setStatusText(`Loading ${srcName} → ${tgtName} model (~300MB)...`);
 
-        translator = await pipeline("translation", pair.model, {
-          progress_callback: (progressData: any) => {
-            if (progressData.status === "progress" && progressData.progress) {
-              setProgress(0.1 + (progressData.progress / 100) * 0.7);
-            } else if (progressData.status === "done") {
-              setProgress(0.8);
-            }
-          },
-        } as any);
-
-        translatorCache[pairId] = translator;
+        try {
+          translator = await pipeline("translation", modelId, {
+            progress_callback: (progressData: any) => {
+              if (progressData.status === "progress" && progressData.progress) {
+                setProgress(0.1 + (progressData.progress / 100) * 0.7);
+              } else if (progressData.status === "done") {
+                setProgress(0.8);
+              }
+            },
+          } as any);
+          translatorCache[cacheKey] = translator;
+        } catch (loadErr) {
+          const msg =
+            loadErr instanceof Error ? loadErr.message : String(loadErr);
+          if (msg.includes("not found") || msg.includes("404")) {
+            throw new Error(
+              `Model for ${srcName} → ${tgtName} is not available. Try a different language pair.`,
+            );
+          }
+          throw loadErr;
+        }
       }
 
       setStatus("processing");
@@ -98,29 +112,20 @@ export default function TextTranslator() {
       setProgress(1);
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err);
-      if (msg.includes("not found") || msg.includes("404")) {
-        setError("This language pair model is not available. Try a different pair.");
-      } else {
-        setError(`Translation failed: ${msg}`);
-      }
+      setError(msg);
       setStatus("error");
     }
-  }, [input, pairId]);
+  }, [input, sourceLang, targetLang]);
 
   const handleSwapLanguages = useCallback(() => {
-    const pair = LANG_PAIRS.find((p) => p.id === pairId);
-    if (!pair) return;
-    const reverseId = `${pair.target}-${pair.source}`;
-    const reversePair = LANG_PAIRS.find((p) => p.id === reverseId);
-    if (reversePair) {
-      setPairId(reverseId);
-      if (result) {
-        setInput(result);
-        setResult("");
-        setStatus("idle");
-      }
+    setSourceLang(targetLang);
+    setTargetLang(sourceLang);
+    if (result) {
+      setInput(result);
+      setResult("");
+      setStatus("idle");
     }
-  }, [pairId, result]);
+  }, [sourceLang, targetLang, result]);
 
   const handleCopy = useCallback(async () => {
     if (!result) return;
@@ -141,21 +146,23 @@ export default function TextTranslator() {
   }, [result]);
 
   const isProcessing = status === "loading-model" || status === "processing";
-  const currentPair = LANG_PAIRS.find((p) => p.id === pairId);
+  const srcLang = LANGUAGES.find((l) => l.code === sourceLang);
+  const tgtLang = LANGUAGES.find((l) => l.code === targetLang);
 
   return (
     <div>
-      {/* Language selector */}
-      <div class="flex flex-wrap items-center gap-3 mb-4">
+      {/* Language selectors — side by side */}
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-end gap-3 mb-6">
+        {/* Source language */}
         <div class="flex-1">
           <label class="text-caption-uppercase text-muted block mb-1">
-            Language Pair
+            From
           </label>
           <select
             class="input"
-            value={pairId}
+            value={sourceLang}
             onChange={(e) => {
-              setPairId((e.target as HTMLSelectElement).value);
+              setSourceLang((e.target as HTMLSelectElement).value);
               if (status === "done") {
                 setStatus("idle");
                 setResult("");
@@ -163,45 +170,101 @@ export default function TextTranslator() {
             }}
             disabled={isProcessing}
           >
-            {LANG_PAIRS.map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.label}
+            {LANGUAGES.map((l) => (
+              <option key={l.code} value={l.code}>
+                {l.flag} {l.name}
               </option>
             ))}
           </select>
         </div>
+
+        {/* Swap button */}
         <button
-          class="btn-secondary"
+          class="btn-secondary flex-shrink-0 self-center sm:self-end sm:mb-0.5"
           onClick={handleSwapLanguages}
           disabled={isProcessing}
           title="Swap languages"
-          style="margin-top: 22px"
         >
-          ⇄ Swap
+          ⇄
         </button>
+
+        {/* Target language */}
+        <div class="flex-1">
+          <label class="text-caption-uppercase text-muted block mb-1">To</label>
+          <select
+            class="input"
+            value={targetLang}
+            onChange={(e) => {
+              setTargetLang((e.target as HTMLSelectElement).value);
+              if (status === "done") {
+                setStatus("idle");
+                setResult("");
+              }
+            }}
+            disabled={isProcessing}
+          >
+            {LANGUAGES.map((l) => (
+              <option key={l.code} value={l.code}>
+                {l.flag} {l.name}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
-      {/* Input */}
-      <div class="mb-4">
-        <label class="text-caption-uppercase text-muted block mb-2">
-          {currentPair?.source.toUpperCase() || "Source"} Text
-        </label>
-        <textarea
-          class="textarea"
-          style="min-height: 160px"
-          placeholder={`Enter text in ${currentPair?.source.toUpperCase()}...`}
-          value={input}
-          onInput={(e) => {
-            setInput((e.target as HTMLTextAreaElement).value);
-            if (status === "done") {
-              setStatus("idle");
-              setResult("");
-            }
-          }}
-          disabled={isProcessing}
-        />
-        <div class="text-caption text-muted mt-1">
-          {input.trim().split(/\s+/).filter(Boolean).length} words
+      {/* Input + Output side by side on desktop */}
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+        {/* Input */}
+        <div>
+          <label class="text-caption-uppercase text-muted block mb-2">
+            {srcLang?.flag} {srcLang?.name}
+          </label>
+          <textarea
+            class="textarea"
+            style="min-height: 200px"
+            placeholder={`Enter ${srcLang?.name} text...`}
+            value={input}
+            onInput={(e) => {
+              setInput((e.target as HTMLTextAreaElement).value);
+              if (status === "done") {
+                setStatus("idle");
+                setResult("");
+              }
+            }}
+            disabled={isProcessing}
+          />
+          <div class="text-caption text-muted mt-1">
+            {input.trim().split(/\s+/).filter(Boolean).length} words
+          </div>
+        </div>
+
+        {/* Output */}
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <label class="text-caption-uppercase text-muted">
+              {tgtLang?.flag} {tgtLang?.name}
+            </label>
+            {result && (
+              <button
+                class="text-body-sm text-primary hover:text-primary-active transition-colors"
+                onClick={handleCopy}
+              >
+                {copied ? "Copied!" : "Copy"}
+              </button>
+            )}
+          </div>
+          <textarea
+            class="textarea"
+            style="min-height: 200px"
+            value={result}
+            readOnly
+            placeholder="Translation will appear here..."
+          />
+          {result && (
+            <div class="text-caption text-muted mt-1">
+              {result.trim().split(/\s+/).filter(Boolean).length} words
+            </div>
+          )}
         </div>
       </div>
 
@@ -211,7 +274,9 @@ export default function TextTranslator() {
           <button
             class="btn-primary"
             onClick={handleTranslate}
-            disabled={!input.trim() || isProcessing}
+            disabled={
+              !input.trim() || isProcessing || sourceLang === targetLang
+            }
           >
             {isProcessing ? "Translating..." : "Translate"}
           </button>
@@ -255,49 +320,22 @@ export default function TextTranslator() {
         </div>
       )}
 
-      {/* Result */}
+      {/* Result actions */}
       {status === "done" && result && (
-        <div>
-          <div class="flex items-center gap-3 mb-3">
-            <span class="text-caption-uppercase text-muted">
-              {currentPair?.target.toUpperCase() || "Target"} Translation
-            </span>
-            <span class="badge badge-yellow">Translated</span>
-          </div>
-
-          <div class="mb-4">
-            <div class="flex items-center justify-between mb-2">
-              <label class="text-caption-uppercase text-muted">Output</label>
-              <button
-                class="text-body-sm text-primary hover:text-primary-active transition-colors"
-                onClick={handleCopy}
-              >
-                {copied ? "Copied!" : "Copy"}
-              </button>
-            </div>
-            <textarea
-              class="textarea"
-              style="min-height: 160px"
-              value={result}
-              readOnly
-            />
-          </div>
-
-          <div class="flex flex-wrap gap-3">
-            <button class="btn-primary" onClick={handleCopy}>
-              {copied ? "Copied!" : "Copy Translation"}
-            </button>
-            <button
-              class="btn-secondary"
-              onClick={() => {
-                setStatus("idle");
-                setResult("");
-                setCopied(false);
-              }}
-            >
-              Translate Again
-            </button>
-          </div>
+        <div class="flex flex-wrap gap-3">
+          <button class="btn-primary" onClick={handleCopy}>
+            {copied ? "Copied!" : "Copy Translation"}
+          </button>
+          <button
+            class="btn-secondary"
+            onClick={() => {
+              setStatus("idle");
+              setResult("");
+              setCopied(false);
+            }}
+          >
+            Translate Again
+          </button>
         </div>
       )}
     </div>
