@@ -40,9 +40,9 @@
 
 | Metric | Value |
 |---|---|
-| **Tổng tools** | 108 |
+| **Tổng tools** | 111 |
 | **Tổng categories** | 16 |
-| **Tổng pages** | 126 |
+| **Tổng pages** | 129 |
 | **Tests** | 182 (all pass) |
 | **JS per tool page** | ~6-10 KB gzip (code-split) |
 | **Build time** | ~11s |
@@ -67,9 +67,9 @@
 | 13 | Finance & Money | `finance` | 7 | `#84cc16` |
 | 14 | Health & Medical | `health` | 5 | `#f43f5e` |
 | 15 | Video & Audio | `video` | 5 | `#d946ef` |
-| 16 | AI Tools | `ai` | 8 | `#8b5cf6` |
+| 16 | AI Tools | `ai` | 11 | `#8b5cf6` |
 
-### Danh sách đầy đủ 108 tools
+### Danh sách đầy đủ 111 tools
 
 Xem chi tiết tại `docs/tools-list.md`.
 
@@ -104,9 +104,9 @@ Xem chi tiết tại `docs/tools-list.md`.
 - Health (new category): Calorie Calculator, Water Intake Calculator, Sleep Cycle Calculator, Body Fat Calculator, Pregnancy Due Date
 - Video & Audio (new category): Video to MP3, Audio Trimmer, Volume Booster, Audio Converter, Video Speed Changer
 
-### Phase 8: AI Tools (8 tools)
-- AI Tools (new category): OCR — Image to Text, Background Remover, Text Summarizer, Object Detection, Grammar Checker, Image Captioning, Sentiment Analysis, Question Answering
-- Tech: Tesseract.js (OCR), @huggingface/transformers (Transformers.js) — ONNX Runtime WASM/WebGPU
+### Phase 8: AI Tools (11 tools)
+- AI Tools (new category): OCR, Background Remover, Text Summarizer, Object Detection, Grammar Checker, Image Captioning, Sentiment Analysis, Question Answering, AI Translator, Speech to Text, Text to Speech
+- Tech: Tesseract.js (OCR), @huggingface/transformers (Transformers.js) — ONNX Runtime WASM/WebGPU, Web Speech API (TTS)
 - Features: lazy model loading, IndexedDB cache, progress bar, fallback models, 100% client-side
 
 ### Infrastructure & Features
@@ -133,7 +133,7 @@ Xem chi tiết tại `docs/tools-list.md`.
 - ✅ `docs/tech-stack.md` — Technologies and architecture decisions
 - ✅ `docs/project-structure.md` — Directory layout and data flow
 - ✅ `docs/adding-tools.md` — Step-by-step guide to add new tools
-- ✅ `docs/tools-list.md` — Complete list of all 108 tools
+- ✅ `docs/tools-list.md` — Complete list of all 111 tools
 - ✅ `docs/design-system.md` — UI components, colors, typography
 - ✅ `docs/roadmap.md` — Phase 5-7 roadmap (all completed)
 - ✅ `docs/strategy.md` — Future development strategy

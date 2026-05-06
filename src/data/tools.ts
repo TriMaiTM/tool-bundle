@@ -1118,6 +1118,39 @@ export const tools: Tool[] = [
     slug: "question-answering",
     tags: ["question", "answer", "ai", "qa", "nlp"],
   },
+  {
+    id: "text-translator",
+    name: "AI Translator",
+    description:
+      "Translate text between 8 languages using AI — EN, VI, ZH, JA, KO, FR, DE, ES, RU.",
+    category: "ai",
+    icon: "languages",
+    slug: "text-translator",
+    featured: true,
+    tags: ["translate", "translation", "ai", "language", "marianmt"],
+  },
+  {
+    id: "speech-to-text",
+    name: "Speech to Text",
+    description:
+      "Transcribe audio files or microphone recordings to text using AI — Whisper model.",
+    category: "ai",
+    icon: "mic",
+    slug: "speech-to-text",
+    featured: true,
+    tags: ["speech", "transcribe", "audio", "ai", "whisper"],
+  },
+  {
+    id: "text-to-speech",
+    name: "Text to Speech",
+    description:
+      "Convert text to natural-sounding speech — adjustable speed, pitch, and volume.",
+    category: "ai",
+    icon: "volume-2",
+    slug: "text-to-speech",
+    featured: true,
+    tags: ["speech", "tts", "ai", "voice", "audio"],
+  },
 ];
 
 /**

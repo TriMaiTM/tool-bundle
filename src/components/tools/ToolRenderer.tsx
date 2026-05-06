@@ -142,6 +142,9 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
   "image-captioning": lazy(() => import("./ImageCaptioning")),
   "sentiment-analysis": lazy(() => import("./SentimentAnalysis")),
   "question-answering": lazy(() => import("./QuestionAnswering")),
+  "text-translator": lazy(() => import("./TextTranslator")),
+  "speech-to-text": lazy(() => import("./SpeechToText")),
+  "text-to-speech": lazy(() => import("./TextToSpeech")),
 };
 
 // Image converter tools with their specific configurations
