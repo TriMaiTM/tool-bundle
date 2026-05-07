@@ -797,6 +797,65 @@ export const tools: Tool[] = [
     slug: "color-system-generator",
     tags: ["color", "design", "system"],
   },
+  {
+    id: "regex-explainer",
+    name: "Regex Explainer",
+    description:
+      "Understand regular expressions — tokenize and explain each part.",
+    category: "developer",
+    icon: "regex",
+    slug: "regex-explainer",
+    tags: ["regex", "explain", "pattern", "regexp"],
+  },
+  {
+    id: "gitignore-generator",
+    name: ".gitignore Generator",
+    description:
+      "Generate .gitignore files for 30+ languages, frameworks, and tools.",
+    category: "developer",
+    icon: "git-branch",
+    slug: "gitignore-generator",
+    tags: ["gitignore", "git", "ignore", "template"],
+  },
+  {
+    id: "json-to-typescript",
+    name: "JSON to TypeScript",
+    description:
+      "Convert JSON objects to TypeScript interfaces or types instantly.",
+    category: "developer",
+    icon: "braces",
+    slug: "json-to-typescript",
+    tags: ["json", "typescript", "interface", "type"],
+  },
+  {
+    id: "jwt-decoder",
+    name: "JWT Decoder",
+    description:
+      "Decode and inspect JWT tokens — header, payload, and signature.",
+    category: "developer",
+    icon: "key",
+    slug: "jwt-decoder",
+    tags: ["jwt", "token", "decode", "auth"],
+  },
+  {
+    id: "uuid-generator",
+    name: "UUID Generator",
+    description: "Generate UUID v4 values — batch mode, multiple formats.",
+    category: "developer",
+    icon: "hash",
+    slug: "uuid-generator",
+    tags: ["uuid", "generator", "unique", "id"],
+  },
+  {
+    id: "text-diff",
+    name: "Text Diff",
+    description:
+      "Compare two texts side by side — line-by-line diff with colors.",
+    category: "developer",
+    icon: "git-compare",
+    slug: "text-diff",
+    tags: ["diff", "compare", "text", "diff"],
+  },
 
   // ============================================
   // Education & Students Tools

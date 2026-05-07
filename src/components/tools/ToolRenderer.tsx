@@ -48,6 +48,12 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
   "js-formatter": lazy(() => import("./JavaScriptFormatter")),
   "typescript-to-js": lazy(() => import("./TypeScriptToJs")),
   "color-system-generator": lazy(() => import("./ColorSystemGenerator")),
+  "regex-explainer": lazy(() => import("./RegexExplainer")),
+  "gitignore-generator": lazy(() => import("./GitignoreGenerator")),
+  "json-to-typescript": lazy(() => import("./JsonToTypescript")),
+  "jwt-decoder": lazy(() => import("./JwtDecoder")),
+  "uuid-generator": lazy(() => import("./UuidGenerator")),
+  "text-diff": lazy(() => import("./TextDiff")),
 
   // PDF Tools
   "pdf-merger": lazy(() => import("./PdfMerger")),

@@ -38,7 +38,7 @@ Complete list of all tools in ToolBundle, organized by category.
 | Text to Hashtags | `/text/text-to-hashtags` | Generate hashtags from text — keywords extraction | ✅ Live |
 | Emoji Picker & Search | `/text/emoji-picker` | Browse and search emojis — click to copy | ✅ Live |
 
-## Developer Tools (16)
+## Developer Tools (22)
 
 | Tool | Slug | Description | Status |
 |---|---|---|---|
@@ -58,6 +58,12 @@ Complete list of all tools in ToolBundle, organized by category.
 | JavaScript Formatter | `/developer/js-formatter` | Format and beautify JavaScript | ✅ Live |
 | TypeScript to JS | `/developer/typescript-to-js` | Strip TypeScript type annotations | ✅ Live |
 | Color System Generator | `/developer/color-system-generator` | Generate full color system from one color | ✅ Live |
+| Regex Explainer | `/developer/regex-explainer` | Understand regular expressions — tokenize and explain each part | ✅ Live |
+| .gitignore Generator | `/developer/gitignore-generator` | Generate .gitignore files for 30+ languages, frameworks, and tools | ✅ Live |
+| JSON to TypeScript | `/developer/json-to-typescript` | Convert JSON objects to TypeScript interfaces or types instantly | ✅ Live |
+| JWT Decoder | `/developer/jwt-decoder` | Decode and inspect JWT tokens — header, payload, and signature | ✅ Live |
+| UUID Generator | `/developer/uuid-generator` | Generate UUID v4 values — batch mode, multiple formats | ✅ Live |
+| Text Diff | `/developer/text-diff` | Compare two texts side by side — line-by-line diff with colors | ✅ Live |
 
 ## PDF Tools (5)
 
@@ -150,4 +156,4 @@ Complete list of all tools in ToolBundle, organized by category.
 
 ---
 
-**Total: 111 tools** — all live and working, 100% client-side.
+**Total: 117 tools** — all live and working, 100% client-side.

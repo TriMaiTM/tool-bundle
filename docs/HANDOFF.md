@@ -40,9 +40,9 @@
 
 | Metric | Value |
 |---|---|
-| **Tổng tools** | 111 |
+| **Tổng tools** | 117 |
 | **Tổng categories** | 16 |
-| **Tổng pages** | 129 |
+| **Tổng pages** | 135 |
 | **Tests** | 182 (all pass) |
 | **JS per tool page** | ~6-10 KB gzip (code-split) |
 | **Build time** | ~11s |
@@ -54,7 +54,7 @@
 |---|---|---|---|---|
 | 1 | Image Tools | `image` | 13 | `#3b82f6` |
 | 2 | Text Tools | `text` | 14 | `#22c55e` |
-| 3 | Developer Tools | `developer` | 16 | `#a855f7` |
+| 3 | Developer Tools | `developer` | 22 | `#a855f7` |
 | 4 | PDF Tools | `pdf` | 5 | `#ef4444` |
 | 5 | Math & Calculators | `math` | 5 | `#f59e0b` |
 | 6 | Security Tools | `security` | 3 | `#06b6d4` |
@@ -69,7 +69,7 @@
 | 15 | Video & Audio | `video` | 5 | `#d946ef` |
 | 16 | AI Tools | `ai` | 10 | `#8b5cf6` |
 
-### Danh sách đầy đủ 111 tools
+### Danh sách đầy đủ 117 tools
 
 Xem chi tiết tại `docs/tools-list.md`.
 
