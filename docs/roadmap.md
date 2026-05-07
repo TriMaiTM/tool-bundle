@@ -1,6 +1,6 @@
 # ToolBundle Roadmap
 
-Kế hoạch mở rộng ToolBundle từ 54 tools hiện tại lên 100+ tools.
+Kế hoạch mở rộng aToolBundle từ 54 tools hiện tại lên 100+ tools.
 
 ## Trạng thái hiện tại
 
