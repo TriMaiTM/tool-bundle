@@ -53,7 +53,7 @@
 | # | Category | ID | Tools | Color |
 |---|---|---|---|---|
 | 1 | Image Tools | `image` | 13 | `#3b82f6` |
-| 2 | Text Tools | `text` | 13 | `#22c55e` |
+| 2 | Text Tools | `text` | 14 | `#22c55e` |
 | 3 | Developer Tools | `developer` | 16 | `#a855f7` |
 | 4 | PDF Tools | `pdf` | 5 | `#ef4444` |
 | 5 | Math & Calculators | `math` | 5 | `#f59e0b` |
@@ -67,7 +67,7 @@
 | 13 | Finance & Money | `finance` | 7 | `#84cc16` |
 | 14 | Health & Medical | `health` | 5 | `#f43f5e` |
 | 15 | Video & Audio | `video` | 5 | `#d946ef` |
-| 16 | AI Tools | `ai` | 11 | `#8b5cf6` |
+| 16 | AI Tools | `ai` | 10 | `#8b5cf6` |
 
 ### Danh sách đầy đủ 111 tools
 

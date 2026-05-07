@@ -1144,8 +1144,8 @@ export const tools: Tool[] = [
     id: "text-to-speech",
     name: "Text to Speech",
     description:
-      "Convert text to natural-sounding speech — adjustable speed, pitch, and volume.",
-    category: "ai",
+      "Convert text to speech with voice selection, speed, pitch, and volume control — instant, no download.",
+    category: "text",
     icon: "volume-2",
     slug: "text-to-speech",
     featured: true,

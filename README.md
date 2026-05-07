@@ -54,8 +54,8 @@ Full documentation is available in the [`docs/`](./docs/) directory:
 ### Image Tools (13)
 PNG to JPG, JPG to PNG, JPG to WebP, PNG to WebP, WebP to PNG, Image Resizer, Image Compressor, Image Cropper, Image to Base64, Image Rotator & Flipper, Image Watermark, Photo Filters, SVG Optimizer
 
-### Text Tools (13)
-Word Counter, Case Converter, Slug Generator, Text Reverser, Line Counter, Text Repeater, Remove Duplicate Lines, Text Sorter, Reading Time Calculator, Fancy Text Generator, Readability Score, Text to Hashtags, Emoji Picker
+### Text Tools (14)
+Word Counter, Case Converter, Slug Generator, Text Reverser, Line Counter, Text Repeater, Remove Duplicate Lines, Text Sorter, Reading Time Calculator, Fancy Text Generator, Readability Score, Text to Hashtags, Emoji Picker, Text to Speech
 
 ### Developer Tools (16)
 JSON Formatter, Base64 Encoder/Decoder, URL Encoder/Decoder, Hash Generator, Regex Tester, Lorem Ipsum Generator, Markdown to HTML, HTML to Markdown, CSS Formatter, YAML Formatter, HTML Formatter, SQL Formatter, XML Formatter, JavaScript Formatter, TypeScript to JS, Color System Generator
@@ -96,8 +96,8 @@ Calorie Calculator, Water Intake Calculator, Sleep Cycle Calculator, Body Fat Ca
 ### Video & Audio (5)
 Video to MP3, Audio Trimmer, Volume Booster, Audio Converter, Video Speed Changer
 
-### AI Tools (11)
-OCR — Image to Text, Background Remover, Text Summarizer, Object Detection, Grammar Checker, Image Captioning, Sentiment Analysis, Question Answering, AI Translator, Speech to Text, Text to Speech (WAV export)
+### AI Tools (10)
+OCR — Image to Text, Background Remover, Text Summarizer, Object Detection, Grammar Checker, Image Captioning, Sentiment Analysis, Question Answering, AI Translator, Speech to Text
 
 ## License
 

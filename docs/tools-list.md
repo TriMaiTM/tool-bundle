@@ -146,7 +146,7 @@ Complete list of all tools in ToolBundle, organized by category.
 | Question Answering | `/ai/question-answering` | Ask questions about a passage and get AI-powered answers | ✅ Live |
 | AI Translator | `/ai/text-translator` | Translate text between 9 languages (EN, VI, ZH, JA, KO, FR, DE, ES, RU) — side-by-side layout | ✅ Live |
 | Speech to Text | `/ai/speech-to-text` | Transcribe audio files or microphone recordings — Whisper model | ✅ Live |
-| Text to Speech | `/ai/text-to-speech` | Convert text to speech using AI — download as WAV, adjustable speed | ✅ Live |
+| Text to Speech | `/text/text-to-speech` | Convert text to speech with voice selection, speed, pitch, and volume control — instant, no download | ✅ Live |
 
 ---
 
