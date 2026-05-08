@@ -18,6 +18,7 @@ import SearchModal from "../ui/SearchModal";
     {/* Desktop Nav */}
     <nav class="hidden md:flex items-center gap-6" aria-label="Main navigation">
       <a href="/" class="text-nav-link text-muted hover:text-on-dark transition-colors">Home</a>
+      <a href="/blog" class="text-nav-link text-muted hover:text-on-dark transition-colors">Blog</a>
       <div class="relative group">
         <button
           class="text-nav-link text-muted hover:text-on-dark transition-colors flex items-center gap-1"
@@ -72,6 +73,7 @@ import SearchModal from "../ui/SearchModal";
   <div id="mobile-menu" class="hidden md:hidden bg-surface-card border-t border-hairline" role="navigation" aria-label="Mobile navigation">
     <nav class="px-4 py-4 space-y-1">
       <a href="/" class="block px-3 py-2 text-body-sm text-body hover:text-on-dark hover:bg-surface-elevated rounded-md transition-colors">Home</a>
+      <a href="/blog" class="block px-3 py-2 text-body-sm text-body hover:text-on-dark hover:bg-surface-elevated rounded-md transition-colors">Blog</a>
       {categories.map((cat) => (
         <a
           href={`/${cat.id}`}

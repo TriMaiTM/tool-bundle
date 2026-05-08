@@ -1,0 +1,75 @@
+---
+import Base from "./Base.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  author?: string;
+  tags?: string[];
+}
+
+const { title, description, pubDate, author = "ToolBundle", tags = [] } = Astro.props;
+
+const SITE_URL = "https://toolbundle.app";
+const formattedDate = pubDate.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+const articleSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: title,
+  description: description,
+  datePublished: pubDate.toISOString(),
+  author: { "@type": "Person", name: author },
+  publisher: { "@type": "Organization", name: "ToolBundle", url: SITE_URL },
+  url: `${SITE_URL}${Astro.url.pathname}`,
+});
+---
+
+<Base title={title} description={description} canonicalUrl={`${SITE_URL}${Astro.url.pathname}`}>
+  <script type="application/ld+json" set:html={articleSchema} />
+
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+    {/* Breadcrumb */}
+    <nav class="flex items-center gap-2 text-caption mb-8">
+      <a href="/" class="hover:text-on-dark transition-colors">Home</a>
+      <span class="text-muted-soft">/</span>
+      <a href="/blog" class="hover:text-on-dark transition-colors">Blog</a>
+      <span class="text-muted-soft">/</span>
+      <span class="text-on-dark">{title}</span>
+    </nav>
+
+    {/* Article Header */}
+    <header class="mb-8">
+      <h1 class="text-display-sm mb-4">{title}</h1>
+      <div class="flex items-center gap-4 text-caption text-muted">
+        <time datetime={pubDate.toISOString()}>{formattedDate}</time>
+        <span>·</span>
+        <span>By {author}</span>
+      </div>
+      {tags.length > 0 && (
+        <div class="flex flex-wrap gap-2 mt-4">
+          {tags.map((tag) => (
+            <span class="badge">{tag}</span>
+          ))}
+        </div>
+      )}
+    </header>
+
+    {/* Article Content */}
+    <div class="prose">
+      <slot />
+    </div>
+
+    {/* Back to Blog */}
+    <div class="mt-12 pt-8 border-t border-hairline">
+      <a href="/blog" class="text-body-sm text-primary hover:text-primary-active transition-colors no-underline">
+        ← Back to Blog
+      </a>
+    </div>
+  </article>
+</Base>

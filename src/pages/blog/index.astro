@@ -1,0 +1,75 @@
+---
+import Base from "../../layouts/Base.astro";
+import { getCollection } from "astro:content";
+
+const SITE_URL = "https://toolbundle.app";
+const allPosts = (await getCollection("blog"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+function getSlug(id: string): string {
+  return id.replace(/\.md$/, "");
+}
+
+const formattedDate = (date: Date) =>
+  date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+---
+
+<Base
+  title="Blog — Free Online Tools Tips & Guides"
+  description="Tips, tutorials, and guides for using free online tools. Learn about PDF editing, image conversion, developer utilities, and more."
+  canonicalUrl={`${SITE_URL}/blog`}
+>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+    {/* Breadcrumb */}
+    <nav class="flex items-center gap-2 text-caption mb-8">
+      <a href="/" class="hover:text-on-dark transition-colors">Home</a>
+      <span class="text-muted-soft">/</span>
+      <span class="text-on-dark">Blog</span>
+    </nav>
+
+    {/* Header */}
+    <header class="mb-10">
+      <h1 class="text-display-sm mb-4">Blog</h1>
+      <p class="text-body-md text-muted max-w-2xl">
+        Tips, tutorials, and guides for getting the most out of free online tools.
+      </p>
+    </header>
+
+    {/* Posts Grid */}
+    {allPosts.length > 0 ? (
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {allPosts.map((post) => (
+          <a
+            href={`/blog/${getSlug(post.id)}`}
+            class="block bg-surface-card border border-hairline rounded-lg p-6 transition-all duration-200 hover:border-hairline-strong hover:-translate-y-0.5 group no-underline"
+          >
+            <time
+              class="text-caption text-muted"
+              datetime={post.data.pubDate.toISOString()}
+            >
+              {formattedDate(post.data.pubDate)}
+            </time>
+            <h2 class="text-title-md text-on-dark mt-2 mb-2 group-hover:text-primary transition-colors">
+              {post.data.title}
+            </h2>
+            <p class="text-body-sm text-muted leading-relaxed">
+              {post.data.description}
+            </p>
+            {post.data.tags.length > 0 && (
+              <div class="flex flex-wrap gap-2 mt-4">
+                {post.data.tags.slice(0, 3).map((tag) => (
+                  <span class="badge">{tag}</span>
+                ))}
+              </div>
+            )}
+          </a>
+        ))}
+      </div>
+    ) : (
+      <div class="text-center py-16">
+        <p class="text-body-md text-muted">No blog posts yet. Check back soon!</p>
+      </div>
+    )}
+  </div>
+</Base>
