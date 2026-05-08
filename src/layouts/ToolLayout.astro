@@ -88,5 +88,21 @@ const breadcrumbSchema = generateBreadcrumbSchema([
       filtered.unshift({ toolId: toolId, visitedAt: Date.now(), path: "/" + category + "/" });
       localStorage.setItem(key, JSON.stringify(filtered.slice(0, 30)));
     } catch {}
+
+    // Track tool usage analytics
+    try {
+      const aKey = "toolbundle_analytics";
+      const aRaw = localStorage.getItem(aKey);
+      const aData = aRaw ? JSON.parse(aRaw) : { pageViews: [], toolEvents: [], sessions: 0, firstVisit: Date.now(), lastVisit: Date.now() };
+      aData.toolEvents.push({
+        toolId: toolId,
+        category: category,
+        action: "view",
+        timestamp: Date.now(),
+      });
+      if (aData.toolEvents.length > 1000) aData.toolEvents = aData.toolEvents.slice(-1000);
+      aData.lastVisit = Date.now();
+      localStorage.setItem(aKey, JSON.stringify(aData));
+    } catch {}
   </script>
 </Base>
