@@ -205,9 +205,12 @@ export default function SearchModal({ tools, categories }: Props) {
       <button
         class="flex items-center gap-2 px-3 py-1.5 bg-surface-card border border-hairline rounded-md text-body-sm text-muted hover:border-hairline-strong transition-colors"
         onClick={handleOpen}
+        aria-label="Search tools (Ctrl+K)"
+        aria-haspopup="dialog"
       >
         <svg
           class="w-4 h-4"
+          aria-hidden="true"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -235,7 +238,12 @@ export default function SearchModal({ tools, categories }: Props) {
           <div style="position: absolute; inset: 0; background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(4px);" />
 
           {/* Modal */}
-          <div style="position: relative; width: 100%; max-width: 32rem; margin: 0 1rem; background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 12px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); overflow: hidden;">
+          <div
+            style="position: relative; width: 100%; max-width: 32rem; margin: 0 1rem; background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 12px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); overflow: hidden;"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Search tools"
+          >
             {/* Search Input */}
             <div style="display: flex; align-items: center; gap: 12px; padding: 0 16px; border-bottom: 1px solid #2a2a2a;">
               <svg
@@ -254,6 +262,14 @@ export default function SearchModal({ tools, categories }: Props) {
                 type="text"
                 style="flex: 1; height: 48px; min-width: 0; background: transparent; color: #ffffff; font-size: 16px; outline: none; border: none;"
                 placeholder="Search tools..."
+                aria-label="Search tools"
+                aria-autocomplete="list"
+                aria-controls="search-results-list"
+                aria-activedescendant={
+                  results.length > 0
+                    ? `search-result-${selectedIndex}`
+                    : undefined
+                }
                 value={query}
                 onInput={(e) => setQuery((e.target as HTMLInputElement).value)}
               />
@@ -265,8 +281,17 @@ export default function SearchModal({ tools, categories }: Props) {
             {/* Results */}
             <div
               ref={listRef}
+              id="search-results-list"
+              role="listbox"
+              aria-label="Search results"
               style="max-height: 50vh; overflow-y: auto; padding: 8px 0;"
             >
+              {/* Live region for screen readers */}
+              <div class="sr-only" aria-live="polite" aria-atomic="true">
+                {query.trim()
+                  ? `${results.length} result${results.length !== 1 ? "s" : ""} found`
+                  : ""}
+              </div>
               {/* Recent searches (when no query) */}
               {!query.trim() && recentSearches.length > 0 && (
                 <div class="px-3 py-1.5">
@@ -306,7 +331,10 @@ export default function SearchModal({ tools, categories }: Props) {
                   return (
                     <button
                       key={tool.id}
+                      id={`search-result-${index}`}
                       data-index={index}
+                      role="option"
+                      aria-selected={index === selectedIndex}
                       class={`w-full text-left flex items-center gap-3 px-4 py-2.5 transition-colors ${
                         index === selectedIndex
                           ? "bg-surface-elevated"

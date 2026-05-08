@@ -11,7 +11,7 @@ export default function FavoriteButton({ toolId }: Props) {
     // Read initial state from localStorage
     try {
       const favorites: string[] = JSON.parse(
-        localStorage.getItem("toolbundle_favorites") || "[]"
+        localStorage.getItem("toolbundle_favorites") || "[]",
       );
       setFavorited(favorites.includes(toolId));
     } catch {}
@@ -20,7 +20,7 @@ export default function FavoriteButton({ toolId }: Props) {
   const handleToggle = useCallback(() => {
     try {
       const favorites: string[] = JSON.parse(
-        localStorage.getItem("toolbundle_favorites") || "[]"
+        localStorage.getItem("toolbundle_favorites") || "[]",
       );
       const index = favorites.indexOf(toolId);
       if (index >= 0) {
@@ -38,11 +38,13 @@ export default function FavoriteButton({ toolId }: Props) {
     <button
       onClick={handleToggle}
       style={`display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 6px; border: 1px solid ${favorited ? "#faff69" : "#2a2a2a"}; background: ${favorited ? "#faff6915" : "transparent"}; color: ${favorited ? "#faff69" : "#888888"}; font-size: 13px; cursor: pointer; transition: all 0.15s ease;`}
-      title={favorited ? "Remove from favorites" : "Add to favorites"}
+      aria-label={favorited ? "Remove from favorites" : "Add to favorites"}
+      aria-pressed={favorited}
     >
       <svg
         width="16"
         height="16"
+        aria-hidden="true"
         viewBox="0 0 24 24"
         fill={favorited ? "currentColor" : "none"}
         stroke="currentColor"

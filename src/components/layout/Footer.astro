@@ -2,7 +2,7 @@
 import { categories } from "../../data/categories";
 ---
 
-<footer class="bg-surface-soft border-t border-hairline mt-16">
+<footer class="bg-surface-soft border-t border-hairline mt-16" role="contentinfo">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
       {/* Brand */}
@@ -20,7 +20,7 @@ import { categories } from "../../data/categories";
       </div>
 
       {/* Categories */}
-      <div>
+      <nav aria-label="Category links">
         <h3 class="text-caption-uppercase text-on-dark mb-4">Categories</h3>
         <ul class="space-y-2">
           {categories.map((cat) => (
@@ -31,10 +31,10 @@ import { categories } from "../../data/categories";
             </li>
           ))}
         </ul>
-      </div>
+      </nav>
 
       {/* Popular Tools */}
-      <div>
+      <nav aria-label="Popular tools">
         <h3 class="text-caption-uppercase text-on-dark mb-4">Popular Tools</h3>
         <ul class="space-y-2">
           <li><a href="/image/png-to-jpg" class="text-body-sm text-muted hover:text-on-dark transition-colors no-underline">PNG to JPG</a></li>
@@ -43,17 +43,17 @@ import { categories } from "../../data/categories";
           <li><a href="/text/word-counter" class="text-body-sm text-muted hover:text-on-dark transition-colors no-underline">Word Counter</a></li>
           <li><a href="/developer/base64-encoder" class="text-body-sm text-muted hover:text-on-dark transition-colors no-underline">Base64 Encoder</a></li>
         </ul>
-      </div>
+      </nav>
 
       {/* Info */}
-      <div>
+      <nav aria-label="Information links">
         <h3 class="text-caption-uppercase text-on-dark mb-4">Info</h3>
         <ul class="space-y-2">
           <li><a href="/" class="text-body-sm text-muted hover:text-on-dark transition-colors no-underline">About</a></li>
           <li><a href="/" class="text-body-sm text-muted hover:text-on-dark transition-colors no-underline">Privacy Policy</a></li>
           <li><a href="/" class="text-body-sm text-muted hover:text-on-dark transition-colors no-underline">Terms of Service</a></li>
         </ul>
-      </div>
+      </nav>
     </div>
 
     {/* Bottom bar */}
