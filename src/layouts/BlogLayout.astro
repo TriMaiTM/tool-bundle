@@ -2,31 +2,31 @@
 import Base from "./Base.astro";
 
 interface Props {
-  title: string;
-  description: string;
-  pubDate: Date;
-  author?: string;
-  tags?: string[];
+	title: string;
+	description: string;
+	pubDate: Date;
+	author?: string;
+	tags?: string[];
 }
 
 const { title, description, pubDate, author = "ToolBundle", tags = [] } = Astro.props;
 
 const SITE_URL = "https://toolbundle.app";
 const formattedDate = pubDate.toLocaleDateString("en-US", {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
+	year: "numeric",
+	month: "long",
+	day: "numeric",
 });
 
 const articleSchema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  headline: title,
-  description: description,
-  datePublished: pubDate.toISOString(),
-  author: { "@type": "Person", name: author },
-  publisher: { "@type": "Organization", name: "ToolBundle", url: SITE_URL },
-  url: `${SITE_URL}${Astro.url.pathname}`,
+	"@context": "https://schema.org",
+	"@type": "BlogPosting",
+	headline: title,
+	description: description,
+	datePublished: pubDate.toISOString(),
+	author: { "@type": "Person", name: author },
+	publisher: { "@type": "Organization", name: "ToolBundle", url: SITE_URL },
+	url: `${SITE_URL}${Astro.url.pathname}`,
 });
 ---
 

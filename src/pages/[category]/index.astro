@@ -3,12 +3,12 @@ import Base from "../../layouts/Base.astro";
 import ToolCard from "../../components/ui/ToolCard.astro";
 import { categories, getCategoryById } from "../../data/categories";
 import { getToolsByCategory } from "../../data/tools";
-import { generateCollectionPageSchema, generateBreadcrumbSchema } from "../../utils/seo";
+import { generateBreadcrumbSchema, generateCollectionPageSchema } from "../../utils/seo";
 
 export function getStaticPaths() {
-  return categories.map((cat) => ({
-    params: { category: cat.id },
-  }));
+	return categories.map((cat) => ({
+		params: { category: cat.id },
+	}));
 }
 
 const SITE_URL = "https://toolbundle.app";
@@ -22,15 +22,15 @@ const categoryUrl = `${SITE_URL}/${category}`;
 const toolNames = categoryTools.map((t) => t.name);
 
 const collectionSchema = generateCollectionPageSchema(
-  cat.name,
-  cat.description,
-  toolNames,
-  categoryUrl
+	cat.name,
+	cat.description,
+	toolNames,
+	categoryUrl,
 );
 
 const breadcrumbSchema = generateBreadcrumbSchema([
-  { name: "Home", url: SITE_URL },
-  { name: cat.name, url: categoryUrl },
+	{ name: "Home", url: SITE_URL },
+	{ name: cat.name, url: categoryUrl },
 ]);
 ---
 

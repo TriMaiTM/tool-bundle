@@ -2,20 +2,23 @@
 import ToolLayout from "../../layouts/ToolLayout.astro";
 import ToolRenderer from "../../components/tools/ToolRenderer";
 import { categories } from "../../data/categories";
-import { getToolsByCategory, getToolBySlug } from "../../data/tools";
+import { getToolBySlug, getToolsByCategory } from "../../data/tools";
 
 export function getStaticPaths() {
-  const paths: { params: { category: string; tool: string }; props: { toolId: string } }[] = [];
-  for (const cat of categories) {
-    const catTools = getToolsByCategory(cat.id);
-    for (const tool of catTools) {
-      paths.push({
-        params: { category: cat.id, tool: tool.slug },
-        props: { toolId: tool.id },
-      });
-    }
-  }
-  return paths;
+	const paths: {
+		params: { category: string; tool: string };
+		props: { toolId: string };
+	}[] = [];
+	for (const cat of categories) {
+		const catTools = getToolsByCategory(cat.id);
+		for (const tool of catTools) {
+			paths.push({
+				params: { category: cat.id, tool: tool.slug },
+				props: { toolId: tool.id },
+			});
+		}
+	}
+	return paths;
 }
 
 const { category, tool: toolSlug } = Astro.params;

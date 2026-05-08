@@ -4,15 +4,19 @@ import { getCollection } from "astro:content";
 
 const SITE_URL = "https://toolbundle.app";
 const allPosts = (await getCollection("blog"))
-  .filter((post) => !post.data.draft)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+	.filter((post) => !post.data.draft)
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 function getSlug(id: string): string {
-  return id.replace(/\.md$/, "");
+	return id.replace(/\.md$/, "");
 }
 
 const formattedDate = (date: Date) =>
-  date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+	date.toLocaleDateString("en-US", {
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+	});
 ---
 
 <Base

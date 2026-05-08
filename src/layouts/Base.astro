@@ -7,15 +7,15 @@ import "../styles/global.css";
 const SITE_URL = "https://toolbundle.app";
 
 interface Props {
-  title: string;
-  description?: string;
-  canonicalUrl?: string;
+	title: string;
+	description?: string;
+	canonicalUrl?: string;
 }
 
 const {
-  title,
-  description = "Free, privacy-first browser tools. No uploads. No accounts. Instant results.",
-  canonicalUrl,
+	title,
+	description = "Free, privacy-first browser tools. No uploads. No accounts. Instant results.",
+	canonicalUrl,
 } = Astro.props;
 
 const currentUrl = canonicalUrl || `${SITE_URL}${Astro.url.pathname}`;

@@ -4,15 +4,13 @@ import ToolCard from "../components/ui/ToolCard.astro";
 import FavoritesSection from "../components/ui/FavoritesSection";
 import { categories } from "../data/categories";
 import { getFeaturedTools, tools } from "../data/tools";
-import { generateWebSiteSchema, generateBreadcrumbSchema } from "../utils/seo";
+import { generateBreadcrumbSchema, generateWebSiteSchema } from "../utils/seo";
 
 const featuredTools = getFeaturedTools();
 const SITE_URL = "https://toolbundle.app";
 
 const websiteSchema = generateWebSiteSchema();
-const breadcrumbSchema = generateBreadcrumbSchema([
-  { name: "Home", url: SITE_URL },
-]);
+const breadcrumbSchema = generateBreadcrumbSchema([{ name: "Home", url: SITE_URL }]);
 ---
 
 <Base

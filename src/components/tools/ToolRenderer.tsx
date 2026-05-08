@@ -1,250 +1,248 @@
-import { lazy, Suspense } from "preact/compat";
+import { Suspense, lazy } from "preact/compat";
 
 interface Props {
-  toolId: string;
+	toolId: string;
 }
 
 // Lazy-loaded tool components — each becomes its own chunk
 const toolComponents: Record<string, ReturnType<typeof lazy>> = {
-  // Image Tools
-  "image-resizer": lazy(() => import("./ImageResizer")),
-  "image-compressor": lazy(() => import("./ImageCompressor")),
-  "image-cropper": lazy(() => import("./ImageCropper")),
-  "image-to-base64": lazy(() => import("./ImageToBase64")),
-  "image-rotator": lazy(() => import("./ImageRotator")),
-  "image-watermark": lazy(() => import("./ImageWatermark")),
-  "photo-filters": lazy(() => import("./PhotoFilters")),
-  "svg-optimizer": lazy(() => import("./SvgOptimizer")),
+	// Image Tools
+	"image-resizer": lazy(() => import("./ImageResizer")),
+	"image-compressor": lazy(() => import("./ImageCompressor")),
+	"image-cropper": lazy(() => import("./ImageCropper")),
+	"image-to-base64": lazy(() => import("./ImageToBase64")),
+	"image-rotator": lazy(() => import("./ImageRotator")),
+	"image-watermark": lazy(() => import("./ImageWatermark")),
+	"photo-filters": lazy(() => import("./PhotoFilters")),
+	"svg-optimizer": lazy(() => import("./SvgOptimizer")),
 
-  // Text Tools
-  "word-counter": lazy(() => import("./WordCounter")),
-  "case-converter": lazy(() => import("./CaseConverter")),
-  "slug-generator": lazy(() => import("./SlugGenerator")),
-  "text-reverser": lazy(() => import("./TextReverser")),
-  "line-counter": lazy(() => import("./LineCounter")),
-  "text-repeater": lazy(() => import("./TextRepeater")),
-  "remove-duplicate-lines": lazy(() => import("./RemoveDuplicateLines")),
-  "text-sorter": lazy(() => import("./TextSorter")),
-  "reading-time-calculator": lazy(() => import("./ReadingTimeCalculator")),
-  "fancy-text": lazy(() => import("./FancyTextGenerator")),
-  "readability-score": lazy(() => import("./ReadabilityScore")),
-  "text-to-hashtags": lazy(() => import("./TextToHashtags")),
-  "emoji-picker": lazy(() => import("./EmojiPicker")),
+	// Text Tools
+	"word-counter": lazy(() => import("./WordCounter")),
+	"case-converter": lazy(() => import("./CaseConverter")),
+	"slug-generator": lazy(() => import("./SlugGenerator")),
+	"text-reverser": lazy(() => import("./TextReverser")),
+	"line-counter": lazy(() => import("./LineCounter")),
+	"text-repeater": lazy(() => import("./TextRepeater")),
+	"remove-duplicate-lines": lazy(() => import("./RemoveDuplicateLines")),
+	"text-sorter": lazy(() => import("./TextSorter")),
+	"reading-time-calculator": lazy(() => import("./ReadingTimeCalculator")),
+	"fancy-text": lazy(() => import("./FancyTextGenerator")),
+	"readability-score": lazy(() => import("./ReadabilityScore")),
+	"text-to-hashtags": lazy(() => import("./TextToHashtags")),
+	"emoji-picker": lazy(() => import("./EmojiPicker")),
 
-  // Developer Tools
-  "json-formatter": lazy(() => import("./JsonFormatter")),
-  "base64-encoder": lazy(() => import("./Base64Encoder")),
-  "url-encoder": lazy(() => import("./UrlEncoder")),
-  "hash-generator": lazy(() => import("./HashGenerator")),
-  "regex-tester": lazy(() => import("./RegexTester")),
-  "lorem-generator": lazy(() => import("./LoremGenerator")),
-  "markdown-to-html": lazy(() => import("./MarkdownToHtml")),
-  "html-to-markdown": lazy(() => import("./HtmlToMarkdown")),
-  "css-formatter": lazy(() => import("./CssFormatter")),
-  "yaml-formatter": lazy(() => import("./YamlFormatter")),
-  "html-formatter": lazy(() => import("./HtmlFormatter")),
-  "sql-formatter": lazy(() => import("./SqlFormatter")),
-  "xml-formatter": lazy(() => import("./XmlFormatter")),
-  "js-formatter": lazy(() => import("./JavaScriptFormatter")),
-  "typescript-to-js": lazy(() => import("./TypeScriptToJs")),
-  "color-system-generator": lazy(() => import("./ColorSystemGenerator")),
-  "regex-explainer": lazy(() => import("./RegexExplainer")),
-  "gitignore-generator": lazy(() => import("./GitignoreGenerator")),
-  "json-to-typescript": lazy(() => import("./JsonToTypescript")),
-  "jwt-decoder": lazy(() => import("./JwtDecoder")),
-  "uuid-generator": lazy(() => import("./UuidGenerator")),
-  "text-diff": lazy(() => import("./TextDiff")),
-  "box-shadow-generator": lazy(() => import("./BoxShadowGenerator")),
-  "css-grid-generator": lazy(() => import("./CssGridGenerator")),
-  "css-flexbox-generator": lazy(() => import("./CssFlexboxGenerator")),
-  "border-radius-generator": lazy(() => import("./BorderRadiusGenerator")),
+	// Developer Tools
+	"json-formatter": lazy(() => import("./JsonFormatter")),
+	"base64-encoder": lazy(() => import("./Base64Encoder")),
+	"url-encoder": lazy(() => import("./UrlEncoder")),
+	"hash-generator": lazy(() => import("./HashGenerator")),
+	"regex-tester": lazy(() => import("./RegexTester")),
+	"lorem-generator": lazy(() => import("./LoremGenerator")),
+	"markdown-to-html": lazy(() => import("./MarkdownToHtml")),
+	"html-to-markdown": lazy(() => import("./HtmlToMarkdown")),
+	"css-formatter": lazy(() => import("./CssFormatter")),
+	"yaml-formatter": lazy(() => import("./YamlFormatter")),
+	"html-formatter": lazy(() => import("./HtmlFormatter")),
+	"sql-formatter": lazy(() => import("./SqlFormatter")),
+	"xml-formatter": lazy(() => import("./XmlFormatter")),
+	"js-formatter": lazy(() => import("./JavaScriptFormatter")),
+	"typescript-to-js": lazy(() => import("./TypeScriptToJs")),
+	"color-system-generator": lazy(() => import("./ColorSystemGenerator")),
+	"regex-explainer": lazy(() => import("./RegexExplainer")),
+	"gitignore-generator": lazy(() => import("./GitignoreGenerator")),
+	"json-to-typescript": lazy(() => import("./JsonToTypescript")),
+	"jwt-decoder": lazy(() => import("./JwtDecoder")),
+	"uuid-generator": lazy(() => import("./UuidGenerator")),
+	"text-diff": lazy(() => import("./TextDiff")),
+	"box-shadow-generator": lazy(() => import("./BoxShadowGenerator")),
+	"css-grid-generator": lazy(() => import("./CssGridGenerator")),
+	"css-flexbox-generator": lazy(() => import("./CssFlexboxGenerator")),
+	"border-radius-generator": lazy(() => import("./BorderRadiusGenerator")),
 
-  // PDF Tools
-  "pdf-merger": lazy(() => import("./PdfMerger")),
-  "pdf-splitter": lazy(() => import("./PdfSplitter")),
-  "pdf-compressor": lazy(() => import("./PdfCompressor")),
-  "pdf-rotator": lazy(() => import("./PdfRotator")),
-  "pdf-to-text": lazy(() => import("./PdfToText")),
+	// PDF Tools
+	"pdf-merger": lazy(() => import("./PdfMerger")),
+	"pdf-splitter": lazy(() => import("./PdfSplitter")),
+	"pdf-compressor": lazy(() => import("./PdfCompressor")),
+	"pdf-rotator": lazy(() => import("./PdfRotator")),
+	"pdf-to-text": lazy(() => import("./PdfToText")),
 
-  // Math Tools
-  "percentage-calculator": lazy(() => import("./PercentageCalculator")),
-  "unit-converter": lazy(() => import("./UnitConverter")),
-  "bmi-calculator": lazy(() => import("./BmiCalculator")),
-  "loan-calculator": lazy(() => import("./LoanCalculator")),
-  "age-calculator": lazy(() => import("./AgeCalculator")),
+	// Math Tools
+	"percentage-calculator": lazy(() => import("./PercentageCalculator")),
+	"unit-converter": lazy(() => import("./UnitConverter")),
+	"bmi-calculator": lazy(() => import("./BmiCalculator")),
+	"loan-calculator": lazy(() => import("./LoanCalculator")),
+	"age-calculator": lazy(() => import("./AgeCalculator")),
 
-  // Security Tools
-  "password-generator": lazy(() => import("./PasswordGenerator")),
-  "password-strength-checker": lazy(() => import("./PasswordStrengthChecker")),
-  "otp-generator": lazy(() => import("./OtpGenerator")),
-  "qr-code-generator": lazy(() => import("./QrCodeGenerator")),
-  "barcode-generator": lazy(() => import("./BarcodeGenerator")),
+	// Security Tools
+	"password-generator": lazy(() => import("./PasswordGenerator")),
+	"password-strength-checker": lazy(() => import("./PasswordStrengthChecker")),
+	"otp-generator": lazy(() => import("./OtpGenerator")),
+	"qr-code-generator": lazy(() => import("./QrCodeGenerator")),
+	"barcode-generator": lazy(() => import("./BarcodeGenerator")),
 
-  // Color Tools
-  "color-picker": lazy(() => import("./ColorPicker")),
-  "color-palette-generator": lazy(() => import("./ColorPaletteGenerator")),
-  "contrast-checker": lazy(() => import("./ContrastChecker")),
-  "css-gradient-generator": lazy(() => import("./CssGradientGenerator")),
+	// Color Tools
+	"color-picker": lazy(() => import("./ColorPicker")),
+	"color-palette-generator": lazy(() => import("./ColorPaletteGenerator")),
+	"contrast-checker": lazy(() => import("./ContrastChecker")),
+	"css-gradient-generator": lazy(() => import("./CssGradientGenerator")),
 
-  // Date & Time Tools
-  "countdown-timer": lazy(() => import("./CountdownTimer")),
-  "timezone-converter": lazy(() => import("./TimezoneConverter")),
-  "date-difference-calculator": lazy(
-    () => import("./DateDifferenceCalculator"),
-  ),
-  "unix-timestamp-converter": lazy(() => import("./UnixTimestampConverter")),
+	// Date & Time Tools
+	"countdown-timer": lazy(() => import("./CountdownTimer")),
+	"timezone-converter": lazy(() => import("./TimezoneConverter")),
+	"date-difference-calculator": lazy(() => import("./DateDifferenceCalculator")),
+	"unix-timestamp-converter": lazy(() => import("./UnixTimestampConverter")),
 
-  // SEO Tools
-  "meta-tag-generator": lazy(() => import("./MetaTagGenerator")),
-  "robots-txt-generator": lazy(() => import("./RobotsTxtGenerator")),
-  "sitemap-generator": lazy(() => import("./SitemapGenerator")),
+	// SEO Tools
+	"meta-tag-generator": lazy(() => import("./MetaTagGenerator")),
+	"robots-txt-generator": lazy(() => import("./RobotsTxtGenerator")),
+	"sitemap-generator": lazy(() => import("./SitemapGenerator")),
 
-  // Data Tools
-  "csv-to-json": lazy(() => import("./CsvToJson")),
-  "json-to-csv": lazy(() => import("./JsonToCsv")),
-  "csv-formatter": lazy(() => import("./CsvFormatter")),
+	// Data Tools
+	"csv-to-json": lazy(() => import("./CsvToJson")),
+	"json-to-csv": lazy(() => import("./JsonToCsv")),
+	"csv-formatter": lazy(() => import("./CsvFormatter")),
 
-  // Fun Tools
-  "random-number-generator": lazy(() => import("./RandomNumberGenerator")),
-  "dice-roller": lazy(() => import("./DiceRoller")),
-  "coin-flipper": lazy(() => import("./CoinFlipper")),
-  "random-name-picker": lazy(() => import("./RandomNamePicker")),
-  "wheel-spinner": lazy(() => import("./WheelSpinner")),
-  "decision-maker": lazy(() => import("./DecisionMaker")),
-  "placeholder-image": lazy(() => import("./PlaceholderImage")),
+	// Fun Tools
+	"random-number-generator": lazy(() => import("./RandomNumberGenerator")),
+	"dice-roller": lazy(() => import("./DiceRoller")),
+	"coin-flipper": lazy(() => import("./CoinFlipper")),
+	"random-name-picker": lazy(() => import("./RandomNamePicker")),
+	"wheel-spinner": lazy(() => import("./WheelSpinner")),
+	"decision-maker": lazy(() => import("./DecisionMaker")),
+	"placeholder-image": lazy(() => import("./PlaceholderImage")),
 
-  // Education Tools
-  "flashcard-maker": lazy(() => import("./FlashcardMaker")),
-  "quiz-maker": lazy(() => import("./QuizMaker")),
-  "grade-calculator": lazy(() => import("./GradeCalculator")),
-  "gpa-calculator": lazy(() => import("./GpaCalculator")),
-  "citation-generator": lazy(() => import("./CitationGenerator")),
-  "study-planner": lazy(() => import("./StudyPlanner")),
-  "fraction-calculator": lazy(() => import("./FractionCalculator")),
+	// Education Tools
+	"flashcard-maker": lazy(() => import("./FlashcardMaker")),
+	"quiz-maker": lazy(() => import("./QuizMaker")),
+	"grade-calculator": lazy(() => import("./GradeCalculator")),
+	"gpa-calculator": lazy(() => import("./GpaCalculator")),
+	"citation-generator": lazy(() => import("./CitationGenerator")),
+	"study-planner": lazy(() => import("./StudyPlanner")),
+	"fraction-calculator": lazy(() => import("./FractionCalculator")),
 
-  // Finance Tools
-  "currency-converter": lazy(() => import("./CurrencyConverter")),
-  "compound-interest": lazy(() => import("./CompoundInterest")),
-  "tax-calculator": lazy(() => import("./TaxCalculator")),
-  "budget-tracker": lazy(() => import("./BudgetTracker")),
-  "investment-calculator": lazy(() => import("./InvestmentCalculator")),
-  "net-worth-calculator": lazy(() => import("./NetWorthCalculator")),
-  "break-even-calculator": lazy(() => import("./BreakEvenCalculator")),
+	// Finance Tools
+	"currency-converter": lazy(() => import("./CurrencyConverter")),
+	"compound-interest": lazy(() => import("./CompoundInterest")),
+	"tax-calculator": lazy(() => import("./TaxCalculator")),
+	"budget-tracker": lazy(() => import("./BudgetTracker")),
+	"investment-calculator": lazy(() => import("./InvestmentCalculator")),
+	"net-worth-calculator": lazy(() => import("./NetWorthCalculator")),
+	"break-even-calculator": lazy(() => import("./BreakEvenCalculator")),
 
-  // Health Tools
-  "calorie-calculator": lazy(() => import("./CalorieCalculator")),
-  "water-intake": lazy(() => import("./WaterIntakeCalculator")),
-  "sleep-cycle": lazy(() => import("./SleepCycleCalculator")),
-  "body-fat-calculator": lazy(() => import("./BodyFatCalculator")),
-  "pregnancy-due-date": lazy(() => import("./PregnancyDueDate")),
+	// Health Tools
+	"calorie-calculator": lazy(() => import("./CalorieCalculator")),
+	"water-intake": lazy(() => import("./WaterIntakeCalculator")),
+	"sleep-cycle": lazy(() => import("./SleepCycleCalculator")),
+	"body-fat-calculator": lazy(() => import("./BodyFatCalculator")),
+	"pregnancy-due-date": lazy(() => import("./PregnancyDueDate")),
 
-  // Video & Audio Tools
-  "video-to-audio": lazy(() => import("./VideoToAudio")),
-  "audio-trimmer": lazy(() => import("./AudioTrimmer")),
-  "volume-booster": lazy(() => import("./VolumeBooster")),
-  "audio-converter": lazy(() => import("./AudioConverter")),
-  "video-speed-changer": lazy(() => import("./VideoSpeedChanger")),
+	// Video & Audio Tools
+	"video-to-audio": lazy(() => import("./VideoToAudio")),
+	"audio-trimmer": lazy(() => import("./AudioTrimmer")),
+	"volume-booster": lazy(() => import("./VolumeBooster")),
+	"audio-converter": lazy(() => import("./AudioConverter")),
+	"video-speed-changer": lazy(() => import("./VideoSpeedChanger")),
 
-  // AI Tools
-  ocr: lazy(() => import("./OcrTool")),
-  "background-remover": lazy(() => import("./BackgroundRemover")),
-  "text-summarizer": lazy(() => import("./TextSummarizer")),
-  "object-detection": lazy(() => import("./ObjectDetection")),
-  "grammar-checker": lazy(() => import("./GrammarChecker")),
-  "image-captioning": lazy(() => import("./ImageCaptioning")),
-  "sentiment-analysis": lazy(() => import("./SentimentAnalysis")),
-  "question-answering": lazy(() => import("./QuestionAnswering")),
-  "text-translator": lazy(() => import("./TextTranslator")),
-  "speech-to-text": lazy(() => import("./SpeechToText")),
-  "text-to-speech": lazy(() => import("./TextToSpeech")),
+	// AI Tools
+	ocr: lazy(() => import("./OcrTool")),
+	"background-remover": lazy(() => import("./BackgroundRemover")),
+	"text-summarizer": lazy(() => import("./TextSummarizer")),
+	"object-detection": lazy(() => import("./ObjectDetection")),
+	"grammar-checker": lazy(() => import("./GrammarChecker")),
+	"image-captioning": lazy(() => import("./ImageCaptioning")),
+	"sentiment-analysis": lazy(() => import("./SentimentAnalysis")),
+	"question-answering": lazy(() => import("./QuestionAnswering")),
+	"text-translator": lazy(() => import("./TextTranslator")),
+	"speech-to-text": lazy(() => import("./SpeechToText")),
+	"text-to-speech": lazy(() => import("./TextToSpeech")),
 };
 
 // Image converter tools with their specific configurations
 const IMAGE_CONVERTER_CONFIGS: Record<
-  string,
-  {
-    from: string;
-    to: string;
-    mime: "image/png" | "image/jpeg" | "image/webp";
-    accept: string;
-  }
+	string,
+	{
+		from: string;
+		to: string;
+		mime: "image/png" | "image/jpeg" | "image/webp";
+		accept: string;
+	}
 > = {
-  "png-to-jpg": {
-    from: "PNG",
-    to: "JPG",
-    mime: "image/jpeg",
-    accept: "image/png",
-  },
-  "jpg-to-png": {
-    from: "JPG",
-    to: "PNG",
-    mime: "image/png",
-    accept: "image/jpeg",
-  },
-  "jpg-to-webp": {
-    from: "JPG",
-    to: "WebP",
-    mime: "image/webp",
-    accept: "image/jpeg",
-  },
-  "png-to-webp": {
-    from: "PNG",
-    to: "WebP",
-    mime: "image/webp",
-    accept: "image/png",
-  },
-  "webp-to-png": {
-    from: "WebP",
-    to: "PNG",
-    mime: "image/png",
-    accept: "image/webp",
-  },
+	"png-to-jpg": {
+		from: "PNG",
+		to: "JPG",
+		mime: "image/jpeg",
+		accept: "image/png",
+	},
+	"jpg-to-png": {
+		from: "JPG",
+		to: "PNG",
+		mime: "image/png",
+		accept: "image/jpeg",
+	},
+	"jpg-to-webp": {
+		from: "JPG",
+		to: "WebP",
+		mime: "image/webp",
+		accept: "image/jpeg",
+	},
+	"png-to-webp": {
+		from: "PNG",
+		to: "WebP",
+		mime: "image/webp",
+		accept: "image/png",
+	},
+	"webp-to-png": {
+		from: "WebP",
+		to: "PNG",
+		mime: "image/png",
+		accept: "image/webp",
+	},
 };
 
 // Lazy-loaded ImageConverter
 const LazyImageConverter = lazy(() => import("./ImageConverter"));
 
 function LoadingSpinner() {
-  return (
-    <div class="flex items-center justify-center py-16">
-      <div class="flex flex-col items-center gap-3">
-        <div class="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-        <span class="text-caption text-muted">Loading tool...</span>
-      </div>
-    </div>
-  );
+	return (
+		<div class="flex items-center justify-center py-16">
+			<div class="flex flex-col items-center gap-3">
+				<div class="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+				<span class="text-caption text-muted">Loading tool...</span>
+			</div>
+		</div>
+	);
 }
 
 export default function ToolRenderer({ toolId }: Props) {
-  // Check if it's an image converter tool
-  const converterConfig = IMAGE_CONVERTER_CONFIGS[toolId];
-  if (converterConfig) {
-    return (
-      <Suspense fallback={<LoadingSpinner />}>
-        <LazyImageConverter
-          fromFormat={converterConfig.from}
-          toFormat={converterConfig.to}
-          targetMime={converterConfig.mime}
-          accept={converterConfig.accept}
-        />
-      </Suspense>
-    );
-  }
+	// Check if it's an image converter tool
+	const converterConfig = IMAGE_CONVERTER_CONFIGS[toolId];
+	if (converterConfig) {
+		return (
+			<Suspense fallback={<LoadingSpinner />}>
+				<LazyImageConverter
+					fromFormat={converterConfig.from}
+					toFormat={converterConfig.to}
+					targetMime={converterConfig.mime}
+					accept={converterConfig.accept}
+				/>
+			</Suspense>
+		);
+	}
 
-  // Look up the lazy component
-  const Component = toolComponents[toolId];
+	// Look up the lazy component
+	const Component = toolComponents[toolId];
 
-  if (!Component) {
-    return (
-      <div class="text-center py-12">
-        <p class="text-muted">This tool is coming soon.</p>
-      </div>
-    );
-  }
+	if (!Component) {
+		return (
+			<div class="text-center py-12">
+				<p class="text-muted">This tool is coming soon.</p>
+			</div>
+		);
+	}
 
-  return (
-    <Suspense fallback={<LoadingSpinner />}>
-      <Component />
-    </Suspense>
-  );
+	return (
+		<Suspense fallback={<LoadingSpinner />}>
+			<Component />
+		</Suspense>
+	);
 }
