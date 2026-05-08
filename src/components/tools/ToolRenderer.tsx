@@ -155,6 +155,36 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
 	"text-translator": lazy(() => import("./TextTranslator")),
 	"speech-to-text": lazy(() => import("./SpeechToText")),
 	"text-to-speech": lazy(() => import("./TextToSpeech")),
+
+	// Converter Tools — Number Systems
+	"number-base-converter": lazy(() => import("./NumberBaseConverter")),
+	"binary-to-decimal": lazy(() => import("./BinaryToDecimal")),
+	"decimal-to-binary": lazy(() => import("./DecimalToBinary")),
+	"hex-to-decimal": lazy(() => import("./HexToDecimal")),
+	"decimal-to-hex": lazy(() => import("./DecimalToHex")),
+
+	// Converter Tools — Data Formats
+	"json-to-xml": lazy(() => import("./JsonToXml")),
+	"xml-to-json": lazy(() => import("./XmlToJson")),
+	"csv-to-xml": lazy(() => import("./CsvToXml")),
+	"xml-to-csv": lazy(() => import("./XmlToCsv")),
+
+	// Converter Tools — Text Encoding
+	"html-entity-encoder": lazy(() => import("./HtmlEntityEncoder")),
+	"unicode-encoder": lazy(() => import("./UnicodeEncoder")),
+	"text-to-binary": lazy(() => import("./TextToBinary")),
+	"punycode-converter": lazy(() => import("./PunycodeConverter")),
+
+	// Converter Tools — Color
+	"hex-to-rgb": lazy(() => import("./HexToRgb")),
+	"rgb-to-hsl": lazy(() => import("./RgbToHsl")),
+	"color-format-converter": lazy(() => import("./ColorFormatConverter")),
+
+	// Converter Tools — Text & Fun
+	"morse-code-converter": lazy(() => import("./MorseCodeConverter")),
+	"roman-numeral-converter": lazy(() => import("./RomanNumeralConverter")),
+	"text-to-ascii-art": lazy(() => import("./TextToAsciiArt")),
+	"upside-down-text": lazy(() => import("./UpsideDownText")),
 };
 
 // Image converter tools with their specific configurations

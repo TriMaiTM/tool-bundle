@@ -1242,6 +1242,213 @@ export const tools: Tool[] = [
 		slug: "border-radius-generator",
 		tags: ["css", "border-radius", "round", "design"],
 	},
+
+	// ============================================
+	// Converter Tools — Number Systems
+	// ============================================
+	{
+		id: "number-base-converter",
+		name: "Number Base Converter",
+		description:
+			"Convert numbers between any bases (2-36) — binary, octal, decimal, hex, and more.",
+		category: "developer",
+		icon: "binary",
+		slug: "number-base-converter",
+		featured: true,
+		tags: ["convert", "number", "base", "binary", "hex", "octal", "decimal"],
+	},
+	{
+		id: "binary-to-decimal",
+		name: "Binary to Decimal",
+		description: "Convert binary (base-2) numbers to decimal (base-10) instantly.",
+		category: "developer",
+		icon: "binary",
+		slug: "binary-to-decimal",
+		tags: ["convert", "binary", "decimal", "number"],
+	},
+	{
+		id: "decimal-to-binary",
+		name: "Decimal to Binary",
+		description: "Convert decimal numbers to binary with configurable bit width (8, 16, 32-bit).",
+		category: "developer",
+		icon: "binary",
+		slug: "decimal-to-binary",
+		tags: ["convert", "decimal", "binary", "number"],
+	},
+	{
+		id: "hex-to-decimal",
+		name: "Hex to Decimal",
+		description: "Convert hexadecimal (base-16) numbers to decimal format.",
+		category: "developer",
+		icon: "hash",
+		slug: "hex-to-decimal",
+		tags: ["convert", "hex", "decimal", "number"],
+	},
+	{
+		id: "decimal-to-hex",
+		name: "Decimal to Hex",
+		description: "Convert decimal numbers to hexadecimal (base-16) format.",
+		category: "developer",
+		icon: "hash",
+		slug: "decimal-to-hex",
+		tags: ["convert", "decimal", "hex", "number"],
+	},
+
+	// ============================================
+	// Converter Tools — Data Formats
+	// ============================================
+	{
+		id: "json-to-xml",
+		name: "JSON to XML",
+		description: "Convert JSON data to XML format with custom root element and indentation.",
+		category: "developer",
+		icon: "file-code",
+		slug: "json-to-xml",
+		featured: true,
+		tags: ["convert", "json", "xml", "format"],
+	},
+	{
+		id: "xml-to-json",
+		name: "XML to JSON",
+		description: "Convert XML documents to JSON format with automatic parsing.",
+		category: "developer",
+		icon: "file-code",
+		slug: "xml-to-json",
+		tags: ["convert", "xml", "json", "format"],
+	},
+	{
+		id: "csv-to-xml",
+		name: "CSV to XML",
+		description: "Convert CSV data to XML format with custom row tags and delimiters.",
+		category: "developer",
+		icon: "table",
+		slug: "csv-to-xml",
+		tags: ["convert", "csv", "xml", "format"],
+	},
+	{
+		id: "xml-to-csv",
+		name: "XML to CSV",
+		description: "Convert XML data to CSV format with download support.",
+		category: "developer",
+		icon: "table",
+		slug: "xml-to-csv",
+		tags: ["convert", "xml", "csv", "format"],
+	},
+
+	// ============================================
+	// Converter Tools — Text Encoding
+	// ============================================
+	{
+		id: "html-entity-encoder",
+		name: "HTML Entity Encoder/Decoder",
+		description: "Encode text to HTML entities and decode HTML entities back to text.",
+		category: "developer",
+		icon: "code",
+		slug: "html-entity-encoder",
+		tags: ["convert", "html", "entity", "encode", "decode"],
+	},
+	{
+		id: "unicode-encoder",
+		name: "Unicode Encoder/Decoder",
+		description: "Convert text to Unicode escape sequences (\\uXXXX) and back.",
+		category: "developer",
+		icon: "type",
+		slug: "unicode-encoder",
+		tags: ["convert", "unicode", "encode", "decode"],
+	},
+	{
+		id: "text-to-binary",
+		name: "Text to Binary / Binary to Text",
+		description:
+			"Convert text to binary code and binary code back to text. Supports 7-bit and 8-bit.",
+		category: "developer",
+		icon: "binary",
+		slug: "text-to-binary",
+		tags: ["convert", "text", "binary", "encode"],
+	},
+	{
+		id: "punycode-converter",
+		name: "Punycode Converter",
+		description: "Convert between Unicode domain names and Punycode (IDN encoding).",
+		category: "developer",
+		icon: "globe",
+		slug: "punycode-converter",
+		tags: ["convert", "punycode", "domain", "idn", "unicode"],
+	},
+
+	// ============================================
+	// Converter Tools — Color
+	// ============================================
+	{
+		id: "hex-to-rgb",
+		name: "HEX to RGB Converter",
+		description: "Convert HEX color codes to RGB with color preview and HSL output.",
+		category: "color",
+		icon: "palette",
+		slug: "hex-to-rgb",
+		featured: true,
+		tags: ["convert", "hex", "rgb", "color"],
+	},
+	{
+		id: "rgb-to-hsl",
+		name: "RGB to HSL Converter",
+		description: "Convert between RGB and HSL color formats with interactive sliders.",
+		category: "color",
+		icon: "palette",
+		slug: "rgb-to-hsl",
+		tags: ["convert", "rgb", "hsl", "color"],
+	},
+	{
+		id: "color-format-converter",
+		name: "Color Format Converter",
+		description:
+			"Universal color converter — enter any format (HEX, RGB, HSL, CMYK) and get all formats.",
+		category: "color",
+		icon: "palette",
+		slug: "color-format-converter",
+		tags: ["convert", "color", "hex", "rgb", "hsl", "cmyk"],
+	},
+
+	// ============================================
+	// Converter Tools — Text & Fun
+	// ============================================
+	{
+		id: "morse-code-converter",
+		name: "Morse Code Converter",
+		description: "Convert text to Morse code and Morse code back to text with reference table.",
+		category: "text",
+		icon: "radio",
+		slug: "morse-code-converter",
+		tags: ["convert", "morse", "code", "text"],
+	},
+	{
+		id: "roman-numeral-converter",
+		name: "Roman Numeral Converter",
+		description:
+			"Convert between Roman numerals (I, V, X, L, C, D, M) and decimal numbers (1-3999).",
+		category: "text",
+		icon: "hash",
+		slug: "roman-numeral-converter",
+		tags: ["convert", "roman", "numeral", "number"],
+	},
+	{
+		id: "text-to-ascii-art",
+		name: "Text to ASCII Art",
+		description: "Convert text to ASCII art using block-style letters. Fun text transformer.",
+		category: "text",
+		icon: "type",
+		slug: "text-to-ascii-art",
+		tags: ["convert", "ascii", "art", "text", "fun"],
+	},
+	{
+		id: "upside-down-text",
+		name: "Upside Down Text",
+		description: "Flip text upside down using Unicode characters. Fun text transformer.",
+		category: "text",
+		icon: "refresh-cw",
+		slug: "upside-down-text",
+		tags: ["convert", "flip", "upside-down", "text", "fun"],
+	},
 ];
 
 /**
