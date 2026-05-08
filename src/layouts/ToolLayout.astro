@@ -1,7 +1,10 @@
 ---
 import Base from "./Base.astro";
 import { getCategoryById } from "../data/categories";
+import { generateToolSchema, generateBreadcrumbSchema } from "../utils/seo";
 import FavoriteButton from "../components/ui/FavoriteButton";
+
+const SITE_URL = "https://toolbundle.app";
 
 interface Props {
   title: string;
@@ -12,9 +15,30 @@ interface Props {
 
 const { title, description, category, toolId } = Astro.props;
 const cat = getCategoryById(category);
+
+const toolUrl = `${SITE_URL}${Astro.url.pathname}`;
+const categoryName = cat?.name || "Tools";
+const categorySlug = category;
+
+const toolSchema = generateToolSchema(
+  title,
+  description,
+  toolUrl,
+  categoryName,
+  categorySlug
+);
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: "Home", url: SITE_URL },
+  { name: categoryName, url: `${SITE_URL}/${categorySlug}` },
+  { name: title, url: toolUrl },
+]);
 ---
 
-<Base title={title} description={description}>
+<Base title={title} description={description} canonicalUrl={toolUrl}>
+  {/* Tool JSON-LD */}
+  <script type="application/ld+json" set:html={toolSchema} />
+  <script type="application/ld+json" set:html={breadcrumbSchema} />
   <div class="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
     {/* Breadcrumb */}
     <nav class="flex items-center gap-2 text-caption mb-8">

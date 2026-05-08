@@ -1,14 +1,26 @@
 ---
 import Header from "../components/layout/Header.astro";
 import Footer from "../components/layout/Footer.astro";
+import { generateOrganizationSchema } from "../utils/seo";
 import "../styles/global.css";
+
+const SITE_URL = "https://toolbundle.app";
 
 interface Props {
   title: string;
   description?: string;
+  canonicalUrl?: string;
 }
 
-const { title, description = "Free, privacy-first browser tools. No uploads. No accounts. Instant results." } = Astro.props;
+const {
+  title,
+  description = "Free, privacy-first browser tools. No uploads. No accounts. Instant results.",
+  canonicalUrl,
+} = Astro.props;
+
+const currentUrl = canonicalUrl || `${SITE_URL}${Astro.url.pathname}`;
+const fullTitle = `${title} — ToolBundle`;
+const organizationSchema = generateOrganizationSchema();
 ---
 
 <!doctype html>
@@ -17,10 +29,27 @@ const { title, description = "Free, privacy-first browser tools. No uploads. No 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#0a0a0a" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="ToolBundle" />
+
+    {/* Canonical URL */}
+    <link rel="canonical" href={currentUrl} />
+
+    {/* Open Graph */}
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={currentUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ToolBundle" />
+    <meta property="og:locale" content="en_US" />
+
+    {/* Twitter Card */}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
 
     <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json" />
@@ -35,7 +64,10 @@ const { title, description = "Free, privacy-first browser tools. No uploads. No 
       rel="stylesheet"
     />
 
-    <title>{title} — ToolBundle</title>
+    <title>{fullTitle}</title>
+
+    {/* Organization JSON-LD */}
+    <script type="application/ld+json" set:html={organizationSchema} />
   </head>
   <body>
     <Header />

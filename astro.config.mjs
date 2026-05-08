@@ -1,9 +1,10 @@
 import { defineConfig } from "astro/config";
 import preact from "@astrojs/preact";
 import tailwindcss from "@tailwindcss/vite";
+import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  integrations: [preact()],
+  integrations: [preact(), sitemap()],
   vite: {
     plugins: [tailwindcss()],
     optimizeDeps: {
@@ -23,5 +24,6 @@ export default defineConfig({
     },
   },
   output: "static",
+  site: "https://toolbundle.app",
   compressHTML: true,
 });

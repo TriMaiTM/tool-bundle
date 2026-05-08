@@ -3,6 +3,7 @@ import Base from "../../layouts/Base.astro";
 import ToolCard from "../../components/ui/ToolCard.astro";
 import { categories, getCategoryById } from "../../data/categories";
 import { getToolsByCategory } from "../../data/tools";
+import { generateCollectionPageSchema, generateBreadcrumbSchema } from "../../utils/seo";
 
 export function getStaticPaths() {
   return categories.map((cat) => ({
@@ -10,14 +11,33 @@ export function getStaticPaths() {
   }));
 }
 
+const SITE_URL = "https://toolbundle.app";
+
 const { category } = Astro.params;
 const cat = getCategoryById(category!);
 if (!cat) return Astro.redirect("/");
 
 const categoryTools = getToolsByCategory(category!);
+const categoryUrl = `${SITE_URL}/${category}`;
+const toolNames = categoryTools.map((t) => t.name);
+
+const collectionSchema = generateCollectionPageSchema(
+  cat.name,
+  cat.description,
+  toolNames,
+  categoryUrl
+);
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: "Home", url: SITE_URL },
+  { name: cat.name, url: categoryUrl },
+]);
 ---
 
-<Base title={`${cat.name} — Free Online Tools`} description={cat.description}>
+<Base title={`${cat.name} — Free Online Tools`} description={cat.description} canonicalUrl={categoryUrl}>
+  {/* Category JSON-LD */}
+  <script type="application/ld+json" set:html={collectionSchema} />
+  <script type="application/ld+json" set:html={breadcrumbSchema} />
   <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
     {/* Breadcrumb */}
     <nav class="flex items-center gap-2 text-caption mb-8">

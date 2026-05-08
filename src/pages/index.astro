@@ -4,11 +4,25 @@ import ToolCard from "../components/ui/ToolCard.astro";
 import FavoritesSection from "../components/ui/FavoritesSection";
 import { categories } from "../data/categories";
 import { getFeaturedTools, tools } from "../data/tools";
+import { generateWebSiteSchema, generateBreadcrumbSchema } from "../utils/seo";
 
 const featuredTools = getFeaturedTools();
+const SITE_URL = "https://toolbundle.app";
+
+const websiteSchema = generateWebSiteSchema();
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: "Home", url: SITE_URL },
+]);
 ---
 
-<Base title="Every Tool You Need. Zero Uploads.">
+<Base
+  title="Every Tool You Need. Zero Uploads."
+  description={`${tools.length} free, privacy-first online tools for PDF, images, text, code & AI. Runs 100% in your browser. No uploads, no accounts, no limits.`}
+  canonicalUrl={SITE_URL}
+>
+  {/* Homepage JSON-LD */}
+  <script type="application/ld+json" set:html={websiteSchema} />
+  <script type="application/ld+json" set:html={breadcrumbSchema} />
   {/* Hero Section */}
   <section class="relative overflow-hidden">
     {/* Yellow glow effect */}
