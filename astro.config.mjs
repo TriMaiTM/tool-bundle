@@ -8,7 +8,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     optimizeDeps: {
-      include: ["marked", "js-yaml"],
+      include: ["preact", "preact/hooks", "preact/compat", "marked", "js-yaml"],
     },
     build: {
       rollupOptions: {
