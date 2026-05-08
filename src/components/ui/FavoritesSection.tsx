@@ -73,7 +73,7 @@ export default function FavoritesSection({ tools, categories }: Props) {
 			{/* Tabs */}
 			<div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px;">
 				<h2
-					style="font-size: 24px; font-weight: 600; color: #ffffff; margin: 0;"
+					style="font-size: 24px; font-weight: 600; color: var(--color-ink); margin: 0;"
 					id="favorites-heading"
 				>
 					{activeTab === "favorites" ? "⭐ Your Favorites" : "🕐 Recently Used"}
@@ -85,7 +85,7 @@ export default function FavoritesSection({ tools, categories }: Props) {
 				>
 					<button
 						onClick={() => setActiveTab("favorites")}
-						style={`padding: 6px 14px; border-radius: 6px; border: none; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s ease; background: ${activeTab === "favorites" ? "#faff69" : "#1a1a1a"}; color: ${activeTab === "favorites" ? "#0a0a0a" : "#888888"};`}
+						style={`padding: 6px 14px; border-radius: 16px; border: none; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s ease; background: ${activeTab === "favorites" ? "var(--color-primary)" : "var(--color-surface-card)"}; color: ${activeTab === "favorites" ? "var(--color-on-primary)" : "var(--color-mute)"};`}
 						role="tab"
 						aria-selected={activeTab === "favorites"}
 						aria-controls="favorites-panel"
@@ -94,7 +94,7 @@ export default function FavoritesSection({ tools, categories }: Props) {
 					</button>
 					<button
 						onClick={() => setActiveTab("recent")}
-						style={`padding: 6px 14px; border-radius: 6px; border: none; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s ease; background: ${activeTab === "recent" ? "#faff69" : "#1a1a1a"}; color: ${activeTab === "recent" ? "#0a0a0a" : "#888888"};`}
+						style={`padding: 6px 14px; border-radius: 16px; border: none; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s ease; background: ${activeTab === "recent" ? "var(--color-primary)" : "var(--color-surface-card)"}; color: ${activeTab === "recent" ? "var(--color-on-primary)" : "var(--color-mute)"};`}
 						role="tab"
 						aria-selected={activeTab === "recent"}
 						aria-controls="recent-panel"
@@ -106,7 +106,7 @@ export default function FavoritesSection({ tools, categories }: Props) {
 
 			{isEmpty ? (
 				<div style="text-align: center; padding: 48px 0;" role="status">
-					<p style="font-size: 14px; color: #5a5a5a;">
+					<p style="font-size: 14px; color: var(--color-mute);">
 						{activeTab === "favorites"
 							? "No favorites yet. Click the heart icon on any tool to save it here."
 							: "No recently visited tools yet. Start using tools to see your history."}
@@ -124,16 +124,16 @@ export default function FavoritesSection({ tools, categories }: Props) {
 						return (
 							<a
 								href={`/${tool.category}/${tool.slug}`}
-								style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 10px; text-decoration: none; transition: all 0.15s ease;"
+								style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: var(--color-surface-card); border: 1px solid var(--color-hairline); border-radius: 16px; text-decoration: none; transition: all 0.15s ease;"
 							>
 								<span
-									style={`width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; background: ${cat?.color || "#888"};`}
+									style={`width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; background: ${cat?.color || "var(--color-ash)"};`}
 								/>
 								<div style="flex: 1; min-width: 0;">
-									<div style="font-size: 14px; font-weight: 500; color: #ffffff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+									<div style="font-size: 14px; font-weight: 500; color: var(--color-ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
 										{tool.name}
 									</div>
-									<div style="font-size: 12px; color: #5a5a5a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+									<div style="font-size: 12px; color: var(--color-mute); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
 										{cat?.name?.replace(" Tools", "")}
 									</div>
 								</div>
@@ -144,7 +144,7 @@ export default function FavoritesSection({ tools, categories }: Props) {
 											e.stopPropagation();
 											removeFavorite(tool.id);
 										}}
-										style="width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border: none; background: transparent; color: #faff69; cursor: pointer; flex-shrink: 0;"
+										style="width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border: none; background: transparent; color: var(--color-primary); cursor: pointer; flex-shrink: 0;"
 										aria-label={`Remove ${tool.name} from favorites`}
 									>
 										<svg

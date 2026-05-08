@@ -28,9 +28,23 @@ const organizationSchema = generateOrganizationSchema();
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {/* Theme init — must run before CSS to prevent flash */}
+    <script is:inline>
+      (function() {
+        try {
+          var t = localStorage.getItem("toolbundle_theme");
+          if (t === "dark" || t === "light") {
+            document.documentElement.setAttribute("data-theme", t);
+          } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            document.documentElement.setAttribute("data-theme", "dark");
+          }
+        } catch {}
+      })();
+    </script>
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#0a0a0a" />
+    <meta name="theme-color" content="#ffffff" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="ToolBundle" />
@@ -81,21 +95,21 @@ const organizationSchema = generateOrganizationSchema();
       id="install-banner"
       role="alertdialog"
       aria-label="Install ToolBundle as an app"
-      style="display: none; position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); z-index: 90; background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 12px; padding: 12px 20px; align-items: center; gap: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.4); max-width: 90vw;"
+      style="display: none; position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); z-index: 90; background: #ffffff; border: 1px solid #dadad3; border-radius: 16px; padding: 12px 20px; align-items: center; gap: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.15); max-width: 90vw;"
     >
       <div style="flex: 1;">
-        <div style="font-size: 14px; font-weight: 600; color: #ffffff;">Install ToolBundle</div>
-        <div style="font-size: 12px; color: #888888;">Use offline, fast access from home screen</div>
+        <div style="font-size: 14px; font-weight: 600; color: #000000;">Install ToolBundle</div>
+        <div style="font-size: 12px; color: #62625b;">Use offline, fast access from home screen</div>
       </div>
       <button
         id="install-btn"
-        style="padding: 8px 16px; background: #faff69; color: #0a0a0a; font-weight: 600; font-size: 13px; border: none; border-radius: 6px; cursor: pointer; white-space: nowrap;"
+        style="padding: 8px 16px; background: #e60023; color: #ffffff; font-weight: 600; font-size: 13px; border: none; border-radius: 12px; cursor: pointer; white-space: nowrap;"
       >
         Install
       </button>
       <button
         id="install-dismiss"
-        style="padding: 8px; background: transparent; color: #888888; border: none; cursor: pointer; font-size: 18px; line-height: 1;"
+        style="padding: 8px; background: transparent; color: #62625b; border: none; cursor: pointer; font-size: 18px; line-height: 1;"
       >
         &times;
       </button>

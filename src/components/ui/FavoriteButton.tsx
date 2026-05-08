@@ -33,7 +33,7 @@ export default function FavoriteButton({ toolId }: Props) {
 	return (
 		<button
 			onClick={handleToggle}
-			style={`display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 6px; border: 1px solid ${favorited ? "#faff69" : "#2a2a2a"}; background: ${favorited ? "#faff6915" : "transparent"}; color: ${favorited ? "#faff69" : "#888888"}; font-size: 13px; cursor: pointer; transition: all 0.15s ease;`}
+			style={`display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 16px; border: 1px solid ${favorited ? "var(--color-primary)" : "var(--color-hairline)"}; background: ${favorited ? "color-mix(in srgb, var(--color-primary) 10%, transparent)" : "transparent"}; color: ${favorited ? "var(--color-primary)" : "var(--color-mute)"}; font-size: 13px; cursor: pointer; transition: all 0.15s ease;`}
 			aria-label={favorited ? "Remove from favorites" : "Add to favorites"}
 			aria-pressed={favorited}
 		>
