@@ -224,17 +224,17 @@ export default function SearchModal({ tools, categories }: Props) {
 					}}
 				>
 					{/* Backdrop */}
-					<div style="position: absolute; inset: 0; background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(4px);" />
+					<div style="position: absolute; inset: 0; background: rgba(0, 0, 0, 0.25);" />
 
 					{/* Modal */}
 					<div
-						style="position: relative; width: 100%; max-width: 32rem; margin: 0 1rem; background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 12px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); overflow: hidden;"
+						style="position: relative; width: 100%; max-width: 32rem; margin: 0 1rem; background: var(--color-canvas); border: 1px solid var(--color-hairline); border-radius: 32px; box-shadow: 0 4px 16px rgba(0,0,0,0.15); overflow: hidden;"
 						role="dialog"
 						aria-modal="true"
 						aria-label="Search tools"
 					>
 						{/* Search Input */}
-						<div style="display: flex; align-items: center; gap: 12px; padding: 0 16px; border-bottom: 1px solid #2a2a2a;">
+						<div style="display: flex; align-items: center; gap: 12px; padding: 0 16px; border-bottom: 1px solid var(--color-hairline);">
 							<svg
 								class="w-5 h-5 text-muted shrink-0"
 								viewBox="0 0 24 24"
@@ -249,7 +249,7 @@ export default function SearchModal({ tools, categories }: Props) {
 							<input
 								ref={inputRef}
 								type="text"
-								style="flex: 1; height: 48px; min-width: 0; background: transparent; color: #ffffff; font-size: 16px; outline: none; border: none;"
+								style="flex: 1; height: 48px; min-width: 0; background: transparent; color: var(--color-ink); font-size: 16px; outline: none; border: none;"
 								placeholder="Search tools..."
 								aria-label="Search tools"
 								aria-autocomplete="list"
@@ -330,7 +330,7 @@ export default function SearchModal({ tools, categories }: Props) {
 											{/* Category dot */}
 											<span
 												class="w-2 h-2 rounded-full shrink-0"
-												style={`background-color: ${cat?.color || "#888"}`}
+												style={`background-color: ${cat?.color || "var(--color-ash)"}`}
 											/>
 
 											{/* Tool info */}
@@ -369,7 +369,7 @@ export default function SearchModal({ tools, categories }: Props) {
 						</div>
 
 						{/* Footer */}
-						<div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 16px; border-top: 1px solid #2a2a2a; background: #121212;">
+						<div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 16px; border-top: 1px solid var(--color-hairline); background: var(--color-surface-soft);">
 							<div class="flex items-center gap-3 text-caption text-muted-soft">
 								<span class="flex items-center gap-1">
 									<kbd class="bg-surface-elevated px-1 py-0.5 rounded text-[10px]">↑↓</kbd>
