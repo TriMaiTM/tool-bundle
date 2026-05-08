@@ -18,10 +18,12 @@
     "astro": "^5.7.10",
     "fuse.js": "7.3.0",
     "js-yaml": "^4.1.0",
+    "jsbarcode": "3.12.3",
     "lucide": "^0.503.0",
     "marked": "18.0.3",
     "pdf-lib": "^1.17.1",
     "preact": "^10.26.6",
+    "qrcode": "1.5.4",
     "tailwindcss": "^4.1.4",
     "tesseract.js": "5.1.1"
   },

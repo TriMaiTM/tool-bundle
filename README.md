@@ -12,7 +12,7 @@ A collection of free, privacy-first browser tools for images, text, PDFs, math, 
 - **Privacy First** — No server uploads, no data collection, no cookies. What you process stays on your device.
 - **Instant Results** — No upload waits, no queues. Results appear instantly because everything runs on your machine.
 - **Free Forever** — No accounts, no subscriptions, no paywalls. Every tool is free for everyone.
-- **111 Tools** — Across 16 categories: Image, Text, Developer, PDF, Math, Security, Color, Date & Time, SEO, Data, Fun & Utility, Education, Finance, Health, Video & Audio, and **AI Tools**.
+- **123 Tools** — Across 16 categories: Image, Text, Developer, PDF, Math, Security, Color, Date & Time, SEO, Data, Fun & Utility, Education, Finance, Health, Video & Audio, and **AI Tools**.
 - **Dark UI** — Clean dark canvas with electric yellow accent. Built with a consistent design system.
 
 ## Tech Stack
@@ -57,8 +57,8 @@ PNG to JPG, JPG to PNG, JPG to WebP, PNG to WebP, WebP to PNG, Image Resizer, Im
 ### Text Tools (14)
 Word Counter, Case Converter, Slug Generator, Text Reverser, Line Counter, Text Repeater, Remove Duplicate Lines, Text Sorter, Reading Time Calculator, Fancy Text Generator, Readability Score, Text to Hashtags, Emoji Picker, Text to Speech
 
-### Developer Tools (22)
-JSON Formatter, Base64 Encoder/Decoder, URL Encoder/Decoder, Hash Generator, Regex Tester, Lorem Ipsum Generator, Markdown to HTML, HTML to Markdown, CSS Formatter, YAML Formatter, HTML Formatter, SQL Formatter, XML Formatter, JavaScript Formatter, TypeScript to JS, Color System Generator, Regex Explainer, .gitignore Generator, JSON to TypeScript, JWT Decoder, UUID Generator, Text Diff
+### Developer Tools (26)
+JSON Formatter, Base64 Encoder/Decoder, URL Encoder/Decoder, Hash Generator, Regex Tester, Lorem Ipsum Generator, Markdown to HTML, HTML to Markdown, CSS Formatter, YAML Formatter, HTML Formatter, SQL Formatter, XML Formatter, JavaScript Formatter, TypeScript to JS, Color System Generator, Regex Explainer, .gitignore Generator, JSON to TypeScript, JWT Decoder, UUID Generator, Text Diff, Box Shadow Generator, CSS Grid Generator, CSS Flexbox Generator, Border Radius Generator
 
 ### PDF Tools (5)
 PDF Merger, PDF Splitter, PDF Compressor, PDF Rotator, PDF to Text
@@ -66,8 +66,8 @@ PDF Merger, PDF Splitter, PDF Compressor, PDF Rotator, PDF to Text
 ### Math & Calculators (5)
 Percentage Calculator, Unit Converter, BMI Calculator, Loan Calculator, Age Calculator
 
-### Security Tools (3)
-Password Generator, Password Strength Checker, OTP Generator
+### Security Tools (5)
+Password Generator, Password Strength Checker, OTP Generator, QR Code Generator, Barcode Generator
 
 ### Color Tools (4)
 Color Picker, Color Palette Generator, Contrast Checker WCAG, CSS Gradient Generator

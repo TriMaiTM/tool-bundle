@@ -20,7 +20,7 @@ Complete list of all tools in ToolBundle, organized by category.
 | Photo Filters | `/image/photo-filters` | Apply filters — Vintage, Cool, Warm, Dramatic & more | ✅ Live |
 | SVG Optimizer | `/image/svg-optimizer` | Optimize SVG — remove comments, whitespace, shorten colors | ✅ Live |
 
-## Text Tools (13)
+## Text Tools (14)
 
 | Tool | Slug | Description | Status |
 |---|---|---|---|
@@ -38,7 +38,7 @@ Complete list of all tools in ToolBundle, organized by category.
 | Text to Hashtags | `/text/text-to-hashtags` | Generate hashtags from text — keywords extraction | ✅ Live |
 | Emoji Picker & Search | `/text/emoji-picker` | Browse and search emojis — click to copy | ✅ Live |
 
-## Developer Tools (22)
+## Developer Tools (26)
 
 | Tool | Slug | Description | Status |
 |---|---|---|---|
@@ -64,6 +64,10 @@ Complete list of all tools in ToolBundle, organized by category.
 | JWT Decoder | `/developer/jwt-decoder` | Decode and inspect JWT tokens — header, payload, and signature | ✅ Live |
 | UUID Generator | `/developer/uuid-generator` | Generate UUID v4 values — batch mode, multiple formats | ✅ Live |
 | Text Diff | `/developer/text-diff` | Compare two texts side by side — line-by-line diff with colors | ✅ Live |
+| Box Shadow Generator | `/developer/box-shadow-generator` | Create CSS box-shadow with live preview and copy | ✅ Live |
+| CSS Grid Generator | `/developer/css-grid-generator` | Build CSS Grid layouts visually — generate code instantly | ✅ Live |
+| CSS Flexbox Generator | `/developer/css-flexbox-generator` | Build Flexbox layouts visually — all properties | ✅ Live |
+| Border Radius Generator | `/developer/border-radius-generator` | Create CSS border-radius with live preview and layers | ✅ Live |
 
 ## PDF Tools (5)
 
@@ -85,13 +89,60 @@ Complete list of all tools in ToolBundle, organized by category.
 | Loan Calculator | `/math/loan-calculator` | Calculate loan payments with amortization schedule | ✅ Live |
 | Age Calculator | `/math/age-calculator` | Calculate exact age with zodiac sign and birthday countdown | ✅ Live |
 
-## Security Tools (3)
+## Security Tools (5)
 
 | Tool | Slug | Description | Status |
 |---|---|---|---|
 | Password Generator | `/security/password-generator` | Generate secure passwords with batch mode | ✅ Live |
 | Password Strength Checker | `/security/password-strength-checker` | Test password strength with entropy and crack time | ✅ Live |
 | OTP Generator | `/security/otp-generator` | Generate TOTP 2FA codes with countdown timer | ✅ Live |
+| QR Code Generator | `/security/qr-code-generator` | Generate QR codes from any text or URL — download PNG or SVG | ✅ Live |
+| Barcode Generator | `/security/barcode-generator` | Generate barcodes — CODE128, EAN-13, UPC, and more | ✅ Live |
+
+## Color Tools (4)
+
+| Tool | Slug | Description | Status |
+|---|---|---|---|
+| Color Picker | `/color/color-picker` | Pick and convert colors with alpha and history | ✅ Live |
+| Color Palette Generator | `/color/color-palette-generator` | Generate harmonious color palettes from any base color | ✅ Live |
+| Contrast Checker WCAG | `/color/contrast-checker` | Check WCAG color contrast — AA and AAA compliance | ✅ Live |
+| CSS Gradient Generator | `/color/css-gradient-generator` | Create CSS gradients with live preview and presets | ✅ Live |
+
+## Date & Time Tools (4)
+
+| Tool | Slug | Description | Status |
+|---|---|---|---|
+| Countdown Timer | `/datetime/countdown-timer` | Countdown to any date with presets and alerts | ✅ Live |
+| Timezone Converter | `/datetime/timezone-converter` | Convert time between timezones with world clock | ✅ Live |
+| Date Difference Calculator | `/datetime/date-difference-calculator` | Calculate the exact difference between two dates | ✅ Live |
+| Unix Timestamp Converter | `/datetime/unix-timestamp-converter` | Convert Unix timestamps to dates with live clock | ✅ Live |
+
+## SEO & Marketing (3)
+
+| Tool | Slug | Description | Status |
+|---|---|---|---|
+| Meta Tag Generator | `/seo/meta-tag-generator` | Generate SEO meta tags with Open Graph and SERP preview | ✅ Live |
+| Robots.txt Generator | `/seo/robots-txt-generator` | Generate robots.txt with rules and sitemap | ✅ Live |
+| Sitemap Generator | `/seo/sitemap-generator` | Generate XML sitemaps — bulk add URLs with priority | ✅ Live |
+
+## Data & Spreadsheet (3)
+
+| Tool | Slug | Description | Status |
+|---|---|---|---|
+| CSV to JSON | `/data/csv-to-json` | Convert CSV to JSON with auto-delimiter detection | ✅ Live |
+| JSON to CSV | `/data/json-to-csv` | Convert JSON arrays to CSV with nested object flattening | ✅ Live |
+| CSV Formatter | `/data/csv-formatter` | Format CSV data — table preview with stats | ✅ Live |
+
+## Fun & Utility (7)
+
+| Tool | Slug | Description | Status |
+|---|---|---|---|
+| Random Number Generator | `/fun/random-number-generator` | Generate secure random numbers with batch mode | ✅ Live |
+| Dice Roller | `/fun/dice-roller` | Roll virtual dice — D4 to D100 with stats and history | ✅ Live |
+| Coin Flipper | `/fun/coin-flipper` | Flip a coin with animation — track history and stats | ✅ Live |
+| Random Name Picker | `/fun/random-name-picker` | Pick random names with animation from a list | ✅ Live |
+| Wheel Spinner | `/fun/wheel-spinner` | Spin the wheel to pick a random winner | ✅ Live |
+| Decision Maker | `/fun/decision-maker` | Spin the wheel to decide — add custom options | ✅ Live |
 | Placeholder Image | `/fun/placeholder-image` | Generate placeholder images with custom size/colors | ✅ Live |
 
 ## Education & Students (7)
@@ -138,7 +189,7 @@ Complete list of all tools in ToolBundle, organized by category.
 | Audio Converter | `/video/audio-converter` | Convert audio files to WAV or OGG | ✅ Live |
 | Video Speed Changer | `/video/video-speed-changer` | Speed up or slow down any video | ✅ Live |
 
-## AI Tools (8)
+## AI Tools (11)
 
 | Tool | Slug | Description | Status |
 |---|---|---|---|
@@ -156,4 +207,4 @@ Complete list of all tools in ToolBundle, organized by category.
 
 ---
 
-**Total: 117 tools** — all live and working, 100% client-side.
+**Total: 123 tools** — all live and working, 100% client-side.

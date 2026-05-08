@@ -1210,6 +1210,69 @@ export const tools: Tool[] = [
     featured: true,
     tags: ["speech", "tts", "ai", "voice", "audio"],
   },
+
+  // ============================================
+  // Security Tools (Extended)
+  // ============================================
+  {
+    id: "qr-code-generator",
+    name: "QR Code Generator",
+    description:
+      "Generate QR codes from any text or URL — download PNG or SVG.",
+    category: "security",
+    icon: "qr-code",
+    slug: "qr-code-generator",
+    tags: ["qr", "code", "generator", "scan"],
+  },
+  {
+    id: "barcode-generator",
+    name: "Barcode Generator",
+    description: "Generate barcodes — CODE128, EAN-13, UPC, and more.",
+    category: "security",
+    icon: "scan-barcode",
+    slug: "barcode-generator",
+    tags: ["barcode", "generator", "code", "scan"],
+  },
+
+  // ============================================
+  // CSS & Design Tools (in Developer category)
+  // ============================================
+  {
+    id: "box-shadow-generator",
+    name: "Box Shadow Generator",
+    description: "Create CSS box-shadow with live preview and copy.",
+    category: "developer",
+    icon: "box",
+    slug: "box-shadow-generator",
+    tags: ["box-shadow", "css", "shadow", "design"],
+  },
+  {
+    id: "css-grid-generator",
+    name: "CSS Grid Generator",
+    description: "Build CSS Grid layouts visually — generate code instantly.",
+    category: "developer",
+    icon: "grid-3x3",
+    slug: "css-grid-generator",
+    tags: ["css", "grid", "layout", "design"],
+  },
+  {
+    id: "css-flexbox-generator",
+    name: "CSS Flexbox Generator",
+    description: "Build Flexbox layouts visually — all properties.",
+    category: "developer",
+    icon: "align-left",
+    slug: "css-flexbox-generator",
+    tags: ["css", "flexbox", "layout", "design"],
+  },
+  {
+    id: "border-radius-generator",
+    name: "Border Radius Generator",
+    description: "Create CSS border-radius with live preview and layers.",
+    category: "developer",
+    icon: "circle",
+    slug: "border-radius-generator",
+    tags: ["css", "border-radius", "round", "design"],
+  },
 ];
 
 /**

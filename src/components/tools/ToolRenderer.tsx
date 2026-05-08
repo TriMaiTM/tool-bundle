@@ -54,6 +54,10 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
   "jwt-decoder": lazy(() => import("./JwtDecoder")),
   "uuid-generator": lazy(() => import("./UuidGenerator")),
   "text-diff": lazy(() => import("./TextDiff")),
+  "box-shadow-generator": lazy(() => import("./BoxShadowGenerator")),
+  "css-grid-generator": lazy(() => import("./CssGridGenerator")),
+  "css-flexbox-generator": lazy(() => import("./CssFlexboxGenerator")),
+  "border-radius-generator": lazy(() => import("./BorderRadiusGenerator")),
 
   // PDF Tools
   "pdf-merger": lazy(() => import("./PdfMerger")),
@@ -73,6 +77,8 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
   "password-generator": lazy(() => import("./PasswordGenerator")),
   "password-strength-checker": lazy(() => import("./PasswordStrengthChecker")),
   "otp-generator": lazy(() => import("./OtpGenerator")),
+  "qr-code-generator": lazy(() => import("./QrCodeGenerator")),
+  "barcode-generator": lazy(() => import("./BarcodeGenerator")),
 
   // Color Tools
   "color-picker": lazy(() => import("./ColorPicker")),

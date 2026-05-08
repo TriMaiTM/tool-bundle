@@ -57,8 +57,15 @@ src/
 ├── styles/
 │   └── global.css              # Design system tokens + component styles
 └── utils/
+    ├── ai.ts                   # AI utilities (encodeWAV, downloadBlob, resizeImage)
     ├── download.ts             # File download helpers (blob, text, clipboard)
-    └── image.ts                # Image processing (convert, resize, compress, crop)
+    ├── image.ts                # Image processing (convert, resize, compress, crop)
+    ├── favorites.ts            # Favorites & history (localStorage)
+    ├── text.ts                 # Text processing utilities
+    ├── math.ts                 # Math calculation utilities
+    ├── color.ts                # Color conversion utilities
+    ├── csv.ts                  # CSV parsing utilities
+    └── security.ts             # Security utilities (password, OTP)
 ```
 
 ## Data Flow

@@ -18,12 +18,16 @@
 |---|---|---|
 | Framework | Astro | 5.x |
 | UI Components | Preact | 10.x (~3KB) |
-| Styling | Tailwind CSS | 4.x (dùng `@theme` directive) |
+| Styling | Tailwind CSS | 4.x (`@theme` directive) |
 | Language | TypeScript | 5.x |
 | Search | Fuse.js | client-side fuzzy search |
 | PDF | pdf-lib | client-side PDF manipulation |
 | YAML | js-yaml | YAML parsing |
 | Markdown | marked | Markdown to HTML |
+| AI/ML | @huggingface/transformers | 3.8.1 (ONNX Runtime WASM/WebGPU) |
+| OCR | tesseract.js | 5.x |
+| QR Code | qrcode | 1.5.x |
+| Barcode | jsbarcode | 3.x |
 
 ### Thiết kế
 
@@ -40,13 +44,12 @@
 
 | Metric | Value |
 |---|---|
-| **Tổng tools** | 117 |
+| **Tổng tools** | 123 |
 | **Tổng categories** | 16 |
-| **Tổng pages** | 135 |
+| **Tổng pages** | 141 |
 | **Tests** | 182 (all pass) |
 | **JS per tool page** | ~6-10 KB gzip (code-split) |
-| **Build time** | ~11s |
-| **Bundle size** | ToolRenderer ~6KB gzip + mỗi tool 1-5KB gzip |
+| **Build time** | ~13s |
 
 ### 16 Categories hiện có
 
@@ -54,10 +57,10 @@
 |---|---|---|---|---|
 | 1 | Image Tools | `image` | 13 | `#3b82f6` |
 | 2 | Text Tools | `text` | 14 | `#22c55e` |
-| 3 | Developer Tools | `developer` | 22 | `#a855f7` |
+| 3 | Developer Tools | `developer` | 26 | `#a855f7` |
 | 4 | PDF Tools | `pdf` | 5 | `#ef4444` |
 | 5 | Math & Calculators | `math` | 5 | `#f59e0b` |
-| 6 | Security Tools | `security` | 3 | `#06b6d4` |
+| 6 | Security Tools | `security` | 5 | `#06b6d4` |
 | 7 | Color Tools | `color` | 4 | `#ec4899` |
 | 8 | Date & Time Tools | `datetime` | 4 | `#14b8a6` |
 | 9 | SEO & Marketing | `seo` | 3 | `#8b5cf6` |
@@ -67,9 +70,9 @@
 | 13 | Finance & Money | `finance` | 7 | `#84cc16` |
 | 14 | Health & Medical | `health` | 5 | `#f43f5e` |
 | 15 | Video & Audio | `video` | 5 | `#d946ef` |
-| 16 | AI Tools | `ai` | 10 | `#8b5cf6` |
+| 16 | AI Tools | `ai` | 11 | `#8b5cf6` |
 
-### Danh sách đầy đủ 117 tools
+### Danh sách đầy đủ 123 tools
 
 Xem chi tiết tại `docs/tools-list.md`.
 
@@ -105,14 +108,41 @@ Xem chi tiết tại `docs/tools-list.md`.
 - Video & Audio (new category): Video to MP3, Audio Trimmer, Volume Booster, Audio Converter, Video Speed Changer
 
 ### Phase 8: AI Tools (11 tools)
-- AI Tools (new category): OCR, Background Remover, Text Summarizer, Object Detection, Grammar Checker, Image Captioning, Sentiment Analysis, Question Answering, AI Translator, Speech to Text, Text to Speech
-- Tech: Tesseract.js (OCR), @huggingface/transformers (Transformers.js) — ONNX Runtime WASM/WebGPU, Web Speech API (TTS)
+- AI Tools (new category, 11 tools):
+  - **OCR — Image to Text** (`/ai/ocr`): Tesseract.js, 15 languages
+  - **Background Remover** (`/ai/background-remover`): RMBG-1.4 + Transformers.js
+  - **Text Summarizer** (`/ai/text-summarizer`): distilbart-cnn-6-6 + Transformers.js
+  - **Object Detection** (`/ai/object-detection`): detr-resnet-50 + Transformers.js
+  - **Grammar Checker** (`/ai/grammar-checker`): T5-small + Transformers.js
+  - **Image Captioning** (`/ai/image-captioning`): vit-gpt2 + Transformers.js
+  - **Sentiment Analysis** (`/ai/sentiment-analysis`): DistilBERT SST-2 + Transformers.js
+  - **Question Answering** (`/ai/question-answering`): DistilBERT QA + Transformers.js
+  - **AI Translator** (`/ai/text-translator`): MarianMT multilingual (mul-en + en-mul)
+  - **Speech to Text** (`/ai/speech-to-text`): Whisper tiny + Transformers.js
+  - **Text to Speech** (`/text/text-to-speech`): Web Speech API (built-in browser)
+- Tech: Tesseract.js (OCR), @huggingface/transformers v3.8.1 — ONNX Runtime WASM/WebGPU
 - Features: lazy model loading, IndexedDB cache, progress bar, fallback models, 100% client-side
+
+### Phase 9: Developer Tools Expansion (10 tools)
+- **Regex Explainer** (`/developer/regex-explainer`): Tokenize and explain regex patterns
+- **.gitignore Generator** (`/developer/gitignore-generator`): 30+ tech stacks
+- **JSON to TypeScript** (`/developer/json-to-typescript`): Convert JSON to TS interfaces
+- **JWT Decoder** (`/developer/jwt-decoder`): Decode JWT header/payload/signature
+- **UUID Generator** (`/developer/uuid-generator`): UUID v4, 6 formats, batch mode
+- **Text Diff** (`/developer/text-diff`): LCS-based diff with colors
+- **Box Shadow Generator** (`/developer/box-shadow-generator`): CSS box-shadow with live preview
+- **CSS Grid Generator** (`/developer/css-grid-generator`): Visual grid layout builder
+- **CSS Flexbox Generator** (`/developer/css-flexbox-generator`): Visual flexbox builder
+- **Border Radius Generator** (`/developer/border-radius-generator`): CSS border-radius with preview
+
+### Phase 10: Security Tools Expansion (2 tools)
+- **QR Code Generator** (`/security/qr-code-generator`): QR codes with color/size/error correction
+- **Barcode Generator** (`/security/barcode-generator`): CODE128, EAN-13, UPC, etc.
 
 ### Infrastructure & Features
 - ✅ Astro SSG với dynamic routing (`/[category]/[tool]`)
-- ✅ Code splitting — mỗi tool là 1 chunk riêng (lazy loading với `preact/compat.lazy`)
-- ✅ Vendor chunks tách riêng (preact, pdf-lib, marked, js-yaml)
+- ✅ Code splitting — mỗi tool là 1 chunk riêng (lazy loading)
+- ✅ Vendor chunks tách riêng (preact, pdf-lib, marked, js-yaml, transformers)
 - ✅ Design system đầy đủ (colors, typography, spacing, components)
 - ✅ Responsive Header với dropdown navigation + mobile menu
 - ✅ Footer với categories links
@@ -133,39 +163,38 @@ Xem chi tiết tại `docs/tools-list.md`.
 - ✅ `docs/tech-stack.md` — Technologies and architecture decisions
 - ✅ `docs/project-structure.md` — Directory layout and data flow
 - ✅ `docs/adding-tools.md` — Step-by-step guide to add new tools
-- ✅ `docs/tools-list.md` — Complete list of all 111 tools
+- ✅ `docs/tools-list.md` — Complete list of all 123 tools
 - ✅ `docs/design-system.md` — UI components, colors, typography
 - ✅ `docs/roadmap.md` — Phase 5-7 roadmap (all completed)
 - ✅ `docs/strategy.md` — Future development strategy
+- ✅ `docs/ai-tools-research.md` — AI tools research and planning
 - ✅ `docs/HANDOFF.md` — This file
 
 ---
 
 ## 4. NHỮNG GÌ CHƯA LÀM ĐƯỢC
 
-### Features (theo strategy.md)
+### Features
 
-| Task | Phase | Status | Mô tả |
+| Task | Priority | Effort | Mô tả |
 |---|---|---|---|
-| Accessibility (a11y) | A5 | ❌ Chưa làm | ARIA labels, focus management, keyboard nav, screen reader |
-| SEO improvements | C1 | ❌ Chưa làm | Blog section, structured data, Open Graph images, sitemap |
-| Analytics | C3 | ❌ Chưa làm | Cloudflare Web Analytics hoặc Plausible |
-| CI/CD | E2 | ❌ Chưa làm | GitHub Actions, auto deploy, Lighthouse CI |
-| Ads integration | D1 | ❌ Chưa làm | Google AdSense / Carbon Ads |
-| Premium tier | D2 | ❌ Chưa làm | No ads, API access, bulk processing |
-| AI Tools | B3 | ✅ Done | 8 AI tools: OCR, BG Remover, Summarizer, Object Detection, Grammar, Captioning, Sentiment, QA |
-| More categories | B1 | ❌ Chưa làm | CSS & Design, Social Media, Science, Home, Travel |
+| Accessibility (a11y) | 🔴 Cao | 1 tuần | ARIA labels, focus management, keyboard nav, screen reader |
+| SEO improvements | 🔴 Cao | 2-3 ngày | Structured data, Open Graph images, sitemap |
+| Analytics | 🟡 TB | 1 ngày | Cloudflare Web Analytics hoặc Plausible |
+| CI/CD | 🟡 TB | 1-2 ngày | GitHub Actions, auto deploy |
+| Blog section | 🟡 TB | 1 tuần | Astro Content Collections, SEO content |
 
-### Tools chưa implement (trong categories hiện có)
+### Tools chưa implement (tiềm năng)
 
 | Category | Tools tiềm năng |
 |---|---|
 | Image | Image Upscaler (AI), Favicon Generator, Image to ASCII |
-| Developer | Docker Compose Generator, .gitignore Generator, .htaccess Generator, Regex Explainer |
+| Developer | Docker Compose Generator, .htaccess Generator, HTML to Text |
 | PDF | PDF Password Protection, PDF Annotator, PDF Metadata Editor |
-| Security | QR Code Generator, Barcode Generator, AES Encrypt/Decrypt |
-| Text | Text to Speech, Speech to Text, Translation, Palindrome Checker |
+| Security | AES Encrypt/Decrypt |
+| Text | Text to Hashtags (nâng cấp), Language Detector, Keyword Extractor |
 | Video | Screen Recorder, Webcam Recorder, GIF Maker |
+| AI | Face Detection, Paraphrase Generator, NER, Image Upscaler, Depth Estimation |
 
 ---
 
@@ -180,11 +209,11 @@ ToolBundle/
 ├── src/
 │   ├── components/
 │   │   ├── layout/
-│   │   │   ├── Header.astro      # Nav + dropdown + mobile menu
+│   │   │   ├── Header.astro      # Nav + dropdown + mobile menu + SearchModal
 │   │   │   └── Footer.astro      # 4-column footer
 │   │   ├── tools/
 │   │   │   ├── ToolRenderer.tsx   # Dynamic tool loader (lazy imports)
-│   │   │   ├── WordCounter.tsx    # ... và 99 tool components khác
+│   │   │   ├── *.tsx             # 123 tool components
 │   │   │   └── ...
 │   │   └── ui/
 │   │       ├── FileDropZone.tsx   # Drag & drop file upload
@@ -192,10 +221,10 @@ ToolBundle/
 │   │       ├── ToolCardWithFavorite.tsx
 │   │       ├── FavoriteButton.tsx
 │   │       ├── FavoritesSection.tsx
-│   │       └── SearchModal.tsx    # Cmd+K search
+│   │       └── SearchModal.tsx    # Cmd+K search (Fuse.js)
 │   ├── data/
-│   │   ├── categories.ts         # Category definitions (15 categories)
-│   │   └── tools.ts              # Tool registry (100 tools metadata)
+│   │   ├── categories.ts         # Category definitions (16 categories)
+│   │   └── tools.ts              # Tool registry (123 tools metadata)
 │   ├── layouts/
 │   │   ├── Base.astro            # Root layout (head, header, footer, PWA, SW)
 │   │   └── ToolLayout.astro      # Tool page layout (breadcrumb, favorite, history)
@@ -208,14 +237,15 @@ ToolBundle/
 │   ├── styles/
 │   │   └── global.css            # Design system tokens + component styles
 │   └── utils/
+│       ├── ai.ts                 # AI utilities (encodeWAV, downloadBlob, resizeImage)
 │       ├── download.ts           # File download helpers
 │       ├── image.ts              # Image processing (Canvas API)
 │       ├── favorites.ts          # Favorites & history (localStorage)
-│       ├── text.ts               # Text processing utilities (testable)
-│       ├── math.ts               # Math calculation utilities (testable)
-│       ├── color.ts              # Color conversion utilities (testable)
-│       ├── csv.ts                # CSV parsing utilities (testable)
-│       └── security.ts           # Security utilities (password, OTP, testable)
+│       ├── text.ts               # Text processing utilities
+│       ├── math.ts               # Math calculation utilities
+│       ├── color.ts              # Color conversion utilities
+│       ├── csv.ts                # CSV parsing utilities
+│       └── security.ts           # Security utilities (password, OTP)
 ├── docs/                         # Documentation
 ├── DESIGN.md                     # Design system spec
 ├── vitest.config.ts              # Test config
@@ -254,7 +284,6 @@ export default function MyNewTool() {
 
   const result = useMemo(() => {
     if (!input) return "";
-    // Xử lý logic ở đây
     return input.toUpperCase();
   }, [input]);
 
@@ -271,14 +300,18 @@ export default function MyNewTool() {
 ### Bước 3: Đăng ký trong `src/components/tools/ToolRenderer.tsx`
 
 ```tsx
-// Thêm import (lazy)
 const toolComponents = {
-  // ...existing entries...
   "my-new-tool": lazy(() => import("./MyNewTool")),
 };
 ```
 
 Astro tự generate page tại `/{category}/{slug}`. Không cần tạo file page riêng.
+
+### Bước 4: Verify
+
+```bash
+npm run build
+```
 
 ---
 
@@ -290,7 +323,7 @@ Astro tự generate page tại `/{category}/{slug}`. Không cần tạo file pag
 2. **Event handlers**: `onInput` cho input/textarea, `onChange` cho select
 3. **Cast event targets**: `(e.target as HTMLTextAreaElement).value`
 4. **Lazy loading**: Luôn dùng `lazy(() => import("./Component"))` trong ToolRenderer
-5. **Không static import**: Nếu static import, tất cả 100+ tools sẽ bundled vào 1 file (~300KB gzip)
+5. **Không static import**: Nếu static import, tất cả 123 tools sẽ bundled vào 1 file
 
 ### CSS Classes có sẵn
 
@@ -305,27 +338,22 @@ Astro tự generate page tại `/{category}/{slug}`. Không cần tạo file pag
 | `badge-yellow` | Yellow pill badge |
 | `drop-zone` | Drag & drop area |
 | `code-block` | Monospace code output |
-| `text-display-sm/md/lg/xl` | Display headings |
-| `text-title-sm/md/lg` | Section titles |
-| `text-body-sm/md` | Body text |
-| `text-caption` | Small text |
-| `text-caption-uppercase` | Labels |
-| `text-primary` | Yellow text |
-| `text-muted` | Gray text |
-| `bg-surface-elevated` | Lighter dark bg |
-| `bg-surface-card` | Card bg |
 
 ### Known Issues
 
-1. **ToolRenderer bundle warning**: Vite warns "chunks larger than 500KB" — đây là tổng tất cả lazy chunks, KHÔNG phải 1 file. Mỗi tool page chỉ load ~6-10KB. Có thể ignore hoặc tăng `chunkSizeWarningLimit`.
+1. **ToolRenderer bundle warning**: Vite warns "chunks larger than 500KB" — đây là tổng tất cả lazy chunks (bao gồm Transformers.js runtime ~894KB), KHÔNG phải 1 file. Mỗi tool page chỉ load ~6-10KB. Có thể ignore hoặc tăng `chunkSizeWarningLimit`.
 
-2. **CompoundInterest.tsx**: Đã simplify formula display (tránh JSX syntax error với ký tự `×`). Nếu cần hiển thị công thức đầy đủ, dùng Unicode `×` trong string literal, không phải trong JSX expression.
+2. **AI Models gating**: Một số models trên HuggingFace là gated (cần auth). Các models đang dùng: RMBG-1.4 (public), Tesseract.js (public), MarianMT (public), Whisper (public), DistilBERT (public), T5-small (public), vit-gpt2 (public).
 
-3. **SVG icons cho PWA**: SVG icons không được support đầy đủ trên mọi platform. Đã tạo PNG fallback bằng `sharp`. Nếu build trên CI, cần cài `sharp` hoặc tạo PNG icons trước.
+3. **Transformers.js Float32Array bug**: SpeechT5 model có bug nội bộ khi tạo Float32Array. Đã fix bằng cách dùng Web Speech API thay thế cho TTS, và fallback tự động khi model fail.
 
-4. **Service Worker trong dev mode**: SW chỉ hoạt động khi build production (`npm run build && npm run preview`). Dev mode (`npm run dev`) không có SW.
+4. **Service Worker trong dev mode**: SW chỉ hoạt động khi build production (`npm run build && npm run preview`).
 
-5. **`@theme` directive trong Tailwind v4**: Các custom properties trong `@theme` block tự动生成 utility classes. Ví dụ `--color-primary: #faff69` tạo ra `bg-primary`, `text-primary`, `border-primary`. Nhưng một số components dùng inline styles vì Tailwind utilities không luôn hoạt động đúng trong Astro island context.
+5. **Dependencies mới**:
+   - `@huggingface/transformers` 3.8.1 — AI models
+   - `tesseract.js` 5.x — OCR
+   - `qrcode` — QR code generation
+   - `jsbarcode` — Barcode generation
 
 ### Scripts
 
@@ -342,16 +370,14 @@ npm run format       # Format with Biome
 
 ## 8. ROADMAP TƯƠNG LAI
 
-Xem chi tiết tại `docs/strategy.md`. Tóm tắt:
-
 ### Ưu tiên cao (nên làm tiếp)
 
 | Task | Effort | Mô tả |
 |---|---|---|
+| Thêm 30-50 tools mới | 2-3 tuần | Mở rộng categories hiện có (Developer, Security, CSS, Text) |
 | Accessibility (a11y) | 1 tuần | ARIA labels, keyboard nav, screen reader support |
 | SEO improvements | 2-3 ngày | Structured data, Open Graph images, sitemap |
 | Analytics | 1 ngày | Cloudflare Web Analytics (privacy-first) |
-| Thêm 50+ tools | 2-3 tuần | Mở rộng categories hiện có |
 
 ### Ưu tiên trung bình
 
@@ -359,7 +385,7 @@ Xem chi tiết tại `docs/strategy.md`. Tóm tắt:
 |---|---|---|
 | CI/CD | 1-2 ngày | GitHub Actions, auto deploy Cloudflare Pages |
 | Blog section | 1 tuần | Astro Content Collections, SEO content |
-| AI Tools | 2-3 tuần | Background Remover, OCR (ONNX Runtime Web) |
+| AI Tools mới | 2-3 tuần | Face Detection, Paraphrase, NER, Image Upscaler |
 
 ### Ưu tiên thấp (sau khi có traffic)
 
@@ -375,29 +401,29 @@ Xem chi tiết tại `docs/strategy.md`. Tóm tắt:
 
 Copy prompt dưới đây và paste vào session mới:
 
----
-
 ```
-Tôi đang phát triển dự án ToolBundle — một web app tổng hợp 100+ tools miễn phí chạy 100% client-side (không upload file lên server). Tương tự alltools.app nhưng với dark theme.
+Tôi đang phát triển dự án ToolBundle — một web app tổng hợp 123+ tools miễn phí chạy 100% client-side.
 
 ## Tech Stack
 - Astro 5 (SSG) + Preact 10 (~3KB) + Tailwind CSS 4 + TypeScript
 - Code splitting: mỗi tool là 1 chunk riêng, lazy loaded
-- Client-side only: Canvas API cho image, Web Crypto cho hash, pdf-lib cho PDF
+- AI: @huggingface/transformers 3.8.1 + tesseract.js 5.x
+- QR/Barcode: qrcode + jsbarcode
 
 ## Trạng thái hiện tại
-- 100 tools / 15 categories / 117 pages / 182 tests
-- Features đã có: PWA, offline, Cmd+K search, favorites & history
+- 123 tools / 16 categories / 141 pages / 182 tests
+- Features: PWA, offline, Cmd+K search, favorites & history
+- AI Tools (11): OCR, BG Remover, Summarizer, Object Detection, Grammar, Captioning, Sentiment, QA, Translator, STT, TTS
+- Developer Tools (26): includes Regex Explainer, .gitignore Generator, JSON to TypeScript, JWT Decoder, UUID Generator, Text Diff, Box Shadow, CSS Grid, CSS Flexbox, Border Radius
+- Security Tools (5): includes QR Code Generator, Barcode Generator
 - Docs đầy đủ trong thư mục docs/
 
 ## Đọc các file sau để hiểu dự án:
 1. docs/HANDOFF.md — Tài liệu bàn giao (ĐỌC TRƯỚC)
-2. docs/strategy.md — Chiến lược phát triển tương lai
+2. docs/tools-list.md — Danh sách đầy đủ 123 tools
 3. docs/adding-tools.md — Hướng dẫn thêm tool mới
-4. DESIGN.md — Design system specification
-
-## Task tiếp theo (theo ưu tiên):
-[Xem docs/strategy.md để biết task cụ thể]
+4. docs/ai-tools-research.md — Nghiên cứu AI tools
+5. DESIGN.md — Design system specification
 
 ## Lưu ý quan trọng khi làm việc:
 1. Dùng `class=` không phải `className=` (Preact, không phải React)
@@ -407,6 +433,7 @@ Tôi đang phát triển dự án ToolBundle — một web app tổng hợp 100+
 5. CSS classes: btn-primary, btn-secondary, textarea, input, card, badge, drop-zone
 6. Chạy `npm run dev` để test, `npm run build` để verify production
 7. Tests: `npm run test` (Vitest)
+8. AI tools dùng @huggingface/transformers — models cache vào IndexedDB
 ```
 
 ---
@@ -416,15 +443,16 @@ Tôi đang phát triển dự án ToolBundle — một web app tổng hợp 100+
 | File | Mục đích |
 |---|---|
 | `docs/HANDOFF.md` | Tài liệu bàn giao này |
-| `docs/strategy.md` | Chiến lược phát triển |
+| `docs/tools-list.md` | Danh sách 123 tools |
 | `docs/adding-tools.md` | Hướng dẫn thêm tool |
-| `docs/tools-list.md` | Danh sách 100 tools |
+| `docs/ai-tools-research.md` | Nghiên cứu AI tools |
+| `docs/strategy.md` | Chiến lược phát triển |
 | `DESIGN.md` | Design system |
 | `src/data/tools.ts` | Tool registry |
 | `src/data/categories.ts` | Category definitions |
 | `src/components/tools/ToolRenderer.tsx` | Tool routing (lazy loading) |
+| `src/utils/ai.ts` | AI utilities |
 | `src/layouts/Base.astro` | Root layout (PWA, SW, header, footer) |
-| `src/layouts/ToolLayout.astro` | Tool page layout |
 | `src/styles/global.css` | Design tokens |
 | `astro.config.mjs` | Astro/Vite config |
 | `vitest.config.ts` | Test config |
@@ -432,4 +460,4 @@ Tôi đang phát triển dự án ToolBundle — một web app tổng hợp 100+
 
 ---
 
-*Cập nhật lần cuối: 2026-05-03*
+*Cập nhật lần cuối: 2026-05-04*
