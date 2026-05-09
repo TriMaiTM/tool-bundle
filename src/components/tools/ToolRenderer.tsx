@@ -185,6 +185,29 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
 	"roman-numeral-converter": lazy(() => import("./RomanNumeralConverter")),
 	"text-to-ascii-art": lazy(() => import("./TextToAsciiArt")),
 	"upside-down-text": lazy(() => import("./UpsideDownText")),
+
+	// Converter Tools — Number/Math (Batch 2)
+	"binary-to-hex": lazy(() => import("./BinaryToHex")),
+	"hex-to-binary": lazy(() => import("./HexToBinary")),
+	"number-to-words": lazy(() => import("./NumberToWords")),
+	"scientific-notation-converter": lazy(() => import("./ScientificNotationConverter")),
+	"octal-converter": lazy(() => import("./OctalConverter")),
+
+	// Converter Tools — Data Format (Batch 2)
+	"toml-to-json": lazy(() => import("./TomlToJson")),
+	"json-to-toml": lazy(() => import("./JsonToToml")),
+	"yaml-to-json": lazy(() => import("./YamlToJson")),
+
+	// Converter Tools — Encoding (Batch 2)
+	"base32-encoder": lazy(() => import("./Base32Encoder")),
+	"text-to-hex": lazy(() => import("./TextToHex")),
+	"rot13-encoder": lazy(() => import("./Rot13Encoder")),
+	"quoted-printable-encoder": lazy(() => import("./QuotedPrintableEncoder")),
+
+	// Converter Tools — Time & Other (Batch 2)
+	"seconds-to-time": lazy(() => import("./SecondsToTime")),
+	"time-to-seconds": lazy(() => import("./TimeToSeconds")),
+	"html-to-text": lazy(() => import("./HtmlToText")),
 };
 
 // Image converter tools with their specific configurations

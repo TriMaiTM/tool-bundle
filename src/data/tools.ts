@@ -1449,6 +1449,159 @@ export const tools: Tool[] = [
 		slug: "upside-down-text",
 		tags: ["convert", "flip", "upside-down", "text", "fun"],
 	},
+
+	// ============================================
+	// Converter Tools — Number/Math (Batch 2)
+	// ============================================
+	{
+		id: "binary-to-hex",
+		name: "Binary to Hex",
+		description: "Convert binary (base-2) numbers to hexadecimal (base-16) format.",
+		category: "developer",
+		icon: "binary",
+		slug: "binary-to-hex",
+		tags: ["convert", "binary", "hex", "number"],
+	},
+	{
+		id: "hex-to-binary",
+		name: "Hex to Binary",
+		description: "Convert hexadecimal (base-16) numbers to binary with configurable bit width.",
+		category: "developer",
+		icon: "binary",
+		slug: "hex-to-binary",
+		tags: ["convert", "hex", "binary", "number"],
+	},
+	{
+		id: "number-to-words",
+		name: "Number to Words",
+		description:
+			"Convert numbers to English words — supports negatives, decimals, up to trillions.",
+		category: "developer",
+		icon: "type",
+		slug: "number-to-words",
+		tags: ["convert", "number", "words", "spell"],
+	},
+	{
+		id: "scientific-notation-converter",
+		name: "Scientific Notation Converter",
+		description: "Convert between decimal numbers and scientific notation with both formats.",
+		category: "developer",
+		icon: "atom",
+		slug: "scientific-notation-converter",
+		tags: ["convert", "scientific", "notation", "number"],
+	},
+	{
+		id: "octal-converter",
+		name: "Octal Converter",
+		description: "Convert between octal (base-8) and decimal — includes Unix permission reference.",
+		category: "developer",
+		icon: "hash",
+		slug: "octal-converter",
+		tags: ["convert", "octal", "decimal", "unix", "permissions"],
+	},
+
+	// ============================================
+	// Converter Tools — Data Format (Batch 2)
+	// ============================================
+	{
+		id: "toml-to-json",
+		name: "TOML to JSON",
+		description: "Convert TOML configuration files to JSON format.",
+		category: "developer",
+		icon: "file-code",
+		slug: "toml-to-json",
+		tags: ["convert", "toml", "json", "config"],
+	},
+	{
+		id: "json-to-toml",
+		name: "JSON to TOML",
+		description: "Convert JSON data to TOML configuration format.",
+		category: "developer",
+		icon: "file-code",
+		slug: "json-to-toml",
+		tags: ["convert", "json", "toml", "config"],
+	},
+	{
+		id: "yaml-to-json",
+		name: "YAML to JSON",
+		description: "Convert YAML to JSON format using js-yaml library.",
+		category: "developer",
+		icon: "file-code",
+		slug: "yaml-to-json",
+		tags: ["convert", "yaml", "json", "config"],
+	},
+
+	// ============================================
+	// Converter Tools — Encoding (Batch 2)
+	// ============================================
+	{
+		id: "base32-encoder",
+		name: "Base32 Encoder/Decoder",
+		description: "Encode and decode Base32 — used in TOTP, IPFS, and other systems.",
+		category: "developer",
+		icon: "binary",
+		slug: "base32-encoder",
+		tags: ["convert", "base32", "encode", "decode", "totp"],
+	},
+	{
+		id: "text-to-hex",
+		name: "Text to Hex / Hex to Text",
+		description: "Convert text to hexadecimal and back. Useful for debugging and encoding.",
+		category: "developer",
+		icon: "hash",
+		slug: "text-to-hex",
+		tags: ["convert", "text", "hex", "encode"],
+	},
+	{
+		id: "rot13-encoder",
+		name: "ROT13 Encoder/Decoder",
+		description: "Encode and decode text with ROT13 and custom ROT-N cipher shifts.",
+		category: "developer",
+		icon: "lock",
+		slug: "rot13-encoder",
+		tags: ["convert", "rot13", "cipher", "encode"],
+	},
+	{
+		id: "quoted-printable-encoder",
+		name: "Quoted-Printable Encoder/Decoder",
+		description: "Encode and decode Quoted-Printable format used in email encoding.",
+		category: "developer",
+		icon: "mail",
+		slug: "quoted-printable-encoder",
+		tags: ["convert", "quoted-printable", "email", "encode"],
+	},
+
+	// ============================================
+	// Converter Tools — Time & Other (Batch 2)
+	// ============================================
+	{
+		id: "seconds-to-time",
+		name: "Seconds to HH:MM:SS",
+		description:
+			"Convert seconds to human-readable time format with days, hours, minutes breakdown.",
+		category: "developer",
+		icon: "clock",
+		slug: "seconds-to-time",
+		tags: ["convert", "seconds", "time", "hhmmss"],
+	},
+	{
+		id: "time-to-seconds",
+		name: "HH:MM:SS to Seconds",
+		description: "Convert time formats (HH:MM:SS, 2h 30m 15s) to total seconds.",
+		category: "developer",
+		icon: "clock",
+		slug: "time-to-seconds",
+		tags: ["convert", "time", "seconds", "hhmmss"],
+	},
+	{
+		id: "html-to-text",
+		name: "HTML to Text",
+		description: "Strip HTML tags and convert to plain text — preserves structure and list items.",
+		category: "developer",
+		icon: "file-text",
+		slug: "html-to-text",
+		tags: ["convert", "html", "text", "strip", "plain"],
+	},
 ];
 
 /**
