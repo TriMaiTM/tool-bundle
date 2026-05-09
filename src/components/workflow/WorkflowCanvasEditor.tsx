@@ -754,7 +754,7 @@ export default function WorkflowCanvasEditor() {
 									fill="none"
 									stroke="var(--color-ash)"
 									stroke-width="1.5"
-									style="margin-bottom: 16px;"
+									style="display: block; margin: 0 auto 16px auto;"
 								>
 									<circle cx="12" cy="12" r="10" />
 									<path d="M8 12h8M12 8v8" />

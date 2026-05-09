@@ -93,7 +93,7 @@ const breadcrumbSchema = generateBreadcrumbSchema([{ name: "Home", url: SITE_URL
   </section>
 
   {/* Favorites & Recent */}
-  <FavoritesSection 97698client:load tools={tools} categories={categories} />
+  <FavoritesSection client:only="preact" tools={tools} categories={categories} />
 
   {/* Categories */}
   <section id="categories" class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
