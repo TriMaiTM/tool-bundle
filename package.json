@@ -32,11 +32,11 @@
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,css,md}": [
-      "biome format --write",
-      "biome check --fix"
+      "biome format --write --no-errors-on-unmatched",
+      "biome check --fix --no-errors-on-unmatched"
     ],
     "*.astro": [
-      "biome format --write"
+      "biome format --write --no-errors-on-unmatched"
     ]
   },
   "devDependencies": {

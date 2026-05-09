@@ -6,17 +6,18 @@
 
 ## 1. TỔNG QUAN DỰ ÁN
 
-**ToolBundle** là một web app tổng hợp các công cụ (tools) trực tuyến miễn phí, chạy 100% client-side (không upload file lên server). Tương tự như alltools.app nhưng với dark theme riêng.
+**ToolBundle** là một web app tổng hợp các công cụ (tools) trực tuyến miễn phí, chạy 100% client-side (không upload file lên server). Tương tự như alltools.app nhưng với Pinterest-inspired design system.
 
-- **Website**: Chưa deploy (local only)
-- **Repository**: Chưa push lên GitHub
+- **Website**: https://toolbundle.pages.dev (Cloudflare Pages)
+- **Repository**: GitHub (TriMaiTM/tool-bundle)
+- **CI/CD**: GitHub Actions → Cloudflare Pages auto-deploy
 - **License**: MIT
 
 ### Tech Stack
 
 | Layer | Technology | Version |
 |---|---|---|
-| Framework | Astro | 5.x |
+| Framework | Astro | 5.x (SSG) |
 | UI Components | Preact | 10.x (~3KB) |
 | Styling | Tailwind CSS | 4.x (`@theme` directive) |
 | Language | TypeScript | 5.x |
@@ -28,13 +29,19 @@
 | OCR | tesseract.js | 5.x |
 | QR Code | qrcode | 1.5.x |
 | Barcode | jsbarcode | 3.x |
+| ZIP | jszip | batch download |
+| Linting | Biome | 1.9.4 |
+| Testing | Vitest | 3.x |
 
-### Thiết kế
+### Design System (Pinterest-inspired)
 
-- **Theme**: Dark canvas (`#0a0a0a`) + Electric Yellow accent (`#faff69`)
-- **Font**: Inter (body) + JetBrains Mono (code)
+- **Theme**: Light canvas (`#ffffff`) + Pinterest Red CTA (`#e60023`)
+- **Dark Mode**: Warm dark canvas (`#161310`) + same red CTA
+- **Font**: Inter (Pin Sans substitute) + JetBrains Mono (code)
+- **Border Radius**: 8px (sm), 16px (md), 32px (lg), pill (full)
 - **Design spec**: Xem file `DESIGN.md` ở root
-- **Responsive**: Mobile-first, breakpoints tại 640px, 768px, 1024px
+- **Responsive**: Mobile-first, breakpoints tại 480px, 768px, 1024px, 1440px
+- **Dark/Light toggle**: Floating button trên header, persist vào localStorage
 
 ---
 
@@ -44,24 +51,25 @@
 
 | Metric | Value |
 |---|---|
-| **Tổng tools** | 123 |
+| **Tổng tools** | 160 |
 | **Tổng categories** | 16 |
-| **Tổng pages** | 141 |
+| **Tổng pages** | 181 |
 | **Tests** | 182 (all pass) |
+| **Lint errors** | 0 (Biome) |
 | **JS per tool page** | ~6-10 KB gzip (code-split) |
-| **Build time** | ~13s |
+| **Build time** | ~18s |
 
 ### 16 Categories hiện có
 
 | # | Category | ID | Tools | Color |
 |---|---|---|---|---|
 | 1 | Image Tools | `image` | 13 | `#3b82f6` |
-| 2 | Text Tools | `text` | 14 | `#22c55e` |
-| 3 | Developer Tools | `developer` | 26 | `#a855f7` |
+| 2 | Text Tools | `text` | 18 | `#22c55e` |
+| 3 | Developer Tools | `developer` | 55 | `#a855f7` |
 | 4 | PDF Tools | `pdf` | 5 | `#ef4444` |
 | 5 | Math & Calculators | `math` | 5 | `#f59e0b` |
 | 6 | Security Tools | `security` | 5 | `#06b6d4` |
-| 7 | Color Tools | `color` | 4 | `#ec4899` |
+| 7 | Color Tools | `color` | 7 | `#ec4899` |
 | 8 | Date & Time Tools | `datetime` | 4 | `#14b8a6` |
 | 9 | SEO & Marketing | `seo` | 3 | `#8b5cf6` |
 | 10 | Data & Spreadsheet | `data` | 3 | `#10b981` |
@@ -72,7 +80,7 @@
 | 15 | Video & Audio | `video` | 5 | `#d946ef` |
 | 16 | AI Tools | `ai` | 11 | `#8b5cf6` |
 
-### Danh sách đầy đủ 123 tools
+### Danh sách đầy đủ 160 tools
 
 Xem chi tiết tại `docs/tools-list.md`.
 
@@ -80,184 +88,244 @@ Xem chi tiết tại `docs/tools-list.md`.
 
 ## 3. NHỮNG GÌ ĐÃ LÀM ĐƯỢC
 
-### Phase 1-3: Core Tools (54 tools)
-- Image tools (8): PNG↔JPG, PNG↔WebP, JPG↔PNG, JPG↔WebP, WebP↔PNG, Image Resizer, Image Compressor, Image Cropper
-- Text tools (5): Word Counter, Case Converter, Slug Generator, Text Reverser, Line Counter
-- Developer tools (6): JSON Formatter, Base64 Encoder/Decoder, URL Encoder/Decoder, Hash Generator, Regex Tester, Lorem Ipsum Generator
-- PDF tools (5): PDF Merger, PDF Splitter, PDF Compressor, PDF Rotator, PDF to Text
-- Math tools (5): Percentage Calculator, Unit Converter, BMI Calculator, Loan Calculator, Age Calculator
-- Security tools (3): Password Generator, Password Strength Checker, OTP Generator
+### Phase 1-10: Core Tools (123 tools) — Đã hoàn thành trước session này
 
-### Phase 4: Text & Developer Expansion (8 tools)
-- Text: Text Repeater, Remove Duplicate Lines, Text Sorter, Reading Time Calculator
-- Developer: Markdown to HTML, HTML to Markdown, CSS Formatter, YAML Formatter
+Xem chi tiết trong `docs/tools-list.md`.
 
-### Phase 5: Image Expansion + Fun & Utility (15 tools)
-- Image: Image to Base64, Image Rotator & Flipper, Image Watermark, Photo Filters, SVG Optimizer
-- Developer: HTML Formatter, SQL Formatter, XML Formatter
-- Fun & Utility (new category): Random Number Generator, Dice Roller, Coin Flipper, Random Name Picker, Wheel Spinner, Decision Maker, Placeholder Image Generator
+### Phase 11: SEO & Discoverability ✅
 
-### Phase 6: Text/Dev + Education (14 tools)
-- Text: Fancy Text Generator, Readability Score, Text to Hashtags, Emoji Picker
-- Developer: JavaScript Formatter, TypeScript to JS, Color System Generator
-- Education (new category): Flashcard Maker, Quiz Maker, Grade Calculator, GPA Calculator, Citation Generator, Study Planner, Fraction Calculator
+| Task | Status | Chi tiết |
+|---|---|---|
+| Structured Data (JSON-LD) | ✅ | WebSite, CollectionPage, SoftwareApplication, BreadcrumbList, Organization |
+| Open Graph tags | ✅ | og:title, og:description, og:url, og:type, og:site_name |
+| Twitter Card tags | ✅ | twitter:card, twitter:title, twitter:description |
+| Canonical URLs | ✅ | Mọi page có `<link rel="canonical">` |
+| XML Sitemap | ✅ | @astrojs/sitemap auto-generate 181 URLs |
+| robots.txt | ✅ | Allow all, link to sitemap |
+| Meta descriptions | ✅ | Unique per page từ tool description |
 
-### Phase 7: Finance + Health + Video (17 tools)
-- Finance (new category): Currency Converter, Compound Interest, Tax Calculator, Budget Tracker, Investment Calculator, Net Worth Calculator, Break Even Calculator
-- Health (new category): Calorie Calculator, Water Intake Calculator, Sleep Cycle Calculator, Body Fat Calculator, Pregnancy Due Date
-- Video & Audio (new category): Video to MP3, Audio Trimmer, Volume Booster, Audio Converter, Video Speed Changer
+**Files mới:** `src/utils/seo.ts`, `public/robots.txt`
+**Files sửa:** `astro.config.mjs`, `Base.astro`, `ToolLayout.astro`, `index.astro`, `[category]/index.astro`
 
-### Phase 8: AI Tools (11 tools)
-- AI Tools (new category, 11 tools):
-  - **OCR — Image to Text** (`/ai/ocr`): Tesseract.js, 15 languages
-  - **Background Remover** (`/ai/background-remover`): RMBG-1.4 + Transformers.js
-  - **Text Summarizer** (`/ai/text-summarizer`): distilbart-cnn-6-6 + Transformers.js
-  - **Object Detection** (`/ai/object-detection`): detr-resnet-50 + Transformers.js
-  - **Grammar Checker** (`/ai/grammar-checker`): T5-small + Transformers.js
-  - **Image Captioning** (`/ai/image-captioning`): vit-gpt2 + Transformers.js
-  - **Sentiment Analysis** (`/ai/sentiment-analysis`): DistilBERT SST-2 + Transformers.js
-  - **Question Answering** (`/ai/question-answering`): DistilBERT QA + Transformers.js
-  - **AI Translator** (`/ai/text-translator`): MarianMT multilingual (mul-en + en-mul)
-  - **Speech to Text** (`/ai/speech-to-text`): Whisper tiny + Transformers.js
-  - **Text to Speech** (`/text/text-to-speech`): Web Speech API (built-in browser)
-- Tech: Tesseract.js (OCR), @huggingface/transformers v3.8.1 — ONNX Runtime WASM/WebGPU
-- Features: lazy model loading, IndexedDB cache, progress bar, fallback models, 100% client-side
+### Phase 12: Accessibility ✅
 
-### Phase 9: Developer Tools Expansion (10 tools)
-- **Regex Explainer** (`/developer/regex-explainer`): Tokenize and explain regex patterns
-- **.gitignore Generator** (`/developer/gitignore-generator`): 30+ tech stacks
-- **JSON to TypeScript** (`/developer/json-to-typescript`): Convert JSON to TS interfaces
-- **JWT Decoder** (`/developer/jwt-decoder`): Decode JWT header/payload/signature
-- **UUID Generator** (`/developer/uuid-generator`): UUID v4, 6 formats, batch mode
-- **Text Diff** (`/developer/text-diff`): LCS-based diff with colors
-- **Box Shadow Generator** (`/developer/box-shadow-generator`): CSS box-shadow with live preview
-- **CSS Grid Generator** (`/developer/css-grid-generator`): Visual grid layout builder
-- **CSS Flexbox Generator** (`/developer/css-flexbox-generator`): Visual flexbox builder
-- **Border Radius Generator** (`/developer/border-radius-generator`): CSS border-radius with preview
+| Task | Status | Chi tiết |
+|---|---|---|
+| Focus-visible styles | ✅ | Yellow focus ring cho tất cả interactive elements |
+| Skip-to-content link | ✅ | Visible on Tab press |
+| ARIA labels | ✅ | Header nav, dropdown, mobile menu, search, favorites |
+| Screen reader support | ✅ | role="dialog", role="listbox", aria-live regions |
+| prefers-reduced-motion | ✅ | Disable animations |
+| .sr-only utility | ✅ | Screen reader only content |
 
-### Phase 10: Security Tools Expansion (2 tools)
-- **QR Code Generator** (`/security/qr-code-generator`): QR codes with color/size/error correction
-- **Barcode Generator** (`/security/barcode-generator`): CODE128, EAN-13, UPC, etc.
+**Files sửa:** `global.css`, `Base.astro`, `Header.astro`, `Footer.astro`, `SearchModal.tsx`, `FavoriteButton.tsx`, `FavoritesSection.tsx`, `ToolCard.astro`
 
-### Infrastructure & Features
-- ✅ Astro SSG với dynamic routing (`/[category]/[tool]`)
-- ✅ Code splitting — mỗi tool là 1 chunk riêng (lazy loading)
-- ✅ Vendor chunks tách riêng (preact, pdf-lib, marked, js-yaml, transformers)
-- ✅ Design system đầy đủ (colors, typography, spacing, components)
-- ✅ Responsive Header với dropdown navigation + mobile menu
-- ✅ Footer với categories links
-- ✅ ToolLayout với breadcrumb, privacy badge, favorite button
-- ✅ FileDropZone component (drag & drop file upload)
-- ✅ Download utilities (blob, text, clipboard)
-- ✅ Image processing utilities (Canvas API)
-- ✅ Unit tests (182 tests, Vitest + jsdom)
-- ✅ PWA (manifest.json, service worker, offline page, install prompt)
-- ✅ Client-side search (Cmd+K, Fuse.js fuzzy search, recent searches)
-- ✅ Favorites & History (localStorage, homepage section)
+### Phase 13: Analytics ✅
 
-### Documentation
-- ✅ `README.md` — Project overview, tech stack, getting started, available tools
-- ✅ `DESIGN.md` — Full design system specification
-- ✅ `docs/README.md` — Documentation index
-- ✅ `docs/getting-started.md` — Installation, dev, build, deploy guide
-- ✅ `docs/tech-stack.md` — Technologies and architecture decisions
-- ✅ `docs/project-structure.md` — Directory layout and data flow
-- ✅ `docs/adding-tools.md` — Step-by-step guide to add new tools
-- ✅ `docs/tools-list.md` — Complete list of all 123 tools
-- ✅ `docs/design-system.md` — UI components, colors, typography
-- ✅ `docs/roadmap.md` — Phase 5-7 roadmap (all completed)
-- ✅ `docs/strategy.md` — Future development strategy
-- ✅ `docs/ai-tools-research.md` — AI tools research and planning
-- ✅ `docs/HANDOFF.md` — This file
+| Task | Status | Chi tiết |
+|---|---|---|
+| Privacy-first analytics | ✅ | 100% localStorage, no cookies, no external requests |
+| Page view tracking | ✅ | Every page load tracked |
+| Tool usage tracking | ✅ | Tool view events tracked |
+| Query functions | ✅ | getTopTools, getTopPages, getCategoryUsage |
 
----
+**Files mới:** `src/utils/analytics.ts`
+**Files sửa:** `Base.astro`, `ToolLayout.astro`
 
-## 4. NHỮNG GÌ CHƯA LÀM ĐƯỢC
+### Phase 14: CI/CD ✅
 
-### Features
+| Task | Status | Chi tiết |
+|---|---|---|
+| GitHub Actions workflow | ✅ | Lint → Test → Build → Deploy |
+| Cloudflare Pages deploy | ✅ | Auto-deploy on push to main |
+| Conditional deploy | ✅ | Only deploys when secrets configured |
 
-| Task | Priority | Effort | Mô tả |
-|---|---|---|---|
-| Accessibility (a11y) | 🔴 Cao | 1 tuần | ARIA labels, focus management, keyboard nav, screen reader |
-| SEO improvements | 🔴 Cao | 2-3 ngày | Structured data, Open Graph images, sitemap |
-| Analytics | 🟡 TB | 1 ngày | Cloudflare Web Analytics hoặc Plausible |
-| CI/CD | 🟡 TB | 1-2 ngày | GitHub Actions, auto deploy |
-| Blog section | 🟡 TB | 1 tuần | Astro Content Collections, SEO content |
+**Files mới:** `.github/workflows/ci.yml`
 
-### Tools chưa implement (tiềm năng)
+### Phase 15: Blog Section ✅
 
-| Category | Tools tiềm năng |
+| Task | Status | Chi tiết |
+|---|---|---|
+| Content Collections | ✅ | Astro content collection for blog |
+| BlogLayout | ✅ | BlogPosting JSON-LD schema |
+| Blog listing page | ✅ | /blog with post grid |
+| Dynamic post pages | ✅ | /blog/[slug] |
+| Prose styles | ✅ | Full markdown styling |
+| Sample posts | ✅ | 3 posts: developer tools, image compression, text tools |
+| Navigation links | ✅ | Blog link in Header + Footer |
+
+**Files mới:** `src/content.config.ts`, `src/layouts/BlogLayout.astro`, `src/pages/blog/index.astro`, `src/pages/blog/[slug].astro`, 3 markdown posts
+**Files sửa:** `global.css`, `Header.astro`, `Footer.astro`
+
+### Phase 16: Converter Tools Batch 1 (20 tools) ✅
+
+| Category | Tools |
 |---|---|
-| Image | Image Upscaler (AI), Favicon Generator, Image to ASCII |
-| Developer | Docker Compose Generator, .htaccess Generator, HTML to Text |
-| PDF | PDF Password Protection, PDF Annotator, PDF Metadata Editor |
-| Security | AES Encrypt/Decrypt |
-| Text | Text to Hashtags (nâng cấp), Language Detector, Keyword Extractor |
-| Video | Screen Recorder, Webcam Recorder, GIF Maker |
-| AI | Face Detection, Paraphrase Generator, NER, Image Upscaler, Depth Estimation |
+| Number Systems (5) | Number Base Converter, Binary↔Decimal, Hex↔Decimal |
+| Data Formats (4) | JSON↔XML, CSV↔XML |
+| Text Encoding (4) | HTML Entity, Unicode, Text↔Binary, Punycode |
+| Color (3) | HEX↔RGB, RGB↔HSL, Color Format Converter |
+| Text & Fun (4) | Morse Code, Roman Numeral, Text to ASCII Art, Upside Down Text |
+
+**Files mới:** 20 component files + `src/utils/batch.ts`, `src/components/ui/BatchResults.tsx`
+
+### Phase 16b: Converter Tools Batch 2 (15 tools) ✅
+
+| Category | Tools |
+|---|---|
+| Number/Math (5) | Binary↔Hex, Number to Words, Scientific Notation, Octal Converter |
+| Data Format (3) | TOML↔JSON, YAML→JSON |
+| Encoding (4) | Base32, Text↔Hex, ROT13, Quoted-Printable |
+| Time & Other (3) | Seconds↔Time, HTML to Text |
+
+**Files mới:** 15 component files
+
+### Phase 17: Batch Processing ✅
+
+| Task | Status | Chi tiết |
+|---|---|---|
+| Batch utilities | ✅ | ZIP download, file helpers |
+| BatchResults component | ✅ | Progress bar, file list, Download All |
+| Image Converter batch mode | ✅ | Toggle single/batch, multi-file upload |
+| Works on all 5 image converters | ✅ | PNG↔JPG↔WebP |
+
+**Files mới:** `src/utils/batch.ts`, `src/components/ui/BatchResults.tsx`
+**Files sửa:** `src/components/tools/ImageConverter.tsx`
+
+### Phase 18: AI Assistant ✅
+
+| Task | Status | Chi tiết |
+|---|---|---|
+| Knowledge base | ✅ | 80+ tools with keywords, descriptions, use cases |
+| Pattern matching engine | ✅ | Intent detection + tool matching |
+| Chat UI component | ✅ | Floating button, modal, quick actions |
+| Smart responses | ✅ | Direct tool links, category listings, recommendations |
+| Keyboard support | ✅ | Enter to send, Escape to close |
+
+**Files mới:** `src/utils/ai-assistant.ts`, `src/components/ui/AIAssistant.tsx`
+**Files sửa:** `Base.astro` (import + client:idle)
+
+### Phase 19: Workflow Builder (Canvas Editor) ✅
+
+| Task | Status | Chi tiết |
+|---|---|---|
+| Workflow engine | ✅ | 25 compatible tools, topological sort, sequential execution |
+| Visual canvas editor | ✅ | n8n-style drag-and-drop nodes + SVG edges |
+| Sidebar tool picker | ✅ | Drag tools onto canvas |
+| Pre-built templates | ✅ | 6 workflow templates |
+| Zoom/Pan | ✅ | Mouse wheel zoom, drag to pan |
+| Node connections | ✅ | Drag from output port to input port |
+| Input/Output panel | ✅ | Toggle panel for text input/output |
+| Navigation link | ✅ | "Workflow" in Header nav |
+
+**Files mới:** `src/utils/workflow.ts`, `src/components/workflow/WorkflowBuilder.tsx`, `src/components/workflow/WorkflowCanvasEditor.tsx`
+**Files sửa:** `src/data/tools.ts`, `src/components/tools/ToolRenderer.tsx`, `Header.astro`
+
+### Design System Overhaul ✅
+
+| Task | Status | Chi tiết |
+|---|---|---|
+| Pinterest-inspired design | ✅ | Light canvas, red CTA, 16px radius |
+| Dark mode | ✅ | Warm dark (#161310), toggle button |
+| Theme persistence | ✅ | localStorage + prefers-color-scheme |
+| No flash on load | ✅ | Inline script in head applies theme before CSS |
+| @custom-variant dark | ✅ | Tailwind CSS 4 data-theme support |
+
+**Files sửa:** `global.css`, `Base.astro`, `Header.astro`, `FavoriteButton.tsx`, `FavoritesSection.tsx`, `SearchModal.tsx`, `sw.js`
+
+### Biome Linter Setup ✅
+
+| Task | Status | Chi tiết |
+|---|---|---|
+| biome.json config | ✅ | Project-appropriate rules, disabled false positives |
+| Pre-commit hooks | ✅ | husky + lint-staged auto-format on commit |
+| Format on save | ✅ | All files formatted to biome style |
+
+**Files mới:** `biome.json`
+**Files sửa:** `package.json`, `.husky/pre-commit`
 
 ---
 
-## 5. CẤU TRÚC DỰ ÁN
+## 4. CẤU TRÚC DỰ ÁN
 
 ```
 ToolBundle/
+├── .github/workflows/ci.yml    # CI/CD pipeline
+├── biome.json                   # Linter config
 ├── public/
-│   ├── icons/                    # PWA icons (SVG + PNG + screenshots)
-│   ├── sw.js                     # Service Worker
-│   └── manifest.json             # PWA manifest
+│   ├── icons/                   # PWA icons
+│   ├── sw.js                    # Service Worker (v3)
+│   ├── manifest.json            # PWA manifest
+│   ├── robots.txt               # SEO robots
+│   └── favicon.svg
 ├── src/
 │   ├── components/
 │   │   ├── layout/
-│   │   │   ├── Header.astro      # Nav + dropdown + mobile menu + SearchModal
-│   │   │   └── Footer.astro      # 4-column footer
+│   │   │   ├── Header.astro     # Nav + search + theme toggle + workflow link
+│   │   │   └── Footer.astro     # 4-column footer
 │   │   ├── tools/
-│   │   │   ├── ToolRenderer.tsx   # Dynamic tool loader (lazy imports)
-│   │   │   ├── *.tsx             # 123 tool components
-│   │   │   └── ...
-│   │   └── ui/
-│   │       ├── FileDropZone.tsx   # Drag & drop file upload
-│   │       ├── ToolCard.astro     # Tool card for listings
-│   │       ├── ToolCardWithFavorite.tsx
-│   │       ├── FavoriteButton.tsx
-│   │       ├── FavoritesSection.tsx
-│   │       └── SearchModal.tsx    # Cmd+K search (Fuse.js)
+│   │   │   ├── ToolRenderer.tsx  # Dynamic tool loader (lazy imports, 160 tools)
+│   │   │   ├── *.tsx            # 160 tool components
+│   │   │   └── ImageConverter.tsx # Shared image converter with batch mode
+│   │   ├── ui/
+│   │   │   ├── AIAssistant.tsx   # Floating AI chat widget
+│   │   │   ├── BatchResults.tsx  # Batch processing results UI
+│   │   │   ├── FavoriteButton.tsx # Favorite toggle button
+│   │   │   ├── FavoritesSection.tsx # Favorites & recent tools section
+│   │   │   ├── FileDropZone.tsx  # Drag & drop file upload
+│   │   │   ├── SearchModal.tsx   # Cmd+K search modal
+│   │   │   ├── ToolCard.astro    # Tool card for listings
+│   │   │   └── ToolCardWithFavorite.tsx
+│   │   └── workflow/
+│   │       ├── WorkflowBuilder.tsx      # Step-by-step workflow builder
+│   │       └── WorkflowCanvasEditor.tsx # n8n-style canvas editor
 │   ├── data/
-│   │   ├── categories.ts         # Category definitions (16 categories)
-│   │   └── tools.ts              # Tool registry (123 tools metadata)
+│   │   ├── categories.ts        # 16 category definitions
+│   │   └── tools.ts             # 160 tool metadata registry
 │   ├── layouts/
-│   │   ├── Base.astro            # Root layout (head, header, footer, PWA, SW)
-│   │   └── ToolLayout.astro      # Tool page layout (breadcrumb, favorite, history)
+│   │   ├── Base.astro           # Root layout (head, header, footer, PWA, analytics, AI)
+│   │   ├── ToolLayout.astro     # Tool page layout (breadcrumb, favorite, analytics)
+│   │   └── BlogLayout.astro     # Blog post layout (JSON-LD, breadcrumb)
 │   ├── pages/
-│   │   ├── index.astro           # Homepage (hero, favorites, featured, categories)
-│   │   ├── offline.astro         # Offline fallback page
+│   │   ├── index.astro          # Homepage (hero, featured, favorites, all tools A-Z, categories)
+│   │   ├── offline.astro        # Offline fallback page
+│   │   ├── blog/
+│   │   │   ├── index.astro      # Blog listing page
+│   │   │   └── [slug].astro     # Dynamic blog post page
 │   │   └── [category]/
-│   │       ├── index.astro       # Category listing
-│   │       └── [tool].astro      # Dynamic tool page router
+│   │       ├── index.astro      # Category listing page
+│   │       └── [tool].astro     # Dynamic tool page router
+│   ├── content/
+│   │   └── blog/                # Blog posts (markdown)
 │   ├── styles/
-│   │   └── global.css            # Design system tokens + component styles
+│   │   └── global.css           # Design system tokens + component styles + dark mode
 │   └── utils/
-│       ├── ai.ts                 # AI utilities (encodeWAV, downloadBlob, resizeImage)
-│       ├── download.ts           # File download helpers
-│       ├── image.ts              # Image processing (Canvas API)
-│       ├── favorites.ts          # Favorites & history (localStorage)
-│       ├── text.ts               # Text processing utilities
-│       ├── math.ts               # Math calculation utilities
-│       ├── color.ts              # Color conversion utilities
-│       ├── csv.ts                # CSV parsing utilities
-│       └── security.ts           # Security utilities (password, OTP)
-├── docs/                         # Documentation
-├── DESIGN.md                     # Design system spec
-├── vitest.config.ts              # Test config
-├── astro.config.mjs              # Astro + Preact + Tailwind config
-├── tsconfig.json                 # TypeScript config
+│       ├── ai-assistant.ts      # AI assistant knowledge base + matching
+│       ├── ai.ts                # AI utilities (encodeWAV, resizeImage)
+│       ├── analytics.ts         # Privacy-first analytics
+│       ├── batch.ts             # Batch processing utilities (ZIP download)
+│       ├── color.ts             # Color conversion utilities
+│       ├── csv.ts               # CSV parsing utilities
+│       ├── download.ts          # File download helpers
+│       ├── favorites.ts         # Favorites & history management
+│       ├── image.ts             # Image processing (Canvas API)
+│       ├── math.ts              # Math calculation utilities
+│       ├── security.ts          # Security utilities (password, OTP)
+│       ├── seo.ts               # SEO utilities (JSON-LD generators)
+│       ├── text.ts              # Text processing utilities
+│       └── workflow.ts          # Workflow engine + tool registry
+├── docs/                        # Documentation
+├── DESIGN.md                    # Design system spec (Pinterest-inspired)
+├── vitest.config.ts
+├── astro.config.mjs
+├── tsconfig.json
 ├── package.json
 └── .gitignore
 ```
 
 ---
 
-## 6. CÁCH THÊM TOOL MỚI (3 BƯỚC)
+## 5. CÁCH THÊM TOOL MỚI (3 BƯỚC)
 
 ### Bước 1: Đăng ký tool trong `src/data/tools.ts`
 
@@ -305,17 +373,17 @@ const toolComponents = {
 };
 ```
 
-Astro tự generate page tại `/{category}/{slug}`. Không cần tạo file page riêng.
-
 ### Bước 4: Verify
 
 ```bash
 npm run build
+npm run test
+npx biome check src/
 ```
 
 ---
 
-## 7. NHỮNG LƯU Ý QUAN TRỌNG
+## 6. NHỮNG LƯU Ý QUAN TRỌNG
 
 ### Khi thêm tool mới
 
@@ -323,37 +391,56 @@ npm run build
 2. **Event handlers**: `onInput` cho input/textarea, `onChange` cho select
 3. **Cast event targets**: `(e.target as HTMLTextAreaElement).value`
 4. **Lazy loading**: Luôn dùng `lazy(() => import("./Component"))` trong ToolRenderer
-5. **Không static import**: Nếu static import, tất cả 123 tools sẽ bundled vào 1 file
+5. **Không static import**: Nếu static import, tất cả 160 tools sẽ bundled vào 1 file
+6. **String concatenation** thay vì template literals cho backslash characters (tránh SSR issues)
+7. **CSS variables** cho colors — KHÔNG dùng hardcoded hex trong inline styles (tránh hydration mismatch)
 
 ### CSS Classes có sẵn
 
 | Class | Mô tả |
 |---|---|
-| `btn-primary` | Button vàng (primary CTA) |
-| `btn-secondary` | Button dark có border |
+| `btn-primary` | Red CTA button |
+| `btn-secondary` | Gray-cream button |
+| `btn-tertiary` | Ghost/link button |
 | `textarea` | Multi-line input |
 | `input` | Single-line input |
-| `card` | Dark card container |
-| `badge` | Pill badge |
-| `badge-yellow` | Yellow pill badge |
+| `card` | White card with border |
+| `card-soft` | Surface-card background |
+| `badge` | Pill badge (surface-card) |
+| `badge-red` | Red pill badge |
 | `drop-zone` | Drag & drop area |
 | `code-block` | Monospace code output |
+| `search-bar` | Pill-shaped search input |
+| `filter-chip` | Pill filter button |
+| `pin-card` | Rounded card (16px) |
+| `feature-card` | White feature card |
+| `category-tile` | Category card |
+| `sr-only` | Screen reader only |
+| `skip-to-content` | Skip navigation link |
+| `text-display-xl/lg/md/sm` | Display typography |
+| `text-heading-xl/lg/md` | Heading typography |
+| `text-body-md/sm` | Body typography |
+| `text-body-strong/sm-strong` | Bold body typography |
+| `text-caption` | Caption text |
+| `text-link` | Inline link style |
+| `.prose` | Blog content styles |
+
+### Dark Mode
+
+- CSS variables auto-switch via `[data-theme="dark"]` selector
+- `@custom-variant dark` configured for Tailwind CSS 4
+- Theme persisted in `localStorage` key `toolbundle_theme`
+- Respects `prefers-color-scheme` as default
+- Inline script in `<head>` prevents flash of wrong theme
+- Toggle button in Header (sun/moon icons)
 
 ### Known Issues
 
-1. **ToolRenderer bundle warning**: Vite warns "chunks larger than 500KB" — đây là tổng tất cả lazy chunks (bao gồm Transformers.js runtime ~894KB), KHÔNG phải 1 file. Mỗi tool page chỉ load ~6-10KB. Có thể ignore hoặc tăng `chunkSizeWarningLimit`.
-
-2. **AI Models gating**: Một số models trên HuggingFace là gated (cần auth). Các models đang dùng: RMBG-1.4 (public), Tesseract.js (public), MarianMT (public), Whisper (public), DistilBERT (public), T5-small (public), vit-gpt2 (public).
-
-3. **Transformers.js Float32Array bug**: SpeechT5 model có bug nội bộ khi tạo Float32Array. Đã fix bằng cách dùng Web Speech API thay thế cho TTS, và fallback tự động khi model fail.
-
+1. **ToolRenderer bundle warning**: Vite warns "chunks larger than 500KB" — đây là tổng tất cả lazy chunks (bao gồm Transformers.js runtime ~894KB), KHÔNG phải 1 file. Mỗi tool page chỉ load ~6-10KB.
+2. **AI Models gating**: Một số models trên HuggingFace là gated (cần auth). Các models đang dùng đều public.
+3. **Transformers.js Float32Array bug**: SpeechT5 model có bug nội bộ. Đã fix bằng Web Speech API fallback.
 4. **Service Worker trong dev mode**: SW chỉ hoạt động khi build production (`npm run build && npm run preview`).
-
-5. **Dependencies mới**:
-   - `@huggingface/transformers` 3.8.1 — AI models
-   - `tesseract.js` 5.x — OCR
-   - `qrcode` — QR code generation
-   - `jsbarcode` — Barcode generation
+5. **Biome organizeImports**: TẮT — vì nó xóa imports dùng trong Astro templates (không hiểu JSX usage trong .astro files).
 
 ### Scripts
 
@@ -368,96 +455,118 @@ npm run format       # Format with Biome
 
 ---
 
-## 8. ROADMAP TƯƠNG LAI
+## 7. ROADMAP TƯƠNG LAI
 
 ### Ưu tiên cao (nên làm tiếp)
 
 | Task | Effort | Mô tả |
 |---|---|---|
-| Thêm 30-50 tools mới | 2-3 tuần | Mở rộng categories hiện có (Developer, Security, CSS, Text) |
-| Accessibility (a11y) | 1 tuần | ARIA labels, keyboard nav, screen reader support |
-| SEO improvements | 2-3 ngày | Structured data, Open Graph images, sitemap |
-| Analytics | 1 ngày | Cloudflare Web Analytics (privacy-first) |
+| Thêm 30-50 tools mới | 2-3 tuần | Mở rộng categories: Developer, Image, PDF, Security, Text |
+| SEO content (blog posts) | Ongoing | 5-10 bài SEO articles mỗi tháng |
+| AI Tools Batch 2 | 2-3 tuần | NER, Face Detection, Paraphrase, Language Detection, Keyword Extraction |
 
 ### Ưu tiên trung bình
 
 | Task | Effort | Mô tả |
 |---|---|---|
-| CI/CD | 1-2 ngày | GitHub Actions, auto deploy Cloudflare Pages |
-| Blog section | 1 tuần | Astro Content Collections, SEO content |
-| AI Tools mới | 2-3 tuần | Face Detection, Paraphrase, NER, Image Upscaler |
+| Video Tools Expansion | 1 tuần | Screen Recorder, Webcam Recorder, GIF Maker |
+| Design Tools | 1 tuần | CSS Animation, Glassmorphism, Neumorphism, Gradient Text, Clip-Path |
+| Productivity Tools | 2 tuần | Pomodoro Timer, Kanban Board, Markdown Notes, Checklist |
 
 ### Ưu tiên thấp (sau khi có traffic)
 
 | Task | Effort | Mô tả |
 |---|---|---|
-| Ads integration | 1 tuần | AdSense / Carbon Ads |
-| Premium tier | 1-2 tuần | No ads, API access |
-| REST API | 2 tuần | API cho developers |
+| Monetization | 1-2 tuần | AdSense / Carbon Ads integration |
+| Premium tier | 1-2 tuần | No ads, API access, priority support |
+| REST API | 2 tuần | API cho developers, rate limiting |
+| AI-powered Workflow Builder | 2 tuần | NLP-based workflow suggestion từ chat |
 
 ---
 
-## 9. PROMPT CHO AI AGENT TIẾP THEO
+## 8. PROMPT CHO AI AGENT TIẾP THEO
 
 Copy prompt dưới đây và paste vào session mới:
 
 ```
-Tôi đang phát triển dự án ToolBundle — một web app tổng hợp 123+ tools miễn phí chạy 100% client-side.
+Tôi đang phát triển dự án ToolBundle — một web app tổng hợp 160+ tools miễn phí chạy 100% client-side.
 
 ## Tech Stack
 - Astro 5 (SSG) + Preact 10 (~3KB) + Tailwind CSS 4 + TypeScript
 - Code splitting: mỗi tool là 1 chunk riêng, lazy loaded
 - AI: @huggingface/transformers 3.8.1 + tesseract.js 5.x
 - QR/Barcode: qrcode + jsbarcode
+- Batch: jszip
+- Lint: Biome 1.9.4 + husky + lint-staged
+- Deploy: Cloudflare Pages (GitHub Actions CI/CD)
 
 ## Trạng thái hiện tại
-- 123 tools / 16 categories / 141 pages / 182 tests
-- Features: PWA, offline, Cmd+K search, favorites & history
-- AI Tools (11): OCR, BG Remover, Summarizer, Object Detection, Grammar, Captioning, Sentiment, QA, Translator, STT, TTS
-- Developer Tools (26): includes Regex Explainer, .gitignore Generator, JSON to TypeScript, JWT Decoder, UUID Generator, Text Diff, Box Shadow, CSS Grid, CSS Flexbox, Border Radius
-- Security Tools (5): includes QR Code Generator, Barcode Generator
-- Docs đầy đủ trong thư mục docs/
+- 160 tools / 16 categories / 181 pages / 182 tests
+- Design: Pinterest-inspired light theme + dark mode toggle
+- Features: PWA, offline, Cmd+K search, favorites & history, AI assistant, batch processing
+- SEO: JSON-LD, OG tags, sitemap, robots.txt
+- Accessibility: ARIA labels, focus-visible, skip-to-content, prefers-reduced-motion
+- Analytics: Privacy-first localStorage tracking
+- Blog: Content Collections + 3 sample posts
+- CI/CD: GitHub Actions → Cloudflare Pages
+- Workflow Builder: n8n-style canvas editor với 25 workflow-compatible tools
+- Converter Tools: 35 converter tools (number, data format, encoding, color, text, time)
+- AI Assistant: Rule-based chat widget với 80+ tool knowledge base
 
 ## Đọc các file sau để hiểu dự án:
 1. docs/HANDOFF.md — Tài liệu bàn giao (ĐỌC TRƯỚC)
-2. docs/tools-list.md — Danh sách đầy đủ 123 tools
+2. docs/tools-list.md — Danh sách đầy đủ 160 tools
 3. docs/adding-tools.md — Hướng dẫn thêm tool mới
 4. docs/ai-tools-research.md — Nghiên cứu AI tools
-5. DESIGN.md — Design system specification
+5. DESIGN.md — Design system specification (Pinterest-inspired)
 
 ## Lưu ý quan trọng khi làm việc:
 1. Dùng `class=` không phải `className=` (Preact, không phải React)
 2. ToolRenderer.tsx dùng `lazy(() => import("./Component"))` — KHÔNG static import
 3. Mỗi tool là 1 file .tsx riêng trong src/components/tools/
 4. Đăng ký tool trong src/data/tools.ts + src/components/tools/ToolRenderer.tsx
-5. CSS classes: btn-primary, btn-secondary, textarea, input, card, badge, drop-zone
-6. Chạy `npm run dev` để test, `npm run build` để verify production
-7. Tests: `npm run test` (Vitest)
-8. AI tools dùng @huggingface/transformers — models cache vào IndexedDB
+5. CSS classes: btn-primary, btn-secondary, textarea, input, card, badge, drop-zone, search-bar, filter-chip
+6. CSS variables cho colors — KHÔNG dùng hardcoded hex trong inline styles
+7. String concatenation thay vì template literals cho backslash characters (tránh SSR issues)
+8. Chạy `npm run dev` để test, `npm run build` để verify production
+9. Tests: `npm run test` (Vitest)
+10. Lint: `npx biome check src/` — fix: `npx biome check --fix --unsafe src/`
+11. Format: `npx biome format --write src/`
+12. Pre-commit hook tự động format — không cần manual format trước khi commit
+13. AI tools dùng @huggingface/transformers — models cache vào IndexedDB
+14. Dark mode dùng data-theme="dark" attribute trên <html> + @custom-variant dark cho Tailwind
+15. Theme init script trong <head> Base.astro ngăn flash of wrong theme
+16. Service Worker version trong public/sw.js — bump version khi đổi CSS/JS
+17. Biome organizeImports TẮT — nó xóa imports dùng trong Astro templates
 ```
 
 ---
 
-## 10. FILES QUAN TRỌNG CẦN ĐỌC
+## 9. FILES QUAN TRỌNG CẦN ĐỌC
 
 | File | Mục đích |
 |---|---|
 | `docs/HANDOFF.md` | Tài liệu bàn giao này |
-| `docs/tools-list.md` | Danh sách 123 tools |
+| `docs/tools-list.md` | Danh sách 160 tools |
 | `docs/adding-tools.md` | Hướng dẫn thêm tool |
 | `docs/ai-tools-research.md` | Nghiên cứu AI tools |
 | `docs/strategy.md` | Chiến lược phát triển |
-| `DESIGN.md` | Design system |
-| `src/data/tools.ts` | Tool registry |
-| `src/data/categories.ts` | Category definitions |
+| `DESIGN.md` | Design system (Pinterest-inspired) |
+| `src/data/tools.ts` | Tool registry (160 tools) |
+| `src/data/categories.ts` | Category definitions (16 categories) |
 | `src/components/tools/ToolRenderer.tsx` | Tool routing (lazy loading) |
-| `src/utils/ai.ts` | AI utilities |
-| `src/layouts/Base.astro` | Root layout (PWA, SW, header, footer) |
-| `src/styles/global.css` | Design tokens |
+| `src/utils/workflow.ts` | Workflow engine + tool registry |
+| `src/utils/ai-assistant.ts` | AI assistant knowledge base |
+| `src/utils/analytics.ts` | Analytics utilities |
+| `src/utils/seo.ts` | SEO utilities |
+| `src/layouts/Base.astro` | Root layout (PWA, SW, header, footer, analytics, AI) |
+| `src/styles/global.css` | Design tokens + component styles + dark mode |
 | `astro.config.mjs` | Astro/Vite config |
+| `biome.json` | Linter config |
 | `vitest.config.ts` | Test config |
 | `package.json` | Dependencies |
+| `.github/workflows/ci.yml` | CI/CD pipeline |
 
 ---
 
-*Cập nhật lần cuối: 2026-05-04*
+*Cập nhật lần cuối: 2026-05-09*
