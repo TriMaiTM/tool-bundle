@@ -93,7 +93,7 @@ const breadcrumbSchema = generateBreadcrumbSchema([{ name: "Home", url: SITE_URL
   </section>
 
   {/* Favorites & Recent */}
-  <FavoritesSection client:load tools={tools} categories={categories} />
+  <FavoritesSection 97698client:load tools={tools} categories={categories} />
 
   {/* Categories */}
   <section id="categories" class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
@@ -119,6 +119,22 @@ const breadcrumbSchema = generateBreadcrumbSchema([{ name: "Home", url: SITE_URL
           </div>
           <p class="text-body-sm text-muted">{cat.description}</p>
         </a>
+      ))}
+    </div>
+  </section>
+
+  {/* All Tools — A to Z */}
+  <section id="all-tools" class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+    <div class="flex items-center justify-between mb-8">
+      <div>
+        <h2 class="text-title-lg text-on-dark">All Tools</h2>
+        <p class="text-body-sm text-muted mt-1">{tools.length} tools sorted A–Z</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      {[...tools].sort((a, b) => a.name.localeCompare(b.name)).map((tool) => (
+        <ToolCard tool={tool} />
       ))}
     </div>
   </section>
