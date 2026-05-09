@@ -1,6 +1,7 @@
 ---
 import Header from "../components/layout/Header.astro";
 import Footer from "../components/layout/Footer.astro";
+import AIAssistant from "../components/ui/AIAssistant";
 import { generateOrganizationSchema } from "../utils/seo";
 import "../styles/global.css";
 
@@ -89,6 +90,9 @@ const organizationSchema = generateOrganizationSchema();
       <slot />
     </main>
     <Footer />
+
+    {/* AI Assistant — floating chat */}
+    <AIAssistant client:idle />
 
     {/* Install Prompt Banner */}
     <div
