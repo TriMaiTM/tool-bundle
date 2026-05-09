@@ -208,6 +208,9 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
 	"seconds-to-time": lazy(() => import("./SecondsToTime")),
 	"time-to-seconds": lazy(() => import("./TimeToSeconds")),
 	"html-to-text": lazy(() => import("./HtmlToText")),
+
+	// Workflow
+	"workflow-builder": lazy(() => import("../workflow/WorkflowBuilder")),
 };
 
 // Image converter tools with their specific configurations

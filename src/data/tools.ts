@@ -1602,6 +1602,21 @@ export const tools: Tool[] = [
 		slug: "html-to-text",
 		tags: ["convert", "html", "text", "strip", "plain"],
 	},
+
+	// ============================================
+	// Workflow Tools
+	// ============================================
+	{
+		id: "workflow-builder",
+		name: "Workflow Builder",
+		description:
+			"Chain multiple tools into a pipeline — format, convert, encode, and hash in one flow.",
+		category: "developer",
+		icon: "git-branch",
+		slug: "workflow-builder",
+		featured: true,
+		tags: ["workflow", "pipeline", "chain", "batch", "automation"],
+	},
 ];
 
 /**
