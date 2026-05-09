@@ -210,7 +210,7 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
 	"html-to-text": lazy(() => import("./HtmlToText")),
 
 	// Workflow
-	"workflow-builder": lazy(() => import("../workflow/WorkflowBuilder")),
+	"workflow-builder": lazy(() => import("../workflow/WorkflowCanvasEditor")),
 };
 
 // Image converter tools with their specific configurations
