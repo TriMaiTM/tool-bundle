@@ -205,6 +205,43 @@ const toolKnowledge: Record<string, ToolKnowledge> = {
 		description: "Convert text to speech",
 		useCases: ["accessibility", "learning", "proofreading"],
 	},
+	ner: {
+		keywords: [
+			"ner",
+			"named entity",
+			"entity recognition",
+			"name",
+			"place",
+			"organization",
+			"detect",
+		],
+		description: "Detect and highlight names, places, and organizations in text using AI",
+		useCases: [
+			"Extracting names from documents",
+			"Identifying locations in text",
+			"Finding organizations in articles",
+		],
+	},
+	"face-detection": {
+		keywords: ["face", "detection", "blur", "privacy", "person", "people"],
+		description: "Detect and blur faces in images using AI",
+		useCases: ["Privacy protection", "Photo anonymization", "Social media content moderation"],
+	},
+	"paraphrase-generator": {
+		keywords: ["paraphrase", "rewrite", "rephrase", "synonym", "different wording"],
+		description: "Rewrite text in different ways using AI",
+		useCases: ["Avoiding plagiarism", "Improving writing", "Content variation"],
+	},
+	"language-detector": {
+		keywords: ["language", "detect", "identify", "unicode", "script"],
+		description: "Detect the language of any text instantly",
+		useCases: ["Content moderation", "Translation prep", "Multilingual documents"],
+	},
+	"keyword-extractor": {
+		keywords: ["keyword", "extract", "important", "topic", "embedding", "nlp"],
+		description: "Extract the most relevant keywords and phrases from text",
+		useCases: ["SEO optimization", "Content tagging", "Document summarization"],
+	},
 	"number-base-converter": {
 		keywords: ["binary", "hex", "octal", "decimal", "base", "number system"],
 		description: "Convert between number bases",
@@ -434,12 +471,22 @@ interface ChatMessage {
 	content: string;
 }
 
-function findMatchingTools(
-	query: string,
-): { id: string; name: string; slug: string; category: string; score: number }[] {
+function findMatchingTools(query: string): {
+	id: string;
+	name: string;
+	slug: string;
+	category: string;
+	score: number;
+}[] {
 	const q = query.toLowerCase();
 	const words = q.split(/\s+/).filter(Boolean);
-	const results: { id: string; name: string; slug: string; category: string; score: number }[] = [];
+	const results: {
+		id: string;
+		name: string;
+		slug: string;
+		category: string;
+		score: number;
+	}[] = [];
 
 	for (const tool of tools) {
 		const knowledge = toolKnowledge[tool.id];

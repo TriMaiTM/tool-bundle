@@ -11,10 +11,48 @@ export default function AIAssistant() {
 	const [messages, setMessages] = useState<Message[]>([]);
 	const [input, setInput] = useState("");
 	const [isTyping, setIsTyping] = useState(false);
+	const [showBubble, setShowBubble] = useState(false);
 	const messagesEndRef = useRef<HTMLDivElement>(null);
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	const quickActions = getQuickActions();
+
+	const bubbleTexts = [
+		"Ask me anything! 💬",
+		"Need help finding a tool? 🔍",
+		"Try: 'convert PNG to JPG' 📸",
+		"Try: 'generate a password' 🔐",
+		"I can help! Just ask ✨",
+		"What tool do you need? 🛠️",
+	];
+
+	const [bubbleText, setBubbleText] = useState(bubbleTexts[0]);
+
+	// Periodically show speech bubble when chat is closed
+	useEffect(() => {
+		if (isOpen) {
+			setShowBubble(false);
+			return;
+		}
+
+		// Show bubble every 45 seconds, dismiss after 5 seconds
+		const showBubbleOnce = () => {
+			const randomText = bubbleTexts[Math.floor(Math.random() * bubbleTexts.length)];
+			setBubbleText(randomText);
+			setShowBubble(true);
+			setTimeout(() => setShowBubble(false), 5000);
+		};
+
+		// First show after 8 seconds
+		const initialTimer = setTimeout(showBubbleOnce, 8000);
+		// Then every 45 seconds
+		const interval = setInterval(showBubbleOnce, 45000);
+
+		return () => {
+			clearTimeout(initialTimer);
+			clearInterval(interval);
+		};
+	}, [isOpen]);
 
 	const scrollToBottom = useCallback(() => {
 		messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -129,7 +167,12 @@ export default function AIAssistant() {
 			// Link: [text](url)
 			const linkMatch = remaining.match(/\[(.+?)\]\((.+?)\)/);
 
-			let nextMatch: { type: string; index: number; full: string; groups: string[] } | null = null;
+			let nextMatch: {
+				type: string;
+				index: number;
+				full: string;
+				groups: string[];
+			} | null = null;
 
 			if (boldMatch && boldMatch.index !== undefined) {
 				nextMatch = {
@@ -223,6 +266,13 @@ export default function AIAssistant() {
 					>
 						<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
 					</svg>
+				)}
+
+				{/* Dynamic speech bubble */}
+				{showBubble && !isOpen && (
+					<div style="position: absolute; bottom: 64px; right: 0; white-space: nowrap; padding: 10px 16px; background: var(--color-surface-card); border: 1px solid var(--color-hairline); border-radius: 20px 20px 4px 20px; font-size: 13px; color: var(--color-body); box-shadow: 0 4px 16px rgba(0,0,0,0.1); animation: bubble-pop 0.3s ease-out; pointer-events: none;">
+						{bubbleText}
+					</div>
 				)}
 			</button>
 
@@ -393,6 +443,11 @@ export default function AIAssistant() {
         @keyframes ai-bounce {
           0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
           40% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes bubble-pop {
+          0% { transform: scale(0.7) translateY(8px); opacity: 0; }
+          60% { transform: scale(1.05) translateY(-2px); opacity: 1; }
+          100% { transform: scale(1) translateY(0); opacity: 1; }
         }
       `}</style>
 		</>

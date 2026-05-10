@@ -155,6 +155,11 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
 	"text-translator": lazy(() => import("./TextTranslator")),
 	"speech-to-text": lazy(() => import("./SpeechToText")),
 	"text-to-speech": lazy(() => import("./TextToSpeech")),
+	ner: lazy(() => import("./NamedEntityRecognition")),
+	"face-detection": lazy(() => import("./FaceDetection")),
+	"paraphrase-generator": lazy(() => import("./ParaphraseGenerator")),
+	"language-detector": lazy(() => import("./LanguageDetector")),
+	"keyword-extractor": lazy(() => import("./KeywordExtractor")),
 
 	// Converter Tools — Number Systems
 	"number-base-converter": lazy(() => import("./NumberBaseConverter")),

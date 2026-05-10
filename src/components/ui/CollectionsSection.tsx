@@ -1,0 +1,254 @@
+import { useCallback, useEffect, useState } from "preact/hooks";
+import {
+	type ToolCollection,
+	getCollections,
+	createCollection,
+	addToolToCollection,
+	deleteCollection,
+} from "../../utils/collections";
+import CollectionManager from "./CollectionManager";
+
+interface Tool {
+	id: string;
+	name: string;
+	description: string;
+	category: string;
+	slug: string;
+}
+
+interface Category {
+	id: string;
+	name: string;
+	color: string;
+}
+
+interface Props {
+	tools: Tool[];
+	categories: Category[];
+}
+
+const SUGGESTED_COLLECTIONS = [
+	{
+		name: "Developer Essentials",
+		description: "Must-have tools for software development",
+		color: "#a855f7",
+		toolIds: [
+			"json-formatter",
+			"base64-encoder",
+			"hash-generator",
+			"regex-tester",
+			"uuid-generator",
+		],
+	},
+	{
+		name: "Content Creator",
+		description: "Tools for writers, bloggers, and social media managers",
+		color: "#ec4899",
+		toolIds: [
+			"word-counter",
+			"case-converter",
+			"image-compressor",
+			"text-to-speech",
+			"qr-code-generator",
+		],
+	},
+	{
+		name: "Student Toolkit",
+		description: "Study smarter with these essential student tools",
+		color: "#6366f1",
+		toolIds: [
+			"flashcard-maker",
+			"grade-calculator",
+			"citation-generator",
+			"word-counter",
+			"text-to-speech",
+		],
+	},
+];
+
+export default function CollectionsSection({ tools, categories }: Props) {
+	const [collections, setCollections] = useState<ToolCollection[]>([]);
+	const [showManager, setShowManager] = useState(false);
+
+	const loadCollections = useCallback(() => {
+		try {
+			setCollections(getCollections());
+		} catch {}
+	}, []);
+
+	useEffect(() => {
+		loadCollections();
+		const handler = () => loadCollections();
+		window.addEventListener("storage", handler);
+		return () => window.removeEventListener("storage", handler);
+	}, [loadCollections]);
+
+	const getCategory = (catId: string) => categories.find((c) => c.id === catId);
+
+	const getTool = (toolId: string) => tools.find((t) => t.id === toolId);
+
+	const handleAddSuggested = useCallback(
+		(suggested: (typeof SUGGESTED_COLLECTIONS)[0]) => {
+			const col = createCollection(suggested.name, suggested.description, suggested.color);
+			for (const toolId of suggested.toolIds) {
+				if (tools.find((t) => t.id === toolId)) {
+					addToolToCollection(col.id, toolId);
+				}
+			}
+			loadCollections();
+		},
+		[tools, loadCollections],
+	);
+
+	// If user has collections, show the full manager
+	if (showManager || collections.length > 0) {
+		return (
+			<div>
+				<CollectionManager tools={tools} categories={categories} />
+			</div>
+		);
+	}
+
+	// Empty state: show suggested collections
+	return (
+		<section class="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+			<div class="flex items-center justify-between mb-6">
+				<div>
+					<h2 class="text-heading-xl" id="collections-heading">
+						Your Collections
+					</h2>
+					<p class="text-body-sm text-muted mt-1">
+						Organize tools into custom groups for quick access
+					</p>
+				</div>
+			</div>
+
+			<style>{`
+			.sug-folder { position: relative; margin-top: 16px; }
+			.sug-folder-tab {
+				position: absolute; top: -16px; left: 16px;
+				height: 18px; padding: 0 14px;
+				border-radius: 8px 8px 0 0;
+				display: flex; align-items: center; gap: 6px;
+				font-size: 11px; font-weight: 600; letter-spacing: 0.3px;
+				cursor: pointer; z-index: 1;
+				transition: all 0.15s ease;
+			}
+			.sug-folder-tab:hover { filter: brightness(1.1); }
+			.sug-folder-body {
+				background: var(--color-surface-card);
+				border: 1px solid var(--color-hairline);
+				border-radius: 0 12px 12px 12px;
+				overflow: hidden;
+				transition: all 0.2s ease;
+			}
+			.sug-folder-body:hover {
+				border-color: var(--color-hairline-strong, var(--color-ash));
+				box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+			}
+			.sug-folder-tab-icon {
+				width: 10px; height: 10px; border-radius: 2px;
+			}
+		`}</style>
+
+			<div class="text-center py-8 mb-8">
+				<div class="w-16 h-16 rounded-full bg-surface-card border border-hairline flex items-center justify-center mx-auto mb-4">
+					<svg
+						width="28"
+						height="28"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.5"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="text-muted"
+					>
+						<path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+					</svg>
+				</div>
+				<p class="text-body-sm text-muted mb-2">No collections yet</p>
+				<p class="text-caption text-muted mb-6">
+					Create your first collection to organize your favorite tools, or start with a suggestion
+					below.
+				</p>
+				<button class="btn-primary mb-2" onClick={() => setShowManager(true)}>
+					Create Custom Collection
+				</button>
+			</div>
+
+			{/* Suggested Collections */}
+			<div>
+				<h3 class="text-title-sm mb-4">Suggested Collections</h3>
+				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+					{SUGGESTED_COLLECTIONS.map((suggested) => {
+						const collTools = suggested.toolIds.map((id) => getTool(id)).filter(Boolean) as Tool[];
+						const previewTools = collTools.slice(0, 5);
+
+						return (
+							<div
+								key={suggested.name}
+								class="bg-surface-card border border-hairline rounded-lg overflow-hidden transition-all duration-200"
+							>
+								{/* Color accent stripe */}
+								<div style={`height: 4px; background-color: ${suggested.color}`} />
+
+								<div class="p-5">
+									<div class="flex items-start justify-between mb-2">
+										<div class="flex-1 min-w-0">
+											<h4 class="text-body-sm-strong truncate">{suggested.name}</h4>
+											<p class="text-caption text-muted mt-1">{suggested.description}</p>
+										</div>
+										<span class="badge ml-2 shrink-0">
+											{collTools.length} tool{collTools.length !== 1 ? "s" : ""}
+										</span>
+									</div>
+
+									{/* Tool preview grid */}
+									{previewTools.length > 0 && (
+										<div class="flex gap-2 mt-3">
+											{previewTools.map((tool) => {
+												const cat = getCategory(tool.category);
+												return (
+													<div
+														key={tool.id}
+														style={`width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; background-color: ${cat?.color || "#91918c"}15; color: ${cat?.color || "#91918c"}; font-size: 10px; font-weight: 600;`}
+														title={tool.name}
+													>
+														{tool.name.charAt(0)}
+													</div>
+												);
+											})}
+										</div>
+									)}
+
+									<button
+										class="btn-secondary w-full mt-4"
+										style="padding: 6px 12px; font-size: 13px;"
+										onClick={() => handleAddSuggested(suggested)}
+									>
+										<svg
+											width="14"
+											height="14"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											style="display: inline-block; vertical-align: -2px; margin-right: 4px;"
+										>
+											<line x1="12" y1="5" x2="12" y2="19" />
+											<line x1="5" y1="12" x2="19" y2="12" />
+										</svg>
+										Add to My Collections
+									</button>
+								</div>
+							</div>
+						);
+					})}
+				</div>
+			</div>
+		</section>
+	);
+}
