@@ -94,7 +94,7 @@ Currency Converter, Compound Interest Calculator, Tax Calculator, Budget Tracker
 Calorie Calculator, Water Intake Calculator, Sleep Cycle Calculator, Body Fat Calculator, Pregnancy Due Date Calculator
 
 ### Video & Audio (5)
-Video to MP3, Audios Trimmer, Volume Booster, Audio Converter, Video Speed Changer
+Video to MP3, Audio Trimmer, Volume Booster, Audio Converter, Video Speed Changer
 
 ### AI Tools (10)
 OCR — Image to Text, Background Remover, Text Summarizer, Object Detection, Grammar Checker, Image Captioning, Sentiment Analysis, Question Answering, AI Translator, Speech to Text
