@@ -23,7 +23,7 @@ A collection of free, privacy-first browser tools for images, text, PDFs, math, 
 | UI Components | [Preact](https://preactjs.com/) (~3KB) |
 | Styling | [Tailwind CSS 4](https://tailwindcss.com/) |
 | Language | TypeScript |
-| Hosting | Static (Cloudflare Pages / Vercel / Netlify) |
+| Hosting | Static (Cloudflare) |
 
 ## Getting Started
 
