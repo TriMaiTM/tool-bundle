@@ -128,32 +128,36 @@ export default function CollectionManager({ tools, categories }: Props) {
 				</div>
 
 				<style>{`
-				.folder-card { position: relative; margin-top: 16px; }
-				.folder-tab {
-					position: absolute; top: -16px; left: 16px;
-					height: 18px; padding: 0 14px;
-					border-radius: 8px 8px 0 0;
-					display: flex; align-items: center; gap: 6px;
-					font-size: 11px; font-weight: 600; letter-spacing: 0.3px;
-					cursor: pointer; z-index: 1;
-					transition: all 0.15s ease;
-				}
-				.folder-tab:hover { filter: brightness(1.1); }
-				.folder-body {
-					background: var(--color-surface-card);
-					border: 1px solid var(--color-hairline);
-					border-radius: 0 12px 12px 12px;
-					overflow: hidden;
-					transition: all 0.2s ease;
-				}
-				.folder-body:hover {
-					border-color: var(--color-hairline-strong, var(--color-ash));
-					box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-				}
-				.folder-tab-icon {
-					width: 10px; height: 10px; border-radius: 2px;
-				}
-			`}</style>
+										.collection-card {
+											position: relative;
+											background: var(--color-surface-card);
+											border: 1px solid var(--color-hairline);
+											border-radius: 16px;
+											overflow: hidden;
+											transition: all 0.2s ease;
+										}
+										.collection-card::before {
+											content: "";
+											position: absolute; top: 0; left: 0; right: 0;
+											height: 6px;
+											background: var(--card-accent);
+										}
+										.collection-card:hover {
+											transform: translateY(-3px);
+											box-shadow: 0 8px 25px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+											border-color: var(--color-hairline-strong, var(--color-ash));
+										}
+										.collection-icon {
+											width: 40px; height: 40px; border-radius: 10px;
+											display: flex; align-items: center; justify-content: center;
+											flex-shrink: 0;
+										}
+										.collection-badge {
+											display: inline-flex; align-items: center; gap: 4px;
+											padding: 3px 10px; border-radius: 9999px;
+											font-size: 11px; font-weight: 600;
+										}
+									`}</style>
 				{!showCreateForm && (
 					<button class="btn-primary" onClick={() => setShowCreateForm(true)}>
 						<svg
@@ -265,210 +269,221 @@ export default function CollectionManager({ tools, categories }: Props) {
 						const previewTools = collTools.slice(0, 5);
 
 						return (
-							<div key={collection.id} class="folder-card">
-								{/* Folder tab */}
+							<div
+								key={collection.id}
+								class="collection-card"
+								style={`--card-accent: linear-gradient(135deg, ${collection.color}, ${collection.color}cc);`}
+							>
+								{/* Card header */}
 								<div
-									class="folder-tab"
-									style={`background-color: ${collection.color}; color: white;`}
+									class="p-5 cursor-pointer select-none"
 									onClick={() => setExpandedId(isExpanded ? null : collection.id)}
 								>
-									<div class="folder-tab-icon" style="background: rgba(255,255,255,0.3);" />
-									{collTools.length} tool{collTools.length !== 1 ? "s" : ""}
-								</div>
-
-								{/* Folder body */}
-								<div class="folder-body">
-									{/* Card header */}
-									<div
-										class="p-5 cursor-pointer select-none"
-										onClick={() => setExpandedId(isExpanded ? null : collection.id)}
-									>
-										<div class="flex items-start justify-between mb-2">
-											<div class="flex-1 min-w-0">
-												<h3 class="text-body-sm-strong truncate">{collection.name}</h3>
-												{collection.description && (
-													<p class="text-caption text-muted mt-1 line-clamp-2">
-														{collection.description}
-													</p>
-												)}
-											</div>
-											<div class="flex items-center gap-1 ml-2 shrink-0">
-												<svg
-													width="16"
-													height="16"
-													viewBox="0 0 24 24"
-													fill="none"
-													stroke="currentColor"
-													stroke-width="2"
-													stroke-linecap="round"
-													stroke-linejoin="round"
-													class="text-muted transition-transform duration-200"
-													style={`transform: rotate(${isExpanded ? "180" : "0"}deg);`}
-												>
-													<polyline points="6 9 12 15 18 9" />
-												</svg>
-											</div>
+									<div class="flex items-center gap-3 mb-3">
+										<div
+											class="collection-icon"
+											style={`background: ${collection.color}15; color: ${collection.color};`}
+										>
+											<svg
+												width="20"
+												height="20"
+												viewBox="0 0 24 24"
+												fill="none"
+												stroke="currentColor"
+												stroke-width="2"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+											>
+												<path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+											</svg>
 										</div>
-
-										{/* Tool preview grid */}
-										{previewTools.length > 0 && (
-											<div class="flex gap-2 mt-3">
-												{previewTools.map((tool) => {
-													const cat = getCategory(tool.category);
-													return (
-														<div
-															key={tool.id}
-															style={`width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; background-color: ${cat?.color || "var(--color-mute)"}15; color: ${cat?.color || "var(--color-mute)"}; font-size: 10px; font-weight: 600;`}
-															title={tool.name}
-														>
-															{tool.name.charAt(0)}
-														</div>
-													);
-												})}
-												{collTools.length > 5 && (
-													<div class="text-caption text-muted flex items-center">
-														+{collTools.length - 5}
-													</div>
-												)}
-											</div>
-										)}
-
-										{previewTools.length === 0 && (
-											<p class="text-caption text-muted mt-2">No tools added yet</p>
-										)}
+										<div class="flex-1 min-w-0">
+											<h3 class="text-body-sm-strong truncate">{collection.name}</h3>
+											{collection.description && (
+												<p class="text-caption text-muted mt-0.5 line-clamp-1">
+													{collection.description}
+												</p>
+											)}
+										</div>
+										<div
+											class="collection-badge"
+											style={`background: ${collection.color}12; color: ${collection.color};`}
+										>
+											{collTools.length}
+										</div>
+										<svg
+											width="16"
+											height="16"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											class="text-muted transition-transform duration-200 shrink-0"
+											style={`transform: rotate(${isExpanded ? "180" : "0"}deg);`}
+										>
+											<polyline points="6 9 12 15 18 9" />
+										</svg>
 									</div>
 
-									{/* Expanded tools list */}
-									{isExpanded && (
-										<div class="border-t border-hairline">
-											<div class="p-4">
-												<div class="flex items-center justify-between mb-3">
-													<span class="text-caption-uppercase text-muted">
-														Tools in this collection
-													</span>
-													<div class="flex gap-2">
-														<button
-															class="btn-secondary"
-															style="padding: 4px 10px; font-size: 12px;"
-															onClick={(e: Event) => {
-																e.stopPropagation();
-																handleEdit(collection);
-															}}
-														>
-															Edit
-														</button>
-														{deleteConfirmId === collection.id ? (
-															<div class="flex gap-1 items-center">
-																<button
-																	style="padding: 4px 10px; font-size: 12px; border-radius: 6px; border: 1px solid var(--color-primary); background: var(--color-primary); color: var(--color-on-dark); cursor: pointer;"
-																	onClick={(e: Event) => {
-																		e.stopPropagation();
-																		handleDelete(collection.id);
-																	}}
-																>
-																	Confirm
-																</button>
-																<button
-																	class="btn-secondary"
-																	style="padding: 4px 10px; font-size: 12px;"
-																	onClick={(e: Event) => {
-																		e.stopPropagation();
-																		setDeleteConfirmId(null);
-																	}}
-																>
-																	Cancel
-																</button>
-															</div>
-														) : (
-															<button
-																class="btn-secondary"
-																style="padding: 4px 10px; font-size: 12px; color: var(--color-primary);"
-																onClick={(e: Event) => {
-																	e.stopPropagation();
-																	setDeleteConfirmId(collection.id);
-																}}
-															>
-																Delete
-															</button>
-														)}
+									{/* Tool preview grid */}
+									{previewTools.length > 0 && (
+										<div class="flex gap-2 mt-3">
+											{previewTools.map((tool) => {
+												const cat = getCategory(tool.category);
+												return (
+													<div
+														key={tool.id}
+														style={`width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; background-color: ${cat?.color || "var(--color-mute)"}15; color: ${cat?.color || "var(--color-mute)"}; font-size: 10px; font-weight: 600;`}
+														title={tool.name}
+													>
+														{tool.name.charAt(0)}
 													</div>
+												);
+											})}
+											{collTools.length > 5 && (
+												<div class="text-caption text-muted flex items-center">
+													+{collTools.length - 5}
 												</div>
-
-												{collTools.length > 0 ? (
-													<div class="flex flex-col gap-1">
-														{collTools.map((tool) => {
-															const cat = getCategory(tool.category);
-															return (
-																<div
-																	key={tool.id}
-																	class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors duration-150"
-																	style="background: transparent;"
-																	onMouseEnter={(e: Event) => {
-																		(e.currentTarget as HTMLElement).style.background =
-																			"var(--color-surface-soft)";
-																	}}
-																	onMouseLeave={(e: Event) => {
-																		(e.currentTarget as HTMLElement).style.background =
-																			"transparent";
-																	}}
-																>
-																	<span
-																		class="w-2 h-2 rounded-full shrink-0"
-																		style={`background-color: ${cat?.color || "var(--color-mute)"};`}
-																	/>
-																	<a
-																		href={`/${tool.category}/${tool.slug}`}
-																		class="flex-1 min-w-0 text-body-sm no-underline truncate"
-																		style="color: var(--color-on-dark);"
-																		onClick={(e: Event) => e.stopPropagation()}
-																	>
-																		{tool.name}
-																	</a>
-																	<button
-																		onClick={(e: Event) => {
-																			e.stopPropagation();
-																			handleRemoveTool(collection.id, tool.id);
-																		}}
-																		class="p-1 text-muted transition-colors shrink-0"
-																		style="background: none; border: none; cursor: pointer;"
-																		aria-label={`Remove ${tool.name} from collection`}
-																		onMouseEnter={(e: Event) => {
-																			(e.currentTarget as HTMLElement).style.color =
-																				"var(--color-primary)";
-																		}}
-																		onMouseLeave={(e: Event) => {
-																			(e.currentTarget as HTMLElement).style.color =
-																				"var(--color-mute)";
-																		}}
-																	>
-																		<svg
-																			width="14"
-																			height="14"
-																			viewBox="0 0 24 24"
-																			fill="none"
-																			stroke="currentColor"
-																			stroke-width="2"
-																			stroke-linecap="round"
-																			stroke-linejoin="round"
-																		>
-																			<line x1="18" y1="6" x2="6" y2="18" />
-																			<line x1="6" y1="6" x2="18" y2="18" />
-																		</svg>
-																	</button>
-																</div>
-															);
-														})}
-													</div>
-												) : (
-													<p class="text-caption text-muted text-center py-4">
-														No tools in this collection yet. Use the "Add to Collection" button on
-														any tool page.
-													</p>
-												)}
-											</div>
+											)}
 										</div>
 									)}
+
+									{previewTools.length === 0 && (
+										<p class="text-caption text-muted mt-2">No tools added yet</p>
+									)}
 								</div>
+
+								{/* Expanded tools list */}
+								{isExpanded && (
+									<div class="border-t border-hairline">
+										<div class="p-4">
+											<div class="flex items-center justify-between mb-3">
+												<span class="text-caption-uppercase text-muted">
+													Tools in this collection
+												</span>
+												<div class="flex gap-2">
+													<button
+														class="btn-secondary"
+														style="padding: 4px 10px; font-size: 12px;"
+														onClick={(e: Event) => {
+															e.stopPropagation();
+															handleEdit(collection);
+														}}
+													>
+														Edit
+													</button>
+													{deleteConfirmId === collection.id ? (
+														<div class="flex gap-1 items-center">
+															<button
+																style="padding: 4px 10px; font-size: 12px; border-radius: 6px; border: 1px solid var(--color-primary); background: var(--color-primary); color: var(--color-on-dark); cursor: pointer;"
+																onClick={(e: Event) => {
+																	e.stopPropagation();
+																	handleDelete(collection.id);
+																}}
+															>
+																Confirm
+															</button>
+															<button
+																class="btn-secondary"
+																style="padding: 4px 10px; font-size: 12px;"
+																onClick={(e: Event) => {
+																	e.stopPropagation();
+																	setDeleteConfirmId(null);
+																}}
+															>
+																Cancel
+															</button>
+														</div>
+													) : (
+														<button
+															class="btn-secondary"
+															style="padding: 4px 10px; font-size: 12px; color: var(--color-primary);"
+															onClick={(e: Event) => {
+																e.stopPropagation();
+																setDeleteConfirmId(collection.id);
+															}}
+														>
+															Delete
+														</button>
+													)}
+												</div>
+											</div>
+
+											{collTools.length > 0 ? (
+												<div class="flex flex-col gap-1">
+													{collTools.map((tool) => {
+														const cat = getCategory(tool.category);
+														return (
+															<div
+																key={tool.id}
+																class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors duration-150"
+																style="background: transparent;"
+																onMouseEnter={(e: Event) => {
+																	(e.currentTarget as HTMLElement).style.background =
+																		"var(--color-surface-soft)";
+																}}
+																onMouseLeave={(e: Event) => {
+																	(e.currentTarget as HTMLElement).style.background = "transparent";
+																}}
+															>
+																<span
+																	class="w-2 h-2 rounded-full shrink-0"
+																	style={`background-color: ${cat?.color || "var(--color-mute)"};`}
+																/>
+																<a
+																	href={`/${tool.category}/${tool.slug}`}
+																	class="flex-1 min-w-0 text-body-sm no-underline truncate"
+																	style="color: var(--color-on-dark);"
+																	onClick={(e: Event) => e.stopPropagation()}
+																>
+																	{tool.name}
+																</a>
+																<button
+																	onClick={(e: Event) => {
+																		e.stopPropagation();
+																		handleRemoveTool(collection.id, tool.id);
+																	}}
+																	class="p-1 text-muted transition-colors shrink-0"
+																	style="background: none; border: none; cursor: pointer;"
+																	aria-label={`Remove ${tool.name} from collection`}
+																	onMouseEnter={(e: Event) => {
+																		(e.currentTarget as HTMLElement).style.color =
+																			"var(--color-primary)";
+																	}}
+																	onMouseLeave={(e: Event) => {
+																		(e.currentTarget as HTMLElement).style.color =
+																			"var(--color-mute)";
+																	}}
+																>
+																	<svg
+																		width="14"
+																		height="14"
+																		viewBox="0 0 24 24"
+																		fill="none"
+																		stroke="currentColor"
+																		stroke-width="2"
+																		stroke-linecap="round"
+																		stroke-linejoin="round"
+																	>
+																		<line x1="18" y1="6" x2="6" y2="18" />
+																		<line x1="6" y1="6" x2="18" y2="18" />
+																	</svg>
+																</button>
+															</div>
+														);
+													})}
+												</div>
+											) : (
+												<p class="text-caption text-muted text-center py-4">
+													No tools in this collection yet. Use the "Add to Collection" button on any
+													tool page.
+												</p>
+											)}
+										</div>
+									</div>
+								)}
 							</div>
 						);
 					})}

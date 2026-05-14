@@ -3,8 +3,8 @@
 > Every tool you need. Zero uploads. 100% client-side.
 
 A collection of free, privacy-first browser tools for images, text, PDFs, math, developer utilities, and security. Every tool runs entirely in your browser — no file uploads, no accounts, no limits.
-![Preview](./preview1.png)
-![Preview](./preview2.png)
+![Preview](./preview3.png)
+![Preview](./preview4.png)
 
 ## Features
 
@@ -14,6 +14,8 @@ A collection of free, privacy-first browser tools for images, text, PDFs, math, 
 - **Free Forever** — No accounts, no subscriptions, no paywalls. Every tool is free for everyone.
 - **123 Tools** — Across 16 categories: Image, Text, Developer, PDF, Math, Security, Color, Date & Time, SEO, Data, Fun & Utility, Education, Finance, Health, Video & Audio, and **AI Tools**.
 - **Dark UI** — Clean dark canvas with electric yellow accent. Built with a consistent design system.
+- **New: Workflow Builder** — Build and automate your workflows with a visual drag-and-drop interface.
+![Preview](./preview5.png)
 
 ## Tech Stack
 

@@ -124,32 +124,36 @@ export default function CollectionsSection({ tools, categories }: Props) {
 			</div>
 
 			<style>{`
-			.sug-folder { position: relative; margin-top: 16px; }
-			.sug-folder-tab {
-				position: absolute; top: -16px; left: 16px;
-				height: 18px; padding: 0 14px;
-				border-radius: 8px 8px 0 0;
-				display: flex; align-items: center; gap: 6px;
-				font-size: 11px; font-weight: 600; letter-spacing: 0.3px;
-				cursor: pointer; z-index: 1;
-				transition: all 0.15s ease;
-			}
-			.sug-folder-tab:hover { filter: brightness(1.1); }
-			.sug-folder-body {
-				background: var(--color-surface-card);
-				border: 1px solid var(--color-hairline);
-				border-radius: 0 12px 12px 12px;
-				overflow: hidden;
-				transition: all 0.2s ease;
-			}
-			.sug-folder-body:hover {
-				border-color: var(--color-hairline-strong, var(--color-ash));
-				box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-			}
-			.sug-folder-tab-icon {
-				width: 10px; height: 10px; border-radius: 2px;
-			}
-		`}</style>
+						.collection-card {
+							position: relative;
+							background: var(--color-surface-card);
+							border: 1px solid var(--color-hairline);
+							border-radius: 16px;
+							overflow: hidden;
+							transition: all 0.2s ease;
+						}
+						.collection-card::before {
+							content: "";
+							position: absolute; top: 0; left: 0; right: 0;
+							height: 6px;
+							background: var(--card-accent);
+						}
+						.collection-card:hover {
+							transform: translateY(-3px);
+							box-shadow: 0 8px 25px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+							border-color: var(--color-hairline-strong, var(--color-ash));
+						}
+						.collection-icon {
+							width: 40px; height: 40px; border-radius: 10px;
+							display: flex; align-items: center; justify-content: center;
+							flex-shrink: 0;
+						}
+						.collection-badge {
+							display: inline-flex; align-items: center; gap: 4px;
+							padding: 3px 10px; border-radius: 9999px;
+							font-size: 11px; font-weight: 600;
+						}
+					`}</style>
 
 			<div class="text-center py-8 mb-8">
 				<div class="w-16 h-16 rounded-full bg-surface-card border border-hairline flex items-center justify-center mx-auto mb-4">
@@ -188,20 +192,38 @@ export default function CollectionsSection({ tools, categories }: Props) {
 						return (
 							<div
 								key={suggested.name}
-								class="bg-surface-card border border-hairline rounded-lg overflow-hidden transition-all duration-200"
+								class="collection-card"
+								style={`--card-accent: linear-gradient(135deg, ${suggested.color}, ${suggested.color}cc);`}
 							>
-								{/* Color accent stripe */}
-								<div style={`height: 4px; background-color: ${suggested.color}`} />
-
 								<div class="p-5">
-									<div class="flex items-start justify-between mb-2">
+									<div class="flex items-center gap-3 mb-3">
+										<div
+											class="collection-icon"
+											style={`background: ${suggested.color}15; color: ${suggested.color};`}
+										>
+											<svg
+												width="20"
+												height="20"
+												viewBox="0 0 24 24"
+												fill="none"
+												stroke="currentColor"
+												stroke-width="2"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+											>
+												<path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+											</svg>
+										</div>
 										<div class="flex-1 min-w-0">
 											<h4 class="text-body-sm-strong truncate">{suggested.name}</h4>
-											<p class="text-caption text-muted mt-1">{suggested.description}</p>
+											<p class="text-caption text-muted mt-0.5">{suggested.description}</p>
 										</div>
-										<span class="badge ml-2 shrink-0">
-											{collTools.length} tool{collTools.length !== 1 ? "s" : ""}
-										</span>
+										<div
+											class="collection-badge"
+											style={`background: ${suggested.color}12; color: ${suggested.color};`}
+										>
+											{collTools.length}
+										</div>
 									</div>
 
 									{/* Tool preview grid */}
