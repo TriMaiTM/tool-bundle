@@ -136,6 +136,31 @@ export const categories: Category[] = [
 		color: "#8b5cf6",
 		toolCount: 0,
 	},
+	{
+		id: "utility",
+		name: "Utility Tools",
+		description: "Link shortener, invoice generator, signature maker, favicon generator, notepad.",
+		icon: "wrench",
+		color: "#78716c",
+		toolCount: 0,
+	},
+	{
+		id: "account",
+		name: "Account & Identity",
+		description: "Generate usernames, validate emails, phones, credit cards, and IBANs.",
+		icon: "user-circle",
+		color: "#0ea5e9",
+		toolCount: 0,
+	},
+	{
+		id: "game",
+		name: "Game Tools",
+		description:
+			"Error code lookup, DPI calculator, sensitivity converter, crosshair generator, and more.",
+		icon: "gamepad-2",
+		color: "#f97316",
+		toolCount: 0,
+	},
 ];
 
 export function getCategoryById(id: string): Category | undefined {

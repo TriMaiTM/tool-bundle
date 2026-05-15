@@ -92,6 +92,11 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
 	"barcode-generator": lazy(() => import("./BarcodeGenerator")),
 	"jwt-encoder": lazy(() => import("./JwtEncoder")),
 	"hash-file": lazy(() => import("./HashFile")),
+	"ip-lookup": lazy(() => import("./IpLookup")),
+	"dns-lookup": lazy(() => import("./DnsLookup")),
+	"ssl-checker": lazy(() => import("./SslChecker")),
+	"password-breach": lazy(() => import("./PasswordBreach")),
+	"csp-evaluator": lazy(() => import("./CspEvaluator")),
 
 	// Color Tools
 	"color-picker": lazy(() => import("./ColorPicker")),
@@ -233,8 +238,29 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
 	"time-to-seconds": lazy(() => import("./TimeToSeconds")),
 	"html-to-text": lazy(() => import("./HtmlToText")),
 
+	// Account Tools
+	"username-generator": lazy(() => import("./UsernameGenerator")),
+	"email-validator": lazy(() => import("./EmailValidator")),
+	"phone-validator": lazy(() => import("./PhoneValidator")),
+	"credit-card-validator": lazy(() => import("./CreditCardValidator")),
+	"iban-validator": lazy(() => import("./IbanValidator")),
+
+	// Game Tools
+	"error-code-lookup": lazy(() => import("./ErrorCodeLookup")),
+	"dpi-calculator": lazy(() => import("./DpiCalculator")),
+	"sensitivity-converter": lazy(() => import("./SensitivityConverter")),
+	"crosshair-generator": lazy(() => import("./CrosshairGenerator")),
+	"game-timer": lazy(() => import("./GameTimer")),
+
 	// Workflow
 	"workflow-builder": lazy(() => import("../workflow/WorkflowCanvasEditor")),
+
+	// Utility Tools
+	"link-shortener": lazy(() => import("./LinkShortener")),
+	"invoice-generator": lazy(() => import("./InvoiceGenerator")),
+	"signature-generator": lazy(() => import("./SignatureGenerator")),
+	"favicon-generator": lazy(() => import("./FaviconGenerator")),
+	notepad: lazy(() => import("./Notepad")),
 };
 
 // Image converter tools with their specific configurations

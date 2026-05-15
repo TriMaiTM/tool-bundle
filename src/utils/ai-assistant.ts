@@ -565,6 +565,118 @@ const toolKnowledge: Record<string, ToolKnowledge> = {
 		description: "Minify CSS code to reduce file size",
 		useCases: ["production builds", "performance optimization", "faster loading"],
 	},
+	"ip-lookup": {
+		keywords: ["ip", "address", "lookup", "geolocation", "isp", "location", "public ip"],
+		description: "Look up IP address with geolocation info",
+		useCases: ["network troubleshooting", "VPN verification", "security audit"],
+	},
+	"dns-lookup": {
+		keywords: ["dns", "domain", "records", "mx", "lookup", "nameserver", "txt"],
+		description: "Query DNS records for any domain",
+		useCases: ["domain configuration", "email setup", "DNS troubleshooting"],
+	},
+	"ssl-checker": {
+		keywords: ["ssl", "certificate", "https", "security", "check", "expiry", "issuer"],
+		description: "Check SSL certificate details for domains",
+		useCases: ["certificate monitoring", "security audit", "troubleshooting"],
+	},
+	"password-breach": {
+		keywords: ["password", "breach", "leak", "security", "haveibeenpwned", "pwned", "check"],
+		description: "Check if passwords have been exposed in breaches",
+		useCases: ["password security", "account protection", "security audit"],
+	},
+	"csp-evaluator": {
+		keywords: ["csp", "content-security-policy", "security", "headers", "xss", "evaluate"],
+		description: "Analyze Content Security Policy headers",
+		useCases: ["web security", "XSS prevention", "security hardening"],
+	},
+	"username-generator": {
+		keywords: ["username", "generate", "gamer", "name", "random", "nickname", "alias"],
+		description: "Generate unique usernames in various styles",
+		useCases: ["account creation", "gaming profiles", "social media handles"],
+	},
+	"email-validator": {
+		keywords: ["email", "validate", "check", "verify", "disposable", "bulk"],
+		description: "Validate email addresses in bulk",
+		useCases: ["email list cleaning", "signup validation", "spam prevention"],
+	},
+	"phone-validator": {
+		keywords: ["phone", "validate", "number", "international", "format", "e164"],
+		description: "Validate and format phone numbers",
+		useCases: ["contact validation", "SMS marketing", "form validation"],
+	},
+	"credit-card-validator": {
+		keywords: ["credit", "card", "luhn", "validate", "visa", "mastercard", "amex"],
+		description: "Validate credit card numbers using Luhn algorithm",
+		useCases: ["payment form validation", "card type detection", "test data"],
+	},
+	"iban-validator": {
+		keywords: ["iban", "bank", "validate", "account", "international", "swift"],
+		description: "Validate IBAN numbers for international banking",
+		useCases: ["payment validation", "bank transfers", "SEPA payments"],
+	},
+	"error-code-lookup": {
+		keywords: [
+			"error",
+			"code",
+			"vanguard",
+			"steam",
+			"playstation",
+			"xbox",
+			"epic",
+			"fix",
+			"solution",
+		],
+		description: "Look up error codes for gaming platforms",
+		useCases: ["troubleshooting", "game errors", "platform issues"],
+	},
+	"dpi-calculator": {
+		keywords: ["dpi", "edpi", "sensitivity", "mouse", "fps", "gaming", "360"],
+		description: "Calculate eDPI and sensitivity for FPS games",
+		useCases: ["mouse settings", "sensitivity optimization", "gaming setup"],
+	},
+	"sensitivity-converter": {
+		keywords: ["sensitivity", "convert", "mouse", "valorant", "cs2", "apex", "fortnite"],
+		description: "Convert mouse sensitivity between games",
+		useCases: ["switching games", "sensitivity matching", "aim consistency"],
+	},
+	"crosshair-generator": {
+		keywords: ["crosshair", "valorant", "cs2", "overwatch", "generate", "custom", "pro"],
+		description: "Create custom crosshairs for FPS games",
+		useCases: ["crosshair customization", "pro settings", "aim improvement"],
+	},
+	"game-timer": {
+		keywords: ["timer", "pomodoro", "stopwatch", "session", "gaming", "productivity", "break"],
+		description: "Timer and session tracker for gaming",
+		useCases: ["gaming sessions", "break reminders", "play time tracking"],
+	},
+
+	// ── Utility Tools ─────────────────────────────────────────────────────────
+	"link-shortener": {
+		keywords: ["link", "shorten", "url", "qr", "hash", "short", "tiny"],
+		description: "Shorten URLs and generate QR codes",
+		useCases: ["social media sharing", "link management", "QR codes"],
+	},
+	"invoice-generator": {
+		keywords: ["invoice", "generate", "billing", "business", "pdf", "receipt"],
+		description: "Create professional invoices",
+		useCases: ["freelancing", "business billing", "client invoicing"],
+	},
+	"signature-generator": {
+		keywords: ["signature", "draw", "digital", "sign", "canvas", "handwritten"],
+		description: "Draw and download digital signatures",
+		useCases: ["document signing", "digital forms", "email signatures"],
+	},
+	"favicon-generator": {
+		keywords: ["favicon", "icon", "generate", "pwa", "apple-touch", "website"],
+		description: "Generate favicons for websites",
+		useCases: ["web development", "branding", "PWA icons"],
+	},
+	notepad: {
+		keywords: ["notepad", "notes", "write", "save", "text", "quick", "memo"],
+		description: "Online notepad with auto-save",
+		useCases: ["quick notes", "draft writing", "code snippets"],
+	},
 };
 
 // ─── Response Generator ──────────────────────────────────────────────────────

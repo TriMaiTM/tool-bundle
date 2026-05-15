@@ -1372,6 +1372,101 @@ export const tools: Tool[] = [
 		slug: "hash-file",
 		tags: ["hash", "file", "sha", "checksum", "verify", "integrity"],
 	},
+	{
+		id: "ip-lookup",
+		name: "IP Address Lookup",
+		description: "Look up your public IP address with geolocation, ISP, and timezone info.",
+		category: "security",
+		icon: "globe",
+		slug: "ip-lookup",
+		tags: ["ip", "address", "lookup", "geolocation", "isp"],
+	},
+	{
+		id: "dns-lookup",
+		name: "DNS Lookup",
+		description: "Query DNS records for any domain — A, AAAA, MX, NS, TXT, CNAME.",
+		category: "security",
+		icon: "server",
+		slug: "dns-lookup",
+		tags: ["dns", "domain", "records", "mx", "lookup"],
+	},
+	{
+		id: "ssl-checker",
+		name: "SSL Checker",
+		description: "Check SSL certificate details for any domain — issuer, expiry, chain.",
+		category: "security",
+		icon: "shield-check",
+		slug: "ssl-checker",
+		tags: ["ssl", "certificate", "https", "security", "check"],
+	},
+	{
+		id: "password-breach",
+		name: "Password Breach Checker",
+		description:
+			"Check if a password has been exposed in data breaches — privacy-first k-anonymity.",
+		category: "security",
+		icon: "shield-alert",
+		slug: "password-breach",
+		tags: ["password", "breach", "leak", "security", "haveibeenpwned"],
+	},
+	{
+		id: "csp-evaluator",
+		name: "CSP Evaluator",
+		description: "Analyze Content Security Policy headers for security issues and best practices.",
+		category: "security",
+		icon: "file-warning",
+		slug: "csp-evaluator",
+		tags: ["csp", "content-security-policy", "security", "headers", "evaluate"],
+	},
+
+	// ============================================
+	// Account Tools
+	// ============================================
+	{
+		id: "username-generator",
+		name: "Username Generator",
+		description: "Generate unique usernames — gamer, professional, funny, or random styles.",
+		category: "account",
+		icon: "user-plus",
+		slug: "username-generator",
+		tags: ["username", "generate", "gamer", "name", "random"],
+	},
+	{
+		id: "email-validator",
+		name: "Email Validator",
+		description: "Validate email addresses — format check, disposable detection, bulk support.",
+		category: "account",
+		icon: "mail-check",
+		slug: "email-validator",
+		tags: ["email", "validate", "check", "disposable", "bulk"],
+	},
+	{
+		id: "phone-validator",
+		name: "Phone Validator",
+		description: "Validate phone numbers — country detection, format E.164, bulk support.",
+		category: "account",
+		icon: "phone",
+		slug: "phone-validator",
+		tags: ["phone", "validate", "number", "international", "format"],
+	},
+	{
+		id: "credit-card-validator",
+		name: "Credit Card Validator",
+		description: "Validate credit card numbers — Luhn algorithm, card type detection, formatting.",
+		category: "account",
+		icon: "credit-card",
+		slug: "credit-card-validator",
+		tags: ["credit", "card", "luhn", "validate", "visa", "mastercard"],
+	},
+	{
+		id: "iban-validator",
+		name: "IBAN Validator",
+		description: "Validate IBAN numbers — checksum, country detection, bank info, formatting.",
+		category: "account",
+		icon: "landmark",
+		slug: "iban-validator",
+		tags: ["iban", "bank", "validate", "account", "international"],
+	},
 
 	// ============================================
 	// CSS & Design Tools (in Developer category)
@@ -1828,6 +1923,55 @@ export const tools: Tool[] = [
 	},
 
 	// ============================================
+	// Game Tools
+	// ============================================
+	{
+		id: "error-code-lookup",
+		name: "Error Code Lookup",
+		description: "Look up error codes for Riot, Steam, PlayStation, Xbox, Epic Games, and Windows.",
+		category: "game",
+		icon: "alert-triangle",
+		slug: "error-code-lookup",
+		tags: ["error", "code", "vanguard", "steam", "playstation", "xbox", "lookup"],
+	},
+	{
+		id: "dpi-calculator",
+		name: "DPI Calculator",
+		description: "Calculate eDPI, cm/360\u00b0, and sensitivity for FPS games.",
+		category: "game",
+		icon: "mouse",
+		slug: "dpi-calculator",
+		tags: ["dpi", "edpi", "sensitivity", "mouse", "fps", "gaming"],
+	},
+	{
+		id: "sensitivity-converter",
+		name: "Sensitivity Converter",
+		description: "Convert mouse sensitivity between 12+ FPS games.",
+		category: "game",
+		icon: "repeat",
+		slug: "sensitivity-converter",
+		tags: ["sensitivity", "convert", "mouse", "valorant", "cs2", "apex"],
+	},
+	{
+		id: "crosshair-generator",
+		name: "Crosshair Generator",
+		description: "Create and customize crosshairs for Valorant, CS2, and Overwatch 2.",
+		category: "game",
+		icon: "crosshair",
+		slug: "crosshair-generator",
+		tags: ["crosshair", "valorant", "cs2", "overwatch", "generate", "custom"],
+	},
+	{
+		id: "game-timer",
+		name: "Game Timer",
+		description: "Pomodoro timer, session tracker, and stopwatch for gamers.",
+		category: "game",
+		icon: "timer",
+		slug: "game-timer",
+		tags: ["timer", "pomodoro", "stopwatch", "session", "gaming", "productivity"],
+	},
+
+	// ============================================
 	// Workflow Tools
 	// ============================================
 	{
@@ -1840,6 +1984,55 @@ export const tools: Tool[] = [
 		slug: "workflow-builder",
 		featured: true,
 		tags: ["workflow", "pipeline", "chain", "batch", "automation"],
+	},
+
+	// ============================================
+	// Utility Tools
+	// ============================================
+	{
+		id: "link-shortener",
+		name: "Link Shortener",
+		description: "Shorten URLs and generate QR codes — client-side hash-based shortening.",
+		category: "utility",
+		icon: "link",
+		slug: "link-shortener",
+		tags: ["link", "shorten", "url", "qr", "hash"],
+	},
+	{
+		id: "invoice-generator",
+		name: "Invoice Generator",
+		description: "Create professional invoices with line items, tax, and print support.",
+		category: "utility",
+		icon: "file-text",
+		slug: "invoice-generator",
+		tags: ["invoice", "generate", "billing", "business", "pdf"],
+	},
+	{
+		id: "signature-generator",
+		name: "Signature Generator",
+		description: "Draw and download digital signatures as PNG or SVG.",
+		category: "utility",
+		icon: "pen-tool",
+		slug: "signature-generator",
+		tags: ["signature", "draw", "digital", "sign", "canvas"],
+	},
+	{
+		id: "favicon-generator",
+		name: "Favicon Generator",
+		description: "Generate favicons from text or images — multiple sizes and formats.",
+		category: "utility",
+		icon: "image",
+		slug: "favicon-generator",
+		tags: ["favicon", "icon", "generate", "pwa", "apple-touch"],
+	},
+	{
+		id: "notepad",
+		name: "Online Notepad",
+		description: "Quick notes with auto-save, export, and multiple note support.",
+		category: "utility",
+		icon: "notepad-text",
+		slug: "notepad",
+		tags: ["notepad", "notes", "write", "save", "text"],
 	},
 ];
 
