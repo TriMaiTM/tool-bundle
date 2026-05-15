@@ -394,15 +394,34 @@ body {
 /* Inputs */
 .input {
 	width: 100%;
-	padding: 11px 15px;
-	height: 44px;
+	padding: 5px 15px;
+	min-height: 44px;
 	background-color: var(--color-canvas);
 	color: var(--color-ink);
 	font-size: var(--text-body-md);
+	line-height: 1.4;
 	border: 1px solid var(--color-ash);
 	border-radius: var(--radius-md);
 	outline: none;
 	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+select.input,
+select {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	height: 44px;
+	min-height: 44px;
+	line-height: 1.4;
+	cursor: pointer;
+	background-color: var(--color-canvas);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2391918c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right 12px center;
+	padding-right: 36px;
+	font-size: var(--text-body-md);
+	color: var(--color-ink);
 }
 
 .input:focus {
