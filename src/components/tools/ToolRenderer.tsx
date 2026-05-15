@@ -30,6 +30,11 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
 	"readability-score": lazy(() => import("./ReadabilityScore")),
 	"text-to-hashtags": lazy(() => import("./TextToHashtags")),
 	"emoji-picker": lazy(() => import("./EmojiPicker")),
+	"find-replace": lazy(() => import("./FindReplace")),
+	"whitespace-remover": lazy(() => import("./WhitespaceRemover")),
+	"text-statistics": lazy(() => import("./TextStatistics")),
+	"text-wrap": lazy(() => import("./TextWrap")),
+	"text-truncate": lazy(() => import("./TextTruncate")),
 
 	// Developer Tools
 	"json-formatter": lazy(() => import("./JsonFormatter")),
@@ -58,6 +63,12 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
 	"css-grid-generator": lazy(() => import("./CssGridGenerator")),
 	"css-flexbox-generator": lazy(() => import("./CssFlexboxGenerator")),
 	"border-radius-generator": lazy(() => import("./BorderRadiusGenerator")),
+	"css-units-converter": lazy(() => import("./CssUnitsConverter")),
+	"url-parser": lazy(() => import("./UrlParser")),
+	"user-agent-parser": lazy(() => import("./UserAgentParser")),
+	"mime-type-lookup": lazy(() => import("./MimeTypeLookup")),
+	"http-status-codes": lazy(() => import("./HttpStatusCodes")),
+	"css-minifier": lazy(() => import("./CssMinifier")),
 
 	// PDF Tools
 	"pdf-merger": lazy(() => import("./PdfMerger")),
@@ -79,12 +90,17 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
 	"otp-generator": lazy(() => import("./OtpGenerator")),
 	"qr-code-generator": lazy(() => import("./QrCodeGenerator")),
 	"barcode-generator": lazy(() => import("./BarcodeGenerator")),
+	"jwt-encoder": lazy(() => import("./JwtEncoder")),
+	"hash-file": lazy(() => import("./HashFile")),
 
 	// Color Tools
 	"color-picker": lazy(() => import("./ColorPicker")),
 	"color-palette-generator": lazy(() => import("./ColorPaletteGenerator")),
 	"contrast-checker": lazy(() => import("./ContrastChecker")),
 	"css-gradient-generator": lazy(() => import("./CssGradientGenerator")),
+	"color-mixer": lazy(() => import("./ColorMixer")),
+	"color-shades": lazy(() => import("./ColorShades")),
+	"color-tints": lazy(() => import("./ColorTints")),
 
 	// Date & Time Tools
 	"countdown-timer": lazy(() => import("./CountdownTimer")),
@@ -101,6 +117,9 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
 	"csv-to-json": lazy(() => import("./CsvToJson")),
 	"json-to-csv": lazy(() => import("./JsonToCsv")),
 	"csv-formatter": lazy(() => import("./CsvFormatter")),
+	"json-to-yaml": lazy(() => import("./JsonToYaml")),
+	"tsv-to-json": lazy(() => import("./TsvToJson")),
+	"json-to-tsv": lazy(() => import("./JsonToTsv")),
 
 	// Fun Tools
 	"random-number-generator": lazy(() => import("./RandomNumberGenerator")),

@@ -362,6 +362,39 @@ const toolKnowledge: Record<string, ToolKnowledge> = {
 		description: "Browse and search emojis",
 		useCases: ["social media", "messages", "documents"],
 	},
+	"find-replace": {
+		keywords: ["find", "replace", "search", "text", "regex", "substitute"],
+		description: "Find and replace text with regex support",
+		useCases: ["bulk text editing", "code refactoring", "document cleanup"],
+	},
+	"whitespace-remover": {
+		keywords: ["whitespace", "clean", "trim", "spaces", "blank", "lines", "normalize"],
+		description: "Remove extra whitespace and clean up text formatting",
+		useCases: ["code cleanup", "data cleaning", "text normalization"],
+	},
+	"text-statistics": {
+		keywords: [
+			"statistics",
+			"analysis",
+			"count",
+			"words",
+			"characters",
+			"sentences",
+			"reading time",
+		],
+		description: "Analyze text with detailed statistics",
+		useCases: ["essay analysis", "content planning", "word count verification"],
+	},
+	"text-wrap": {
+		keywords: ["wrap", "line", "break", "column", "format", "width"],
+		description: "Wrap text at specified character limit",
+		useCases: ["fixed-width formatting", "code formatting", "text layout"],
+	},
+	"text-truncate": {
+		keywords: ["truncate", "cut", "shorten", "limit", "ellipsis", "max length"],
+		description: "Truncate text to a maximum length",
+		useCases: ["preview text", "excerpt generation", "character limits"],
+	},
 	"tax-calculator": {
 		keywords: ["tax", "income", "federal", "calculate"],
 		description: "Calculate income tax",
@@ -432,6 +465,16 @@ const toolKnowledge: Record<string, ToolKnowledge> = {
 		description: "Generate barcodes",
 		useCases: ["products", "inventory", "retail"],
 	},
+	"jwt-encoder": {
+		keywords: ["jwt", "token", "encode", "auth", "jsonwebtoken", "sign"],
+		description: "Encode JWT tokens with custom payload",
+		useCases: ["API authentication", "token generation", "testing"],
+	},
+	"hash-file": {
+		keywords: ["hash", "file", "sha", "checksum", "verify", "integrity", "md5"],
+		description: "Generate hash of file contents",
+		useCases: ["file verification", "download integrity", "checksum validation"],
+	},
 	"otp-generator": {
 		keywords: ["otp", "totp", "2fa", "authenticator", "code"],
 		description: "Generate 2FA codes",
@@ -461,6 +504,66 @@ const toolKnowledge: Record<string, ToolKnowledge> = {
 		keywords: ["time", "seconds", "convert", "hhmmss", "duration"],
 		description: "Convert time to total seconds",
 		useCases: ["programming", "calculations", "video editing"],
+	},
+	"json-to-yaml": {
+		keywords: ["json", "yaml", "convert", "format", "config", "yml"],
+		description: "Convert JSON to YAML format",
+		useCases: ["config files", "docker-compose", "CI/CD pipelines"],
+	},
+	"tsv-to-json": {
+		keywords: ["tsv", "tab", "json", "convert", "spreadsheet", "data"],
+		description: "Convert TSV tab-separated data to JSON",
+		useCases: ["spreadsheet data", "tab-delimited files", "data import"],
+	},
+	"json-to-tsv": {
+		keywords: ["json", "tsv", "tab", "convert", "export", "spreadsheet"],
+		description: "Convert JSON arrays to TSV format",
+		useCases: ["data export", "spreadsheet import", "tab-delimited output"],
+	},
+	"color-mixer": {
+		keywords: ["color", "mix", "blend", "gradient", "combine", "ratio"],
+		description: "Mix two colors with adjustable ratio",
+		useCases: ["color exploration", "gradient creation", "design palettes"],
+	},
+	"color-shades": {
+		keywords: ["color", "shades", "darker", "palette", "design", "tint"],
+		description: "Generate darker shades of a color",
+		useCases: ["color palettes", "hover states", "dark mode colors"],
+	},
+	"color-tints": {
+		keywords: ["color", "tints", "lighter", "palette", "design", "pastel"],
+		description: "Generate lighter tints of a color",
+		useCases: ["color palettes", "backgrounds", "light mode colors"],
+	},
+	"css-units-converter": {
+		keywords: ["css", "units", "px", "em", "rem", "vh", "vw", "convert", "responsive"],
+		description: "Convert between CSS units",
+		useCases: ["responsive design", "font sizing", "layout calculations"],
+	},
+	"url-parser": {
+		keywords: ["url", "parse", "query", "params", "components", "breakdown"],
+		description: "Parse URL into its components",
+		useCases: ["debugging URLs", "extracting query params", "URL analysis"],
+	},
+	"user-agent-parser": {
+		keywords: ["user-agent", "browser", "os", "device", "detect", "parse"],
+		description: "Parse browser User-Agent strings",
+		useCases: ["browser detection", "device analysis", "debugging"],
+	},
+	"mime-type-lookup": {
+		keywords: ["mime", "type", "extension", "content-type", "file", "lookup"],
+		description: "Look up MIME types by file extension",
+		useCases: ["server configuration", "file upload validation", "API development"],
+	},
+	"http-status-codes": {
+		keywords: ["http", "status", "codes", "api", "error", "reference", "404", "500", "200"],
+		description: "Reference for HTTP status codes",
+		useCases: ["API development", "error debugging", "web development"],
+	},
+	"css-minifier": {
+		keywords: ["css", "minify", "compress", "optimize", "minifier", "reduce"],
+		description: "Minify CSS code to reduce file size",
+		useCases: ["production builds", "performance optimization", "faster loading"],
 	},
 };
 
