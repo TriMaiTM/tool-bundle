@@ -7,9 +7,21 @@ interface Props {
 	pubDate: Date;
 	author?: string;
 	tags?: string[];
+	headings?: any[];
+	wordCount?: number;
+	readingTime?: number;
 }
 
-const { title, description, pubDate, author = "ToolBundle", tags = [] } = Astro.props;
+const {
+	title,
+	description,
+	pubDate,
+	author = "ToolBundle",
+	tags = [],
+	headings = [],
+	wordCount = 0,
+	readingTime = 1,
+} = Astro.props;
 
 const SITE_URL = "https://toolbundle.app";
 const formattedDate = pubDate.toLocaleDateString("en-US", {
@@ -33,43 +45,330 @@ const articleSchema = JSON.stringify({
 <Base title={title} description={description} canonicalUrl={`${SITE_URL}${Astro.url.pathname}`}>
   <script type="application/ld+json" set:html={articleSchema} />
 
-  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+  <!-- Reading Progress Bar -->
+  <div id="reading-progress" class="fixed top-0 left-0 h-1 bg-primary z-[60] transition-all duration-75 ease-out w-0"></div>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
     {/* Breadcrumb */}
-    <nav class="flex items-center gap-2 text-caption mb-8">
-      <a href="/" class="hover:text-on-dark transition-colors">Home</a>
+    <nav class="flex items-center gap-2 text-caption mb-6">
+      <a href="/" class="hover:text-on-dark transition-colors no-underline">Home</a>
       <span class="text-muted-soft">/</span>
-      <a href="/blog" class="hover:text-on-dark transition-colors">Blog</a>
+      <a href="/blog" class="hover:text-on-dark transition-colors no-underline">Blog</a>
       <span class="text-muted-soft">/</span>
-      <span class="text-on-dark">{title}</span>
+      <span class="text-on-dark truncate max-w-[200px] sm:max-w-xs">{title}</span>
     </nav>
 
-    {/* Article Header */}
-    <header class="mb-8">
-      <h1 class="text-display-sm mb-4">{title}</h1>
-      <div class="flex items-center gap-4 text-caption text-muted">
-        <time datetime={pubDate.toISOString()}>{formattedDate}</time>
-        <span>·</span>
-        <span>By {author}</span>
-      </div>
-      {tags.length > 0 && (
-        <div class="flex flex-wrap gap-2 mt-4">
-          {tags.map((tag) => (
-            <span class="badge">{tag}</span>
-          ))}
-        </div>
+    <div class="flex flex-col md:flex-row gap-8 md:gap-12 items-start mt-8">
+      {/* Left Column: Table of Contents (Desktop Sticky) */}
+      {headings && headings.length > 0 && (
+        <aside class="toc-sidebar hidden md:block md:w-60 shrink-0 sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto pr-4 border-r border-hairline py-1">
+          <h2 class="text-caption-uppercase text-muted mb-4 font-bold tracking-wider">On this Page</h2>
+          <nav class="toc-nav flex flex-col gap-2.5">
+            {headings
+              .filter((h) => h.depth === 2 || h.depth === 3)
+              .map((h) => {
+                const cleanText = h.text.replace(/^\d+(\.\d+)*\.?\s+/, "");
+                return (
+                  <a
+                    href={`#${h.slug}`}
+                    class={`toc-link text-body-sm text-muted hover:text-on-dark transition-all duration-150 no-underline block leading-relaxed border-l-2 border-transparent ${
+                      h.depth === 3 ? "pl-6" : "pl-3"
+                    }`}
+                    data-slug={h.slug}
+                  >
+                    {cleanText}
+                  </a>
+                );
+              })}
+          </nav>
+        </aside>
       )}
-    </header>
 
-    {/* Article Content */}
-    <div class="prose">
-      <slot />
-    </div>
+      {/* Right Column: Main Content */}
+      <article class="flex-1 min-w-0 max-w-3xl">
+        {/* Article Header */}
+        <header class="mb-8">
+          <h1 class="text-display-sm mb-4 leading-tight">{title}</h1>
+          <div class="flex items-center gap-4 text-caption text-muted flex-wrap">
+            <time datetime={pubDate.toISOString()}>{formattedDate}</time>
+            <span>·</span>
+            <span>By {author}</span>
+            {readingTime > 0 && (
+              <>
+                <span>·</span>
+                <span class="inline-flex items-center gap-1.5">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                  </svg>
+                  {readingTime} min read
+                </span>
+              </>
+            )}
+            {wordCount > 0 && (
+              <>
+                <span>·</span>
+                <span class="inline-flex items-center gap-1.5">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+                  </svg>
+                  {wordCount.toLocaleString()} words
+                </span>
+              </>
+            )}
+          </div>
+          {tags.length > 0 && (
+            <div class="flex flex-wrap gap-2 mt-4">
+              {tags.map((tag) => (
+                <span class="badge">{tag}</span>
+              ))}
+            </div>
+          )}
+        </header>
 
-    {/* Back to Blog */}
-    <div class="mt-12 pt-8 border-t border-hairline">
-      <a href="/blog" class="text-body-sm text-primary hover:text-primary-active transition-colors no-underline">
-        ← Back to Blog
-      </a>
+        {/* Mobile Collapsible Table of Contents Accordion */}
+        {headings && headings.length > 0 && (
+          <div class="block md:hidden mb-8 border border-hairline rounded-lg bg-surface-card overflow-hidden transition-all duration-200">
+            <button
+              id="mobile-toc-toggle"
+              class="w-full flex items-center justify-between px-5 py-4 text-body-sm-strong text-on-dark font-semibold hover:bg-surface-elevated transition-colors"
+              aria-expanded="false"
+              aria-controls="mobile-toc-content"
+            >
+              <span>Table of Contents</span>
+              <svg
+                id="mobile-toc-chevron"
+                class="w-4 h-4 text-muted transition-transform duration-200"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            <div
+              id="mobile-toc-content"
+              class="hidden px-5 pb-5 border-t border-hairline pt-3"
+            >
+              <nav class="flex flex-col gap-2.5">
+                {headings
+                  .filter((h) => h.depth === 2 || h.depth === 3)
+                  .map((h) => {
+                    const cleanText = h.text.replace(/^\d+(\.\d+)*\.?\s+/, "");
+                    return (
+                      <a
+                        href={`#${h.slug}`}
+                        class={`text-body-sm text-muted hover:text-on-dark transition-colors no-underline block leading-relaxed ${
+                          h.depth === 3 ? "pl-4" : ""
+                        }`}
+                      >
+                        {cleanText}
+                      </a>
+                    );
+                  })}
+              </nav>
+            </div>
+          </div>
+        )}
+
+        {/* Article Content */}
+        <div class="prose">
+          <slot />
+        </div>
+
+        {/* Author & Share Section */}
+        <div class="mt-12 pt-8 border-t border-hairline flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          {/* Author Card */}
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-surface-card border border-hairline flex items-center justify-center font-bold text-lg text-primary select-none shrink-0">
+              TB
+            </div>
+            <div>
+              <h3 class="text-body-strong font-semibold mb-0.5">Written by {author}</h3>
+              <p class="text-caption text-muted m-0">Offline-first web utilities and guides for developers and writers.</p>
+            </div>
+          </div>
+
+          {/* Share Actions */}
+          <div class="flex items-center gap-3 w-full md:w-auto justify-start md:justify-end">
+            <span class="text-caption text-muted hidden sm:inline">Share:</span>
+            <button
+              id="share-twitter"
+              class="btn-secondary h-9 px-4 rounded-full flex items-center gap-1.5 text-body-sm font-semibold cursor-pointer"
+              aria-label="Share on X"
+            >
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+              <span>Share</span>
+            </button>
+            <button
+              id="share-link"
+              class="btn-secondary h-9 px-4 rounded-full flex items-center gap-1.5 text-body-sm font-semibold cursor-pointer relative"
+              aria-label="Copy article link"
+            >
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" /><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+              </svg>
+              <span>Copy Link</span>
+              <span id="copy-success" class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-charcoal text-on-dark text-[11px] px-2.5 py-1 rounded opacity-0 pointer-events-none transition-all duration-150 shadow-md whitespace-nowrap">
+                Link Copied!
+              </span>
+            </button>
+          </div>
+        </div>
+
+        {/* Back to Blog */}
+        <div class="mt-8 pt-6 border-t border-hairline">
+          <a href="/blog" class="text-body-sm text-primary hover:text-primary-active transition-colors no-underline inline-flex items-center gap-1.5 font-bold">
+            ← Back to Blog
+          </a>
+        </div>
+      </article>
     </div>
-  </article>
+  </div>
+
+  <style is:global>
+    .toc-link.active {
+      color: var(--color-ink) !important;
+      border-left-color: var(--color-primary) !important;
+      font-weight: 600;
+    }
+
+    @media (min-width: 768px) {
+      .toc-sidebar {
+        display: block !important;
+      }
+    }
+  </style>
+
+  <script>
+    function setupBlogLayout() {
+      // 1. Mobile TOC Toggle
+      const mobileToggle = document.getElementById("mobile-toc-toggle");
+      const mobileContent = document.getElementById("mobile-toc-content");
+      const mobileChevron = document.getElementById("mobile-toc-chevron");
+
+      if (mobileToggle && mobileContent && mobileChevron) {
+        // Remove potential existing listener in case script is rerun (Astro View Transitions)
+        const oldToggle = mobileToggle.cloneNode(true);
+        mobileToggle.parentNode?.replaceChild(oldToggle, mobileToggle);
+
+        oldToggle.addEventListener("click", () => {
+          const isExpanded = oldToggle.getAttribute("aria-expanded") === "true";
+          oldToggle.setAttribute("aria-expanded", String(!isExpanded));
+          mobileContent.classList.toggle("hidden");
+          mobileChevron.classList.toggle("rotate-180");
+        });
+      }
+
+      // 2. Reading Progress Bar & Scroll Spy
+      const readingProgress = document.getElementById("reading-progress");
+      const links = document.querySelectorAll(".toc-link");
+      const headers = Array.from(document.querySelectorAll(".prose h2, .prose h3"));
+
+      function updateOnScroll() {
+        // Update reading progress bar
+        if (readingProgress) {
+          const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const progress = totalHeight > 0 ? (window.scrollY / totalHeight) * 100 : 0;
+          readingProgress.style.width = `${progress}%`;
+        }
+
+        // Update Scroll Spy active classes
+        if (links.length > 0 && headers.length > 0) {
+          const scrollPos = window.scrollY + 120;
+          const isBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 30;
+
+          let activeHeading = null;
+
+          if (isBottom) {
+            activeHeading = headers[headers.length - 1];
+          } else {
+            for (const heading of headers) {
+              if ((heading as HTMLElement).offsetTop <= scrollPos) {
+                activeHeading = heading;
+              } else {
+                break;
+              }
+            }
+          }
+
+          links.forEach((link) => {
+            if (activeHeading && link.getAttribute("data-slug") === activeHeading.getAttribute("id")) {
+              link.classList.add("active");
+              // Try scroll standard link inside sidebar into view if necessary
+              const aside = link.closest("aside");
+              if (aside) {
+                const linkRect = link.getBoundingClientRect();
+                const asideRect = aside.getBoundingClientRect();
+                if (linkRect.top < asideRect.top || linkRect.bottom > asideRect.bottom) {
+                  link.scrollIntoView({ block: "nearest", behavior: "smooth" });
+                }
+              }
+            } else {
+              link.classList.remove("active");
+            }
+          });
+        }
+      }
+
+      // 3. Smooth scroll on TOC clicks
+      links.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const slug = link.getAttribute("href")?.substring(1);
+          const target = document.getElementById(slug || "");
+          if (target) {
+            const topOffset = target.getBoundingClientRect().top + window.scrollY - 100;
+            window.scrollTo({
+              top: topOffset,
+              behavior: "smooth"
+            });
+            // Update hash without jumping
+            history.pushState(null, "", `#${slug}`);
+          }
+        });
+      });
+
+      // Register Scroll Event
+      window.addEventListener("scroll", updateOnScroll, { passive: true });
+      // Run once immediately
+      updateOnScroll();
+
+      // 4. Social Sharing Actions
+      const shareTwitter = document.getElementById("share-twitter");
+      if (shareTwitter) {
+        shareTwitter.addEventListener("click", () => {
+          const url = encodeURIComponent(window.location.href);
+          const text = encodeURIComponent(document.title);
+          window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, "_blank", "width=600,height=400");
+        });
+      }
+
+      const shareLink = document.getElementById("share-link");
+      const copySuccess = document.getElementById("copy-success");
+      if (shareLink && copySuccess) {
+        shareLink.addEventListener("click", async () => {
+          try {
+            await navigator.clipboard.writeText(window.location.href);
+            copySuccess.classList.remove("opacity-0");
+            copySuccess.classList.add("opacity-100");
+            setTimeout(() => {
+              copySuccess.classList.remove("opacity-100");
+              copySuccess.classList.add("opacity-0");
+            }, 2000);
+          } catch (err) {
+            console.error("Failed to copy link: ", err);
+          }
+        });
+      }
+    }
+
+    // Run on initial load
+    setupBlogLayout();
+
+    // Re-run in case page swaps via View Transitions
+    document.addEventListener("astro:after-swap", setupBlogLayout);
+  </script>
 </Base>
