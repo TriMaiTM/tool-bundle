@@ -23,6 +23,11 @@ export function getStaticPaths() {
 
 const { category, tool: toolSlug } = Astro.params;
 const { toolId } = Astro.props;
+
+if (toolSlug === "workflow-builder") {
+	return Astro.redirect("/workflow");
+}
+
 const toolData = getToolBySlug(category!, toolSlug!);
 
 if (!toolData) return Astro.redirect("/");

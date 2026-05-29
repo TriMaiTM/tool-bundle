@@ -1,0 +1,41 @@
+---
+import Base from "../layouts/Base.astro";
+import WorkflowCanvasEditor from "../components/workflow/WorkflowCanvasEditor";
+
+const SITE_URL = "https://toolbundle.app";
+const title = "Visual Tool Pipelines";
+const description =
+	"Chain multiple tools together visually to build custom local automated pipelines. Clean, format, parse, encode, and hash text entirely in your browser.";
+---
+
+<Base title={title} description={description} canonicalUrl={`${SITE_URL}/workflow`}>
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8" id="main-content">
+    {/* Breadcrumbs */}
+    <nav class="flex items-center gap-2 text-caption mb-6" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-on-dark transition-colors no-underline">Home</a>
+      <span class="text-muted-soft">/</span>
+      <span class="text-on-dark" aria-current="page">Workflow Pipelines</span>
+    </nav>
+
+    {/* Header */}
+    <header class="mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-card border border-hairline rounded-full text-caption text-muted mb-4">
+        <span class="inline-block w-1.5 h-1.5 rounded-full bg-primary" aria-hidden="true"></span>
+        Flagship Feature • Local Canvas Pipelines
+      </div>
+      <h1 class="text-display-sm mb-3">Visual Tool Pipelines</h1>
+      <p class="text-body-md text-muted max-w-3xl leading-relaxed">
+        Chain multiple browser tools visually to create automated local data streams. Drag and drop formatting, encryption, converters, and parsing nodes on an interactive topological sorting canvas.
+      </p>
+    </header>
+
+    {/* Privacy Warning */}
+    <div class="flex items-center gap-2 mb-6 text-caption">
+      <span class="inline-block w-2 h-2 rounded-full bg-accent-emerald" aria-hidden="true"></span>
+      <span>100% client-side execution: your data never touches any external servers</span>
+    </div>
+
+    {/* Workflow Canvas */}
+    <WorkflowCanvasEditor client:load />
+  </main>
+</Base>

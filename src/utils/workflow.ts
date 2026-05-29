@@ -46,7 +46,7 @@ export interface StepResult {
 	duration: number;
 }
 
-// ─── Workflow-Compatible Tool Registry ───────────────────────────────────────
+// ─── Helpers ─────────────────────────────────────────────────────────────────
 
 function escapeXml(s: string): string {
 	return s
@@ -57,170 +57,338 @@ function escapeXml(s: string): string {
 		.replace(/'/g, "&apos;");
 }
 
+// ─── Workflow-Compatible Tool Registry ───────────────────────────────────────
+
 export const workflowTools: Record<string, WorkflowTool> = {
 	// ── Text Transforms ─────────────────────────────────────────────────────
-	uppercase: {
-		id: "uppercase",
-		name: "Uppercase",
+	"case-converter": {
+		id: "case-converter",
+		name: "Case Converter",
 		category: "text",
-		description: "Convert text to UPPER CASE",
-		process: async (input) => input.toUpperCase(),
+		description:
+			"Convert text to UPPERCASE, lowercase, camelCase, snake_case, kebab-case, or PascalCase",
+		process: async (input, settings) => {
+			const mode = settings?.mode || "lowercase";
+			if (mode === "uppercase") return input.toUpperCase();
+			if (mode === "lowercase") return input.toLowerCase();
+			if (mode === "camelCase") {
+				return input.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
+			}
+			if (mode === "snake_case") {
+				return input
+					.replace(/\s+/g, "_")
+					.replace(/([a-z])([A-Z])/g, "$1_$2")
+					.toLowerCase()
+					.replace(/[^a-z0-9_]/g, "");
+			}
+			if (mode === "kebab-case") {
+				return input
+					.replace(/\s+/g, "-")
+					.replace(/([a-z])([A-Z])/g, "$1-$2")
+					.toLowerCase()
+					.replace(/[^a-z0-9-]/g, "");
+			}
+			if (mode === "PascalCase") {
+				const camel = input
+					.toLowerCase()
+					.replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
+				return camel.charAt(0).toUpperCase() + camel.slice(1);
+			}
+			return input;
+		},
+		settings: [
+			{
+				key: "mode",
+				label: "Mode",
+				type: "select",
+				default: "lowercase",
+				options: [
+					{ label: "lower case", value: "lowercase" },
+					{ label: "UPPER CASE", value: "uppercase" },
+					{ label: "camelCase", value: "camelCase" },
+					{ label: "snake_case", value: "snake_case" },
+					{ label: "kebab-case", value: "kebab-case" },
+					{ label: "PascalCase", value: "PascalCase" },
+				],
+			},
+		],
 	},
-	lowercase: {
-		id: "lowercase",
-		name: "Lowercase",
+	"whitespace-remover": {
+		id: "whitespace-remover",
+		name: "Whitespace Remover",
 		category: "text",
-		description: "Convert text to lower case",
-		process: async (input) => input.toLowerCase(),
+		description: "Trim whitespace or remove blank empty lines",
+		process: async (input, settings) => {
+			const mode = settings?.mode || "trim";
+			if (mode === "trim") {
+				return input
+					.split("\n")
+					.map((l) => l.trim())
+					.join("\n");
+			}
+			if (mode === "remove-empty") {
+				return input
+					.split("\n")
+					.filter((l) => l.trim())
+					.join("\n");
+			}
+			return input.replace(/\s+/g, " ");
+		},
+		settings: [
+			{
+				key: "mode",
+				label: "Action",
+				type: "select",
+				default: "trim",
+				options: [
+					{ label: "Trim line-ends", value: "trim" },
+					{ label: "Remove empty lines", value: "remove-empty" },
+					{ label: "Collapse all spaces", value: "collapse" },
+				],
+			},
+		],
 	},
-	"trim-whitespace": {
-		id: "trim-whitespace",
-		name: "Trim Whitespace",
+	"text-reverser": {
+		id: "text-reverser",
+		name: "Text Reverser",
 		category: "text",
-		description: "Remove leading/trailing whitespace from each line",
-		process: async (input) =>
-			input
-				.split("\n")
-				.map((l) => l.trim())
-				.join("\n"),
-	},
-	"remove-empty-lines": {
-		id: "remove-empty-lines",
-		name: "Remove Empty Lines",
-		category: "text",
-		description: "Remove all blank lines from text",
-		process: async (input) =>
-			input
-				.split("\n")
-				.filter((l) => l.trim())
-				.join("\n"),
-	},
-	"reverse-text": {
-		id: "reverse-text",
-		name: "Reverse Text",
-		category: "text",
-		description: "Reverse the entire text",
+		description: "Reverse the characters of the input text",
 		process: async (input) => Array.from(input).reverse().join(""),
 	},
-	"sort-lines": {
-		id: "sort-lines",
-		name: "Sort Lines",
+	"text-sorter": {
+		id: "text-sorter",
+		name: "Text Sorter",
 		category: "text",
-		description: "Sort lines alphabetically",
-		process: async (input) => input.split("\n").sort().join("\n"),
+		description: "Sort text lines alphabetically",
+		process: async (input, settings) => {
+			const order = settings?.order || "asc";
+			const sorted = input.split("\n").sort();
+			if (order === "desc") sorted.reverse();
+			return sorted.join("\n");
+		},
+		settings: [
+			{
+				key: "order",
+				label: "Order",
+				type: "select",
+				default: "asc",
+				options: [
+					{ label: "A to Z (Ascending)", value: "asc" },
+					{ label: "Z to A (Descending)", value: "desc" },
+				],
+			},
+		],
 	},
-	"remove-duplicates": {
-		id: "remove-duplicates",
+	"remove-duplicate-lines": {
+		id: "remove-duplicate-lines",
 		name: "Remove Duplicate Lines",
 		category: "text",
-		description: "Remove duplicate lines from text",
+		description: "Remove duplicate lines from input text",
 		process: async (input) => [...new Set(input.split("\n"))].join("\n"),
 	},
+	"find-replace": {
+		id: "find-replace",
+		name: "Find & Replace",
+		category: "text",
+		description: "Find and replace text strings or regular expression matches",
+		process: async (input, settings) => {
+			const search = settings?.search || "";
+			const replace = settings?.replace || "";
+			const isRegex =
+				settings?.isRegex === 1 || settings?.isRegex === "1" || settings?.isRegex === true;
+			if (!search) return input;
+			if (isRegex) {
+				const regex = new RegExp(search, "g");
+				return input.replace(regex, replace);
+			}
+			return input.replaceAll(search, replace);
+		},
+		settings: [
+			{ key: "search", label: "Search Pattern", type: "text", default: "" },
+			{ key: "replace", label: "Replacement", type: "text", default: "" },
+			{ key: "isRegex", label: "Regex (0 = No, 1 = Yes)", type: "number", default: 0 },
+		],
+	},
+	"text-repeater": {
+		id: "text-repeater",
+		name: "Text Repeater",
+		category: "text",
+		description: "Repeat the input text a specified number of times",
+		process: async (input, settings) => {
+			const count = Number(settings?.count ?? 3);
+			const separator = settings?.separator ?? "\n";
+			return Array(Math.max(1, count)).fill(input).join(separator);
+		},
+		settings: [
+			{ key: "count", label: "Repeat Count", type: "number", default: 3 },
+			{ key: "separator", label: "Separator", type: "text", default: "\n" },
+		],
+	},
+	"text-truncate": {
+		id: "text-truncate",
+		name: "Text Truncate",
+		category: "text",
+		description: "Truncate text to a maximum character length",
+		process: async (input, settings) => {
+			const max = Number(settings?.max ?? 100);
+			if (input.length <= max) return input;
+			return `${input.slice(0, max)}...`;
+		},
+		settings: [{ key: "max", label: "Max Characters", type: "number", default: 100 }],
+	},
 
-	// ── Encoding ────────────────────────────────────────────────────────────
-	"base64-encode": {
-		id: "base64-encode",
-		name: "Base64 Encode",
+	// ── Encodings ────────────────────────────────────────────────────────────
+	"base64-encoder": {
+		id: "base64-encoder",
+		name: "Base64 Encoder",
 		category: "encoding",
-		description: "Encode text to Base64",
-		process: async (input) => btoa(unescape(encodeURIComponent(input))),
+		description: "Encode or decode text in Base64 format",
+		process: async (input, settings) => {
+			const mode = settings?.mode || "encode";
+			if (mode === "decode") {
+				return decodeURIComponent(escape(atob(input.trim())));
+			}
+			return btoa(unescape(encodeURIComponent(input)));
+		},
+		settings: [
+			{
+				key: "mode",
+				label: "Action",
+				type: "select",
+				default: "encode",
+				options: [
+					{ label: "Encode to Base64", value: "encode" },
+					{ label: "Decode from Base64", value: "decode" },
+				],
+			},
+		],
 	},
-	"base64-decode": {
-		id: "base64-decode",
-		name: "Base64 Decode",
+	"url-encoder": {
+		id: "url-encoder",
+		name: "URL Encoder",
 		category: "encoding",
-		description: "Decode Base64 to text",
-		process: async (input) => decodeURIComponent(escape(atob(input.trim()))),
+		description: "Encode or decode text for URLs",
+		process: async (input, settings) => {
+			const mode = settings?.mode || "encode";
+			if (mode === "decode") {
+				return decodeURIComponent(input);
+			}
+			return encodeURIComponent(input);
+		},
+		settings: [
+			{
+				key: "mode",
+				label: "Action",
+				type: "select",
+				default: "encode",
+				options: [
+					{ label: "URL Encode", value: "encode" },
+					{ label: "URL Decode", value: "decode" },
+				],
+			},
+		],
 	},
-	"url-encode": {
-		id: "url-encode",
-		name: "URL Encode",
+	"html-entity-encoder": {
+		id: "html-entity-encoder",
+		name: "HTML Entity Encoder",
 		category: "encoding",
-		description: "Encode text for URLs",
-		process: async (input) => encodeURIComponent(input),
-	},
-	"url-decode": {
-		id: "url-decode",
-		name: "URL Decode",
-		category: "encoding",
-		description: "Decode URL-encoded text",
-		process: async (input) => decodeURIComponent(input),
-	},
-	"html-encode": {
-		id: "html-encode",
-		name: "HTML Entity Encode",
-		category: "encoding",
-		description: "Encode text to HTML entities",
-		process: async (input) =>
-			input
+		description: "Encode or decode HTML character entities",
+		process: async (input, settings) => {
+			const mode = settings?.mode || "encode";
+			if (mode === "decode") {
+				const t = document.createElement("textarea");
+				t.innerHTML = input;
+				return t.value;
+			}
+			return input
 				.replace(/&/g, "&amp;")
 				.replace(/</g, "&lt;")
 				.replace(/>/g, "&gt;")
 				.replace(/"/g, "&quot;")
 				.replace(/'/g, "&#39;")
-				.replace(/[\u0080-\uFFFF]/g, (c) => `&#${c.charCodeAt(0)};`),
-	},
-	"html-decode": {
-		id: "html-decode",
-		name: "HTML Entity Decode",
-		category: "encoding",
-		description: "Decode HTML entities to text",
-		process: async (input) => {
-			const t = document.createElement("textarea");
-			t.innerHTML = input;
-			return t.value;
+				.replace(/[\u0080-\uFFFF]/g, (c) => `&#${c.charCodeAt(0)};`);
 		},
+		settings: [
+			{
+				key: "mode",
+				label: "Action",
+				type: "select",
+				default: "encode",
+				options: [
+					{ label: "Encode HTML Entities", value: "encode" },
+					{ label: "Decode HTML Entities", value: "decode" },
+				],
+			},
+		],
 	},
 	"text-to-binary": {
 		id: "text-to-binary",
 		name: "Text to Binary",
 		category: "encoding",
-		description: "Convert text to binary (8-bit)",
-		process: async (input) =>
-			Array.from(input)
+		description: "Convert text to binary representation (and vice versa)",
+		process: async (input, settings) => {
+			const mode = settings?.mode || "encode";
+			if (mode === "decode") {
+				return input
+					.trim()
+					.split(/\s+/)
+					.map((b) => String.fromCodePoint(Number.parseInt(b, 2)))
+					.join("");
+			}
+			return Array.from(input)
 				.map((c) => c.codePointAt(0)!.toString(2).padStart(8, "0"))
-				.join(" "),
-	},
-	"binary-to-text": {
-		id: "binary-to-text",
-		name: "Binary to Text",
-		category: "encoding",
-		description: "Convert binary to text",
-		process: async (input) =>
-			input
-				.trim()
-				.split(/\s+/)
-				.map((b) => String.fromCodePoint(Number.parseInt(b, 2)))
-				.join(""),
+				.join(" ");
+		},
+		settings: [
+			{
+				key: "mode",
+				label: "Action",
+				type: "select",
+				default: "encode",
+				options: [
+					{ label: "Text to Binary", value: "encode" },
+					{ label: "Binary to Text", value: "decode" },
+				],
+			},
+		],
 	},
 	"text-to-hex": {
 		id: "text-to-hex",
 		name: "Text to Hex",
 		category: "encoding",
-		description: "Convert text to hexadecimal",
-		process: async (input) =>
-			Array.from(input)
+		description: "Convert text to hexadecimal representation (and vice versa)",
+		process: async (input, settings) => {
+			const mode = settings?.mode || "encode";
+			if (mode === "decode") {
+				return input
+					.trim()
+					.replace(/0x/gi, "")
+					.split(/\s+/)
+					.map((h) => String.fromCodePoint(Number.parseInt(h, 16)))
+					.join("");
+			}
+			return Array.from(input)
 				.map((c) => c.codePointAt(0)!.toString(16).toUpperCase().padStart(2, "0"))
-				.join(" "),
+				.join(" ");
+		},
+		settings: [
+			{
+				key: "mode",
+				label: "Action",
+				type: "select",
+				default: "encode",
+				options: [
+					{ label: "Text to Hex", value: "encode" },
+					{ label: "Hex to Text", value: "decode" },
+				],
+			},
+		],
 	},
-	"hex-to-text": {
-		id: "hex-to-text",
-		name: "Hex to Text",
+	"rot13-encoder": {
+		id: "rot13-encoder",
+		name: "ROT13 Encoder",
 		category: "encoding",
-		description: "Convert hexadecimal to text",
-		process: async (input) =>
-			input
-				.trim()
-				.replace(/0x/gi, "")
-				.split(/\s+/)
-				.map((h) => String.fromCodePoint(Number.parseInt(h, 16)))
-				.join(""),
-	},
-	rot13: {
-		id: "rot13",
-		name: "ROT13",
-		category: "encoding",
-		description: "Encode/decode with ROT13 cipher",
+		description: "Encode or decode ROT13 Caesar cipher text",
 		process: async (input) =>
 			Array.from(input)
 				.map((c) => {
@@ -231,69 +399,151 @@ export const workflowTools: Record<string, WorkflowTool> = {
 				})
 				.join(""),
 	},
+	"morse-code-converter": {
+		id: "morse-code-converter",
+		name: "Morse Code Converter",
+		category: "encoding",
+		description: "Translate alphanumeric text into Morse code and vice versa",
+		process: async (input, settings) => {
+			const mode = settings?.mode || "encode";
+			const MORSE_CODE: Record<string, string> = {
+				A: ".-",
+				B: "-...",
+				C: "-.-.",
+				D: "-..",
+				E: ".",
+				F: "..-.",
+				G: "--.",
+				H: "....",
+				I: "..",
+				J: ".---",
+				K: "-.-",
+				L: ".-..",
+				M: "--",
+				N: "-.",
+				O: "---",
+				P: ".--.",
+				Q: "--.-",
+				R: ".-.",
+				S: "...",
+				T: "-",
+				U: "..-",
+				V: "...-",
+				W: ".--",
+				X: "-..-",
+				Y: "-.--",
+				Z: "--..",
+				"1": ".----",
+				"2": "..---",
+				"3": "...--",
+				"4": "....-",
+				"5": ".....",
+				"6": "-....",
+				"7": "--...",
+				"8": "---..",
+				"9": "----.",
+				"0": "-----",
+				" ": "/",
+			};
+			if (mode === "decode") {
+				const reverseMap = Object.entries(MORSE_CODE).reduce(
+					(acc, [k, v]) => {
+						acc[v] = k;
+						return acc;
+					},
+					{} as Record<string, string>,
+				);
+				return input
+					.trim()
+					.split(/\s+/)
+					.map((code) => reverseMap[code] || code)
+					.join("");
+			}
+			return Array.from(input.toUpperCase())
+				.map((char) => MORSE_CODE[char] || char)
+				.join(" ");
+		},
+		settings: [
+			{
+				key: "mode",
+				label: "Action",
+				type: "select",
+				default: "encode",
+				options: [
+					{ label: "Text to Morse Code", value: "encode" },
+					{ label: "Morse Code to Text", value: "decode" },
+				],
+			},
+		],
+	},
 
 	// ── Hashing ─────────────────────────────────────────────────────────────
-	"sha-256": {
-		id: "sha-256",
-		name: "SHA-256 Hash",
+	"hash-generator": {
+		id: "hash-generator",
+		name: "Hash Generator",
 		category: "hashing",
-		description: "Generate SHA-256 hash of text",
-		process: async (input) => {
+		description: "Generate SHA-256, SHA-1, or SHA-512 cryptographic hashes",
+		process: async (input, settings) => {
+			const algo = settings?.algorithm || "sha256";
+			const mapping: Record<string, string> = {
+				sha256: "SHA-256",
+				sha1: "SHA-1",
+				sha512: "SHA-512",
+			};
+			const selectedAlgo = mapping[algo] || "SHA-256";
 			const data = new TextEncoder().encode(input);
-			const hash = await crypto.subtle.digest("SHA-256", data);
+			const hash = await crypto.subtle.digest(selectedAlgo, data);
 			return Array.from(new Uint8Array(hash))
 				.map((b) => b.toString(16).padStart(2, "0"))
 				.join("");
 		},
-	},
-	"sha-1": {
-		id: "sha-1",
-		name: "SHA-1 Hash",
-		category: "hashing",
-		description: "Generate SHA-1 hash of text",
-		process: async (input) => {
-			const data = new TextEncoder().encode(input);
-			const hash = await crypto.subtle.digest("SHA-1", data);
-			return Array.from(new Uint8Array(hash))
-				.map((b) => b.toString(16).padStart(2, "0"))
-				.join("");
-		},
-	},
-	"sha-512": {
-		id: "sha-512",
-		name: "SHA-512 Hash",
-		category: "hashing",
-		description: "Generate SHA-512 hash of text",
-		process: async (input) => {
-			const data = new TextEncoder().encode(input);
-			const hash = await crypto.subtle.digest("SHA-512", data);
-			return Array.from(new Uint8Array(hash))
-				.map((b) => b.toString(16).padStart(2, "0"))
-				.join("");
-		},
+		settings: [
+			{
+				key: "algorithm",
+				label: "Algorithm",
+				type: "select",
+				default: "sha256",
+				options: [
+					{ label: "SHA-256", value: "sha256" },
+					{ label: "SHA-1", value: "sha1" },
+					{ label: "SHA-512", value: "sha512" },
+				],
+			},
+		],
 	},
 
-	// ── Data Format ─────────────────────────────────────────────────────────
-	"json-format": {
-		id: "json-format",
-		name: "JSON Format",
+	// ── Data Formats ─────────────────────────────────────────────────────────
+	"json-formatter": {
+		id: "json-formatter",
+		name: "JSON Formatter",
 		category: "data",
-		description: "Format/beautify JSON with indentation",
-		process: async (input) => JSON.stringify(JSON.parse(input), null, 2),
-		settings: [{ key: "indent", label: "Indentation", type: "number", default: 2 }],
-	},
-	"json-minify": {
-		id: "json-minify",
-		name: "JSON Minify",
-		category: "data",
-		description: "Minify JSON (remove whitespace)",
-		process: async (input) => JSON.stringify(JSON.parse(input)),
+		description: "Beautify or minify JSON configurations",
+		process: async (input, settings) => {
+			const mode = settings?.mode || "format";
+			const indent = Number(settings?.indent ?? 2);
+			const obj = JSON.parse(input);
+			if (mode === "minify") return JSON.stringify(obj);
+			return JSON.stringify(obj, null, indent);
+		},
+		settings: [
+			{
+				key: "mode",
+				label: "Mode",
+				type: "select",
+				default: "format",
+				options: [
+					{ label: "Format / Beautify", value: "format" },
+					{ label: "Minify", value: "minify" },
+				],
+			},
+			{ key: "indent", label: "Indentation Spaces", type: "number", default: 2 },
+		],
 	},
 	"json-to-xml": {
 		id: "json-to-xml",
 		name: "JSON to XML",
 		category: "data",
-		description: "Convert JSON to XML format",
+		description: "Convert JSON configurations to XML element trees",
 		process: async (input, settings) => {
 			const obj = JSON.parse(input);
 			const root = settings?.rootName || "root";
@@ -321,7 +571,7 @@ export const workflowTools: Record<string, WorkflowTool> = {
 		id: "json-to-typescript",
 		name: "JSON to TypeScript",
 		category: "data",
-		description: "Convert JSON to TypeScript interface",
+		description: "Generate clean TypeScript interfaces from a JSON document",
 		process: async (input, settings) => {
 			const obj = JSON.parse(input);
 			const name = settings?.typeName || "RootType";
@@ -351,33 +601,42 @@ export const workflowTools: Record<string, WorkflowTool> = {
 		id: "yaml-to-json",
 		name: "YAML to JSON",
 		category: "data",
-		description: "Convert YAML to JSON (simple key-value)",
+		description: "Convert YAML configuration to JSON format",
 		process: async (input) => {
-			// Simple YAML parser for flat/nested objects
-			const lines = input.split("\n").filter((l) => l.trim() && !l.trim().startsWith("#"));
-			const result: any = {};
-			let current = result;
-			const stack: any[] = [result];
-			for (const line of lines) {
-				const indent = line.search(/\S/);
-				const match = line.trim().match(/^(\w+):\s*(.*)$/);
-				if (match) {
-					const key = match[1];
-					const value = match[2].trim();
-					if (value) {
-						if (/^-?\d+$/.test(value)) current[key] = Number.parseInt(value);
-						else if (/^-?\d+\.\d+$/.test(value)) current[key] = Number.parseFloat(value);
-						else if (value === "true") current[key] = true;
-						else if (value === "false") current[key] = false;
-						else current[key] = value.replace(/^["']|["']$/g, "");
-					} else {
-						current[key] = {};
-						stack.push(current);
-						current = current[key];
-					}
-				}
-			}
-			return JSON.stringify(result, null, 2);
+			const yaml = await import("js-yaml");
+			const doc = yaml.load(input);
+			return JSON.stringify(doc, null, 2);
+		},
+	},
+	"json-to-yaml": {
+		id: "json-to-yaml",
+		name: "JSON to YAML",
+		category: "data",
+		description: "Convert JSON to YAML configuration format",
+		process: async (input) => {
+			const yaml = await import("js-yaml");
+			const obj = JSON.parse(input);
+			return yaml.dump(obj);
+		},
+	},
+	"toml-to-json": {
+		id: "toml-to-json",
+		name: "TOML to JSON",
+		category: "data",
+		description: "Convert TOML configuration to JSON format",
+		process: async (input) => {
+			const parsed = parseToml(input);
+			return JSON.stringify(parsed, null, 2);
+		},
+	},
+	"json-to-toml": {
+		id: "json-to-toml",
+		name: "JSON to TOML",
+		category: "data",
+		description: "Convert JSON to TOML configuration format",
+		process: async (input) => {
+			const parsed = JSON.parse(input);
+			return jsonToToml(parsed).trim();
 		},
 	},
 	"csv-to-json": {
@@ -405,6 +664,48 @@ export const workflowTools: Record<string, WorkflowTool> = {
 			return JSON.stringify(result, null, 2);
 		},
 	},
+	"markdown-to-html": {
+		id: "markdown-to-html",
+		name: "Markdown to HTML",
+		category: "data",
+		description: "Convert Markdown syntax into HTML markup",
+		process: async (input) => {
+			const { marked } = await import("marked");
+			return marked.parse(input) as string;
+		},
+	},
+	"url-parser": {
+		id: "url-parser",
+		name: "URL Parser",
+		category: "utility",
+		description: "Extract components and search parameters from a URL into JSON",
+		process: async (input) => {
+			try {
+				const url = new URL(input.trim());
+				const params: Record<string, string> = {};
+				url.searchParams.forEach((val, key) => {
+					params[key] = val;
+				});
+				return JSON.stringify(
+					{
+						href: url.href,
+						protocol: url.protocol,
+						host: url.host,
+						hostname: url.hostname,
+						port: url.port,
+						pathname: url.pathname,
+						search: url.search,
+						hash: url.hash,
+						searchParams: params,
+					},
+					null,
+					2,
+				);
+			} catch (e: any) {
+				throw new Error(`Invalid URL: ${e.message}`);
+			}
+		},
+	},
 };
 
 // ─── Pre-built Workflow Templates ────────────────────────────────────────────
@@ -414,42 +715,56 @@ export const workflowTemplates: WorkflowTemplate[] = [
 		id: "json-processing",
 		name: "JSON Processing Pipeline",
 		description: "Format → Minify → Base64 Encode",
-		steps: [{ toolId: "json-format" }, { toolId: "json-minify" }, { toolId: "base64-encode" }],
+		steps: [
+			{ toolId: "json-formatter", settings: { mode: "format" } },
+			{ toolId: "json-formatter", settings: { mode: "minify" } },
+			{ toolId: "base64-encoder", settings: { mode: "encode" } },
+		],
 	},
 	{
 		id: "data-migration",
 		name: "Data Migration: CSV → JSON → TypeScript",
 		description: "Convert CSV data to JSON, then generate TypeScript interfaces",
-		steps: [{ toolId: "csv-to-json" }, { toolId: "json-format" }, { toolId: "json-to-typescript" }],
+		steps: [
+			{ toolId: "csv-to-json" },
+			{ toolId: "json-formatter", settings: { mode: "format" } },
+			{ toolId: "json-to-typescript" },
+		],
 	},
 	{
 		id: "text-cleanup",
 		name: "Text Cleanup Pipeline",
 		description: "Trim whitespace → Remove empty lines → Sort → Remove duplicates",
 		steps: [
-			{ toolId: "trim-whitespace" },
-			{ toolId: "remove-empty-lines" },
-			{ toolId: "sort-lines" },
-			{ toolId: "remove-duplicates" },
+			{ toolId: "whitespace-remover", settings: { mode: "trim" } },
+			{ toolId: "whitespace-remover", settings: { mode: "remove-empty" } },
+			{ toolId: "text-sorter", settings: { order: "asc" } },
+			{ toolId: "remove-duplicate-lines" },
 		],
 	},
 	{
 		id: "encoding-chain",
 		name: "Encoding Chain: Text → Base64 → URL Encode",
 		description: "Encode text through multiple layers",
-		steps: [{ toolId: "base64-encode" }, { toolId: "url-encode" }],
+		steps: [
+			{ toolId: "base64-encoder", settings: { mode: "encode" } },
+			{ toolId: "url-encoder", settings: { mode: "encode" } },
+		],
 	},
 	{
 		id: "hash-pipeline",
 		name: "Hash Pipeline: SHA-256 → Base64",
 		description: "Hash text with SHA-256, then Base64 encode the hash",
-		steps: [{ toolId: "sha-256" }, { toolId: "base64-encode" }],
+		steps: [
+			{ toolId: "hash-generator", settings: { algorithm: "sha256" } },
+			{ toolId: "base64-encoder", settings: { mode: "encode" } },
+		],
 	},
 	{
 		id: "json-to-xml-typescript",
 		name: "JSON → XML + TypeScript",
 		description: "Convert JSON to both XML and TypeScript formats",
-		steps: [{ toolId: "json-format" }, { toolId: "json-to-xml" }],
+		steps: [{ toolId: "json-formatter", settings: { mode: "format" } }, { toolId: "json-to-xml" }],
 	},
 ];
 
@@ -543,4 +858,83 @@ export function getToolsByCategory(): Record<string, WorkflowTool[]> {
 		grouped[tool.category].push(tool);
 	}
 	return grouped;
+}
+
+// ─── TOML parsing & formatting helpers ──────────────────────────────────────
+
+function parseToml(toml: string): any {
+	const result: any = {};
+	let current = result;
+	const stack: any[] = [result];
+
+	for (const rawLine of toml.split("\n")) {
+		const line = rawLine.replace(/#.*$/, "").trim();
+		if (!line) continue;
+
+		const sectionMatch = line.match(/^\[([^\]]+)\]$/);
+		if (sectionMatch) {
+			const keys = sectionMatch[1].split(".");
+			current = result;
+			for (const key of keys) {
+				if (!current[key]) current[key] = {};
+				current = current[key];
+			}
+			continue;
+		}
+
+		const kvMatch = line.match(/^(\w+)\s*=\s*(.+)$/);
+		if (kvMatch) {
+			const key = kvMatch[1];
+			let value: any = kvMatch[2].trim();
+			if (value === "true") value = true;
+			else if (value === "false") value = false;
+			else if (/^-?\d+$/.test(value)) value = Number.parseInt(value, 10);
+			else if (/^-?\d+\.\d+$/.test(value)) value = Number.parseFloat(value);
+			else if (value.startsWith('"') && value.endsWith('"')) value = value.slice(1, -1);
+			else if (value.startsWith("'") && value.endsWith("'")) value = value.slice(1, -1);
+			else if (value.startsWith("[") && value.endsWith("]")) {
+				try {
+					value = JSON.parse(value);
+				} catch {
+					/* keep as string */
+				}
+			}
+			current[key] = value;
+		}
+	}
+	return result;
+}
+
+function jsonToToml(obj: any, prefix = ""): string {
+	let result = "";
+	const simpleEntries: [string, any][] = [];
+	const tableEntries: [string, any][] = [];
+
+	for (const [key, value] of Object.entries(obj)) {
+		if (value !== null && typeof value === "object" && !Array.isArray(value)) {
+			tableEntries.push([key, value]);
+		} else {
+			simpleEntries.push([key, value]);
+		}
+	}
+
+	for (const [key, value] of simpleEntries) {
+		result += `${key} = ${formatTomlValue(value)}\n`;
+	}
+
+	for (const [key, value] of tableEntries) {
+		const fullKey = prefix ? `${prefix}.${key}` : key;
+		result += `\n[${fullKey}]\n`;
+		result += jsonToToml(value, fullKey);
+	}
+
+	return result;
+}
+
+function formatTomlValue(value: any): string {
+	if (typeof value === "string") return `"${value.replace(/"/g, '\\"')}"`;
+	if (typeof value === "boolean") return value ? "true" : "false";
+	if (typeof value === "number") return String(value);
+	if (Array.isArray(value)) return `[${value.map(formatTomlValue).join(", ")}]`;
+	return `"${String(value)}"`;
 }

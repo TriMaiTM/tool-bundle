@@ -235,6 +235,22 @@ export default function WorkflowCanvasEditor() {
 		[selectedNode],
 	);
 
+	const handleUpdateNodeSetting = useCallback((nodeId: string, key: string, value: any) => {
+		setNodes((prev) =>
+			prev.map((n) =>
+				n.id === nodeId
+					? {
+							...n,
+							settings: {
+								...n.settings,
+								[key]: value,
+							},
+						}
+					: n,
+			),
+		);
+	}, []);
+
 	const handleDeleteEdge = useCallback((edgeId: string) => {
 		setEdges((prev) => prev.filter((e) => e.id !== edgeId));
 	}, []);
@@ -370,93 +386,218 @@ export default function WorkflowCanvasEditor() {
 			{/* ─── Sidebar ─────────────────────────────────────────────────── */}
 			{showSidebar && (
 				<div style="width: 260px; border-right: 1px solid var(--color-hairline); background: var(--color-canvas); display: flex; flex-direction: column; overflow: hidden; flex-shrink: 0;">
-					{/* Sidebar header */}
-					<div style="padding: 12px 16px; border-bottom: 1px solid var(--color-hairline); display: flex; align-items: center; justify-content: space-between;">
-						<span style="font-size: 13px; font-weight: 600; color: var(--color-ink);">Tools</span>
-						<div style="display: flex; gap: 4px;">
-							<button
-								onClick={() => setShowTemplates(!showTemplates)}
-								aria-label="Templates"
-								style={`padding: 4px 8px; background: ${showTemplates ? "var(--color-primary)" : "var(--color-surface-card)"}; color: ${showTemplates ? "var(--color-on-primary)" : "var(--color-mute)"}; border: none; border-radius: 8px; cursor: pointer; font-size: 11px; font-weight: 600;`}
-							>
-								Templates
-							</button>
-							<button
-								onClick={() => setShowSidebar(false)}
-								aria-label="Close sidebar"
-								style="padding: 4px; background: none; border: none; cursor: pointer; color: var(--color-mute);"
-							>
-								<svg
-									width="14"
-									height="14"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2"
-								>
-									<line x1="18" y1="6" x2="6" y2="18" />
-									<line x1="6" y1="6" x2="18" y2="18" />
-								</svg>
-							</button>
-						</div>
-					</div>
+					{(() => {
+						const selectedNodeData = nodes.find((n) => n.id === selectedNode);
+						const selectedTool = selectedNodeData ? workflowTools[selectedNodeData.toolId] : null;
 
-					{/* Templates list */}
-					{showTemplates && (
-						<div style="padding: 8px; border-bottom: 1px solid var(--color-hairline); max-height: 200px; overflow-y: auto;">
-							{workflowTemplates.map((t) => (
-								<button
-									key={t.id}
-									onClick={() => handleLoadTemplate(t.id)}
-									style="width: 100%; text-align: left; padding: 8px 10px; background: none; border: none; cursor: pointer; border-radius: 8px; margin-bottom: 4px;"
-									onMouseEnter={(e: MouseEvent) => {
-										(e.target as HTMLElement).style.background = "var(--color-surface-card)";
-									}}
-									onMouseLeave={(e: MouseEvent) => {
-										(e.target as HTMLElement).style.background = "none";
-									}}
-								>
-									<div style="font-size: 13px; font-weight: 600; color: var(--color-ink);">
-										{t.name}
+						if (selectedNodeData && selectedTool) {
+							return (
+								<div style="flex: 1; display: flex; flex-direction: column; overflow: hidden;">
+									{/* Inspector Header */}
+									<div style="padding: 12px 16px; border-bottom: 1px solid var(--color-hairline); display: flex; align-items: center; justify-content: space-between;">
+										<span style="font-size: 13px; font-weight: 600; color: var(--color-ink);">
+											Settings
+										</span>
+										<button
+											onClick={() => setSelectedNode(null)}
+											style="font-size: 11px; background: none; border: none; cursor: pointer; color: var(--color-primary); font-weight: 600;"
+										>
+											Back to Tools
+										</button>
 									</div>
-									<div style="font-size: 11px; color: var(--color-mute); margin-top: 2px;">
-										{t.description}
-									</div>
-								</button>
-							))}
-						</div>
-					)}
 
-					{/* Tool list */}
-					<div style="flex: 1; overflow-y: auto; padding: 8px;">
-						{Object.entries(toolsByCategory).map(([cat, tools]) => (
-							<div key={cat} style="margin-bottom: 12px;">
-								<div style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--color-mute); padding: 4px 8px; margin-bottom: 4px;">
-									{cat}
+									{/* Inspector Body */}
+									<div style="flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 16px;">
+										<div>
+											<div style="font-size: 14px; font-weight: 700; color: var(--color-ink);">
+												{selectedTool.name}
+											</div>
+											<div style="font-size: 11px; color: var(--color-mute); margin-top: 4px; line-height: 1.4;">
+												{selectedTool.description}
+											</div>
+										</div>
+
+										{/* Dynamic settings forms */}
+										{selectedTool.settings && selectedTool.settings.length > 0 ? (
+											<div style="display: flex; flex-direction: column; gap: 12px; border-top: 1px solid var(--color-hairline); padding-top: 12px;">
+												{selectedTool.settings.map((setting) => {
+													const currentValue =
+														selectedNodeData.settings?.[setting.key] ?? setting.default;
+													return (
+														<div key={setting.key}>
+															<label style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--color-mute); display: block; margin-bottom: 6px;">
+																{setting.label}
+															</label>
+															{setting.type === "number" ? (
+																<input
+																	type="number"
+																	class="input"
+																	style="width: 100%; font-size: 13px; padding: 6px 10px;"
+																	value={currentValue}
+																	onChange={(e) =>
+																		handleUpdateNodeSetting(
+																			selectedNodeData.id,
+																			setting.key,
+																			Number((e.target as HTMLInputElement).value),
+																		)
+																	}
+																/>
+															) : setting.type === "select" ? (
+																<select
+																	class="input"
+																	style="width: 100%; font-size: 13px; padding: 6px 10px; background: var(--color-canvas);"
+																	value={currentValue}
+																	onChange={(e) =>
+																		handleUpdateNodeSetting(
+																			selectedNodeData.id,
+																			setting.key,
+																			(e.target as HTMLSelectElement).value,
+																		)
+																	}
+																>
+																	{setting.options?.map((opt) => (
+																		<option key={opt.value} value={opt.value}>
+																			{opt.label}
+																		</option>
+																	))}
+																</select>
+															) : (
+																<input
+																	type="text"
+																	class="input"
+																	style="width: 100%; font-size: 13px; padding: 6px 10px;"
+																	value={currentValue}
+																	onInput={(e) =>
+																		handleUpdateNodeSetting(
+																			selectedNodeData.id,
+																			setting.key,
+																			(e.target as HTMLInputElement).value,
+																		)
+																	}
+																/>
+															)}
+														</div>
+													);
+												})}
+											</div>
+										) : (
+											<div style="font-size: 12px; color: var(--color-mute); font-style: italic; border-top: 1px solid var(--color-hairline); padding-top: 12px;">
+												No configurations available.
+											</div>
+										)}
+
+										{/* Actions */}
+										<div style="margin-top: auto; border-top: 1px solid var(--color-hairline); padding-top: 12px;">
+											<button
+												onClick={() => handleDeleteNode(selectedNodeData.id)}
+												class="btn-secondary"
+												style="width: 100%; padding: 8px; font-size: 12px; color: var(--color-primary); border-color: var(--color-hairline);"
+											>
+												Delete Node
+											</button>
+										</div>
+									</div>
 								</div>
-								{tools.map((tool) => (
-									<button
-										key={tool.id}
-										onClick={() => handleAddNode(tool.id)}
-										draggable
-										onDragStart={(e: DragEvent) => {
-											e.dataTransfer?.setData("toolId", tool.id);
-										}}
-										style="width: 100%; text-align: left; padding: 6px 10px; background: none; border: none; cursor: grab; border-radius: 8px; margin-bottom: 2px; display: flex; align-items: center; gap: 8px;"
-										onMouseEnter={(e: MouseEvent) => {
-											(e.target as HTMLElement).style.background = "var(--color-surface-card)";
-										}}
-										onMouseLeave={(e: MouseEvent) => {
-											(e.target as HTMLElement).style.background = "none";
-										}}
-									>
-										<span style="width: 6px; height: 6px; border-radius: 9999px; background: var(--color-primary); flex-shrink: 0;" />
-										<span style="font-size: 13px; color: var(--color-body);">{tool.name}</span>
-									</button>
-								))}
-							</div>
-						))}
-					</div>
+							);
+						}
+
+						return (
+							<>
+								{/* Sidebar header */}
+								<div style="padding: 12px 16px; border-bottom: 1px solid var(--color-hairline); display: flex; align-items: center; justify-content: space-between;">
+									<span style="font-size: 13px; font-weight: 600; color: var(--color-ink);">
+										Tools
+									</span>
+									<div style="display: flex; gap: 4px;">
+										<button
+											onClick={() => setShowTemplates(!showTemplates)}
+											aria-label="Templates"
+											style={`padding: 4px 8px; background: ${showTemplates ? "var(--color-primary)" : "var(--color-surface-card)"}; color: ${showTemplates ? "var(--color-on-primary)" : "var(--color-mute)"}; border: none; border-radius: 8px; cursor: pointer; font-size: 11px; font-weight: 600;`}
+										>
+											Templates
+										</button>
+										<button
+											onClick={() => setShowSidebar(false)}
+											aria-label="Close sidebar"
+											style="padding: 4px; background: none; border: none; cursor: pointer; color: var(--color-mute);"
+										>
+											<svg
+												width="14"
+												height="14"
+												viewBox="0 0 24 24"
+												fill="none"
+												stroke="currentColor"
+												stroke-width="2"
+											>
+												<line x1="18" y1="6" x2="6" y2="18" />
+												<line x1="6" y1="6" x2="18" y2="18" />
+											</svg>
+										</button>
+									</div>
+								</div>
+
+								{/* Templates list */}
+								{showTemplates && (
+									<div style="padding: 8px; border-bottom: 1px solid var(--color-hairline); max-height: 200px; overflow-y: auto;">
+										{workflowTemplates.map((t) => (
+											<button
+												key={t.id}
+												onClick={() => handleLoadTemplate(t.id)}
+												style="width: 100%; text-align: left; padding: 8px 10px; background: none; border: none; cursor: pointer; border-radius: 8px; margin-bottom: 4px;"
+												onMouseEnter={(e: MouseEvent) => {
+													(e.target as HTMLElement).style.background = "var(--color-surface-card)";
+												}}
+												onMouseLeave={(e: MouseEvent) => {
+													(e.target as HTMLElement).style.background = "none";
+												}}
+											>
+												<div style="font-size: 13px; font-weight: 600; color: var(--color-ink);">
+													{t.name}
+												</div>
+												<div style="font-size: 11px; color: var(--color-mute); margin-top: 2px;">
+													{t.description}
+												</div>
+											</button>
+										))}
+									</div>
+								)}
+
+								{/* Tool list */}
+								<div style="flex: 1; overflow-y: auto; padding: 8px;">
+									{Object.entries(toolsByCategory).map(([cat, tools]) => (
+										<div key={cat} style="margin-bottom: 12px;">
+											<div style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--color-mute); padding: 4px 8px; margin-bottom: 4px;">
+												{cat}
+											</div>
+											{tools.map((tool) => (
+												<button
+													key={tool.id}
+													onClick={() => handleAddNode(tool.id)}
+													draggable
+													onDragStart={(e: DragEvent) => {
+														e.dataTransfer?.setData("toolId", tool.id);
+													}}
+													style="width: 100%; text-align: left; padding: 6px 10px; background: none; border: none; cursor: grab; border-radius: 8px; margin-bottom: 2px; display: flex; align-items: center; gap: 8px;"
+													onMouseEnter={(e: MouseEvent) => {
+														(e.target as HTMLElement).style.background =
+															"var(--color-surface-card)";
+													}}
+													onMouseLeave={(e: MouseEvent) => {
+														(e.target as HTMLElement).style.background = "none";
+													}}
+												>
+													<span style="width: 6px; height: 6px; border-radius: 9999px; background: var(--color-primary); flex-shrink: 0;" />
+													<span style="font-size: 13px; color: var(--color-body);">
+														{tool.name}
+													</span>
+												</button>
+											))}
+										</div>
+									))}
+								</div>
+							</>
+						);
+					})()}
 				</div>
 			)}
 
