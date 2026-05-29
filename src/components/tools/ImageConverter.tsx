@@ -424,7 +424,7 @@ export default function ImageConverter({ fromFormat, toFormat, targetMime, accep
 											<div class="text-caption text-muted">
 												{formatFileSize(bf.size)}
 												{bf.status === "error" && bf.error && (
-													<span class="text-error ml-2">— {bf.error}</span>
+													<span class="text-error ml-2">: {bf.error}</span>
 												)}
 											</div>
 										</div>

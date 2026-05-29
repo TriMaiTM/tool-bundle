@@ -1,5 +1,5 @@
 /**
- * SEO Utility — JSON-LD Structured Data generators
+ * SEO Utility: JSON-LD Structured Data generators
  * Schema.org compliant structured data for rich search results
  */
 
@@ -40,7 +40,7 @@ export function generateOrganizationSchema(): string {
 		name: SITE_NAME,
 		url: SITE_URL,
 		description:
-			"Free, privacy-first online tools — PDF, images, text, code, AI & more. Runs 100% in your browser.",
+			"Free, privacy-first online tools: PDF, images, text, code, AI & more. Runs 100% in your browser.",
 		sameAs: [],
 	};
 	return JSON.stringify(schema);
@@ -76,7 +76,7 @@ export function generateCollectionPageSchema(
 	const schema = {
 		"@context": "https://schema.org",
 		"@type": "CollectionPage",
-		name: `${categoryName} — ${SITE_NAME}`,
+		name: `${categoryName}: ${SITE_NAME}`,
 		description: categoryDescription,
 		url: categoryUrl,
 		isPartOf: {

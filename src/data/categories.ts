@@ -11,7 +11,7 @@ export const categories: Category[] = [
 	{
 		id: "image",
 		name: "Image Tools",
-		description: "Convert, resize, compress, and edit images — 100% in your browser.",
+		description: "Convert, resize, compress, and edit images: 100% in your browser.",
 		icon: "image",
 		color: "#3b82f6",
 		toolCount: 0,
@@ -131,7 +131,7 @@ export const categories: Category[] = [
 	{
 		id: "ai",
 		name: "AI Tools",
-		description: "AI-powered tools running 100% in your browser — private, fast, free.",
+		description: "AI-powered tools running 100% in your browser: private, fast, free.",
 		icon: "brain",
 		color: "#8b5cf6",
 		toolCount: 0,

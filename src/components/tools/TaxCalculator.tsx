@@ -287,7 +287,7 @@ export default function TaxCalculator() {
 											{detail.taxableInBracket > 0 ? (
 												<span class="text-accent-rose">${formatCurrency(detail.taxInBracket)}</span>
 											) : (
-												<span class="text-muted">—</span>
+												<span class="text-muted">:</span>
 											)}
 										</div>
 									</div>
@@ -331,12 +331,12 @@ export default function TaxCalculator() {
 												<td class="py-2 px-3 text-right text-primary">
 													{detail.taxableInBracket > 0
 														? `$${formatCurrency(detail.taxableInBracket)}`
-														: "—"}
+														: ":"}
 												</td>
 												<td class="py-2 px-3 text-right text-accent-rose">
 													{detail.taxInBracket > 0
 														? `$${formatCurrency(detail.taxInBracket)}`
-														: "—"}
+														: ":"}
 												</td>
 											</tr>
 										);

@@ -716,7 +716,7 @@ function drawCS2Crosshair(ctx: CanvasRenderingContext2D, cx: number, cy: number,
 	const halfLen = (s.size * scale) / 2;
 
 	if (s.style === 1 || s.style === 4) {
-		// Dynamic crosshair — draw lines
+		// Dynamic crosshair: draw lines
 		ctx.lineWidth = s.thickness * scale;
 
 		if (s.outline) {

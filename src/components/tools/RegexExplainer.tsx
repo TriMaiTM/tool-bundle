@@ -177,7 +177,7 @@ function tokenizeRegex(pattern: string): Token[] {
 			tokens.push({
 				type: "alternation",
 				value: "|",
-				description: "OR — match left or right side",
+				description: "OR: match left or right side",
 			});
 			i++;
 			continue;

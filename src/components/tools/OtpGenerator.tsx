@@ -171,7 +171,7 @@ export default function OtpGenerator() {
 						{copied && <span class="text-body-sm text-accent-emerald mt-2 block">Copied!</span>}
 					</div>
 
-					<div class="max-w-xs mx-auto">
+					<div class="max-w-[320px] mx-auto">
 						<div class="flex items-center justify-between mb-2">
 							<span class="text-caption-uppercase text-muted">Time Remaining</span>
 							<span class={`text-body-strong ${timeRemaining <= 5 ? "text-accent-rose" : ""}`}>

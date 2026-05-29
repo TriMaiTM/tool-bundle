@@ -4,7 +4,7 @@
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 /* ============================================
-   ToolBundle Design System — Pinterest-inspired
+   ToolBundle Design System: Pinterest-inspired
    Light canvas + Pinterest Red CTA
    Font: Inter (Pin Sans substitute)
    ============================================ */
@@ -78,11 +78,11 @@
 	--radius-full: 9999px;
 
 	/* Font Family */
-	--font-sans: "Inter", -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+	--font-sans: "Outfit", -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial,
 		sans-serif;
 	--font-mono: "JetBrains Mono", ui-monospace, monospace;
 
-	/* Font Size — Pinterest hierarchy */
+	/* Font Size: Pinterest hierarchy */
 	--text-display-xl: 70px;
 	--text-display-lg: 44px;
 	--text-heading-xl: 28px;
@@ -100,7 +100,7 @@
 }
 
 /* ============================================
-   Dark Mode — Pinterest-inspired warm dark
+   Dark Mode: Pinterest-inspired warm dark
    Activated via data-theme="dark" on <html>
    ============================================ */
 
@@ -316,7 +316,7 @@ body {
 	border-radius: var(--radius-md);
 	border: none;
 	cursor: pointer;
-	transition: background-color 0.15s ease;
+	transition: background-color 0.15s ease, transform 0.1s ease;
 }
 
 .btn-primary:hover {
@@ -344,11 +344,18 @@ body {
 	border-radius: var(--radius-md);
 	border: none;
 	cursor: pointer;
-	transition: background-color 0.15s ease;
+	transition: background-color 0.15s ease, transform 0.1s ease;
 }
 
 .btn-secondary:hover {
 	background-color: var(--color-secondary-pressed);
+}
+
+.btn-primary:active,
+.btn-secondary:active,
+.filter-chip:active,
+.category-tile:active {
+	transform: scale(0.98) translateY(1px);
 }
 
 .btn-tertiary {
@@ -636,7 +643,7 @@ select {
 }
 
 /* ============================================
-   Accessibility — Focus Styles
+   Accessibility: Focus Styles
    ============================================ */
 
 .sr-only {
@@ -698,7 +705,7 @@ a:focus-visible {
 }
 
 /* ============================================
-   Prose — Blog Content Styles
+   Prose: Blog Content Styles
    ============================================ */
 
 .prose {

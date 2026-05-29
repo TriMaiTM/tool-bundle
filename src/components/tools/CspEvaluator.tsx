@@ -188,7 +188,7 @@ function analyzeDirectives(directives: DirectiveInfo[]): Issue[] {
 			severity: "info",
 			directive: "script-src",
 			message:
-				"No explicit script-src — it falls back to default-src. Consider setting script-src explicitly for stricter control.",
+				"No explicit script-src: it falls back to default-src. Consider setting script-src explicitly for stricter control.",
 		});
 	}
 

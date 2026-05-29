@@ -104,7 +104,7 @@ logging:
 
 			{mode === "validate" && !result.error && input.trim() && (
 				<div class="bg-accent-emerald/10 border border-accent-emerald/30 rounded-lg p-4 mb-4 text-body-sm text-accent-emerald">
-					<strong>✓ Valid YAML</strong> — Parsed successfully with no errors.
+					<strong>✓ Valid YAML</strong>: Parsed successfully with no errors.
 				</div>
 			)}
 

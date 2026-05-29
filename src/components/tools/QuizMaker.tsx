@@ -346,7 +346,7 @@ export default function QuizMaker() {
 						<div class="bg-surface-elevated rounded-lg p-3">
 							<h3 class="text-title-lg text-primary mb-2">Quiz Preview</h3>
 							<p class="text-body-sm text-muted">
-								{quiz.title || "Untitled Quiz"} — {quiz.questions.length} question
+								{quiz.title || "Untitled Quiz"}: {quiz.questions.length} question
 								{quiz.questions.length !== 1 ? "s" : ""}
 							</p>
 						</div>

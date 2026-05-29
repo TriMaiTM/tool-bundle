@@ -1,5 +1,5 @@
 /**
- * Workflow Engine — Tool Chains / Pipeline execution
+ * Workflow Engine: Tool Chains / Pipeline execution
  * Supports text-based tool chaining with sequential execution
  */
 

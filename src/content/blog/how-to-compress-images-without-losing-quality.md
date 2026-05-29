@@ -17,10 +17,10 @@ Large images are the #1 cause of slow websites. In this guide, you'll learn how 
 ## Understanding Image Formats
 
 ### JPEG (JPG)
-Best for **photographs** and complex images with many colors. Uses lossy compression — you can control quality from 1-100%.
+Best for **photographs** and complex images with many colors. Uses lossy compression: you can control quality from 1-100%.
 
 ### PNG
-Best for **graphics, logos, and images with transparency**. Uses lossless compression — no quality loss, but larger file sizes.
+Best for **graphics, logos, and images with transparency**. Uses lossless compression: no quality loss, but larger file sizes.
 
 ### WebP
 The modern format that offers **25-35% smaller** file sizes than JPEG at equivalent quality. Supported by all modern browsers.
@@ -47,7 +47,7 @@ Converting from PNG/JPG to WebP often reduces file size by 30-50% with no visibl
 2. **Choose** your target quality (80% is a good starting point)
 3. **Preview** the result side-by-side with the original
 4. **Download** the compressed version
-5. **Compare** file sizes — aim for 50-80% reduction
+5. **Compare** file sizes: aim for 50-80% reduction
 
 ## Results to Expect
 

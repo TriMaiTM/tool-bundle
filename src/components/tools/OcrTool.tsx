@@ -145,7 +145,7 @@ export default function OcrTool() {
 					accept="image/*"
 					onFiles={handleFiles}
 					label="Drop an image here to extract text"
-					sublabel="PNG, JPG, WebP, BMP, GIF — up to 50MB"
+					sublabel="PNG, JPG, WebP, BMP, GIF: up to 50MB"
 				/>
 			)}
 

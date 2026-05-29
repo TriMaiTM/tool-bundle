@@ -15,7 +15,7 @@ const GAMES = [
 	"XDefiant",
 ] as const;
 
-// Sensitivity multiplier per game — used to compute a normalized "base sensitivity"
+// Sensitivity multiplier per game: used to compute a normalized "base sensitivity"
 // base_sensitivity = game_sensitivity * game_multiplier
 // Conversion: target_sens = (source_sens * source_multiplier) / target_multiplier
 const GAME_MULTIPLIERS: Record<string, number> = {

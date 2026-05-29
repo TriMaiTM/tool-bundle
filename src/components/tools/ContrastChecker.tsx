@@ -165,7 +165,7 @@ export default function ContrastChecker() {
 						brown fox jumps over the lazy dog.
 					</p>
 					<p class="text-body mt-2" style={{ color: foreground, fontSize: "12px" }}>
-						Small text preview (12px) — harder to read with low contrast.
+						Small text preview (12px): harder to read with low contrast.
 					</p>
 				</div>
 			</div>

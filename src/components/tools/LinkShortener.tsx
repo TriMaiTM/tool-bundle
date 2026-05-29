@@ -168,7 +168,7 @@ export default function LinkShortener() {
 						<p class="text-body-sm" style="color: var(--color-mute)">
 							<strong>How it works:</strong> This is a client-side demo tool. It generates a short
 							hash code from your URL using a hash function. Real URL shorteners (like bit.ly) use a
-							server to store the mapping and redirect visitors. This demo shows the concept — the
+							server to store the mapping and redirect visitors. This demo shows the concept: the
 							short URL is derived from the original using a mathematical hash.
 						</p>
 					</div>

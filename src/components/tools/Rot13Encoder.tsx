@@ -94,7 +94,7 @@ export default function Rot13Encoder() {
 				</div>
 			</div>
 			<div class="text-caption text-muted mt-2">
-				ROT13 is its own inverse — applying it twice returns the original text.
+				ROT13 is its own inverse: applying it twice returns the original text.
 			</div>
 		</div>
 	);

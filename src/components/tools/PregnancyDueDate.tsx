@@ -204,7 +204,7 @@ export default function PregnancyDueDate() {
 						</div>
 						{result.isPastDue && (
 							<div class="text-body-sm text-accent-rose mt-2">
-								You're past your estimated due date. This is perfectly normal — most babies arrive
+								You're past your estimated due date. This is perfectly normal: most babies arrive
 								within 2 weeks of the due date.
 							</div>
 						)}

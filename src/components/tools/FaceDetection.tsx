@@ -213,7 +213,7 @@ export default function FaceDetection() {
 					accept="image/*"
 					onFiles={handleFiles}
 					label="Drop an image to detect faces"
-					sublabel="PNG, JPG, WebP — group photos work best"
+					sublabel="PNG, JPG, WebP: group photos work best"
 				/>
 			)}
 

@@ -4,7 +4,7 @@ interface Props {
 	toolId: string;
 }
 
-// Lazy-loaded tool components — each becomes its own chunk
+// Lazy-loaded tool components: each becomes its own chunk
 const toolComponents: Record<string, ReturnType<typeof lazy>> = {
 	// Image Tools
 	"image-resizer": lazy(() => import("./ImageResizer")),
@@ -185,55 +185,55 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
 	"language-detector": lazy(() => import("./LanguageDetector")),
 	"keyword-extractor": lazy(() => import("./KeywordExtractor")),
 
-	// Converter Tools — Number Systems
+	// Converter Tools: Number Systems
 	"number-base-converter": lazy(() => import("./NumberBaseConverter")),
 	"binary-to-decimal": lazy(() => import("./BinaryToDecimal")),
 	"decimal-to-binary": lazy(() => import("./DecimalToBinary")),
 	"hex-to-decimal": lazy(() => import("./HexToDecimal")),
 	"decimal-to-hex": lazy(() => import("./DecimalToHex")),
 
-	// Converter Tools — Data Formats
+	// Converter Tools: Data Formats
 	"json-to-xml": lazy(() => import("./JsonToXml")),
 	"xml-to-json": lazy(() => import("./XmlToJson")),
 	"csv-to-xml": lazy(() => import("./CsvToXml")),
 	"xml-to-csv": lazy(() => import("./XmlToCsv")),
 
-	// Converter Tools — Text Encoding
+	// Converter Tools: Text Encoding
 	"html-entity-encoder": lazy(() => import("./HtmlEntityEncoder")),
 	"unicode-encoder": lazy(() => import("./UnicodeEncoder")),
 	"text-to-binary": lazy(() => import("./TextToBinary")),
 	"punycode-converter": lazy(() => import("./PunycodeConverter")),
 
-	// Converter Tools — Color
+	// Converter Tools: Color
 	"hex-to-rgb": lazy(() => import("./HexToRgb")),
 	"rgb-to-hsl": lazy(() => import("./RgbToHsl")),
 	"color-format-converter": lazy(() => import("./ColorFormatConverter")),
 
-	// Converter Tools — Text & Fun
+	// Converter Tools: Text & Fun
 	"morse-code-converter": lazy(() => import("./MorseCodeConverter")),
 	"roman-numeral-converter": lazy(() => import("./RomanNumeralConverter")),
 	"text-to-ascii-art": lazy(() => import("./TextToAsciiArt")),
 	"upside-down-text": lazy(() => import("./UpsideDownText")),
 
-	// Converter Tools — Number/Math (Batch 2)
+	// Converter Tools: Number/Math (Batch 2)
 	"binary-to-hex": lazy(() => import("./BinaryToHex")),
 	"hex-to-binary": lazy(() => import("./HexToBinary")),
 	"number-to-words": lazy(() => import("./NumberToWords")),
 	"scientific-notation-converter": lazy(() => import("./ScientificNotationConverter")),
 	"octal-converter": lazy(() => import("./OctalConverter")),
 
-	// Converter Tools — Data Format (Batch 2)
+	// Converter Tools: Data Format (Batch 2)
 	"toml-to-json": lazy(() => import("./TomlToJson")),
 	"json-to-toml": lazy(() => import("./JsonToToml")),
 	"yaml-to-json": lazy(() => import("./YamlToJson")),
 
-	// Converter Tools — Encoding (Batch 2)
+	// Converter Tools: Encoding (Batch 2)
 	"base32-encoder": lazy(() => import("./Base32Encoder")),
 	"text-to-hex": lazy(() => import("./TextToHex")),
 	"rot13-encoder": lazy(() => import("./Rot13Encoder")),
 	"quoted-printable-encoder": lazy(() => import("./QuotedPrintableEncoder")),
 
-	// Converter Tools — Time & Other (Batch 2)
+	// Converter Tools: Time & Other (Batch 2)
 	"seconds-to-time": lazy(() => import("./SecondsToTime")),
 	"time-to-seconds": lazy(() => import("./TimeToSeconds")),
 	"html-to-text": lazy(() => import("./HtmlToText")),

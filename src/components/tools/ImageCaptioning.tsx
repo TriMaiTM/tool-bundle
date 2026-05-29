@@ -114,7 +114,7 @@ export default function ImageCaptioning() {
 					accept="image/*"
 					onFiles={handleFiles}
 					label="Drop an image to get a description"
-					sublabel="PNG, JPG, WebP — photos work best"
+					sublabel="PNG, JPG, WebP: photos work best"
 				/>
 			)}
 
@@ -133,7 +133,7 @@ export default function ImageCaptioning() {
 							</div>
 						)}
 						<div class="text-caption text-muted mt-1">
-							{file.name} — {formatFileSize(file.size)}
+							{file.name}: {formatFileSize(file.size)}
 						</div>
 					</div>
 

@@ -12,6 +12,10 @@ const SITE_URL = "https://toolbundle.app";
 
 const websiteSchema = generateWebSiteSchema();
 const breadcrumbSchema = generateBreadcrumbSchema([{ name: "Home", url: SITE_URL }]);
+
+// Split popular tools for bento grid layout
+const spotlightTool = featuredTools[0];
+const otherFeaturedTools = featuredTools.slice(1, 7); // Show 6 other popular tools
 ---
 
 <Base
@@ -22,72 +26,130 @@ const breadcrumbSchema = generateBreadcrumbSchema([{ name: "Home", url: SITE_URL
   {/* Homepage JSON-LD */}
   <script type="application/ld+json" set:html={websiteSchema} />
   <script type="application/ld+json" set:html={breadcrumbSchema} />
-  {/* Hero Section */}
-  <section class="relative overflow-hidden">
-    {/* Red glow effect */}
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-16 text-center relative">
-      {/* Badge */}
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-surface-card border border-hairline rounded-full text-caption text-muted mb-8">
-        <span class="inline-block w-2 h-2 rounded-full bg-accent-emerald"></span>
-        {tools.length} tools live — 100% client-side
-      </div>
+  {/* Asymmetric Hero Section */}
+  <section class="relative overflow-hidden py-16 sm:py-24 border-b border-hairline">
+    {/* Clean subtle brand accent glow */}
+    <div class="absolute top-0 right-10 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
 
-      {/* Heading */}
-      <h1 class="font-bold text-display-md sm:text-display-lg lg:text-display-xl mb-6 max-w-4xl mx-auto">
-        Every Tool You Need.<br />
-        <span class="text-primary">Zero Uploads.</span>
-      </h1>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 relative">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        {/* Left aligned copy */}
+        <div class="lg:col-span-7 text-left">
+          {/* Eyebrow — only 1 on the entire page to keep it clean */}
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-card border border-hairline rounded-full text-caption text-muted mb-6">
+            <span class="inline-block w-1.5 h-1.5 rounded-full bg-accent-emerald"></span>
+            {tools.length} tools live • 100% client-side
+          </div>
 
-      {/* Subheading */}
-      <p class="text-body-md sm:text-title-md text-muted max-w-2xl mx-auto mb-8">
-        {tools.length} privacy-first tools for PDF, images, text, code & more.<br class="hidden sm:block" />
-        Runs in your browser. No accounts. No limits.
-      </p>
+          {/* Headline */}
+          <h1 class="font-bold text-display-lg sm:text-display-xl tracking-tighter leading-none mb-6 max-w-2xl">
+            Every Tool You Need.<br />
+            <span class="text-primary">Zero Uploads.</span>
+          </h1>
 
-      {/* CTA Buttons */}
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a href="#categories" class="btn-primary no-underline">
-          Browse All {tools.length} Tools
-        </a>
-        <a href="#featured" class="btn-secondary no-underline">
-          See Featured Tools
-        </a>
-      </div>
+          {/* Subheading — Under 20 words constraint */}
+          <p class="text-body-md text-muted max-w-[480px] mb-8 leading-relaxed">
+            Over {tools.length} browser-based tools for PDF, images, text, and code. Process everything locally with zero server uploads.
+          </p>
 
-      {/* Stats */}
-      <div class="flex items-center justify-center gap-8 sm:gap-16 mt-12 pt-8 border-t border-hairline">
-        <div class="text-center">
-          <div class="text-display-sm text-primary">{tools.length}+</div>
-          <div class="text-caption text-muted mt-1">Free Tools</div>
+          {/* CTA Buttons */}
+          <div class="flex flex-wrap items-center gap-3">
+            <a href="#categories" class="btn-primary no-underline px-6">
+              Browse All Tools
+            </a>
+            <a href="#featured" class="btn-secondary no-underline px-6">
+              Popular Tools
+            </a>
+          </div>
         </div>
-        <div class="text-center">
-          <div class="text-display-sm text-primary">{categories.length}</div>
-          <div class="text-caption text-muted mt-1">Categories</div>
-        </div>
-        <div class="text-center">
-          <div class="text-display-sm text-primary">0</div>
-          <div class="text-caption text-muted mt-1">Uploads</div>
+
+        {/* Right aligned editorial visual widget card */}
+        <div class="lg:col-span-5">
+          <div class="modal-card bg-surface-card border border-hairline p-8 relative overflow-hidden">
+            <div class="absolute -right-16 -top-16 w-32 h-32 bg-primary/5 rounded-full blur-2xl"></div>
+            
+            <h2 class="text-heading-md mb-6 font-bold flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+              Browser Engine Architecture
+            </h2>
+            
+            <div class="space-y-4">
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 rounded-md bg-canvas border border-hairline flex items-center justify-center text-primary shrink-0">
+                  ✓
+                </div>
+                <div>
+                  <h3 class="text-body-sm-strong">WebAssembly & ONNX Runtime</h3>
+                  <p class="text-caption text-muted">Runs machine learning models locally inside your browser cache.</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 rounded-md bg-canvas border border-hairline flex items-center justify-center text-primary shrink-0">
+                  ✓
+                </div>
+                <div>
+                  <h3 class="text-body-sm-strong">Local Canvas & Cryptography</h3>
+                  <p class="text-caption text-muted">Manipulates files and encodes keys directly on your device's CPU/GPU.</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 rounded-md bg-canvas border border-hairline flex items-center justify-center text-primary shrink-0">
+                  ✓
+                </div>
+                <div>
+                  <h3 class="text-body-sm-strong">Mathematically Private</h3>
+                  <p class="text-caption text-muted">Your files never leave your device. 0KB sent to external servers.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  {/* Featured Tools */}
-  <section id="featured" class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
-    <div class="flex items-center justify-between mb-8">
+  {/* Bento-Style Featured Tools Section */}
+  <section id="featured" class="max-w-7xl mx-auto px-4 sm:px-6 py-16 border-b border-hairline">
+    <div class="flex items-end justify-between mb-8">
       <div>
-        <h2 class="text-title-lg text-on-dark">Most Popular</h2>
-        <p class="text-body-sm text-muted mt-1">The tools people use most</p>
+        <h2 class="text-heading-xl font-bold">Most Popular</h2>
+        <p class="text-body-sm text-muted mt-1">The tools people use most frequently</p>
       </div>
-      <a href="#categories" class="text-body-sm text-primary hover:text-primary-active transition-colors no-underline">
+      <a href="#categories" class="text-body-sm text-primary hover:text-primary-pressed transition-colors no-underline font-bold">
         All tools →
       </a>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-      {featuredTools.map((tool) => (
+    {/* Bento Grid */}
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {/* Spotlight Card (Spans 2 cols on desktop) */}
+      {spotlightTool && (
+        <a
+          href={`/${spotlightTool.category}/${spotlightTool.slug}`}
+          class="block md:col-span-2 bg-primary/5 border border-primary/20 rounded-md p-8 transition-all duration-200 hover:border-primary/45 hover:-translate-y-0.5 group no-underline relative overflow-hidden"
+        >
+          <div class="absolute -right-8 -bottom-8 w-40 h-40 bg-primary/10 rounded-full blur-2xl"></div>
+          <div class="flex items-center gap-2 mb-4">
+            <span class="badge-red">Spotlight</span>
+            <span class="text-caption-uppercase text-muted">{spotlightTool.category}</span>
+          </div>
+          <h3 class="text-heading-lg text-on-dark mb-3 group-hover:text-primary transition-colors font-bold">
+            {spotlightTool.name}
+          </h3>
+          <p class="text-body-md text-muted leading-relaxed max-w-[576px] mb-6">
+            {spotlightTool.description}
+          </p>
+          <span class="inline-flex items-center text-body-sm text-primary font-bold gap-1 group-hover:gap-2 transition-all">
+            Launch Tool <span class="transition-transform group-hover:translate-x-1">→</span>
+          </span>
+        </a>
+      )}
+
+      {/* Render the other featured tools */}
+      {otherFeaturedTools.map((tool) => (
         <ToolCard tool={tool} />
       ))}
     </div>
@@ -99,42 +161,38 @@ const breadcrumbSchema = generateBreadcrumbSchema([{ name: "Home", url: SITE_URL
   {/* Collections */}
   <CollectionsSection client:only="preact" tools={tools} categories={categories} />
 
-  {/* Categories */}
-  <section id="categories" class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
-    <h2 class="text-title-lg text-on-dark mb-2">Browse by Category</h2>
+  {/* Categories Section */}
+  <section id="categories" class="max-w-7xl mx-auto px-4 sm:px-6 py-16 border-b border-hairline">
+    <h2 class="text-heading-xl font-bold mb-2">Browse by Category</h2>
     <p class="text-body-sm text-muted mb-8">Find the right tool for the job</p>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {categories.map((cat) => (
         <a
           href={`/${cat.id}`}
-          class="block bg-surface-card border border-hairline rounded-lg p-6 transition-all duration-200 hover:border-hairline-strong hover:-translate-y-0.5 group no-underline"
+          class="block bg-surface-card border border-hairline rounded-md p-6 transition-all duration-200 hover:border-hairline-strong hover:-translate-y-0.5 group no-underline"
         >
           <div class="flex items-center gap-3 mb-3">
             <div
-              class="w-10 h-10 rounded-lg flex items-center justify-center"
+              class="w-10 h-10 rounded-md flex items-center justify-center shrink-0"
               style={`background-color: ${cat.color}15; color: ${cat.color}`}
             >
               <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2"/>
               </svg>
             </div>
-            <h3 class="text-title-sm text-on-dark group-hover:text-primary transition-colors">{cat.name}</h3>
+            <h3 class="text-body-sm-strong text-on-dark group-hover:text-primary transition-colors">{cat.name}</h3>
           </div>
-          <p class="text-body-sm text-muted">{cat.description}</p>
+          <p class="text-body-sm text-muted leading-relaxed">{cat.description}</p>
         </a>
       ))}
     </div>
   </section>
 
   {/* All Tools — A to Z */}
-  <section id="all-tools" class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
-    <div class="flex items-center justify-between mb-8">
-      <div>
-        <h2 class="text-title-lg text-on-dark">All Tools</h2>
-        <p class="text-body-sm text-muted mt-1">{tools.length} tools sorted A–Z</p>
-      </div>
-    </div>
+  <section id="all-tools" class="max-w-7xl mx-auto px-4 sm:px-6 py-16 border-b border-hairline">
+    <h2 class="text-heading-xl font-bold mb-2">All Tools</h2>
+    <p class="text-body-sm text-muted mb-8">{tools.length} tools sorted alphabetically</p>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
       {[...tools].sort((a, b) => a.name.localeCompare(b.name)).map((tool) => (
@@ -143,43 +201,67 @@ const breadcrumbSchema = generateBreadcrumbSchema([{ name: "Home", url: SITE_URL
     </div>
   </section>
 
-  {/* Why Section */}
-  <section class="bg-surface-soft border-y border-hairline">
+  {/* Why Section redesigned as a Bento Grid */}
+  <section class="bg-surface-soft border-b border-hairline">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
-      <h2 class="text-title-lg text-on-dark text-center mb-12">Why ToolBundle?</h2>
+      <h2 class="text-heading-xl font-bold text-center mb-12">Built Different</h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {/* Privacy */}
-        <div class="text-center">
-          <div class="w-12 h-12 rounded-lg bg-accent-emerald/10 text-accent-emerald flex items-center justify-center mx-auto mb-4">
-            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Large Bento Card (span 2 cols) */}
+        <div class="bg-surface-card border border-hairline rounded-md p-8 md:col-span-2 relative overflow-hidden flex flex-col justify-between">
+          <div class="absolute -right-8 -bottom-8 w-40 h-40 bg-primary/5 rounded-full blur-2xl"></div>
+          <div>
+            <div class="w-12 h-12 rounded-md bg-primary/10 text-primary flex items-center justify-center mb-6">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h3 class="text-heading-lg font-bold mb-3">Mathematical Browser Privacy</h3>
+            <p class="text-body-sm text-muted leading-relaxed max-w-[480px]">
+              Your files and keys never touch our servers. ToolBundle compiles tools into WebAssembly and processes files locally using standard browser engine APIs.
+            </p>
           </div>
-          <h3 class="text-title-sm text-on-dark mb-2">Mathematically Private</h3>
-          <p class="text-body-sm text-muted">Your files never leave your browser. Every tool processes data locally. No uploads, no servers.</p>
+          <div class="mt-8 pt-4 border-t border-hairline flex gap-6 text-caption text-muted">
+            <div>✓ No Servers</div>
+            <div>✓ Local Web Crypto</div>
+            <div>✓ Sandboxed</div>
+          </div>
         </div>
 
-        {/* Speed */}
-        <div class="text-center">
-          <div class="w-12 h-12 rounded-lg bg-accent-blue/10 text-accent-blue flex items-center justify-center mx-auto mb-4">
-            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-            </svg>
+        {/* Small Bento Card 1 */}
+        <div class="bg-surface-card border border-hairline rounded-md p-8 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-md bg-primary/10 text-primary flex items-center justify-center mb-6">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+              </svg>
+            </div>
+            <h3 class="text-body-sm-strong mb-2">Instant Execution</h3>
+            <p class="text-caption text-muted leading-relaxed">
+              No upload waiting, no queuing. Results generate instantly because all processing utilizes your local device hardware.
+            </p>
           </div>
-          <h3 class="text-title-sm text-on-dark mb-2">Instant Results</h3>
-          <p class="text-body-sm text-muted">No upload waits, no queues. Results appear instantly because everything runs on your machine.</p>
+          <div class="mt-6 text-caption text-muted">
+            Runs at native speed
+          </div>
         </div>
 
-        {/* Free */}
-        <div class="text-center">
-          <div class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4">
-            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-            </svg>
+        {/* Small Bento Card 2 */}
+        <div class="bg-surface-card border border-hairline rounded-md p-8 flex flex-col justify-between md:col-span-1">
+          <div>
+            <div class="w-12 h-12 rounded-md bg-primary/10 text-primary flex items-center justify-center mb-6">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+            <h3 class="text-body-sm-strong mb-2">Unlimited & Free</h3>
+            <p class="text-caption text-muted leading-relaxed">
+              No subscription popups, no account creation barriers. PWA offline compatibility guarantees access anywhere.
+            </p>
           </div>
-          <h3 class="text-title-sm text-on-dark mb-2">Free Forever</h3>
-          <p class="text-body-sm text-muted">No accounts, no subscriptions, no paywalls. Every tool stays free for everyone.</p>
+          <div class="mt-6 text-caption text-muted">
+            100% Client-Side
+          </div>
         </div>
       </div>
     </div>

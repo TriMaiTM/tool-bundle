@@ -34,7 +34,7 @@ const breadcrumbSchema = generateBreadcrumbSchema([
 ]);
 ---
 
-<Base title={`${cat.name} — Free Online Tools`} description={cat.description} canonicalUrl={categoryUrl}>
+<Base title={`${cat.name}: Free Online Tools`} description={cat.description} canonicalUrl={categoryUrl}>
   {/* Category JSON-LD */}
   <script type="application/ld+json" set:html={collectionSchema} />
   <script type="application/ld+json" set:html={breadcrumbSchema} />
@@ -64,7 +64,7 @@ const breadcrumbSchema = generateBreadcrumbSchema([
       <p class="text-body-md text-muted max-w-2xl">{cat.description}</p>
       <div class="flex items-center gap-2 mt-4 text-caption text-muted">
         <span class="inline-block w-2 h-2 rounded-full bg-accent-emerald"></span>
-        {categoryTools.length} tools — all 100% client-side
+        {categoryTools.length} tools: all 100% client-side
       </div>
     </header>
 

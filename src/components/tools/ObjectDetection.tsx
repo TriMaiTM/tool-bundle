@@ -202,7 +202,7 @@ export default function ObjectDetection() {
 					accept="image/*"
 					onFiles={handleFiles}
 					label="Drop an image to detect objects"
-					sublabel="PNG, JPG, WebP — photos work best"
+					sublabel="PNG, JPG, WebP: photos work best"
 				/>
 			)}
 

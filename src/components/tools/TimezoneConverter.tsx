@@ -153,14 +153,14 @@ export default function TimezoneConverter() {
 			{/* Live clocks */}
 			<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 				<div class="bg-surface-elevated rounded-lg p-6 text-center">
-					<div class="text-caption-uppercase text-muted mb-1">Current Time — Source</div>
+					<div class="text-caption-uppercase text-muted mb-1">Current Time: Source</div>
 					<div class="text-caption text-muted mb-2">
 						{sourceTz} ({getOffsetString(sourceTz)})
 					</div>
 					<div class="text-title-lg text-primary">{liveNow.sourceTime}</div>
 				</div>
 				<div class="bg-surface-elevated rounded-lg p-6 text-center">
-					<div class="text-caption-uppercase text-muted mb-1">Current Time — Target</div>
+					<div class="text-caption-uppercase text-muted mb-1">Current Time: Target</div>
 					<div class="text-caption text-muted mb-2">
 						{targetTz} ({getOffsetString(targetTz)})
 					</div>

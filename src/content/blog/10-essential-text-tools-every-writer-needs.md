@@ -9,7 +9,7 @@ Whether you're a blogger, student, or professional writer, these free text tools
 
 ## 1. Word Counter
 
-More than just counting words — a good word counter shows:
+More than just counting words: a good word counter shows:
 
 - **Characters** (with and without spaces)
 - **Sentences and paragraphs**
@@ -35,10 +35,10 @@ Great for coding, headings, and formatting consistency.
 
 Check if your writing is accessible to your target audience. Measures include:
 
-- **Flesch-Kincaid** — most widely used
-- **Gunning Fog** — estimates years of education needed
-- **Coleman-Liau** — based on characters per word
-- **SMOG** — best for health-related content
+- **Flesch-Kincaid**: most widely used
+- **Gunning Fog**: estimates years of education needed
+- **Coleman-Liau**: based on characters per word
+- **SMOG**: best for health-related content
 
 Aim for a Flesch score of 60-70 for general audiences.
 
@@ -108,4 +108,4 @@ Browse and search thousands of emojis with:
 
 ## Conclusion
 
-These simple text tools can significantly improve your writing efficiency. The best part? They all run in your browser — no sign-ups, no uploads, completely free.
+These simple text tools can significantly improve your writing efficiency. The best part? They all run in your browser: no sign-ups, no uploads, completely free.

@@ -251,7 +251,7 @@ export default function UnitConverter() {
 							class="input w-full flex items-center"
 							style="min-height: 40px; cursor: default; opacity: 0.85"
 						>
-							{result !== null ? formatResult(result) : "—"}
+							{result !== null ? formatResult(result) : ":"}
 						</div>
 					</div>
 				</div>

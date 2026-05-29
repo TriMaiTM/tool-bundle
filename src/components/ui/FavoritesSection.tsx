@@ -118,7 +118,7 @@ export default function FavoritesSection({ tools, categories }: Props) {
 						return (
 							<a
 								href={`/${tool.category}/${tool.slug}`}
-								class="flex items-center gap-3 px-4 py-3 bg-surface-card border border-hairline rounded-lg transition-all duration-200 hover:border-hairline-strong no-underline"
+								class="flex items-center gap-3 px-4 py-3 bg-surface-card border border-hairline rounded-md transition-all duration-200 hover:border-hairline-strong no-underline"
 							>
 								<span
 									class="w-2 h-2 rounded-full shrink-0"

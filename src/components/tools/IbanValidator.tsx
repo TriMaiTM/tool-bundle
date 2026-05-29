@@ -311,18 +311,18 @@ export default function IbanValidator() {
 
 						<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
 							<div class="text-center">
-								<div class="text-body-sm text-body-strong">{result.checkDigits || "—"}</div>
+								<div class="text-body-sm text-body-strong">{result.checkDigits || ":"}</div>
 								<div class="text-caption-uppercase text-muted">Check Digits</div>
 							</div>
 							<div class="text-center">
 								<div class="text-body-sm text-body-strong" style="font-family: var(--font-mono)">
-									{result.bankCode || "—"}
+									{result.bankCode || ":"}
 								</div>
 								<div class="text-caption-uppercase text-muted">Bank Code</div>
 							</div>
 							<div class="text-center">
 								<div class="text-body-sm text-body-strong" style="font-family: var(--font-mono)">
-									{result.accountNumber || "—"}
+									{result.accountNumber || ":"}
 								</div>
 								<div class="text-caption-uppercase text-muted">Account No.</div>
 							</div>

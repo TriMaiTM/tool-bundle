@@ -75,7 +75,7 @@ export default function AIAssistant() {
 				{
 					role: "assistant",
 					content:
-						"Hi! 👋 I'm your ToolBundle assistant. Ask me anything — I'll help you find the right tool!",
+						"Hi! 👋 I'm your ToolBundle assistant. Ask me anything: I'll help you find the right tool!",
 				},
 			]);
 		}

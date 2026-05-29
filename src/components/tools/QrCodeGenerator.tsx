@@ -133,7 +133,7 @@ export default function QrCodeGenerator() {
 									class={`px-4 py-2 text-body-sm rounded-lg border ${errorLevel === level ? "bg-primary text-on-primary border-primary" : "bg-surface-elevated text-body border-hairline hover:text-on-dark"}`}
 									onClick={() => setErrorLevel(level)}
 								>
-									{level} —{" "}
+									{level} :{" "}
 									{level === "L" ? "7%" : level === "M" ? "15%" : level === "Q" ? "25%" : "30%"}
 								</button>
 							))}

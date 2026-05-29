@@ -19,9 +19,9 @@ export default function TextStatistics() {
 			nonBlankLines: 0,
 			readingTime: "0 min",
 			speakingTime: "0 min",
-			longestWord: "—",
-			shortestWord: "—",
-			mostFrequentWord: "—",
+			longestWord: ":",
+			shortestWord: ":",
+			mostFrequentWord: ":",
 		};
 
 		const trimmed = text.trim();
@@ -76,7 +76,7 @@ export default function TextStatistics() {
 			const lower = w.toLowerCase().replace(/[^\w]/g, "");
 			if (lower) freq.set(lower, (freq.get(lower) || 0) + 1);
 		}
-		let mostFrequentWord = "—";
+		let mostFrequentWord = ":";
 		let maxCount = 0;
 		for (const [word, count] of freq) {
 			if (count > maxCount) {
@@ -100,8 +100,8 @@ export default function TextStatistics() {
 			nonBlankLines,
 			readingTime,
 			speakingTime,
-			longestWord: longestWord || "—",
-			shortestWord: shortestWord || "—",
+			longestWord: longestWord || ":",
+			shortestWord: shortestWord || ":",
 			mostFrequentWord,
 		};
 	}, [text]);

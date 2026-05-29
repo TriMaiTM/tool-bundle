@@ -1,5 +1,5 @@
 /**
- * AI Assistant — Rule-based tool recommendation engine
+ * AI Assistant: Rule-based tool recommendation engine
  * Matches user queries to tools and generates helpful responses
  */
 
@@ -786,7 +786,7 @@ export function generateResponse(query: string): string {
 
 	// Categories
 	if (intent === "categories") {
-		const catList = categories.map((c) => `• **${c.name}** — ${c.description}`).join("\n");
+		const catList = categories.map((c) => `• **${c.name}**: ${c.description}`).join("\n");
 		return `Here are all ${categories.length} categories:\n\n${catList}\n\nBrowse them all at the [homepage](/)!`;
 	}
 
@@ -828,18 +828,18 @@ export function generateResponse(query: string): string {
 
 		for (const tool of matchedTools.slice(0, 5)) {
 			const k = toolKnowledge[tool.id];
-			response += `• **${tool.name}** — ${k?.description || "Tool available"}\n  [/${tool.category}/${tool.slug}](/${tool.category}/${tool.slug})\n\n`;
+			response += `• **${tool.name}**: ${k?.description || "Tool available"}\n  [/${tool.category}/${tool.slug}](/${tool.category}/${tool.slug})\n\n`;
 		}
 
 		if (knowledge) {
-			response += `**Recommended:** Try **${top.name}** first — ${knowledge.useCases.join(", ")}.`;
+			response += `**Recommended:** Try **${top.name}** first: ${knowledge.useCases.join(", ")}.`;
 		}
 
 		return response;
 	}
 
 	// No matches
-	return `I couldn't find a specific tool for that. Here are some suggestions:\n\n• **Browse all ${tools.length} tools** at the [homepage](/)\n• **Use Ctrl+K** to search tools by name\n• **Check categories** — we have ${categories.length} categories covering images, text, developer tools, and more\n\nTry rephrasing your question or describe what you want to do!`;
+	return `I couldn't find a specific tool for that. Here are some suggestions:\n\n• **Browse all ${tools.length} tools** at the [homepage](/)\n• **Use Ctrl+K** to search tools by name\n• **Check categories**: we have ${categories.length} categories covering images, text, developer tools, and more\n\nTry rephrasing your question or describe what you want to do!`;
 }
 
 export function getQuickActions(): { label: string; query: string }[] {

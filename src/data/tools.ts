@@ -208,7 +208,7 @@ export const tools: Tool[] = [
 	{
 		id: "pdf-merger",
 		name: "PDF Merger",
-		description: "Combine multiple PDFs into one — private and instant.",
+		description: "Combine multiple PDFs into one: private and instant.",
 		category: "pdf",
 		icon: "file-text",
 		slug: "pdf-merger",
@@ -227,7 +227,7 @@ export const tools: Tool[] = [
 	{
 		id: "pdf-compressor",
 		name: "PDF Compressor",
-		description: "Reduce PDF file size — no uploads, instant compression.",
+		description: "Reduce PDF file size: no uploads, instant compression.",
 		category: "pdf",
 		icon: "minimize-2",
 		slug: "pdf-compressor",
@@ -236,7 +236,7 @@ export const tools: Tool[] = [
 	{
 		id: "pdf-rotator",
 		name: "PDF Rotator",
-		description: "Rotate PDF pages — 90°, 180°, 270° clockwise.",
+		description: "Rotate PDF pages: 90°, 180°, 270° clockwise.",
 		category: "pdf",
 		icon: "rotate-cw",
 		slug: "pdf-rotator",
@@ -245,7 +245,7 @@ export const tools: Tool[] = [
 	{
 		id: "pdf-to-text",
 		name: "PDF to Text",
-		description: "Extract text from any PDF — search, copy, or download.",
+		description: "Extract text from any PDF: search, copy, or download.",
 		category: "pdf",
 		icon: "file-type",
 		slug: "pdf-to-text",
@@ -350,7 +350,7 @@ export const tools: Tool[] = [
 	{
 		id: "remove-duplicate-lines",
 		name: "Remove Duplicate Lines",
-		description: "Remove duplicate lines from text — case-sensitive or insensitive.",
+		description: "Remove duplicate lines from text: case-sensitive or insensitive.",
 		category: "text",
 		icon: "list-minus",
 		slug: "remove-duplicate-lines",
@@ -390,7 +390,7 @@ export const tools: Tool[] = [
 	{
 		id: "html-to-markdown",
 		name: "HTML to Markdown",
-		description: "Convert HTML to clean Markdown — all elements supported.",
+		description: "Convert HTML to clean Markdown: all elements supported.",
 		category: "developer",
 		icon: "code",
 		slug: "html-to-markdown",
@@ -440,7 +440,7 @@ export const tools: Tool[] = [
 	{
 		id: "contrast-checker",
 		name: "Contrast Checker WCAG",
-		description: "Check WCAG color contrast — AA and AAA compliance.",
+		description: "Check WCAG color contrast: AA and AAA compliance.",
 		category: "color",
 		icon: "eye",
 		slug: "contrast-checker",
@@ -621,7 +621,7 @@ export const tools: Tool[] = [
 	{
 		id: "image-to-base64",
 		name: "Image to Base64",
-		description: "Convert images to Base64 — data URI or raw.",
+		description: "Convert images to Base64: data URI or raw.",
 		category: "image",
 		icon: "binary",
 		slug: "image-to-base64",
@@ -630,7 +630,7 @@ export const tools: Tool[] = [
 	{
 		id: "image-rotator",
 		name: "Image Rotator & Flipper",
-		description: "Rotate and flip images — 90, 180, 270 or custom.",
+		description: "Rotate and flip images: 90, 180, 270 or custom.",
 		category: "image",
 		icon: "rotate-cw",
 		slug: "image-rotator",
@@ -639,7 +639,7 @@ export const tools: Tool[] = [
 	{
 		id: "image-watermark",
 		name: "Image Watermark Adder",
-		description: "Add text watermarks to images — position, opacity, rotation.",
+		description: "Add text watermarks to images: position, opacity, rotation.",
 		category: "image",
 		icon: "stamp",
 		slug: "image-watermark",
@@ -648,7 +648,7 @@ export const tools: Tool[] = [
 	{
 		id: "photo-filters",
 		name: "Photo Filters",
-		description: "Apply photo filters — Vintage, Cool, Warm, Dramatic and more.",
+		description: "Apply photo filters: Vintage, Cool, Warm, Dramatic and more.",
 		category: "image",
 		icon: "aperture",
 		slug: "photo-filters",
@@ -657,7 +657,7 @@ export const tools: Tool[] = [
 	{
 		id: "svg-optimizer",
 		name: "SVG Optimizer",
-		description: "Optimize SVG — remove comments, whitespace, shorten colors.",
+		description: "Optimize SVG: remove comments, whitespace, shorten colors.",
 		category: "image",
 		icon: "file-code-2",
 		slug: "svg-optimizer",
@@ -711,7 +711,7 @@ export const tools: Tool[] = [
 	{
 		id: "dice-roller",
 		name: "Dice Roller",
-		description: "Roll virtual dice — D4 to D100 with stats and history.",
+		description: "Roll virtual dice: D4 to D100 with stats and history.",
 		category: "fun",
 		icon: "dice-5",
 		slug: "dice-roller",
@@ -720,7 +720,7 @@ export const tools: Tool[] = [
 	{
 		id: "coin-flipper",
 		name: "Coin Flipper",
-		description: "Flip a coin with animation — track history and stats.",
+		description: "Flip a coin with animation: track history and stats.",
 		category: "fun",
 		icon: "circle-dot",
 		slug: "coin-flipper",
@@ -747,7 +747,7 @@ export const tools: Tool[] = [
 	{
 		id: "decision-maker",
 		name: "Decision Maker Spinner",
-		description: "Spin the wheel to decide — add custom options.",
+		description: "Spin the wheel to decide: add custom options.",
 		category: "fun",
 		icon: "git-branch",
 		slug: "decision-maker",
@@ -769,7 +769,7 @@ export const tools: Tool[] = [
 	{
 		id: "fancy-text",
 		name: "Fancy Text Generator",
-		description: "Generate fancy Unicode text — multiple styles.",
+		description: "Generate fancy Unicode text: multiple styles.",
 		category: "text",
 		icon: "sparkles",
 		slug: "fancy-text",
@@ -778,7 +778,7 @@ export const tools: Tool[] = [
 	{
 		id: "readability-score",
 		name: "Readability Score",
-		description: "Calculate readability scores — 6 formulas with grade levels.",
+		description: "Calculate readability scores: 6 formulas with grade levels.",
 		category: "text",
 		icon: "book-open",
 		slug: "readability-score",
@@ -787,7 +787,7 @@ export const tools: Tool[] = [
 	{
 		id: "text-to-hashtags",
 		name: "Text to Hashtags",
-		description: "Generate hashtags from text — keywords extraction.",
+		description: "Generate hashtags from text: keywords extraction.",
 		category: "text",
 		icon: "hash",
 		slug: "text-to-hashtags",
@@ -796,7 +796,7 @@ export const tools: Tool[] = [
 	{
 		id: "emoji-picker",
 		name: "Emoji Picker & Search",
-		description: "Browse and search emojis — click to copy.",
+		description: "Browse and search emojis: click to copy.",
 		category: "text",
 		icon: "smile",
 		slug: "emoji-picker",
@@ -825,7 +825,7 @@ export const tools: Tool[] = [
 		id: "text-statistics",
 		name: "Text Statistics",
 		description:
-			"Analyze text with detailed statistics — words, characters, sentences, reading time.",
+			"Analyze text with detailed statistics: words, characters, sentences, reading time.",
 		category: "text",
 		icon: "bar-chart-3",
 		slug: "text-statistics",
@@ -865,7 +865,7 @@ export const tools: Tool[] = [
 	{
 		id: "typescript-to-js",
 		name: "TypeScript to JS Converter",
-		description: "Convert TypeScript to JavaScript — strip type annotations.",
+		description: "Convert TypeScript to JavaScript: strip type annotations.",
 		category: "developer",
 		icon: "file-type-2",
 		slug: "typescript-to-js",
@@ -883,7 +883,7 @@ export const tools: Tool[] = [
 	{
 		id: "regex-explainer",
 		name: "Regex Explainer",
-		description: "Understand regular expressions — tokenize and explain each part.",
+		description: "Understand regular expressions: tokenize and explain each part.",
 		category: "developer",
 		icon: "regex",
 		slug: "regex-explainer",
@@ -910,7 +910,7 @@ export const tools: Tool[] = [
 	{
 		id: "jwt-decoder",
 		name: "JWT Decoder",
-		description: "Decode and inspect JWT tokens — header, payload, and signature.",
+		description: "Decode and inspect JWT tokens: header, payload, and signature.",
 		category: "developer",
 		icon: "key",
 		slug: "jwt-decoder",
@@ -919,7 +919,7 @@ export const tools: Tool[] = [
 	{
 		id: "uuid-generator",
 		name: "UUID Generator",
-		description: "Generate UUID v4 values — batch mode, multiple formats.",
+		description: "Generate UUID v4 values: batch mode, multiple formats.",
 		category: "developer",
 		icon: "hash",
 		slug: "uuid-generator",
@@ -928,7 +928,7 @@ export const tools: Tool[] = [
 	{
 		id: "text-diff",
 		name: "Text Diff",
-		description: "Compare two texts side by side — line-by-line diff with colors.",
+		description: "Compare two texts side by side: line-by-line diff with colors.",
 		category: "developer",
 		icon: "git-compare",
 		slug: "text-diff",
@@ -941,7 +941,7 @@ export const tools: Tool[] = [
 	{
 		id: "flashcard-maker",
 		name: "Flashcard Maker",
-		description: "Create and study flashcards — saved locally.",
+		description: "Create and study flashcards: saved locally.",
 		category: "education",
 		icon: "layers",
 		slug: "flashcard-maker",
@@ -951,7 +951,7 @@ export const tools: Tool[] = [
 	{
 		id: "quiz-maker",
 		name: "Quiz Maker",
-		description: "Create and take quizzes — free and private.",
+		description: "Create and take quizzes: free and private.",
 		category: "education",
 		icon: "clipboard-list",
 		slug: "quiz-maker",
@@ -1055,7 +1055,7 @@ export const tools: Tool[] = [
 	{
 		id: "net-worth-calculator",
 		name: "Net Worth Calculator",
-		description: "Calculate your net worth — assets minus liabilities.",
+		description: "Calculate your net worth: assets minus liabilities.",
 		category: "finance",
 		icon: "wallet",
 		slug: "net-worth-calculator",
@@ -1077,7 +1077,7 @@ export const tools: Tool[] = [
 	{
 		id: "calorie-calculator",
 		name: "Calorie Calculator TDEE",
-		description: "Calculate your daily calorie needs — BMR and TDEE.",
+		description: "Calculate your daily calorie needs: BMR and TDEE.",
 		category: "health",
 		icon: "flame",
 		slug: "calorie-calculator",
@@ -1105,7 +1105,7 @@ export const tools: Tool[] = [
 	{
 		id: "body-fat-calculator",
 		name: "Body Fat Calculator",
-		description: "Calculate body fat percentage — Navy method.",
+		description: "Calculate body fat percentage: Navy method.",
 		category: "health",
 		icon: "activity",
 		slug: "body-fat-calculator",
@@ -1127,7 +1127,7 @@ export const tools: Tool[] = [
 	{
 		id: "video-to-audio",
 		name: "Video to MP3",
-		description: "Extract audio from any video file — private.",
+		description: "Extract audio from any video file: private.",
 		category: "video",
 		icon: "music",
 		slug: "video-to-audio",
@@ -1137,7 +1137,7 @@ export const tools: Tool[] = [
 	{
 		id: "audio-trimmer",
 		name: "Audio Trimmer",
-		description: "Trim and cut audio files — browser-based.",
+		description: "Trim and cut audio files: browser-based.",
 		category: "video",
 		icon: "scissors",
 		slug: "audio-trimmer",
@@ -1146,7 +1146,7 @@ export const tools: Tool[] = [
 	{
 		id: "volume-booster",
 		name: "Audio Volume Booster",
-		description: "Boost or reduce audio volume — preview and download.",
+		description: "Boost or reduce audio volume: preview and download.",
 		category: "video",
 		icon: "volume-2",
 		slug: "volume-booster",
@@ -1155,7 +1155,7 @@ export const tools: Tool[] = [
 	{
 		id: "audio-converter",
 		name: "Audio Converter",
-		description: "Convert audio files to WAV or OGG — browser-based.",
+		description: "Convert audio files to WAV or OGG: browser-based.",
 		category: "video",
 		icon: "refresh-cw",
 		slug: "audio-converter",
@@ -1164,7 +1164,7 @@ export const tools: Tool[] = [
 	{
 		id: "video-speed-changer",
 		name: "Video Speed Changer",
-		description: "Speed up or slow down any video — 0.25x to 4x.",
+		description: "Speed up or slow down any video: 0.25x to 4x.",
 		category: "video",
 		icon: "fast-forward",
 		slug: "video-speed-changer",
@@ -1176,7 +1176,7 @@ export const tools: Tool[] = [
 	// ============================================
 	{
 		id: "ocr",
-		name: "OCR — Image to Text",
+		name: "OCR: Image to Text",
 		description: "Extract text from images using AI-powered OCR. Supports 15 languages.",
 		category: "ai",
 		icon: "scan-text",
@@ -1233,7 +1233,7 @@ export const tools: Tool[] = [
 	{
 		id: "sentiment-analysis",
 		name: "Sentiment Analysis",
-		description: "Analyze the emotional tone of text — positive, negative, or neutral.",
+		description: "Analyze the emotional tone of text: positive, negative, or neutral.",
 		category: "ai",
 		icon: "heart",
 		slug: "sentiment-analysis",
@@ -1252,7 +1252,7 @@ export const tools: Tool[] = [
 		id: "text-translator",
 		name: "AI Translator",
 		description:
-			"Translate text between 9 languages using AI — EN, VI, ZH, JA, KO, FR, DE, ES, RU. Multilingual models, only 2 models for all languages.",
+			"Translate text between 9 languages using AI: EN, VI, ZH, JA, KO, FR, DE, ES, RU. Multilingual models, only 2 models for all languages.",
 		category: "ai",
 		icon: "languages",
 		slug: "text-translator",
@@ -1262,8 +1262,7 @@ export const tools: Tool[] = [
 	{
 		id: "speech-to-text",
 		name: "Speech to Text",
-		description:
-			"Transcribe audio files or microphone recordings to text using AI — Whisper model.",
+		description: "Transcribe audio files or microphone recordings to text using AI: Whisper model.",
 		category: "ai",
 		icon: "mic",
 		slug: "speech-to-text",
@@ -1274,7 +1273,7 @@ export const tools: Tool[] = [
 		id: "text-to-speech",
 		name: "Text to Speech",
 		description:
-			"Convert text to speech with voice selection, speed, pitch, and volume control — instant, no download.",
+			"Convert text to speech with voice selection, speed, pitch, and volume control: instant, no download.",
 		category: "text",
 		icon: "volume-2",
 		slug: "text-to-speech",
@@ -1339,7 +1338,7 @@ export const tools: Tool[] = [
 	{
 		id: "qr-code-generator",
 		name: "QR Code Generator",
-		description: "Generate QR codes from any text or URL — download PNG or SVG.",
+		description: "Generate QR codes from any text or URL: download PNG or SVG.",
 		category: "security",
 		icon: "qr-code",
 		slug: "qr-code-generator",
@@ -1384,7 +1383,7 @@ export const tools: Tool[] = [
 	{
 		id: "dns-lookup",
 		name: "DNS Lookup",
-		description: "Query DNS records for any domain — A, AAAA, MX, NS, TXT, CNAME.",
+		description: "Query DNS records for any domain: A, AAAA, MX, NS, TXT, CNAME.",
 		category: "security",
 		icon: "server",
 		slug: "dns-lookup",
@@ -1393,7 +1392,7 @@ export const tools: Tool[] = [
 	{
 		id: "ssl-checker",
 		name: "SSL Checker",
-		description: "Check SSL certificate details for any domain — issuer, expiry, chain.",
+		description: "Check SSL certificate details for any domain: issuer, expiry, chain.",
 		category: "security",
 		icon: "shield-check",
 		slug: "ssl-checker",
@@ -1403,7 +1402,7 @@ export const tools: Tool[] = [
 		id: "password-breach",
 		name: "Password Breach Checker",
 		description:
-			"Check if a password has been exposed in data breaches — privacy-first k-anonymity.",
+			"Check if a password has been exposed in data breaches: privacy-first k-anonymity.",
 		category: "security",
 		icon: "shield-alert",
 		slug: "password-breach",
@@ -1425,7 +1424,7 @@ export const tools: Tool[] = [
 	{
 		id: "username-generator",
 		name: "Username Generator",
-		description: "Generate unique usernames — gamer, professional, funny, or random styles.",
+		description: "Generate unique usernames: gamer, professional, funny, or random styles.",
 		category: "account",
 		icon: "user-plus",
 		slug: "username-generator",
@@ -1434,7 +1433,7 @@ export const tools: Tool[] = [
 	{
 		id: "email-validator",
 		name: "Email Validator",
-		description: "Validate email addresses — format check, disposable detection, bulk support.",
+		description: "Validate email addresses: format check, disposable detection, bulk support.",
 		category: "account",
 		icon: "mail-check",
 		slug: "email-validator",
@@ -1443,7 +1442,7 @@ export const tools: Tool[] = [
 	{
 		id: "phone-validator",
 		name: "Phone Validator",
-		description: "Validate phone numbers — country detection, format E.164, bulk support.",
+		description: "Validate phone numbers: country detection, format E.164, bulk support.",
 		category: "account",
 		icon: "phone",
 		slug: "phone-validator",
@@ -1452,7 +1451,7 @@ export const tools: Tool[] = [
 	{
 		id: "credit-card-validator",
 		name: "Credit Card Validator",
-		description: "Validate credit card numbers — Luhn algorithm, card type detection, formatting.",
+		description: "Validate credit card numbers: Luhn algorithm, card type detection, formatting.",
 		category: "account",
 		icon: "credit-card",
 		slug: "credit-card-validator",
@@ -1461,7 +1460,7 @@ export const tools: Tool[] = [
 	{
 		id: "iban-validator",
 		name: "IBAN Validator",
-		description: "Validate IBAN numbers — checksum, country detection, bank info, formatting.",
+		description: "Validate IBAN numbers: checksum, country detection, bank info, formatting.",
 		category: "account",
 		icon: "landmark",
 		slug: "iban-validator",
@@ -1483,7 +1482,7 @@ export const tools: Tool[] = [
 	{
 		id: "css-grid-generator",
 		name: "CSS Grid Generator",
-		description: "Build CSS Grid layouts visually — generate code instantly.",
+		description: "Build CSS Grid layouts visually: generate code instantly.",
 		category: "developer",
 		icon: "grid-3x3",
 		slug: "css-grid-generator",
@@ -1492,7 +1491,7 @@ export const tools: Tool[] = [
 	{
 		id: "css-flexbox-generator",
 		name: "CSS Flexbox Generator",
-		description: "Build Flexbox layouts visually — all properties.",
+		description: "Build Flexbox layouts visually: all properties.",
 		category: "developer",
 		icon: "align-left",
 		slug: "css-flexbox-generator",
@@ -1510,7 +1509,7 @@ export const tools: Tool[] = [
 	{
 		id: "css-units-converter",
 		name: "CSS Units Converter",
-		description: "Convert between CSS units — px, em, rem, %, vh, vw, pt and more.",
+		description: "Convert between CSS units: px, em, rem, %, vh, vw, pt and more.",
 		category: "developer",
 		icon: "ruler",
 		slug: "css-units-converter",
@@ -1519,7 +1518,7 @@ export const tools: Tool[] = [
 	{
 		id: "url-parser",
 		name: "URL Parser",
-		description: "Parse URL into components — protocol, host, path, query params, fragment.",
+		description: "Parse URL into components: protocol, host, path, query params, fragment.",
 		category: "developer",
 		icon: "link",
 		slug: "url-parser",
@@ -1528,7 +1527,7 @@ export const tools: Tool[] = [
 	{
 		id: "user-agent-parser",
 		name: "User Agent Parser",
-		description: "Parse browser User-Agent string — OS, browser, device, engine info.",
+		description: "Parse browser User-Agent string: OS, browser, device, engine info.",
 		category: "developer",
 		icon: "monitor",
 		slug: "user-agent-parser",
@@ -1537,7 +1536,7 @@ export const tools: Tool[] = [
 	{
 		id: "mime-type-lookup",
 		name: "MIME Type Lookup",
-		description: "Look up MIME types by file extension or vice versa — 50+ types.",
+		description: "Look up MIME types by file extension or vice versa: 50+ types.",
 		category: "developer",
 		icon: "file-type",
 		slug: "mime-type-lookup",
@@ -1555,7 +1554,7 @@ export const tools: Tool[] = [
 	{
 		id: "css-minifier",
 		name: "CSS Minifier",
-		description: "Minify CSS code — remove comments, whitespace, shorten values.",
+		description: "Minify CSS code: remove comments, whitespace, shorten values.",
 		category: "developer",
 		icon: "minimize-2",
 		slug: "css-minifier",
@@ -1563,13 +1562,12 @@ export const tools: Tool[] = [
 	},
 
 	// ============================================
-	// Converter Tools — Number Systems
+	// Converter Tools: Number Systems
 	// ============================================
 	{
 		id: "number-base-converter",
 		name: "Number Base Converter",
-		description:
-			"Convert numbers between any bases (2-36) — binary, octal, decimal, hex, and more.",
+		description: "Convert numbers between any bases (2-36): binary, octal, decimal, hex, and more.",
 		category: "developer",
 		icon: "binary",
 		slug: "number-base-converter",
@@ -1614,7 +1612,7 @@ export const tools: Tool[] = [
 	},
 
 	// ============================================
-	// Converter Tools — Data Formats
+	// Converter Tools: Data Formats
 	// ============================================
 	{
 		id: "json-to-xml",
@@ -1655,7 +1653,7 @@ export const tools: Tool[] = [
 	},
 
 	// ============================================
-	// Converter Tools — Text Encoding
+	// Converter Tools: Text Encoding
 	// ============================================
 	{
 		id: "html-entity-encoder",
@@ -1696,7 +1694,7 @@ export const tools: Tool[] = [
 	},
 
 	// ============================================
-	// Converter Tools — Color
+	// Converter Tools: Color
 	// ============================================
 	{
 		id: "hex-to-rgb",
@@ -1721,7 +1719,7 @@ export const tools: Tool[] = [
 		id: "color-format-converter",
 		name: "Color Format Converter",
 		description:
-			"Universal color converter — enter any format (HEX, RGB, HSL, CMYK) and get all formats.",
+			"Universal color converter: enter any format (HEX, RGB, HSL, CMYK) and get all formats.",
 		category: "color",
 		icon: "palette",
 		slug: "color-format-converter",
@@ -1729,7 +1727,7 @@ export const tools: Tool[] = [
 	},
 
 	// ============================================
-	// Converter Tools — Text & Fun
+	// Converter Tools: Text & Fun
 	// ============================================
 	{
 		id: "morse-code-converter",
@@ -1770,7 +1768,7 @@ export const tools: Tool[] = [
 	},
 
 	// ============================================
-	// Converter Tools — Number/Math (Batch 2)
+	// Converter Tools: Number/Math (Batch 2)
 	// ============================================
 	{
 		id: "binary-to-hex",
@@ -1793,8 +1791,7 @@ export const tools: Tool[] = [
 	{
 		id: "number-to-words",
 		name: "Number to Words",
-		description:
-			"Convert numbers to English words — supports negatives, decimals, up to trillions.",
+		description: "Convert numbers to English words: supports negatives, decimals, up to trillions.",
 		category: "developer",
 		icon: "type",
 		slug: "number-to-words",
@@ -1812,7 +1809,7 @@ export const tools: Tool[] = [
 	{
 		id: "octal-converter",
 		name: "Octal Converter",
-		description: "Convert between octal (base-8) and decimal — includes Unix permission reference.",
+		description: "Convert between octal (base-8) and decimal: includes Unix permission reference.",
 		category: "developer",
 		icon: "hash",
 		slug: "octal-converter",
@@ -1820,7 +1817,7 @@ export const tools: Tool[] = [
 	},
 
 	// ============================================
-	// Converter Tools — Data Format (Batch 2)
+	// Converter Tools: Data Format (Batch 2)
 	// ============================================
 	{
 		id: "toml-to-json",
@@ -1851,12 +1848,12 @@ export const tools: Tool[] = [
 	},
 
 	// ============================================
-	// Converter Tools — Encoding (Batch 2)
+	// Converter Tools: Encoding (Batch 2)
 	// ============================================
 	{
 		id: "base32-encoder",
 		name: "Base32 Encoder/Decoder",
-		description: "Encode and decode Base32 — used in TOTP, IPFS, and other systems.",
+		description: "Encode and decode Base32: used in TOTP, IPFS, and other systems.",
 		category: "developer",
 		icon: "binary",
 		slug: "base32-encoder",
@@ -1891,7 +1888,7 @@ export const tools: Tool[] = [
 	},
 
 	// ============================================
-	// Converter Tools — Time & Other (Batch 2)
+	// Converter Tools: Time & Other (Batch 2)
 	// ============================================
 	{
 		id: "seconds-to-time",
@@ -1915,7 +1912,7 @@ export const tools: Tool[] = [
 	{
 		id: "html-to-text",
 		name: "HTML to Text",
-		description: "Strip HTML tags and convert to plain text — preserves structure and list items.",
+		description: "Strip HTML tags and convert to plain text: preserves structure and list items.",
 		category: "developer",
 		icon: "file-text",
 		slug: "html-to-text",
@@ -1978,7 +1975,7 @@ export const tools: Tool[] = [
 		id: "workflow-builder",
 		name: "Workflow Builder",
 		description:
-			"Chain multiple tools into a pipeline — format, convert, encode, and hash in one flow.",
+			"Chain multiple tools into a pipeline: format, convert, encode, and hash in one flow.",
 		category: "developer",
 		icon: "git-branch",
 		slug: "workflow-builder",
@@ -1992,7 +1989,7 @@ export const tools: Tool[] = [
 	{
 		id: "link-shortener",
 		name: "Link Shortener",
-		description: "Shorten URLs and generate QR codes — client-side hash-based shortening.",
+		description: "Shorten URLs and generate QR codes: client-side hash-based shortening.",
 		category: "utility",
 		icon: "link",
 		slug: "link-shortener",
@@ -2019,7 +2016,7 @@ export const tools: Tool[] = [
 	{
 		id: "favicon-generator",
 		name: "Favicon Generator",
-		description: "Generate favicons from text or images — multiple sizes and formats.",
+		description: "Generate favicons from text or images: multiple sizes and formats.",
 		category: "utility",
 		icon: "image",
 		slug: "favicon-generator",

@@ -1,5 +1,5 @@
 /**
- * AI Utilities — Shared helpers for AI-powered tools
+ * AI Utilities: Shared helpers for AI-powered tools
  * Uses Tesseract.js for OCR and @huggingface/transformers for other AI tasks
  */
 

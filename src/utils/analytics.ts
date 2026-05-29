@@ -1,5 +1,5 @@
 /**
- * Privacy-First Analytics — 100% client-side, no cookies, no external requests
+ * Privacy-First Analytics: 100% client-side, no cookies, no external requests
  * Stores analytics data in localStorage.
  * Can be connected to Cloudflare Web Analytics / Plausible later.
  */

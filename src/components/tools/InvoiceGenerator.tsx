@@ -561,7 +561,7 @@ export default function InvoiceGenerator() {
 								<tbody>
 									{invoice.items.map((item) => (
 										<tr key={item.id} style="border-bottom: 1px solid var(--color-hairline-soft)">
-											<td style="padding: 8px 0; font-size: 14px">{item.description || "—"}</td>
+											<td style="padding: 8px 0; font-size: 14px">{item.description || ":"}</td>
 											<td style="padding: 8px 0; font-size: 14px; text-align: right">
 												{item.quantity}
 											</td>

@@ -120,7 +120,7 @@ export default function RomanNumeralConverter() {
 						style="min-height: 56px; display: flex; align-items: center; justify-content: center;"
 					>
 						<span class="text-title-lg" style="font-family: var(--font-mono)">
-							{result || "—"}
+							{result || ":"}
 						</span>
 					</div>
 				</div>

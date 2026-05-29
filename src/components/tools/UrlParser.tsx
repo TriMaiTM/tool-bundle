@@ -188,7 +188,7 @@ export default function UrlParser() {
 	return (
 		<div>
 			<div class="mb-4">
-				<label class="text-caption-uppercase text-muted block mb-2">URL(s) — one per line</label>
+				<label class="text-caption-uppercase text-muted block mb-2">URL(s): one per line</label>
 				<textarea
 					class="textarea"
 					style="min-height: 120px; font-family: var(--font-mono); font-size: 13px"

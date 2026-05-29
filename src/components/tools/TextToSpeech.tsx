@@ -272,8 +272,8 @@ export default function TextToSpeech() {
 				<div class="text-body-sm text-muted">
 					{status === "playing" && "Speaking..."}
 					{status === "paused" && "Paused"}
-					{status === "idle" && !input.trim() && "Ready — enter text and press Play"}
-					{status === "idle" && input.trim() && "Ready — press Play to hear your text"}
+					{status === "idle" && !input.trim() && "Ready: enter text and press Play"}
+					{status === "idle" && input.trim() && "Ready: press Play to hear your text"}
 				</div>
 			</div>
 
@@ -289,7 +289,7 @@ export default function TextToSpeech() {
 				<div class="text-caption-uppercase text-muted mb-2">How it works</div>
 				<ul class="text-body-sm text-body space-y-1">
 					<li>• Uses your browser's built-in Text-to-Speech engine (Web Speech API)</li>
-					<li>• No model download needed — instant processing</li>
+					<li>• No model download needed: instant processing</li>
 					<li>• Voice quality depends on your OS and browser</li>
 					<li>
 						• Chrome offers ~20 voices, Safari has Siri voices, Edge has Microsoft neural voices

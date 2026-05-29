@@ -20,11 +20,11 @@ const LANGUAGES: Language[] = [
 	{ code: "ru", name: "Russian", flag: "🇷🇺" },
 ];
 
-// Multilingual models — 1 model handles ALL languages
+// Multilingual models: 1 model handles ALL languages
 const MODEL_TO_EN = "Xenova/opus-mt-mul-en"; // any language → English
 const MODEL_FROM_EN = "Xenova/opus-mt-en-mul"; // English → any language
 
-// MarianMT language tags (ISO 639-3) — required by en-mul model
+// MarianMT language tags (ISO 639-3): required by en-mul model
 const LANG_TAGS: Record<string, string> = {
 	en: "eng",
 	vi: "vie",
@@ -212,7 +212,7 @@ export default function TextTranslator() {
 
 	return (
 		<div>
-			{/* Language selectors — side by side */}
+			{/* Language selectors: side by side */}
 			<div class="flex flex-col sm:flex-row items-stretch sm:items-end gap-3 mb-6">
 				{/* Source language */}
 				<div class="flex-1">

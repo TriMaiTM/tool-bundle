@@ -95,7 +95,7 @@ function fromPx(px: number, unit: Unit, baseFontSize: number): number {
 }
 
 function formatResult(value: number): string {
-	if (Number.isNaN(value) || !Number.isFinite(value)) return "—";
+	if (Number.isNaN(value) || !Number.isFinite(value)) return ":";
 	if (Number.isInteger(value)) return value.toString();
 	return value.toFixed(4).replace(/\.?0+$/, "");
 }
@@ -225,7 +225,7 @@ export default function CssUnitsConverter() {
 						<label class="text-caption-uppercase text-muted block mb-2">Result</label>
 						<div class="text-center py-4">
 							<div class="text-display-lg font-bold mb-2">
-								{result !== null ? formatResult(result) : "—"}
+								{result !== null ? formatResult(result) : ":"}
 							</div>
 							<div class="text-body-lg text-muted">{toUnit}</div>
 						</div>
@@ -248,19 +248,19 @@ export default function CssUnitsConverter() {
 						<label class="text-caption-uppercase text-muted block mb-2">Quick Reference</label>
 						<div class="text-body-sm text-muted space-y-1">
 							<div>
-								<strong>em/rem</strong> — relative to font size
+								<strong>em/rem</strong>: relative to font size
 							</div>
 							<div>
-								<strong>%</strong> — percentage of parent font size
+								<strong>%</strong>: percentage of parent font size
 							</div>
 							<div>
-								<strong>vh/vw</strong> — viewport height/width
+								<strong>vh/vw</strong>: viewport height/width
 							</div>
 							<div>
-								<strong>pt/pc</strong> — print units (1pt = 1/72in)
+								<strong>pt/pc</strong>: print units (1pt = 1/72in)
 							</div>
 							<div>
-								<strong>ex/ch</strong> — x-height / character width
+								<strong>ex/ch</strong>: x-height / character width
 							</div>
 						</div>
 					</div>

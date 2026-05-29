@@ -503,7 +503,7 @@ export default function FractionCalculator() {
 							<label class="text-caption-uppercase text-muted block mb-2">Decimal Number</label>
 							<input
 								type="text"
-								class="input w-full max-w-xs"
+								class="input w-full max-w-[320px]"
 								placeholder="e.g. 0.75"
 								value={decimalInput}
 								onInput={(e) => setDecimalInput((e.target as HTMLInputElement).value)}

@@ -4,7 +4,6 @@ import {
 	getCollections,
 	createCollection,
 	addToolToCollection,
-	deleteCollection,
 } from "../../utils/collections";
 import CollectionManager from "./CollectionManager";
 
@@ -114,7 +113,7 @@ export default function CollectionsSection({ tools, categories }: Props) {
 		<section class="max-w-7xl mx-auto px-4 sm:px-6 py-12">
 			<div class="flex items-center justify-between mb-6">
 				<div>
-					<h2 class="text-heading-xl" id="collections-heading">
+					<h2 class="text-heading-xl font-bold" id="collections-heading">
 						Your Collections
 					</h2>
 					<p class="text-body-sm text-muted mt-1">
@@ -124,36 +123,86 @@ export default function CollectionsSection({ tools, categories }: Props) {
 			</div>
 
 			<style>{`
-						.collection-card {
-							position: relative;
-							background: var(--color-surface-card);
-							border: 1px solid var(--color-hairline);
-							border-radius: 16px;
-							overflow: hidden;
-							transition: all 0.2s ease;
-						}
-						.collection-card::before {
-							content: "";
-							position: absolute; top: 0; left: 0; right: 0;
-							height: 6px;
-							background: var(--card-accent);
-						}
-						.collection-card:hover {
-							transform: translateY(-3px);
-							box-shadow: 0 8px 25px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
-							border-color: var(--color-hairline-strong, var(--color-ash));
-						}
-						.collection-icon {
-							width: 40px; height: 40px; border-radius: 10px;
-							display: flex; align-items: center; justify-content: center;
-							flex-shrink: 0;
-						}
-						.collection-badge {
-							display: inline-flex; align-items: center; gap: 4px;
-							padding: 3px 10px; border-radius: 9999px;
-							font-size: 11px; font-weight: 600;
-						}
-					`}</style>
+				.collection-card-wrapper {
+					position: relative;
+					z-index: 10;
+					margin-right: 8px;
+					margin-bottom: 12px;
+					transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+				}
+				.collection-card-wrapper::before,
+				.collection-card-wrapper::after {
+					content: "";
+					position: absolute;
+					inset: 0;
+					border: 1px solid var(--color-hairline);
+					border-radius: var(--radius-md);
+					transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease;
+				}
+				/* Middle Card Layer */
+				.collection-card-wrapper::before {
+					z-index: -1;
+					background: var(--color-surface-card);
+					transform: translate(4px, 6px);
+				}
+				/* Deepest Card Layer */
+				.collection-card-wrapper::after {
+					z-index: -2;
+					background: var(--color-surface-soft);
+					transform: translate(8px, 12px);
+				}
+
+				/* Main Top Card */
+				.collection-card {
+					position: relative;
+					z-index: 1;
+					background: var(--color-canvas);
+					border: 1px solid var(--color-hairline);
+					border-radius: var(--radius-md);
+					overflow: hidden;
+					transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+				}
+
+				/* Hover Dynamics */
+				.collection-card-wrapper:hover .collection-card {
+					transform: translateY(-4px) translateX(-2px);
+					border-color: var(--card-color-solid);
+					box-shadow: 
+						0 12px 24px -10px var(--card-color-glow),
+						0 4px 12px -5px rgba(0, 0, 0, 0.05);
+				}
+				.collection-card-wrapper:hover::before {
+					transform: translate(6px, 10px);
+					border-color: var(--color-hairline-soft);
+				}
+				.collection-card-wrapper:hover::after {
+					transform: translate(12px, 18px);
+					border-color: var(--color-hairline-soft);
+				}
+
+				.collection-icon {
+					width: 40px;
+					height: 40px;
+					border-radius: 10px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					flex-shrink: 0;
+					transition: transform 0.2s ease;
+				}
+				.collection-card-wrapper:hover .collection-icon {
+					transform: scale(1.08);
+				}
+				.collection-badge {
+					display: inline-flex;
+					align-items: center;
+					gap: 4px;
+					padding: 3px 10px;
+					border-radius: 9999px;
+					font-size: 11px;
+					font-weight: 600;
+				}
+			`}</style>
 
 			<div class="text-center py-8 mb-8">
 				<div class="w-16 h-16 rounded-full bg-surface-card border border-hairline flex items-center justify-center mx-auto mb-4">
@@ -171,7 +220,7 @@ export default function CollectionsSection({ tools, categories }: Props) {
 						<path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
 					</svg>
 				</div>
-				<p class="text-body-sm text-muted mb-2">No collections yet</p>
+				<p class="text-body-sm text-muted mb-2 font-bold">No collections yet</p>
 				<p class="text-caption text-muted mb-6">
 					Create your first collection to organize your favorite tools, or start with a suggestion
 					below.
@@ -183,8 +232,8 @@ export default function CollectionsSection({ tools, categories }: Props) {
 
 			{/* Suggested Collections */}
 			<div>
-				<h3 class="text-title-sm mb-4">Suggested Collections</h3>
-				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+				<h3 class="text-body-sm-strong mb-6">Suggested Collections</h3>
+				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
 					{SUGGESTED_COLLECTIONS.map((suggested) => {
 						const collTools = suggested.toolIds.map((id) => getTool(id)).filter(Boolean) as Tool[];
 						const previewTools = collTools.slice(0, 5);
@@ -192,79 +241,81 @@ export default function CollectionsSection({ tools, categories }: Props) {
 						return (
 							<div
 								key={suggested.name}
-								class="collection-card"
-								style={`--card-accent: linear-gradient(135deg, ${suggested.color}, ${suggested.color}cc);`}
+								class="collection-card-wrapper"
+								style={`--card-color-solid: ${suggested.color}; --card-color-glow: ${suggested.color}35;`}
 							>
-								<div class="p-5">
-									<div class="flex items-center gap-3 mb-3">
-										<div
-											class="collection-icon"
-											style={`background: ${suggested.color}15; color: ${suggested.color};`}
+								<div class="collection-card">
+									<div class="p-5">
+										<div class="flex items-center gap-3 mb-3">
+											<div
+												class="collection-icon"
+												style={`background: ${suggested.color}15; color: ${suggested.color};`}
+											>
+												<svg
+													width="20"
+													height="20"
+													viewBox="0 0 24 24"
+													fill="none"
+													stroke="currentColor"
+													stroke-width="2"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+												>
+													<path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+												</svg>
+											</div>
+											<div class="flex-1 min-w-0">
+												<h4 class="text-body-sm-strong truncate">{suggested.name}</h4>
+												<p class="text-caption text-muted mt-0.5">{suggested.description}</p>
+											</div>
+											<div
+												class="collection-badge"
+												style={`background: ${suggested.color}12; color: ${suggested.color};`}
+											>
+												{collTools.length}
+											</div>
+										</div>
+
+										{/* Tool preview grid */}
+										{previewTools.length > 0 && (
+											<div class="flex gap-2 mt-4">
+												{previewTools.map((tool) => {
+													const cat = getCategory(tool.category);
+													return (
+														<div
+															key={tool.id}
+															style={`width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; background-color: ${cat?.color || "#91918c"}15; color: ${cat?.color || "#91918c"}; font-size: 10px; font-weight: 600;`}
+															title={tool.name}
+														>
+															{tool.name.charAt(0)}
+														</div>
+													);
+												})}
+											</div>
+										)}
+
+										<button
+											class="btn-secondary w-full mt-5"
+											style="padding: 6px 12px; font-size: 13px;"
+											onClick={() => handleAddSuggested(suggested)}
 										>
 											<svg
-												width="20"
-												height="20"
+												width="14"
+												height="14"
 												viewBox="0 0 24 24"
 												fill="none"
 												stroke="currentColor"
 												stroke-width="2"
 												stroke-linecap="round"
 												stroke-linejoin="round"
+												style="display: inline-block; vertical-align: -2px; margin-right: 4px;"
 											>
-												<path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+												<line x1="12" y1="5" x2="12" y2="19" />
+												<line x1="5" y1="12" x2="19" y2="12" />
 											</svg>
-										</div>
-										<div class="flex-1 min-w-0">
-											<h4 class="text-body-sm-strong truncate">{suggested.name}</h4>
-											<p class="text-caption text-muted mt-0.5">{suggested.description}</p>
-										</div>
-										<div
-											class="collection-badge"
-											style={`background: ${suggested.color}12; color: ${suggested.color};`}
-										>
-											{collTools.length}
-										</div>
+											Add to My Collections
+										</button>
 									</div>
-
-									{/* Tool preview grid */}
-									{previewTools.length > 0 && (
-										<div class="flex gap-2 mt-3">
-											{previewTools.map((tool) => {
-												const cat = getCategory(tool.category);
-												return (
-													<div
-														key={tool.id}
-														style={`width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; background-color: ${cat?.color || "#91918c"}15; color: ${cat?.color || "#91918c"}; font-size: 10px; font-weight: 600;`}
-														title={tool.name}
-													>
-														{tool.name.charAt(0)}
-													</div>
-												);
-											})}
-										</div>
-									)}
-
-									<button
-										class="btn-secondary w-full mt-4"
-										style="padding: 6px 12px; font-size: 13px;"
-										onClick={() => handleAddSuggested(suggested)}
-									>
-										<svg
-											width="14"
-											height="14"
-											viewBox="0 0 24 24"
-											fill="none"
-											stroke="currentColor"
-											stroke-width="2"
-											stroke-linecap="round"
-											stroke-linejoin="round"
-											style="display: inline-block; vertical-align: -2px; margin-right: 4px;"
-										>
-											<line x1="12" y1="5" x2="12" y2="19" />
-											<line x1="5" y1="12" x2="19" y2="12" />
-										</svg>
-										Add to My Collections
-									</button>
 								</div>
 							</div>
 						);

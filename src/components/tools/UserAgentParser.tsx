@@ -39,7 +39,7 @@ const UA_PRESETS: { label: string; ua: string }[] = [
 ];
 
 function parseBrowser(ua: string): { name: string; version: string } {
-	// Order matters — check more specific before generic
+	// Order matters: check more specific before generic
 	const patterns: [RegExp, string][] = [
 		[/Edg\/([\d.]+)/, "Edge"],
 		[/OPR\/([\d.]+)/, "Opera"],

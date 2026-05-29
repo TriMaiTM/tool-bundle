@@ -456,19 +456,19 @@ export default function FaviconGenerator() {
 							style="color: var(--color-mute); padding-left: 16px; list-style: disc"
 						>
 							<li>
-								<code>favicon-16x16.png</code> — Browser tab icon
+								<code>favicon-16x16.png</code>: Browser tab icon
 							</li>
 							<li>
-								<code>favicon-32x32.png</code> — Taskbar shortcut
+								<code>favicon-32x32.png</code>: Taskbar shortcut
 							</li>
 							<li>
-								<code>apple-touch-icon.png</code> — iOS home screen (180×180)
+								<code>apple-touch-icon.png</code>: iOS home screen (180×180)
 							</li>
 							<li>
-								<code>android-chrome-192x192.png</code> — PWA icon
+								<code>android-chrome-192x192.png</code>: PWA icon
 							</li>
 							<li>
-								<code>android-chrome-512x512.png</code> — PWA splash screen
+								<code>android-chrome-512x512.png</code>: PWA splash screen
 							</li>
 						</ul>
 					</div>

@@ -15,7 +15,7 @@ function decodeBase64Url(str: string): string {
 
 function parseJWT(token: string): JWTParts {
 	const parts = token.trim().split(".");
-	if (parts.length !== 3) throw new Error("Invalid JWT — expected 3 parts separated by dots");
+	if (parts.length !== 3) throw new Error("Invalid JWT: expected 3 parts separated by dots");
 
 	const header = JSON.parse(decodeBase64Url(parts[0]));
 	const payload = JSON.parse(decodeBase64Url(parts[1]));

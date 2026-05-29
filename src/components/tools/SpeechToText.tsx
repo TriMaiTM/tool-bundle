@@ -242,7 +242,7 @@ export default function SpeechToText() {
 						>
 							Click to select audio file
 						</label>
-						<p class="text-caption text-muted mt-1">MP3, WAV, M4A, OGG, WebM — up to 100MB</p>
+						<p class="text-caption text-muted mt-1">MP3, WAV, M4A, OGG, WebM: up to 100MB</p>
 					</div>
 					{file && (
 						<div class="mt-3 bg-surface-elevated rounded-lg p-3 flex items-center gap-3">
@@ -291,7 +291,7 @@ export default function SpeechToText() {
 						{!isRecording && recordedBlob && (
 							<div>
 								<div class="text-body-sm text-muted mb-2">
-									Recorded: {formatTime(recordingTime)} — {(recordedBlob.size / 1024).toFixed(0)} KB
+									Recorded: {formatTime(recordingTime)}: {(recordedBlob.size / 1024).toFixed(0)} KB
 								</div>
 								<div class="flex justify-center gap-3">
 									<button class="btn-secondary" onClick={startRecording}>

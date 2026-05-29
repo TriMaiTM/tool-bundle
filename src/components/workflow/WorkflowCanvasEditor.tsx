@@ -631,7 +631,7 @@ export default function WorkflowCanvasEditor() {
 										style={`position: absolute; left: -8px; top: 26px; width: 16px; height: 16px; border-radius: 9999px; background: ${hasInput ? "var(--color-primary)" : "var(--color-surface-card)"}; border: 2px solid ${hasInput ? "var(--color-primary)" : "var(--color-ash)"}; cursor: crosshair; z-index: 2;`}
 										onMouseDown={(e: MouseEvent) => {
 											e.stopPropagation();
-											// Click on input port — could be used for connecting
+											// Click on input port: could be used for connecting
 										}}
 									/>
 
@@ -726,7 +726,7 @@ export default function WorkflowCanvasEditor() {
 										)}
 									</div>
 
-									{/* Node body — description */}
+									{/* Node body: description */}
 									<div style="padding: 8px 14px;">
 										<div style="font-size: 11px; color: var(--color-mute); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
 											{tool?.description || ""}

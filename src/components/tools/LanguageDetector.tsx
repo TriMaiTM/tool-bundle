@@ -391,7 +391,7 @@ export default function LanguageDetector() {
 						))}
 					</div>
 					<p class="text-caption text-muted mt-2">
-						Instant detection using Unicode character analysis — no model download required.
+						Instant detection using Unicode character analysis: no model download required.
 					</p>
 				</div>
 			)}

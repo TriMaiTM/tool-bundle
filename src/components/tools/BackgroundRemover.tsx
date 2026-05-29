@@ -50,7 +50,7 @@ export default function BackgroundRemover() {
 			// Use WASM backend for broader compatibility
 			env.backends.onnx.wasm.proxy = true;
 
-			// Load segmentation model — RMBG-1.4 is public (no auth required)
+			// Load segmentation model: RMBG-1.4 is public (no auth required)
 			setStatus("loading-model");
 			setProgress(0.1);
 			setStatusText("Loading background removal model (~170MB)...");
@@ -99,7 +99,7 @@ export default function BackgroundRemover() {
 				throw new Error("Model returned no result. Try a different image.");
 			}
 
-			// Extract the mask — transformers.js returns { score, label, mask: RawImage }
+			// Extract the mask: transformers.js returns { score, label, mask: RawImage }
 			const maskRaw = result[0]?.mask ?? result[0];
 
 			if (!maskRaw) {
@@ -134,7 +134,7 @@ export default function BackgroundRemover() {
 			let maskH: number;
 
 			if (maskRaw.toCanvas && typeof maskRaw.toCanvas === "function") {
-				// RawImage from transformers.js — use toCanvas()
+				// RawImage from transformers.js: use toCanvas()
 				const maskCanvasEl = maskRaw.toCanvas();
 				maskW = maskCanvasEl.width;
 				maskH = maskCanvasEl.height;
@@ -252,7 +252,7 @@ export default function BackgroundRemover() {
 					accept="image/*"
 					onFiles={handleFiles}
 					label="Drop an image to remove its background"
-					sublabel="PNG, JPG, WebP — up to 10MB recommended"
+					sublabel="PNG, JPG, WebP: up to 10MB recommended"
 				/>
 			)}
 

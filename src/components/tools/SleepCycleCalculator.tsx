@@ -282,15 +282,15 @@ export default function SleepCycleCalculator() {
 					<div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4">
 						<div class="p-3 rounded-lg bg-surface-soft text-center">
 							<div class="text-accent-emerald">6 cycles</div>
-							<div class="text-caption text-muted">9 hours — Best</div>
+							<div class="text-caption text-muted">9 hours: Best</div>
 						</div>
 						<div class="p-3 rounded-lg bg-surface-soft text-center">
 							<div class="text-warning">5 cycles</div>
-							<div class="text-caption text-muted">7.5 hours — Good</div>
+							<div class="text-caption text-muted">7.5 hours: Good</div>
 						</div>
 						<div class="p-3 rounded-lg bg-surface-soft text-center">
 							<div class="text-accent-orange">4 cycles</div>
-							<div class="text-caption text-muted">6 hours — Minimum</div>
+							<div class="text-caption text-muted">6 hours: Minimum</div>
 						</div>
 					</div>
 				</div>
