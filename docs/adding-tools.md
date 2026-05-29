@@ -39,6 +39,19 @@ Open `src/data/tools.ts` and add an entry:
 | `pdf` | PDF Tools | `#ef4444` (red) |
 | `math` | Math & Calculators | `#f59e0b` (amber) |
 | `security` | Security Tools | `#06b6d4` (cyan) |
+| `color` | Color Tools | `#ec4899` (pink) |
+| `datetime` | Date & Time Tools | `#14b8a6` (teal) |
+| `seo` | SEO & Marketing | `#8b5cf6` (violet) |
+| `data` | Data & Spreadsheet | `#10b981` (emerald) |
+| `fun` | Fun & Utility | `#f97316` (orange) |
+| `education` | Education & Students | `#6366f1` (indigo) |
+| `finance` | Finance & Money | `#84cc16` (lime) |
+| `health` | Health & Medical | `#f43f5e` (rose) |
+| `video` | Video & Audio | `#d946ef` (fuchsia) |
+| `ai` | AI Tools | `#8b5cf6` (violet) |
+| `account` | Account & Identity | `#0ea5e9` (sky) |
+| `game` | Game Tools | `#f97316` (orange) |
+| `utility` | Utility Tools | `#78716c` (stone) |
 
 To add a new category, see [Project Structure](./project-structure.md#adding-a-new-category).
 
@@ -163,21 +176,32 @@ import { PDFDocument } from "pdf-lib";
 
 ## Step 3: Register in ToolRenderer
 
-Open `src/components/tools/ToolRenderer.tsx`:
+Open `src/components/tools/ToolRenderer.tsx` and add a lazy import:
 
 ```tsx
-// 1. Import your component
-import MyNewTool from "./MyNewTool";
-
-// 2. Add to the switch statement
-case "my-new-tool":
-  return <MyNewTool />;
+// Add to the toolComponents Record object:
+"my-new-tool": lazy(() => import("./MyNewTool")),
 ```
 
-## Step 4: Verify
+> **Important:** Always use `lazy(() => import(...))` — never static imports. Each tool becomes its own chunk.
+
+## Step 4: Register in AI Assistant (optional)
+
+Open `src/utils/ai-assistant.ts` and add a knowledge base entry:
+
+```tsx
+"my-new-tool": {
+    keywords: ["keyword1", "keyword2", "keyword3"],
+    description: "Short description of the tool",
+    useCases: ["use case 1", "use case 2"],
+},
+```
+
+## Step 5: Verify
 
 ```bash
 npm run build
+npm run fix  # Fix lint + format
 ```
 
 Your tool is now live at `http://localhost:4321/{category}/{slug}`.

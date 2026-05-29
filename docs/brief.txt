@@ -1,3 +1,0 @@
-- Main stack : Astro + TailwindCSS + Preact
-- Tối ưu performance : static import -> lazy loading
-- Command palette : Fuse.js

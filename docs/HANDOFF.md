@@ -51,15 +51,16 @@
 
 | Metric | Value |
 |---|---|
-| **Tổng tools** | 160 |
-| **Tổng categories** | 16 |
-| **Tổng pages** | 181 |
+| **Tổng tools** | 204+ |
+| **Tổng categories** | 19 |
+| **Tổng pages** | 228 |
+| **Tổng files** | 247 |
 | **Tests** | 182 (all pass) |
 | **Lint errors** | 0 (Biome) |
 | **JS per tool page** | ~6-10 KB gzip (code-split) |
-| **Build time** | ~18s |
+| **Build time** | ~24s |
 
-### 16 Categories hiện có
+### 19 Categories hiện có
 
 | # | Category | ID | Tools | Color |
 |---|---|---|---|---|
@@ -79,8 +80,11 @@
 | 14 | Health & Medical | `health` | 5 | `#f43f5e` |
 | 15 | Video & Audio | `video` | 5 | `#d946ef` |
 | 16 | AI Tools | `ai` | 11 | `#8b5cf6` |
+| 17 | Account & Identity | `account` | 5 | `#0ea5e9` |
+| 18 | Game Tools | `game` | 5 | `#f97316` |
+| 19 | Utility Tools | `utility` | 5 | `#78716c` |
 
-### Danh sách đầy đủ 160 tools
+### Danh sách đầy đủ 204+ tools
 
 Xem chi tiết tại `docs/tools-list.md`.
 
@@ -100,7 +104,7 @@ Xem chi tiết trong `docs/tools-list.md`.
 | Open Graph tags | ✅ | og:title, og:description, og:url, og:type, og:site_name |
 | Twitter Card tags | ✅ | twitter:card, twitter:title, twitter:description |
 | Canonical URLs | ✅ | Mọi page có `<link rel="canonical">` |
-| XML Sitemap | ✅ | @astrojs/sitemap auto-generate 181 URLs |
+| XML Sitemap | ✅ | @astrojs/sitemap auto-generate 228 URLs |
 | robots.txt | ✅ | Allow all, link to sitemap |
 | Meta descriptions | ✅ | Unique per page từ tool description |
 
@@ -196,7 +200,7 @@ Xem chi tiết trong `docs/tools-list.md`.
 
 | Task | Status | Chi tiết |
 |---|---|---|
-| Knowledge base | ✅ | 80+ tools with keywords, descriptions, use cases |
+| Knowledge base | ✅ | 204+ tools with keywords, descriptions, use cases |
 | Pattern matching engine | ✅ | Intent detection + tool matching |
 | Chat UI component | ✅ | Floating button, modal, quick actions |
 | Smart responses | ✅ | Direct tool links, category listings, recommendations |
@@ -243,6 +247,92 @@ Xem chi tiết trong `docs/tools-list.md`.
 
 **Files mới:** `biome.json`
 **Files sửa:** `package.json`, `.husky/pre-commit`
+
+### Phase 20: AI Tools Batch 2 ✅
+
+| Tool | Model | Task |
+|---|---|---|
+| Named Entity Recognition | `Xenova/bert-base-NER` | token-classification |
+| Face Detection | `Xenova/detr-resnet-50` | object-detection |
+| Paraphrase Generator | `Xenova/t5-small` | text2text-generation |
+| Language Detector | Heuristic (Unicode) | instant detection |
+| Keyword Extractor | `Xenova/all-MiniLM-L6-v2` | feature-extraction |
+
+### Phase 21: Tool Collections ✅
+
+| Task | Status | Chi tiết |
+|---|---|---|
+| Collections utility | ✅ | localStorage CRUD, add/remove tools, import/export |
+| CollectionManager | ✅ | Grid cards with accent bar, expand/collapse, inline edit/create |
+| CollectionPicker | ✅ | Dropdown on tool pages, checkbox toggle, inline create |
+| CollectionsSection | ✅ | Homepage section, 3 suggested collections |
+| Collection sharing | ✅ | Export/import JSON, share via URL |
+
+### Phase 22: Converter/Developer Tools Expansion ✅
+
+| Category | Tools Added |
+|---|---|
+| Text (5) | Find & Replace, Whitespace Remover, Text Statistics, Text Wrap, Text Truncate |
+| Developer (6) | CSS Units Converter, URL Parser, User Agent Parser, MIME Type Lookup, HTTP Status Codes, CSS Minifier |
+| Data (3) | JSON to YAML, TSV to JSON, JSON to TSV |
+| Color (3) | Color Mixer, Color Shades, Color Tints |
+| Security (2) | JWT Encoder, Hash File |
+
+### Phase 23: Account Tools ✅
+
+| Tool | Description |
+|---|---|
+| Username Generator | 5 styles, 50+ adjectives, 50+ nouns |
+| Email Validator | Bulk validate, disposable detection |
+| Phone Validator | 10 countries, auto-detect, E.164 format |
+| Credit Card Validator | Luhn algorithm, 7 card types |
+| IBAN Validator | Mod-97 checksum, 15 countries |
+
+### Phase 24: Security Tools Expansion ✅
+
+| Tool | Description |
+|---|---|
+| IP Address Lookup | Auto-detect via ipify, geolocation via ip-api |
+| DNS Lookup | Google DNS-over-HTTPS, 8 record types |
+| SSL Checker | crt.sh API, certificate transparency logs |
+| Password Breach Checker | HaveIBeenPwned k-anonymity API |
+| CSP Evaluator | Parse headers, security score, best practices |
+
+### Phase 25: Game Tools ✅
+
+| Tool | Description |
+|---|---|
+| Error Code Lookup | 50+ codes (Riot, Steam, PlayStation, Xbox, Epic, Windows) |
+| DPI Calculator | 7 games, eDPI, cm/360°, pro presets |
+| Sensitivity Converter | 12 games, conversion formulas |
+| Crosshair Generator | Valorant/CS2/Overwatch 2, canvas preview |
+| Game Timer | Pomodoro/Custom/Stopwatch/Session modes |
+
+### Phase 26: Utility Tools ✅
+
+| Tool | Description |
+|---|---|
+| Link Shortener | Hash-based, QR code, bulk processing |
+| Invoice Generator | Line items, tax/discount, print, localStorage |
+| Signature Generator | Canvas drawing, PNG/SVG download |
+| Favicon Generator | Text/emoji/image, 6 sizes, HTML code |
+| Notepad | Multiple notes, auto-save, export .txt/.md |
+
+### Phase 27: AI Assistant Enhancement ✅
+
+| Task | Status | Chi tiết |
+|---|---|---|
+| Dynamic speech bubble | ✅ | Periodic "Ask..." bubble, 6 random texts, 45s interval |
+| Knowledge base expanded | ✅ | 204+ tools with keywords, descriptions, use cases |
+
+### Phase 28: UI/UX Improvements ✅
+
+| Task | Status | Chi tiết |
+|---|---|---|
+| Collection card design | ✅ | Accent bar top, icon, badge, hover lift effect |
+| Select dropdown fix | ✅ | appearance: none, custom arrow, proper height |
+| Google Search Console | ✅ | Verification meta tag added |
+| Service Worker cache | ✅ | Version bumped to v4 |
 
 ---
 
@@ -489,7 +579,7 @@ npm run format       # Format with Biome
 Copy prompt dưới đây và paste vào session mới:
 
 ```
-Tôi đang phát triển dự án ToolBundle — một web app tổng hợp 160+ tools miễn phí chạy 100% client-side.
+Tôi đang phát triển dự án ToolBundle — một web app tổng hợp 204+ tools miễn phí chạy 100% client-side.
 
 ## Tech Stack
 - Astro 5 (SSG) + Preact 10 (~3KB) + Tailwind CSS 4 + TypeScript
@@ -501,21 +591,25 @@ Tôi đang phát triển dự án ToolBundle — một web app tổng hợp 160+
 - Deploy: Cloudflare Pages (GitHub Actions CI/CD)
 
 ## Trạng thái hiện tại
-- 160 tools / 16 categories / 181 pages / 182 tests
+- 204+ tools / 19 categories / 228 pages / 247 files / 182 tests
 - Design: Pinterest-inspired light theme + dark mode toggle
-- Features: PWA, offline, Cmd+K search, favorites & history, AI assistant, batch processing
+- Features: PWA, offline, Cmd+K search, favorites & history, AI assistant, batch processing, collections
 - SEO: JSON-LD, OG tags, sitemap, robots.txt
 - Accessibility: ARIA labels, focus-visible, skip-to-content, prefers-reduced-motion
 - Analytics: Privacy-first localStorage tracking
 - Blog: Content Collections + 3 sample posts
 - CI/CD: GitHub Actions → Cloudflare Pages
 - Workflow Builder: n8n-style canvas editor với 25 workflow-compatible tools
-- Converter Tools: 35 converter tools (number, data format, encoding, color, text, time)
-- AI Assistant: Rule-based chat widget với 80+ tool knowledge base
+- Converter Tools: 35+ converter tools (number, data format, encoding, color, text, time)
+- AI Assistant: Rule-based chat widget với 204+ tool knowledge base, dynamic speech bubble
+- Account Tools: Username, Email, Phone, Credit Card, IBAN validators
+- Game Tools: Error codes, DPI calculator, sensitivity converter, crosshair generator, game timer
+- Utility Tools: Link shortener, invoice generator, signature generator, favicon generator, notepad
+- Collections: localStorage-based tool collections with sharing/import/export
 
 ## Đọc các file sau để hiểu dự án:
 1. docs/HANDOFF.md — Tài liệu bàn giao (ĐỌC TRƯỚC)
-2. docs/tools-list.md — Danh sách đầy đủ 160 tools
+2. docs/tools-list.md — Danh sách đầy đủ 204+ tools
 3. docs/adding-tools.md — Hướng dẫn thêm tool mới
 4. docs/ai-tools-research.md — Nghiên cứu AI tools
 5. DESIGN.md — Design system specification (Pinterest-inspired)
@@ -552,8 +646,8 @@ Tôi đang phát triển dự án ToolBundle — một web app tổng hợp 160+
 | `docs/ai-tools-research.md` | Nghiên cứu AI tools |
 | `docs/strategy.md` | Chiến lược phát triển |
 | `DESIGN.md` | Design system (Pinterest-inspired) |
-| `src/data/tools.ts` | Tool registry (160 tools) |
-| `src/data/categories.ts` | Category definitions (16 categories) |
+| `src/data/tools.ts` | Tool registry (204+ tools) |
+| `src/data/categories.ts` | Category definitions (19 categories) |
 | `src/components/tools/ToolRenderer.tsx` | Tool routing (lazy loading) |
 | `src/utils/workflow.ts` | Workflow engine + tool registry |
 | `src/utils/ai-assistant.ts` | AI assistant knowledge base |
@@ -569,4 +663,4 @@ Tôi đang phát triển dự án ToolBundle — một web app tổng hợp 160+
 
 ---
 
-*Cập nhật lần cuối: 2026-05-09*
+*Cập nhật lần cuối: 2026-05-29*

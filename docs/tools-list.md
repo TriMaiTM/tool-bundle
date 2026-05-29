@@ -20,7 +20,7 @@ Complete list of all tools in ToolBundle, organized by category.
 | Photo Filters | `/image/photo-filters` | Apply filters — Vintage, Cool, Warm, Dramatic & more | ✅ Live |
 | SVG Optimizer | `/image/svg-optimizer` | Optimize SVG — remove comments, whitespace, shorten colors | ✅ Live |
 
-## Text Tools (14)
+## Text Tools (19)
 
 | Tool | Slug | Description | Status |
 |---|---|---|---|
@@ -37,8 +37,13 @@ Complete list of all tools in ToolBundle, organized by category.
 | Readability Score | `/text/readability-score` | Calculate readability scores — 6 formulas | ✅ Live |
 | Text to Hashtags | `/text/text-to-hashtags` | Generate hashtags from text — keywords extraction | ✅ Live |
 | Emoji Picker & Search | `/text/emoji-picker` | Browse and search emojis — click to copy | ✅ Live |
+| Find & Replace | `/text/find-replace` | Find and replace text with regex support | ✅ Live |
+| Whitespace Remover | `/text/whitespace-remover` | Remove extra whitespace, blank lines, normalize spaces | ✅ Live |
+| Text Statistics | `/text/text-statistics` | Detailed text analysis — words, characters, sentences, reading time | ✅ Live |
+| Text Wrap | `/text/text-wrap` | Wrap text at specified character limit with word boundary | ✅ Live |
+| Text Truncate | `/text/text-truncate` | Truncate text with custom ellipsis and word boundary options | ✅ Live |
 
-## Developer Tools (26)
+## Developer Tools (32)
 
 | Tool | Slug | Description | Status |
 |---|---|---|---|
@@ -68,6 +73,12 @@ Complete list of all tools in ToolBundle, organized by category.
 | CSS Grid Generator | `/developer/css-grid-generator` | Build CSS Grid layouts visually — generate code instantly | ✅ Live |
 | CSS Flexbox Generator | `/developer/css-flexbox-generator` | Build Flexbox layouts visually — all properties | ✅ Live |
 | Border Radius Generator | `/developer/border-radius-generator` | Create CSS border-radius with live preview and layers | ✅ Live |
+| CSS Units Converter | `/developer/css-units-converter` | Convert between CSS units — px, em, rem, %, vh, vw, pt | ✅ Live |
+| URL Parser | `/developer/url-parser` | Parse URL into components — protocol, host, path, query params | ✅ Live |
+| User Agent Parser | `/developer/user-agent-parser` | Parse browser User-Agent string — OS, browser, device info | ✅ Live |
+| MIME Type Lookup | `/developer/mime-type-lookup` | Look up MIME types by file extension — 60+ types | ✅ Live |
+| HTTP Status Codes | `/developer/http-status-codes` | Searchable reference of HTTP status codes with descriptions | ✅ Live |
+| CSS Minifier | `/developer/css-minifier` | Minify CSS code — remove comments, whitespace, shorten values | ✅ Live |
 
 ## PDF Tools (5)
 
@@ -89,7 +100,7 @@ Complete list of all tools in ToolBundle, organized by category.
 | Loan Calculator | `/math/loan-calculator` | Calculate loan payments with amortization schedule | ✅ Live |
 | Age Calculator | `/math/age-calculator` | Calculate exact age with zodiac sign and birthday countdown | ✅ Live |
 
-## Security Tools (5)
+## Security Tools (12)
 
 | Tool | Slug | Description | Status |
 |---|---|---|---|
@@ -98,8 +109,15 @@ Complete list of all tools in ToolBundle, organized by category.
 | OTP Generator | `/security/otp-generator` | Generate TOTP 2FA codes with countdown timer | ✅ Live |
 | QR Code Generator | `/security/qr-code-generator` | Generate QR codes from any text or URL — download PNG or SVG | ✅ Live |
 | Barcode Generator | `/security/barcode-generator` | Generate barcodes — CODE128, EAN-13, UPC, and more | ✅ Live |
+| JWT Encoder | `/security/jwt-encoder` | Encode JWT tokens with custom header, payload, and secret | ✅ Live |
+| Hash File | `/security/hash-file` | Generate SHA-1/256/384/512 hash of any file | ✅ Live |
+| IP Address Lookup | `/security/ip-lookup` | Look up public IP with geolocation, ISP, timezone | ✅ Live |
+| DNS Lookup | `/security/dns-lookup` | Query DNS records — A, AAAA, MX, NS, TXT, CNAME | ✅ Live |
+| SSL Checker | `/security/ssl-checker` | Check SSL certificate details — issuer, expiry, chain | ✅ Live |
+| Password Breach Checker | `/security/password-breach` | Check if password exposed in breaches — k-anonymity | ✅ Live |
+| CSP Evaluator | `/security/csp-evaluator` | Analyze Content Security Policy headers for issues | ✅ Live |
 
-## Color Tools (4)
+## Color Tools (7)
 
 | Tool | Slug | Description | Status |
 |---|---|---|---|
@@ -107,6 +125,9 @@ Complete list of all tools in ToolBundle, organized by category.
 | Color Palette Generator | `/color/color-palette-generator` | Generate harmonious color palettes from any base color | ✅ Live |
 | Contrast Checker WCAG | `/color/contrast-checker` | Check WCAG color contrast — AA and AAA compliance | ✅ Live |
 | CSS Gradient Generator | `/color/css-gradient-generator` | Create CSS gradients with live preview and presets | ✅ Live |
+| Color Mixer | `/color/color-mixer` | Mix two colors with adjustable ratio — HEX, RGB, HSL | ✅ Live |
+| Color Shades | `/color/color-shades` | Generate 10 darker shades of any color | ✅ Live |
+| Color Tints | `/color/color-tints` | Generate 10 lighter tints of any color | ✅ Live |
 
 ## Date & Time Tools (4)
 
@@ -125,13 +146,16 @@ Complete list of all tools in ToolBundle, organized by category.
 | Robots.txt Generator | `/seo/robots-txt-generator` | Generate robots.txt with rules and sitemap | ✅ Live |
 | Sitemap Generator | `/seo/sitemap-generator` | Generate XML sitemaps — bulk add URLs with priority | ✅ Live |
 
-## Data & Spreadsheet (3)
+## Data & Spreadsheet (6)
 
 | Tool | Slug | Description | Status |
 |---|---|---|---|
 | CSV to JSON | `/data/csv-to-json` | Convert CSV to JSON with auto-delimiter detection | ✅ Live |
 | JSON to CSV | `/data/json-to-csv` | Convert JSON arrays to CSV with nested object flattening | ✅ Live |
 | CSV Formatter | `/data/csv-formatter` | Format CSV data — table preview with stats | ✅ Live |
+| JSON to YAML | `/data/json-to-yaml` | Convert JSON to YAML format with customizable indentation | ✅ Live |
+| TSV to JSON | `/data/tsv-to-json` | Convert TSV (tab-separated) to JSON with auto-header detection | ✅ Live |
+| JSON to TSV | `/data/json-to-tsv` | Convert JSON arrays to TSV (tab-separated) format | ✅ Live |
 
 ## Fun & Utility (7)
 
@@ -205,6 +229,36 @@ Complete list of all tools in ToolBundle, organized by category.
 | Speech to Text | `/ai/speech-to-text` | Transcribe audio files or microphone recordings — Whisper model | ✅ Live |
 | Text to Speech | `/text/text-to-speech` | Convert text to speech with voice selection, speed, pitch, and volume control — instant, no download | ✅ Live |
 
+## Account & Identity (5)
+
+| Tool | Slug | Description | Status |
+|---|---|---|---|
+| Username Generator | `/account/username-generator` | Generate unique usernames — gamer, professional, funny styles | ✅ Live |
+| Email Validator | `/account/email-validator` | Validate email addresses — format, disposable detection, bulk | ✅ Live |
+| Phone Validator | `/account/phone-validator` | Validate phone numbers — 10 countries, E.164 format | ✅ Live |
+| Credit Card Validator | `/account/credit-card-validator` | Validate credit cards — Luhn algorithm, 7 card types | ✅ Live |
+| IBAN Validator | `/account/iban-validator` | Validate IBAN numbers — checksum, country, bank info | ✅ Live |
+
+## Game Tools (5)
+
+| Tool | Slug | Description | Status |
+|---|---|---|---|
+| Error Code Lookup | `/game/error-code-lookup` | Look up error codes for Riot, Steam, PlayStation, Xbox, Epic | ✅ Live |
+| DPI Calculator | `/game/dpi-calculator` | Calculate eDPI, cm/360° for FPS games | ✅ Live |
+| Sensitivity Converter | `/game/sensitivity-converter` | Convert mouse sensitivity between 12+ FPS games | ✅ Live |
+| Crosshair Generator | `/game/crosshair-generator` | Create crosshairs for Valorant, CS2, Overwatch 2 | ✅ Live |
+| Game Timer | `/game/game-timer` | Pomodoro timer, session tracker, stopwatch for gamers | ✅ Live |
+
+## Utility Tools (5)
+
+| Tool | Slug | Description | Status |
+|---|---|---|---|
+| Link Shortener | `/utility/link-shortener` | Shorten URLs with hash-based approach, QR codes | ✅ Live |
+| Invoice Generator | `/utility/invoice-generator` | Create invoices with line items, tax, print support | ✅ Live |
+| Signature Generator | `/utility/signature-generator` | Draw and download digital signatures as PNG/SVG | ✅ Live |
+| Favicon Generator | `/utility/favicon-generator` | Generate favicons from text/images — multiple sizes | ✅ Live |
+| Online Notepad | `/utility/notepad` | Quick notes with auto-save, export, multiple notes | ✅ Live |
+
 ---
 
-**Total: 123 tools** — all live and working, 100% client-side.
+**Total: 204+ tools** — all live and working, 100% client-side.

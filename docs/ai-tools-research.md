@@ -4,118 +4,57 @@
 
 ## Trạng thái hiện tại
 
-| Metric | Value |
-|---|---|
-| AI Tools đã có | 8 |
-| Tech Stack | Transformers.js v3.8.1 + Tesseract.js |
-| Models | ONNX Runtime WASM/WebGPU |
-| Cache | IndexedDB |
+| Metric | Before | After |
+|---|---|---|
+| AI Tools | 8 | 16 |
+| Total Tools | 108 | 204+ |
+| Tech Stack | Transformers.js v3.8.1 + Tesseract.js | — |
+| Models | ONNX Runtime WASM/WebGPU | — |
+| Cache | IndexedDB | — |
 
-### Đã implement (8 tools)
+### Đã implement (16 tools)
 
-| Tool | Model | Size | Task |
-|---|---|---|---|
-| OCR | Tesseract.js | ~4MB | image-to-text (OCR) |
-| Background Remover | RMBG-1.4 | ~170MB | image-segmentation |
-| Text Summarizer | distilbart-cnn-6-6 | ~90MB | summarization |
-| Object Detection | detr-resnet-50 | ~50MB | object-detection |
-| Grammar Checker | T5-small | ~250MB | text2text-generation |
-| Image Captioning | vit-gpt2 | ~1.2GB | image-to-text |
-| Sentiment Analysis | DistilBERT SST-2 | ~270MB | sentiment-analysis |
-| Question Answering | DistilBERT QA | ~270MB | question-answering |
-
----
-
-## Tier 1 — Ưu tiên cao (Nên làm tiếp)
-
-### 1. Text Translation
-| | |
-|---|---|
-| **Mô tả** | Dịch văn bản giữa các ngôn ngữ |
-| **Task** | `translation` |
-| **Model** | `Xenova/opus-mt-en-vi`, `Xenova/opus-mt-vi-en`, `Xenova/opus-mt-en-zh`, v.v. |
-| **Model size** | ~300MB mỗi cặp ngôn ngữ |
-| **Độ khó** | ⭐⭐ Trung bình |
-| **UX** | Chọn ngôn ngữ nguồn/đích → nhập text → nhận kết quả |
-| **Lý do ưu tiên** | Rất nhiều user Việt Nam cần dịch thuật. Hữu ích cho sinh viên, freelancer |
-| **Hạn chế** | Mỗi cặp ngôn ngữ cần model riêng (~300MB). Có thể load on-demand theo cặp |
-| **Approach** | Load model theo cặp ngôn ngữ user chọn. Hiển thị progress bar. Cache vào IndexedDB |
-
-**Ngôn ngữ nên hỗ trợ (theo thứ tự):**
-1. English ↔ Vietnamese (quan trọng nhất cho user VN)
-2. English ↔ Chinese
-3. English ↔ Japanese
-4. English ↔ Korean
-5. English ↔ French
-6. English ↔ German
-
-**Implementation notes:**
-```
-- Dùng `pipeline("translation", "Xenova/opus-mt-en-vi")`
-- Output: { translation_text: "Kết quả dịch" }
-- Có thể gộp nhiều cặp ngôn ngữ vào 1 tool với dropdown chọn
-- Model sẽ được download theo cặp ngôn ngữ user chọn
-```
+| Tool | Model | Size | Task | Status |
+|---|---|---|---|---|
+| OCR | Tesseract.js | ~4MB | image-to-text (OCR) | ✅ Done |
+| Background Remover | RMBG-1.4 | ~170MB | image-segmentation | ✅ Done |
+| Text Summarizer | distilbart-cnn-6-6 | ~90MB | summarization | ✅ Done |
+| Object Detection | detr-resnet-50 | ~50MB | object-detection | ✅ Done |
+| Grammar Checker | T5-small | ~250MB | text2text-generation | ✅ Done |
+| Image Captioning | vit-gpt2 | ~1.2GB | image-to-text | ✅ Done |
+| Sentiment Analysis | DistilBERT SST-2 | ~270MB | sentiment-analysis | ✅ Done |
+| Question Answering | DistilBERT QA | ~270MB | question-answering | ✅ Done |
+| AI Translator | MarianMT | ~300MB | translation | ✅ Done |
+| Speech to Text | Whisper tiny | ~75MB | automatic-speech-recognition | ✅ Done |
+| Text to Speech | Web Speech API | 0MB | text-to-speech | ✅ Done |
+| Named Entity Recognition | bert-base-NER | ~400MB | token-classification | ✅ Done |
+| Face Detection | detr-resnet-50 | ~50MB | object-detection | ✅ Done |
+| Paraphrase Generator | t5-small | ~250MB | text2text-generation | ✅ Done |
+| Language Detector | Heuristic | 0MB | Unicode analysis | ✅ Done |
+| Keyword Extractor | all-MiniLM-L6-v2 | ~20MB | feature-extraction | ✅ Done |
 
 ---
 
-### 2. Speech-to-Text (Voice Recognition)
-| | |
-|---|---|
-| **Mô tả** | Chuyển giọng nói thành văn bản |
-| **Task** | `automatic-speech-recognition` |
-| **Model** | `Xenova/whisper-tiny.en` (~75MB), `Xenova/whisper-base.en` (~150MB) |
-| **Model size** | 75MB — 500MB tùy variant |
-| **Độ khó** | ⭐⭐ Trung bình |
-| **UX** | Upload file audio/record microphone → hiển thị text |
-| **Lý do ưu tiên** | Rất hữu ích cho content creator, journalist, sinh viên |
-| **Hạn chế** | Whisper tiny chất lượng thấp. Base/Small tốt hơn nhưng nặng hơn |
-| **Approach** | Dùng Whisper tiny cho English. Có thể thêm multi-language sau |
+## Tier 1 — Ưu tiên cao
 
-**Implementation notes:**
-```
-- Dùng `pipeline("automatic-speech-recognition", "Xenova/whisper-tiny.en")`
-- Input: File audio (MP3, WAV, M4A, OGG) hoặc microphone recording
-- Output: { text: "Transcribed text" }
-- Web Audio API để decode audio file
-- MediaRecorder API để record từ microphone
-- Whisper tiny: ~75MB, đủ cho English cơ bản
-- Whisper base: ~150MB, chất lượng tốt hơn
-```
+> **Trạng thái:** 5/6 tools đã implement. Chỉ còn Image Upscaler chưa làm (không có ONNX model phù hợp).
 
-**Features:**
-- Upload file audio (drag & drop)
-- Record from microphone (real-time)
-- Timestamp output (optional)
-- Language detection (Whisper multi-language)
+### 1. Text Translation ✅
+> **Đã implement** → AI Translator (MarianMT, ~300MB)
 
 ---
 
-### 3. Named Entity Recognition (NER)
-| | |
-|---|---|
-| **Mô tả** | Nhận diện tên riêng, địa điểm, tổ chức trong văn bản |
-| **Task** | `token-classification` |
-| **Model** | `Xenova/bert-base-NER` (~400MB) hoặc `Xenova/distilbert-NER` (~250MB) |
-| **Model size** | 250MB — 400MB |
-| **Độ khó** | ⭐⭐ Trung bình |
-| **UX** | Nhập text → highlight các entity (Person, Location, Organization) |
-| **Lý do ưu tiên** | Hữu ích cho researcher, journalist, data analyst |
-| **Hạn chế** | Chỉ hỗ trợ English. Cần fine-tune cho tiếng Việt |
-| **Approach** | Dùng DistilBERT NER cho nhẹ hơn. Highlight kết quả với màu theo loại entity |
-
-**Implementation notes:**
-```
-- Dùng `pipeline("token-classification", "Xenova/distilbert-NER")`
-- Input: Text paragraph
-- Output: [{ entity: "B-PER", word: "John", score: 0.99, start, end }, ...]
-- Highlight text với màu theo loại: PER (xanh), LOC (vàng), ORG (đỏ), MISC (tím)
-- Copy extracted entities theo category
-```
+### 2. Speech-to-Text (Voice Recognition) ✅
+> **Đã implement** → Speech to Text (Whisper tiny, ~75MB)
 
 ---
 
-### 4. Image Upscaler (Super Resolution)
+### 3. Named Entity Recognition (NER) ✅
+> **Đã implement** → Named Entity Recognition (bert-base-NER, ~400MB)
+
+---
+
+### 4. Image Upscaler (Super Resolution) ⬜
 | | |
 |---|---|
 | **Mô tả** | Phóng to ảnh mà không mất chất lượng |
@@ -125,7 +64,7 @@
 | **Độ khó** | ⭐⭐⭐ Khó |
 | **UX** | Upload ảnh → chọn scale (2x, 4x) → download |
 | **Lý do ưu tiên** | Rất nhiều user cần upscale ảnh cũ/ảnh low-res |
-| **Hạn chế** | Có thể không có ONNX model sẵn. Có thể cần convert thủ công |
+| **Hạn chế** | Không có ONNX model sẵn. Cần convert thủ công hoặc tìm alternative |
 | **Approach** | Thử `Xenova/super-resolution` hoặc dùng Canvas API với AI sharpening |
 
 **Implementation notes:**
@@ -140,33 +79,21 @@
 
 ---
 
-### 5. Text-to-Speech
-| | |
-|---|---|
-| **Mô tả** | Đọc văn bản thành giọng nói |
-| **Task** | Web Speech API (built-in) hoặc `text-to-speech` |
-| **Model** | Không cần model (Web Speech API) hoặc Transformers.js TTS |
-| **Model size** | 0MB (Web Speech API) hoặc ~100MB+ (TTS model) |
-| **Độ khó** | ⭐ Dễ (Web Speech API) / ⭐⭐⭐ Khó (custom model) |
-| **UX** | Nhập text → chọn voice/language → nghe hoặc download |
-| **Lý do ưu tiên** | Hữu ích cho accessibility, language learning |
-| **Hạn chế** | Web Speech API: giọng nói phụ thuộc browser/OS. Không download được |
-| **Approach** | Dùng Web Speech API trước (0MB, instant). Custom model sau |
+### 5. Text-to-Speech ✅
+> **Đã implement** → Text to Speech (Web Speech API, 0MB)
 
-**Implementation notes:**
-```
-- Web Speech API: speechSynthesis.speak(new SpeechSynthesisUtterance(text))
-- Hỗ trợ: chọn voice, speed, pitch, volume
-- Download: Dùng MediaRecorder + AudioContext để capture output
-- Limitation: Không phải browser nào cũng hỗ trợ download
-- Alternative: Transformers.js TTS models (nặng hơn nhưng chất lượng tốt hơn)
-```
+---
+
+### 6. Face Detection ✅
+> **Đã implement** → Face Detection (detr-resnet-50, ~50MB)
 
 ---
 
 ## Tier 2 — Ưu tiên trung bình
 
-### 6. Zero-shot Text Classification
+> **Trạng thái:** 3/6 tools đã implement. Còn lại: Zero-shot Classification, Text Generation, Image Similarity.
+
+### 6. Zero-shot Text Classification ⬜
 | | |
 |---|---|
 | **Mô tả** | Phân loại text vào bất kỳ category nào mà không cần training |
@@ -179,33 +106,17 @@
 
 ---
 
-### 7. Face Detection
-| | |
-|---|---|
-| **Mô tả** | Phát hiện khuôn mặt trong ảnh |
-| **Task** | `object-detection` hoặc custom |
-| **Model** | BlazeFace hoặc MediaPipe Face Detection |
-| **Model size** | ~5MB — 15MB |
-| **Độ khó** | ⭐⭐ Trung bình |
-| **UX** | Upload ảnh → detect faces → blur/pixelate faces |
-| **Lý do** | Privacy tool — blur faces trước khi share ảnh |
+### 7. Face Detection ✅
+> **Đã implement** → Face Detection (detr-resnet-50, ~50MB) — moved to Tier 1
 
 ---
 
-### 8. Paraphrase Generator
-| | |
-|---|---|
-| **Mô tả** | Viết lại câu cùng nghĩa nhưng khác cách diễn đạt |
-| **Task** | `text2text-generation` |
-| **Model** | `Xenova/paraphrase-T5-small` (~250MB) |
-| **Model size** | ~250MB |
-| **Độ khó** | ⭐ Dễ |
-| **UX** | Nhập text → nhận nhiều cách viết lại |
-| **Lý do** | Hữu ích cho content writer, student |
+### 8. Paraphrase Generator ✅
+> **Đã implement** → Paraphrase Generator (t5-small, ~250MB)
 
 ---
 
-### 9. Text Generation (Creative Writing)
+### 9. Text Generation (Creative Writing) ⬜
 | | |
 |---|---|
 | **Mô tả** | Tạo text dựa trên prompt |
@@ -218,7 +129,7 @@
 
 ---
 
-### 10. Image Similarity (CLIP)
+### 10. Image Similarity (CLIP) ⬜
 | | |
 |---|---|
 | **Mô tả** | Tìm ảnh tương tự hoặc search ảnh bằng text |
@@ -231,29 +142,13 @@
 
 ---
 
-### 11. Language Detection
-| | |
-|---|---|
-| **Mô tả** | Phát hiện ngôn ngữ của văn bản |
-| **Task** | `text-classification` hoặc heuristics |
-| **Model** | Có thể dùng heuristics (Unicode ranges) không cần model |
-| **Model size** | 0MB (heuristics) hoặc ~10MB (model) |
-| **Độ khó** | ⭐ Dễ |
-| **UX** | Nhập text → hiển thị ngôn ngữ + confidence |
-| **Lý do** | Nhanh, nhẹ, utility tool |
+### 11. Language Detection ✅
+> **Đã implement** → Language Detector (Heuristic, 0MB)
 
 ---
 
-### 12. Keyword Extraction
-| | |
-|---|---|
-| **Mô tả** | Trích xuất keywords quan trọng từ văn bản |
-| **Task** | `feature-extraction` + algorithm |
-| **Model** | `Xenova/all-MiniLM-L6-v2` (~20MB) |
-| **Model size** | ~20MB |
-| **Độ khó** | ⭐⭐ Trung bình |
-| **UX** | Nhập text → hiển thị top keywords với score |
-| **Lý do** | Hữu ích cho SEO, content writing |
+### 12. Keyword Extraction ✅
+> **Đã implement** → Keyword Extractor (all-MiniLM-L6-v2, ~20MB)
 
 ---
 
@@ -305,51 +200,48 @@
 
 ## Bảng tổng hợp ưu tiên
 
-| # | Tool | Category | Model Size | Effort | Impact | Priority |
-|---|---|---|---|---|---|---|
-| 1 | Text Translation | Text | ~300MB | TB | ⭐⭐⭐⭐⭐ | 🔴 Cao |
-| 2 | Speech-to-Text | Audio | ~75MB | TB | ⭐⭐⭐⭐⭐ | 🔴 Cao |
-| 3 | Text-to-Speech | Audio | 0MB | Dễ | ⭐⭐⭐⭐ | 🔴 Cao |
-| 4 | Named Entity Recognition | Text | ~250MB | TB | ⭐⭐⭐⭐ | 🔴 Cao |
-| 5 | Image Upscaler | Image | ~60MB | Khó | ⭐⭐⭐⭐ | 🟡 TB |
-| 6 | Face Detection | Image | ~5MB | TB | ⭐⭐⭐ | 🟡 TB |
-| 7 | Zero-shot Classification | Text | ~200MB | TB | ⭐⭐⭐ | 🟡 TB |
-| 8 | Paraphrase Generator | Text | ~250MB | Dễ | ⭐⭐⭐ | 🟡 TB |
-| 9 | Language Detection | Text | 0MB | Dễ | ⭐⭐⭐ | 🟡 TB |
-| 10 | Keyword Extraction | Text | ~20MB | TB | ⭐⭐⭐ | 🟡 TB |
-| 11 | Text Generation | Text | ~350MB | TB | ⭐⭐ | 🟢 Thấp |
-| 12 | Image Similarity | Image | ~150MB | Khó | ⭐⭐ | 🟢 Thấp |
-| 13 | Depth Estimation | Image | ~350MB | TB | ⭐⭐ | 🟢 Thấp |
-| 14 | Image Colorization | Image | TBD | Khó | ⭐⭐ | 🟢 Thấp |
-| 15 | Pose Estimation | Image | ~10MB | TB | ⭐⭐ | 🟢 Thấp |
-| 16 | Audio Classification | Audio | ~300MB | TB | ⭐ | 🟢 Thấp |
-| 17 | Hate Speech Detection | Text | ~400MB | TB | ⭐ | 🟢 Thấp |
-| 18 | Emotion Detection | Text | ~300MB | TB | ⭐⭐ | 🟢 Thấp |
+| # | Tool | Category | Model Size | Effort | Impact | Priority | Status |
+|---|---|---|---|---|---|---|---|
+| 1 | Text Translation | Text | ~300MB | TB | ⭐⭐⭐⭐⭐ | 🔴 Cao | ✅ Done |
+| 2 | Speech-to-Text | Audio | ~75MB | TB | ⭐⭐⭐⭐⭐ | 🔴 Cao | ✅ Done |
+| 3 | Text-to-Speech | Audio | 0MB | Dễ | ⭐⭐⭐⭐ | 🔴 Cao | ✅ Done |
+| 4 | Named Entity Recognition | Text | ~250MB | TB | ⭐⭐⭐⭐ | 🔴 Cao | ✅ Done |
+| 5 | Image Upscaler | Image | ~60MB | Khó | ⭐⭐⭐⭐ | 🟡 TB | ⬜ Chưa |
+| 6 | Face Detection | Image | ~5MB | TB | ⭐⭐⭐ | 🟡 TB | ✅ Done |
+| 7 | Zero-shot Classification | Text | ~200MB | TB | ⭐⭐⭐ | 🟡 TB | ⬜ Chưa |
+| 8 | Paraphrase Generator | Text | ~250MB | Dễ | ⭐⭐⭐ | 🟡 TB | ✅ Done |
+| 9 | Language Detection | Text | 0MB | Dễ | ⭐⭐⭐ | 🟡 TB | ✅ Done |
+| 10 | Keyword Extraction | Text | ~20MB | TB | ⭐⭐⭐ | 🟡 TB | ✅ Done |
+| 11 | Text Generation | Text | ~350MB | TB | ⭐⭐ | 🟢 Thấp | ⬜ Chưa |
+| 12 | Image Similarity | Image | ~150MB | Khó | ⭐⭐ | 🟢 Thấp | ⬜ Chưa |
+| 13 | Depth Estimation | Image | ~350MB | TB | ⭐⭐ | 🟢 Thấp | ⬜ Chưa |
+| 14 | Image Colorization | Image | TBD | Khó | ⭐⭐ | 🟢 Thấp | ⬜ Chưa |
+| 15 | Pose Estimation | Image | ~10MB | TB | ⭐⭐ | 🟢 Thấp | ⬜ Chưa |
+| 16 | Audio Classification | Audio | ~300MB | TB | ⭐ | 🟢 Thấp | ⬜ Chưa |
+| 17 | Hate Speech Detection | Text | ~400MB | TB | ⭐ | 🟢 Thấp | ⬜ Chưa |
+| 18 | Emotion Detection | Text | ~300MB | TB | ⭐⭐ | 🟢 Thấp | ⬜ Chưa |
 
 ---
 
-## Khuyến nghị — Batch tiếp theo (6 tools)
+## Khuyến nghị — Batch tiếp theo
 
-Dựa trên impact/effort ratio, đề xuất implement 6 tools tiếp theo:
+> Tier 1 đã hoàn thành (5/6). Chuyển focus sang Tier 2 còn lại.
 
-### Batch A: Text & Audio (impact cao nhất)
-1. **Text Translation** — User VN rất cần. Model ~300MB
-2. **Speech-to-Text (Whisper)** — Content creator cần. Model ~75MB
-3. **Text-to-Speech** — Web Speech API, 0MB, instant
+### Batch tiếp theo: Tier 2 còn lại (3 tools)
 
-### Batch B: NLP & Image
-4. **Named Entity Recognition** — Research/journalism. Model ~250MB
-5. **Face Detection** — Privacy tool. Model ~5MB
-6. **Paraphrase Generator** — Content writing. Model ~250MB
+1. **Zero-shot Text Classification** — Flexible, user tự define categories. Model ~200MB
+2. **Text Generation** — Creative writing tool. Model ~350MB
+3. **Image Similarity (CLIP)** — Unique tool, ít competitors. Model ~150MB
 
-### Tổng model size cho Batch A+B
-- Translation (1 pair): ~300MB
-- Whisper tiny: ~75MB
-- TTS: 0MB (Web Speech API)
-- NER: ~250MB
-- Face Detection: ~5MB
-- Paraphrase: ~250MB
-- **Tổng: ~905MB** (download on-demand, cache vào IndexedDB)
+### Tổng model size
+- Zero-shot Classification: ~200MB
+- Text Generation: ~350MB
+- Image Similarity: ~150MB
+- **Tổng: ~700MB** (download on-demand, cache vào IndexedDB)
+
+### Lưu ý
+- Image Upscaler (Tier 1) bỏ qua vì không có ONNX model phù hợp
+- Tier 3 (Depth Estimation, Image Colorization, Pose Estimation, Audio Classification, Hate Speech Detection, Emotion Detection) — ưu tiên thấp, có thể làm sau
 
 ---
 
@@ -392,13 +284,13 @@ Dựa trên impact/effort ratio, đề xuất implement 6 tools tiếp theo:
 
 ## KPIs mục tiêu
 
-| Metric | Hiện tại | Mục tiêu |
-|---|---|---|
-| AI Tools | 8 | 14 (+6) |
-| Total Tools | 108 | 114 |
-| Categories | 16 | 16 (vẫn trong AI) |
-| Pages | 126 | 132 |
+| Metric | Trước | Hiện tại | Mục tiêu tiếp theo |
+|---|---|---|---|
+| AI Tools | 8 | 16 | 19 (+3) |
+| Total Tools | 108 | 204+ | 207+ |
+| Categories | 16 | 16 | 16 (vẫn trong AI) |
+| Pages | 126 | — | — |
 
 ---
 
-*Cập nhật: 2026-05-04*
+*Cập nhật: 2026-05-29*

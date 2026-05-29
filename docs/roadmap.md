@@ -1,171 +1,229 @@
 # ToolBundle Roadmap
 
-Kế hoạch mở rộng aToolBundle từ 54 tools hiện tại lên 100+ tools.
+Kế hoạch phát triển ToolBundle — từ 100 tools ban đầu đến 204+ tools hiện tại.
+
+---
 
 ## Trạng thái hiện tại
 
 | Metric | Value |
 |---|---|
-| Total tools | 100 |
-| Categories | 15 |
-| Test coverage | 182 tests (100% pass) |
+| **Total tools** | 204+ |
+| **Categories** | 19 |
+| **Pages** | 228 |
+| **Tests** | 182+ (all pass) |
+| **Lint errors** | 0 (Biome) |
+| **Build time** | ~24s |
+| **AI Tools** | 16 |
+| **SW Version** | v4 |
 
 ---
 
-## Phase 5 — Mở rộng categories hiện có + Fun & Utility (15 tools) ✅ DONE
+## Các Phase đã hoàn thành
 
-### Image Tools mở rộng (5 tools mới → 13 total)
+### Phase 1-10: Core Tools (123 tools) ✅
 
-| Tool | Slug | Mô tả | Độ khó |
+Xem chi tiết trong `docs/tools-list.md`.
+
+### Phase 11-15: Infrastructure ✅
+
+| Phase | Focus | Status |
+|---|---|---|
+| Phase 11 | SEO & Discoverability (JSON-LD, OG tags, sitemap) | ✅ |
+| Phase 12 | Accessibility (ARIA, focus-visible, skip-to-content) | ✅ |
+| Phase 13 | Privacy-first Analytics (localStorage) | ✅ |
+| Phase 14 | CI/CD (GitHub Actions → Cloudflare Pages) | ✅ |
+| Phase 15 | Blog Section (Content Collections) | ✅ |
+
+### Phase 16-19: Features & Converters ✅
+
+| Phase | Focus | Tools/Features | Status |
 |---|---|---|---|
-| Image to Base64 | `/image/image-to-base64` | Convert image to Base64 data URI | Dễ |
-| Image Rotator & Flipper | `/image/image-rotator` | Rotate 90°/180°/270°, flip horizontal/vertical | Dễ |
-| Image Watermark | `/image/image-watermark` | Add text watermark with position/opacity/size | TB |
-| Photo Filters | `/image/photo-filters` | Apply filters: Grayscale, Sepia, Vintage, Warm, Cool, Blur, Sharpen | TB |
-| SVG Optimizer | `/image/svg-optimizer` | Remove comments, whitespace, unused attributes from SVG | Dễ |
+| Phase 16 | Converter Tools Batch 1 | 20 tools (Number, Data, Encoding, Color, Text) | ✅ |
+| Phase 16b | Converter Tools Batch 2 | 15 tools (Number/Math, Data, Encoding, Time) | ✅ |
+| Phase 17 | Batch Processing | Image batch mode, ZIP download | ✅ |
+| Phase 18 | AI Assistant | Rule-based chat, 80+ tool knowledge base | ✅ |
+| Phase 19 | Workflow Builder | Canvas editor, 25 tools, 6 templates | ✅ |
 
-### Developer Tools mở rộng (3 tools mới → 13 total)
+### Phase 20: AI Tools Batch 2 ✅
 
-| Tool | Slug | Mô tả | Độ khó |
-|---|---|---|---|
-| HTML Formatter | `/developer/html-formatter` | Format, beautify, and minify HTML | Dễ |
-| SQL Formatter | `/developer/sql-formatter` | Format SQL queries with proper indentation | TB |
-| XML Formatter | `/developer/xml-formatter` | Format, validate, and minify XML | Dễ |
+| Tool | Model | Task |
+|---|---|---|
+| Named Entity Recognition | `Xenova/bert-base-NER` | token-classification |
+| Face Detection | `Xenova/detr-resnet-50` | object-detection |
+| Paraphrase Generator | `Xenova/t5-small` | text2text-generation |
+| Language Detector | Heuristic (Unicode) | instant detection |
+| Keyword Extractor | `Xenova/all-MiniLM-L6-v2` | feature-extraction |
 
-### Fun & Utility — Category mới (7 tools)
+**Result:** 11 → 16 AI tools
 
-| Tool | Slug | Mô tả | Độ khó |
-|---|---|---|---|
-| Random Number Generator | `/fun/random-number-generator` | Generate random numbers with range, count, unique option | Dễ |
-| Dice Roller | `/fun/dice-roll` | Roll virtual dice D4-D100 with animation | Dễ |
-| Coin Flipper | `/fun/coin-flip` | Flip a coin with animation | Dễ |
-| Random Name Picker | `/fun/random-name-picker` | Pick random names from a list | Dễ |
-| Wheel Spinner | `/fun/wheel-spinner` | Spin the wheel to pick a random option | TB |
-| Decision Maker | `/fun/decision-maker` | Add options, spin to decide | TB |
-| Lorem Image Generator | `/fun/placeholder-image` | Generate placeholder images with custom size/color/text | Dễ |
+### Phase 21: Tool Collections ✅
 
-**Tổng Phase 5: 15 tools mới → 69 total** ✅
+| Feature | Description |
+|---|---|
+| Collections utility | localStorage CRUD, add/remove tools, import/export JSON |
+| CollectionManager | Grid cards with accent bar, expand/collapse, inline edit |
+| CollectionPicker | Dropdown on tool pages, checkbox toggle, create new |
+| CollectionsSection | Homepage section, 3 suggested collections |
+| Design | Accent card style with icon, badge, hover lift |
+
+### Phase 22: Converter/Developer Tools Expansion ✅
+
+| Category | Tools Added |
+|---|---|
+| Text (+5) | Find & Replace, Whitespace Remover, Text Statistics, Text Wrap, Text Truncate |
+| Developer (+6) | CSS Units Converter, URL Parser, User Agent Parser, MIME Type Lookup, HTTP Status Codes, CSS Minifier |
+| Data (+3) | JSON to YAML, TSV to JSON, JSON to TSV |
+| Color (+3) | Color Mixer, Color Shades, Color Tints |
+| Security (+2) | JWT Encoder, Hash File |
+
+**Result:** +19 tools
+
+### Phase 23: Account Tools ✅
+
+| Tool | Description |
+|---|---|
+| Username Generator | 5 styles (Gamer/Professional/Funny/Random/Cute), 50+ adjectives, 50+ nouns |
+| Email Validator | Bulk validate, disposable detection (16 domains), role-based detection |
+| Phone Validator | 10 countries (US/VN/UK/JP/KR/CN/DE/FR/AU/IN), E.164 format |
+| Credit Card Validator | Luhn algorithm, 7 card types (Visa/MC/Amex/Discover/JCB/Diners/UnionPay) |
+| IBAN Validator | Mod-97 checksum, 15 countries, bank code extraction |
+
+**New category:** Account & Identity (`account`, `#0ea5e9`)
+
+### Phase 24: Security Tools Expansion ✅
+
+| Tool | Description |
+|---|---|
+| IP Address Lookup | Auto-detect via ipify.org, geolocation via ip-api.com |
+| DNS Lookup | Google DNS-over-HTTPS API, 8 record types |
+| SSL Checker | crt.sh API, certificate transparency logs |
+| Password Breach Checker | HaveIBeenPwned k-anonymity API |
+| CSP Evaluator | Parse headers, security score (0-100), best practices |
+
+**Result:** 5 → 12 Security tools
+
+### Phase 25: Game Tools ✅
+
+| Tool | Description |
+|---|---|
+| Error Code Lookup | 50+ codes (Riot/Vanguard, Steam, PlayStation, Xbox, Epic, Windows) |
+| DPI Calculator | 7 games, eDPI, cm/360°, 7 pro player presets |
+| Sensitivity Converter | 12 games, conversion formulas, swap button |
+| Crosshair Generator | Valorant/CS2/Overwatch 2, canvas preview, import codes |
+| Game Timer | Pomodoro/Custom/Stopwatch/Session, Web Audio beep, notifications |
+
+**New category:** Game Tools (`game`, `#f97316`)
+
+### Phase 26: Utility Tools ✅
+
+| Tool | Description |
+|---|---|
+| Link Shortener | Hash-based, QR code, bulk processing |
+| Invoice Generator | Line items, tax/discount, 5 currencies, print, localStorage |
+| Signature Generator | Canvas drawing (mouse+touch), download PNG/SVG |
+| Favicon Generator | Text/emoji/image input, 6 sizes, HTML code |
+| Notepad | Multiple notes, auto-save, export .txt/.md, search |
+
+**New category:** Utility Tools (`utility`, `#78716c`)
+
+### Phase 27: AI Assistant Enhancement ✅
+
+| Feature | Description |
+|---|---|
+| Dynamic speech bubble | 6 random texts, 45s interval, 5s display, bubble-pop animation |
+| Knowledge base | 204+ tools with keywords, descriptions, use cases |
+
+### Phase 28: UI/UX Improvements ✅
+
+| Feature | Description |
+|---|---|
+| Collection card design | Accent bar top, icon, badge, hover lift effect |
+| Select dropdown fix | appearance: none, custom arrow, proper height |
+| Google Search Console | Verification meta tag |
+| Service Worker cache | Version bumped to v4 |
 
 ---
 
-## Phase 6 — Text/Dev mở rộng + Education (14 tools) ✅ DONE
+## Categories hiện tại (19 categories)
 
-### Text Tools mở rộng (4 tools mới → 13 total)
-
-| Tool | Slug | Mô tả | Độ khó |
-|---|---|---|---|
-| Fancy Text Generator | `/text/fancy-text` | Generate Unicode fancy text: 𝕋𝕙𝕚𝕤, 𝓣𝓱𝓲𝓼, 𝕋𝕙𝕚𝕤 | Dễ |
-| Readability Score | `/text/readability-score` | Calculate Flesch-Kincaid, Gunning Fog, Coleman-Liau scores | TB |
-| Text to Hashtags | `/text/text-to-hashtags` | Extract keywords and generate hashtags | Dễ |
-| Emoji Picker & Search | `/text/emoji-picker` | Browse and search emojis with categories | Dễ |
-
-### Developer Tools mở rộng thêm (3 tools mới → 16 total)
-
-| Tool | Slug | Mô tả | Độ khó |
-|---|---|---|---|
-| JavaScript Formatter | `/developer/js-formatter` | Format and minify JavaScript | Dễ |
-| TypeScript to JS | `/developer/typescript-to-js` | Compile TypeScript to JavaScript | TB |
-| Color System Generator | `/developer/color-system` | Generate full color system from one color | TB |
-
-### Education — Category mới (7 tools)
-
-| Tool | Slug | Mô tả | Độ khó |
-|---|---|---|---|
-| Flashcard Maker | `/education/flashcard-maker` | Create and study flashcards with spaced repetition | TB |
-| Quiz Maker | `/education/quiz-maker` | Create quizzes with multiple choice answers | TB |
-| Grade Calculator | `/education/grade-calculator` | Calculate weighted average grades | Dễ |
-| GPA Calculator | `/education/gpa-calculator` | Calculate GPA from course grades | Dễ |
-| Citation Generator | `/education/citation-generator` | Generate APA, MLA, Chicago citations | TB |
-| Study Planner | `/education/study-planner` | Plan study schedule around exam dates | TB |
-| Fraction Calculator | `/education/fraction-calculator` | Add, subtract, multiply, divide fractions | Dễ |
-
-**Tổng Phase 6: 14 tools mới → 83 total** ✅
-
----
-
-## Phase 7 — Finance + Health + Video/Audio (17 tools) ✅ DONE
-
-### Finance — Category mới (7 tools)
-
-| Tool | Slug | Mô tả | Độ khó |
-|---|---|---|---|
-| Currency Converter | `/finance/currency-converter` | Convert currencies with static rates (no API) | Dễ |
-| Compound Interest | `/finance/compound-interest` | Calculate compound interest with charts | Dễ |
-| Tax Calculator | `/finance/tax-calculator` | Calculate income tax with brackets | TB |
-| Budget Tracker | `/finance/budget-tracker` | Track income and expenses with categories | TB |
-| Investment Calculator | `/finance/investment-calculator` | Project investment growth over time | Dễ |
-| Net Worth Calculator | `/finance/net-worth-calculator` | Calculate net worth: assets - liabilities | Dễ |
-| Break Even Calculator | `/finance/break-even-calculator` | Calculate break-even point for business | Dễ |
-
-### Health — Category mới (5 tools)
-
-| Tool | Slug | Mô tả | Độ khó |
-|---|---|---|---|
-| Calorie Calculator | `/health/calorie-calculator` | Calculate daily calorie needs (TDEE) | Dễ |
-| Water Intake Calculator | `/health/water-intake` | Calculate daily water intake needs | Dễ |
-| Sleep Cycle Calculator | `/health/sleep-cycle` | Calculate optimal sleep/wake times | Dễ |
-| Body Fat Calculator | `/health/body-fat-calculator` | Calculate body fat percentage (Navy method) | Dễ |
-| Pregnancy Due Date | `/health/pregnancy-due-date` | Calculate due date from last period | Dễ |
-
-### Video & Audio — Category mới (5 tools)
-
-| Tool | Slug | Mô tả | Độ khó |
-|---|---|---|---|
-| Video to MP3 | `/video/video-to-mp3` | Extract audio from video files | TB |
-| Audio Trimmer | `/video/audio-trimmer` | Trim audio files with waveform preview | Cao |
-| Video Compressor | `/video/video-compressor` | Reduce video file size | Cao |
-| Audio Converter | `/video/audio-convert` | Convert between audio formats | TB |
-| Volume Booster | `/video/volume-booster` | Boost or reduce audio volume | TB |
-
-**Tổng Phase 7: 17 tools mới → 100 total** ✅
-
----
-
-## Tổng kết Roadmap
-
-| Phase | Focus | Tools mới | Total | Status |
+| # | Category | ID | Tools | Color |
 |---|---|---|---|---|
-| Phase 5 | Image/Dev mở rộng + Fun & Utility | 15 | 69 | ✅ Done |
-| Phase 6 | Text/Dev mở rộng + Education | 14 | 83 | ✅ Done |
-| Phase 7 | Finance + Health + Video/Audio | 17 | 100 | ✅ Done |
-| **Tổng** | | **46** | **100** | |
+| 1 | Image Tools | `image` | 13 | `#3b82f6` |
+| 2 | Text Tools | `text` | 19 | `#22c55e` |
+| 3 | Developer Tools | `developer` | 32 | `#a855f7` |
+| 4 | PDF Tools | `pdf` | 5 | `#ef4444` |
+| 5 | Math & Calculators | `math` | 5 | `#f59e0b` |
+| 6 | Security Tools | `security` | 12 | `#06b6d4` |
+| 7 | Color Tools | `color` | 7 | `#ec4899` |
+| 8 | Date & Time Tools | `datetime` | 4 | `#14b8a6` |
+| 9 | SEO & Marketing | `seo` | 3 | `#8b5cf6` |
+| 10 | Data & Spreadsheet | `data` | 6 | `#10b981` |
+| 11 | Fun & Utility | `fun` | 7 | `#f97316` |
+| 12 | Education & Students | `education` | 7 | `#6366f1` |
+| 13 | Finance & Money | `finance` | 7 | `#84cc16` |
+| 14 | Health & Medical | `health` | 5 | `#f43f5e` |
+| 15 | Video & Audio | `video` | 5 | `#d946ef` |
+| 16 | AI Tools | `ai` | 16 | `#8b5cf6` |
+| 17 | Account & Identity | `account` | 5 | `#0ea5e9` |
+| 18 | Game Tools | `game` | 5 | `#f97316` |
+| 19 | Utility Tools | `utility` | 5 | `#78716c` |
 
 ---
 
-## Ưu tiên implement
+## Roadmap tương lai
 
-### Ưu tiên cao (implement trước)
-- Tools thuần JS, không cần external libraries
-- Tools có nhu cầu sử dụng cao (theo search volume)
-- Tools có thể test dễ dàng
+### Phase 29: AI Tools Tier 2 ⭐ Ưu tiên cao
 
-### Ưu tiên trung bình
-- Tools cần thêm libraries (chart.js, etc.)
-- Tools có UI phức tạp hơn
+| Tool | Model | Size | Task |
+|---|---|---|---|
+| Zero-shot Classification | `Xenova/deberta-v3-xsmall-mnli` | ~200MB | zero-shot-classification |
+| Text Generation | `Xenova/distilgpt2` | ~350MB | text-generation |
+| Image Similarity (CLIP) | `Xenova/clip-vit-base-patch32` | ~150MB | zero-shot-image-classification |
+| Text Emotion Detection | `Xenova/distilroberta-base-go-emotions` | ~300MB | text-classification |
+| Depth Estimation | `Xenova/dpt-large` | ~350MB | image-to-image |
+| Pose Estimation | `Xenova/movenet-thunder` | ~10MB | object-detection |
 
-### Ưu tiên thấp
-- Tools cần Web Workers hoặc heavy processing
-- Tools cần external APIs (currency rates, etc.)
+### Phase 30: Workflow Expansion
+
+- Thêm 20 workflow tools (text, regex, math, data)
+- File-based workflow nodes (file-input, file-output)
+- Batch workflow processing
+
+### Phase 31: Batch Processing Everywhere
+
+- Batch cho Text tools
+- Batch cho Developer tools
+- Batch cho Converter tools
+- Shared BatchProcessor component
+
+### Phase 32: Content & SEO
+
+- 20 SEO-optimized blog posts
+- Category landing pages
+- Comparison pages
+- Schema markup enhancement
+
+### Phase 33: Developer Ecosystem
+
+- Embed widget
+- Browser extension
+- API endpoints (Cloudflare Workers)
+- CLI tool
+
+### Phase 34: Monetization
+
+- Advertising (AdSense/Carbon Ads)
+- Premium tier ($5/month)
+- Donations (Buy Me A Coffee)
+
+### Phase 35: Performance & Quality
+
+- Lighthouse score: target 95+
+- 300+ tests (E2E with Playwright)
+- Error monitoring (Sentry)
+- Internationalization (i18n) — Vietnamese + English
 
 ---
 
-## Categories mục tiêu (15 categories)
-
-| # | Category | Tools hiện tại | Mục tiêu | Tổng | Status |
-|---|---|---|---|---|---|
-| 1 | Image Tools | 13 | +0 | 13 | ✅ |
-| 2 | Text Tools | 13 | +0 | 13 | ✅ |
-| 3 | Developer Tools | 16 | +0 | 16 | ✅ |
-| 4 | PDF Tools | 5 | 0 | 5 | ✅ |
-| 5 | Math & Calculators | 5 | 0 | 5 | ✅ |
-| 6 | Security Tools | 3 | 0 | 3 | ✅ |
-| 7 | Color Tools | 4 | 0 | 4 | ✅ |
-| 8 | Date & Time Tools | 4 | 0 | 4 | ✅ |
-| 9 | SEO & Marketing | 3 | 0 | 3 | ✅ |
-| 10 | Data & Spreadsheet | 3 | 0 | 3 | ✅ |
-| 11 | Fun & Utility | 7 | 0 | 7 | ✅ |
-| 12 | Education | 7 | +0 | 7 | ✅ |
-| 13 | Finance | 7 | +0 | 7 | ✅ |
-| 14 | Health | 5 | +0 | 5 | ✅ |
-| 15 | Video & Audio | 5 | +0 | 5 | ✅ |
-| **Total** | | **100** | **+0** | **100** | ✅ |
+*Cập nhật: 2026-05-29*
