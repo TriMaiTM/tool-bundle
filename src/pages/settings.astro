@@ -1,0 +1,290 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base title="Settings">
+  <div class="w-full max-w-2xl mx-auto py-12 px-4 sm:px-6">
+    <div class="mb-8">
+      <h1 class="text-display-lg text-ink font-bold mb-2">Settings</h1>
+      <p class="text-body-md text-muted">Customize your ToolBundle experience. All preferences are saved locally in your browser.</p>
+    </div>
+
+    <div class="card p-6 sm:p-8 flex flex-col gap-8 shadow-sm">
+      {/* Theme Setting */}
+      <div class="flex flex-col gap-3">
+        <label class="text-body-sm-strong font-bold text-ink">Appearance</label>
+        <div class="grid grid-cols-3 gap-2">
+          <button id="theme-light-btn" class="theme-btn">
+            <span>Light</span>
+          </button>
+          <button id="theme-dark-btn" class="theme-btn">
+            <span>Dark</span>
+          </button>
+          <button id="theme-system-btn" class="theme-btn">
+            <span>System</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Accent Color Setting */}
+      <div class="flex flex-col gap-3">
+        <label class="text-body-sm-strong font-bold text-ink">Primary Accent Color</label>
+        <div class="flex items-center gap-4 pl-1 py-1">
+          <button data-color="red" style="background-color: #e60023;" class="color-badge" aria-label="Red theme"></button>
+          <button data-color="blue" style="background-color: #435ee5;" class="color-badge" aria-label="Blue theme"></button>
+          <button data-color="green" style="background-color: #22c55e;" class="color-badge" aria-label="Green theme"></button>
+          <button data-color="purple" style="background-color: #7e238b;" class="color-badge" aria-label="Purple theme"></button>
+          <button data-color="amber" style="background-color: #f59e0b;" class="color-badge" aria-label="Amber theme"></button>
+        </div>
+      </div>
+
+      {/* Language Setting */}
+      <div class="flex flex-col gap-3">
+        <label for="lang-select" class="text-body-sm-strong font-bold text-ink">Language</label>
+        <div class="relative">
+          <select id="lang-select" class="input py-2 px-3 h-11 bg-canvas border border-hairline text-ink rounded-xl w-full">
+            <option value="en">English</option>
+            <option value="vi">Tiếng Việt</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Workflow Builder Preferences */}
+      <div class="flex flex-col gap-3 border-t border-hairline pt-6">
+        <label class="text-body-sm-strong font-bold text-ink">Workflows</label>
+        <div class="flex items-center justify-between py-1">
+          <div class="flex flex-col gap-0.5 max-w-[80%]">
+            <label for="autorun-toggle" class="text-body-sm font-semibold text-ink cursor-pointer">Auto-run scripts</label>
+            <span class="text-caption text-muted">Execute pipeline workflow steps automatically when block inputs change.</span>
+          </div>
+          <input type="checkbox" id="autorun-toggle" class="w-5 h-5 accent-primary cursor-pointer rounded border-hairline" />
+        </div>
+      </div>
+
+      {/* Local Storage & Reset Setting */}
+      <div class="flex flex-col gap-4 border-t border-hairline pt-6">
+        <div class="flex justify-between items-center text-body-sm text-muted">
+          <span>Browser cache used:</span>
+          <span id="storage-usage-text" class="font-mono font-semibold text-ink">0 KB</span>
+        </div>
+        <button id="reset-data-btn" class="reset-btn">
+          Clear Data & Reset App
+        </button>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .theme-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-md);
+    background-color: transparent;
+    color: var(--color-mute);
+    font-size: var(--text-body-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .theme-btn:hover {
+    background-color: var(--color-surface-soft);
+    color: var(--color-ink);
+  }
+  .theme-btn.active {
+    background-color: color-mix(in srgb, var(--color-primary) 12%, transparent);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 1px var(--color-primary);
+  }
+
+  .color-badge {
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  .color-badge:hover {
+    transform: scale(1.1);
+  }
+  .color-badge.active {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 2px var(--color-canvas), 0 0 0 5px var(--color-primary);
+  }
+
+  .reset-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 44px;
+    width: 100%;
+    margin-top: 0.5rem;
+    border-radius: var(--radius-md);
+    color: var(--color-error);
+    background-color: color-mix(in srgb, var(--color-error) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-error) 20%, transparent);
+    font-size: var(--text-body-sm);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .reset-btn:hover {
+    background-color: color-mix(in srgb, var(--color-error) 18%, transparent);
+    border-color: color-mix(in srgb, var(--color-error) 35%, transparent);
+  }
+</style>
+
+<script>
+  // 1. Theme Selection
+  const themeLightBtn = document.getElementById("theme-light-btn");
+  const themeDarkBtn = document.getElementById("theme-dark-btn");
+  const themeSystemBtn = document.getElementById("theme-system-btn");
+
+  function updateThemeUI(theme: string) {
+    [themeLightBtn, themeDarkBtn, themeSystemBtn].forEach(btn => {
+      btn?.classList.remove("active");
+    });
+    const activeBtn = theme === "light" ? themeLightBtn : (theme === "dark" ? themeDarkBtn : themeSystemBtn);
+    activeBtn?.classList.add("active");
+  }
+
+  function applyTheme(theme: string) {
+    let activeTheme = theme;
+    if (theme === "system") {
+      activeTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    document.documentElement.setAttribute("data-theme", activeTheme);
+    localStorage.setItem("toolbundle_theme", theme);
+    
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", activeTheme === "dark" ? "#161310" : "#ffffff");
+    
+    updateThemeUI(theme);
+  }
+
+  const storedTheme = localStorage.getItem("toolbundle_theme") || "system";
+  updateThemeUI(storedTheme);
+
+  themeLightBtn?.addEventListener("click", () => applyTheme("light"));
+  themeDarkBtn?.addEventListener("click", () => applyTheme("dark"));
+  themeSystemBtn?.addEventListener("click", () => applyTheme("system"));
+
+  // 2. Accent Color Settings
+  const colorMap: Record<string, { p: string; pr: string }> = {
+    red: { p: '#e60023', pr: '#cc001f' },
+    blue: { p: '#435ee5', pr: '#2d46b9' },
+    green: { p: '#22c55e', pr: '#1a9d4b' },
+    purple: { p: '#7e238b', pr: '#631b6e' },
+    amber: { p: '#f59e0b', pr: '#d98200' }
+  };
+
+  const colorBadges = document.querySelectorAll(".color-badge");
+
+  function updateAccentColorUI(activeColor: string) {
+    colorBadges.forEach(badge => {
+      badge.classList.remove("active");
+      if (badge.getAttribute("data-color") === activeColor) {
+        badge.classList.add("active");
+      }
+    });
+  }
+
+  function applyAccentColor(color: string) {
+    const sel = colorMap[color] || colorMap.red;
+    document.documentElement.style.setProperty("--color-primary", sel.p);
+    document.documentElement.style.setProperty("--color-primary-pressed", sel.pr);
+    localStorage.setItem("toolbundle_primary_color", color);
+    updateAccentColorUI(color);
+
+    // Refresh active theme button style since the primary color has changed
+    const storedTheme = localStorage.getItem("toolbundle_theme") || "system";
+    updateThemeUI(storedTheme);
+
+    // Broadcast change to other components
+    window.dispatchEvent(new CustomEvent("toolbundle:color-change", { detail: { color, ...sel } }));
+  }
+
+  const storedColor = localStorage.getItem("toolbundle_primary_color") || "red";
+  updateAccentColorUI(storedColor);
+
+  colorBadges.forEach(badge => {
+    badge.addEventListener("click", () => {
+      const color = badge.getAttribute("data-color");
+      if (color) applyAccentColor(color);
+    });
+  });
+
+  // 3. Language Selection
+  const langSelect = document.getElementById("lang-select");
+  if (langSelect) {
+    const storedLang = localStorage.getItem("toolbundle_lang") || "en";
+    (langSelect as HTMLSelectElement).value = storedLang;
+    langSelect.addEventListener("change", () => {
+      localStorage.setItem("toolbundle_lang", (langSelect as HTMLSelectElement).value);
+    });
+  }
+
+  // 4. Auto-run Workflows Preferences
+  const autorunToggle = document.getElementById("autorun-toggle") as HTMLInputElement;
+  if (autorunToggle) {
+    const storedAutorun = localStorage.getItem("toolbundle_autorun_workflows") !== "false";
+    autorunToggle.checked = storedAutorun;
+    autorunToggle.addEventListener("change", () => {
+      localStorage.setItem("toolbundle_autorun_workflows", String(autorunToggle.checked));
+    });
+  }
+
+  // 5. Local Storage usage calculator & reset
+  function updateStorageUsage() {
+    try {
+      let total = 0;
+      for (let x in localStorage) {
+        if (localStorage.hasOwnProperty(x)) {
+          total += (localStorage[x].length + x.length) * 2;
+        }
+      }
+      const kb = (total / 1024).toFixed(1);
+      const storageText = document.getElementById("storage-usage-text");
+      if (storageText) {
+        storageText.textContent = `${kb} KB`;
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }
+  updateStorageUsage();
+
+  const resetBtn = document.getElementById("reset-data-btn");
+  resetBtn?.addEventListener("click", () => {
+    if (confirm("Are you sure you want to clear all browser data and reset the settings? This will delete your workflow canvas blocks and personal preferences.")) {
+      localStorage.clear();
+      sessionStorage.clear();
+      window.location.href = "/";
+    }
+  });
+
+  // 6. Handle system media query theme changes when in System theme
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+    if (localStorage.getItem("toolbundle_theme") === "system") {
+      applyTheme("system");
+    }
+  });
+
+  // Listen for accent color changes from other elements
+  window.addEventListener("toolbundle:color-change", (e: any) => {
+    if (e.detail && e.detail.color) {
+      updateAccentColorUI(e.detail.color);
+      const currentTheme = localStorage.getItem("toolbundle_theme") || "system";
+      updateThemeUI(currentTheme);
+    }
+  });
+</script>

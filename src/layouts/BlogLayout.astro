@@ -58,7 +58,7 @@ const articleSchema = JSON.stringify({
       <span class="text-on-dark truncate max-w-[200px] sm:max-w-xs">{title}</span>
     </nav>
 
-    <div class="flex flex-col md:flex-row gap-8 md:gap-12 items-start mt-8">
+    <div class="blog-container flex flex-col md:flex-row gap-8 md:gap-12 items-start mt-8">
       {/* Left Column: Table of Contents (Desktop Sticky) */}
       {headings && headings.length > 0 && (
         <aside class="toc-sidebar hidden md:block md:w-60 shrink-0 sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto pr-4 border-r border-hairline py-1">
@@ -66,12 +66,12 @@ const articleSchema = JSON.stringify({
           <nav class="toc-nav flex flex-col gap-2.5">
             {headings
               .filter((h) => h.depth === 2 || h.depth === 3)
-              .map((h) => {
+              .map((h, index) => {
                 const cleanText = h.text.replace(/^\d+(\.\d+)*\.?\s+/, "");
                 return (
                   <a
                     href={`#${h.slug}`}
-                    class={`toc-link text-body-sm text-muted hover:text-on-dark transition-all duration-150 no-underline block leading-relaxed border-l-2 border-transparent ${
+                    class={`toc-link text-body-sm text-muted hover:text-on-dark transition-all duration-150 no-underline block leading-relaxed ${
                       h.depth === 3 ? "pl-6" : "pl-3"
                     }`}
                     data-slug={h.slug}
@@ -229,6 +229,10 @@ const articleSchema = JSON.stringify({
   </div>
 
   <style is:global>
+    .toc-link {
+      border-left: 2px solid transparent !important;
+      transition: border-color 0.15s ease, color 0.15s ease;
+    }
     .toc-link.active {
       color: var(--color-ink) !important;
       border-left-color: var(--color-primary) !important;
@@ -236,8 +240,14 @@ const articleSchema = JSON.stringify({
     }
 
     @media (min-width: 768px) {
+      .blog-container {
+        display: flex !important;
+        flex-direction: row !important;
+      }
       .toc-sidebar {
         display: block !important;
+        width: 15rem !important; /* md:w-60 */
+        flex-shrink: 0 !important; /* shrink-0 */
       }
     }
   </style>
@@ -286,13 +296,16 @@ const articleSchema = JSON.stringify({
             activeHeading = headers[headers.length - 1];
           } else {
             for (const heading of headers) {
-              if ((heading as HTMLElement).offsetTop <= scrollPos) {
+              const headingTop = heading.getBoundingClientRect().top + window.scrollY;
+              if (headingTop <= scrollPos) {
                 activeHeading = heading;
               } else {
                 break;
               }
             }
           }
+
+
 
           links.forEach((link) => {
             if (activeHeading && link.getAttribute("data-slug") === activeHeading.getAttribute("id")) {
@@ -331,10 +344,17 @@ const articleSchema = JSON.stringify({
         });
       });
 
-      // Register Scroll Event
+      // Register Scroll Event with cleanup to prevent listener leaks (Astro transitions/re-runs)
+      if ((window as any)._currentScrollSpy) {
+        window.removeEventListener("scroll", (window as any)._currentScrollSpy);
+      }
+      (window as any)._currentScrollSpy = updateOnScroll;
+
       window.addEventListener("scroll", updateOnScroll, { passive: true });
       // Run once immediately
       updateOnScroll();
+      // Run again after a short delay to safeguard against layout shift (e.g., images loading late)
+      setTimeout(updateOnScroll, 100);
 
       // 4. Social Sharing Actions
       const shareTwitter = document.getElementById("share-twitter");

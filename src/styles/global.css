@@ -234,6 +234,10 @@ body {
 	color: var(--color-ink);
 }
 
+.text-muted {
+	color: var(--color-mute);
+}
+
 .text-caption {
 	font-size: var(--text-caption-md);
 	font-weight: 500;

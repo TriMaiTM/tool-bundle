@@ -40,6 +40,22 @@ const organizationSchema = generateOrganizationSchema();
           } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
             document.documentElement.setAttribute("data-theme", "dark");
           }
+
+          var c = localStorage.getItem("toolbundle_primary_color");
+          if (c) {
+            var colorMap = {
+              red: { p: '#e60023', pr: '#cc001f' },
+              blue: { p: '#435ee5', pr: '#2d46b9' },
+              green: { p: '#22c55e', pr: '#1a9d4b' },
+              purple: { p: '#7e238b', pr: '#631b6e' },
+              amber: { p: '#f59e0b', pr: '#d98200' }
+            };
+            var sel = colorMap[c];
+            if (sel) {
+              document.documentElement.style.setProperty("--color-primary", sel.p);
+              document.documentElement.style.setProperty("--color-primary-pressed", sel.pr);
+            }
+          }
         } catch {}
       })();
     </script>
@@ -139,14 +155,26 @@ const organizationSchema = generateOrganizationSchema();
         } catch {}
       })();
 
-      // Service Worker Registration
+      // Service Worker Registration (Skip on localhost to prevent dev mode cache loops)
       if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker.register("/sw.js").then(
-            (reg) => console.log("SW registered:", reg.scope),
-            (err) => console.log("SW registration failed:", err)
-          );
-        });
+        if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+          // Unregister any active service workers on localhost to clear dev cache
+          navigator.serviceWorker.getRegistrations().then((registrations) => {
+            for (const registration of registrations) {
+              registration.unregister().then((success) => {
+                if (success) console.log("Dev Mode: Unregistered active SW on localhost");
+              });
+            }
+          });
+        } else {
+          // Register only in production
+          window.addEventListener("load", () => {
+            navigator.serviceWorker.register("/sw.js").then(
+              (reg) => console.log("SW registered:", reg.scope),
+              (err) => console.log("SW registration failed:", err)
+            );
+          });
+        }
       }
 
       // Install Prompt
