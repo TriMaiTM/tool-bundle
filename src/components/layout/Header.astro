@@ -17,16 +17,16 @@ import SearchModal from "../ui/SearchModal";
 
     {/* Desktop Nav */}
     <nav class="hidden md:flex items-center gap-6" aria-label="Main navigation">
-      <a href="/" class="text-nav-link text-muted hover:text-ink transition-colors">Home</a>
-      <a href="/blog" class="text-nav-link text-muted hover:text-ink transition-colors">Blog</a>
-      <a href="/workflow" class="text-nav-link text-muted hover:text-ink transition-colors">Workflow</a>
+      <a href="/" class="text-nav-link text-muted hover:text-ink transition-colors" data-i18n="nav.home">Home</a>
+      <a href="/blog" class="text-nav-link text-muted hover:text-ink transition-colors" data-i18n="nav.blog">Blog</a>
+      <a href="/workflow" class="text-nav-link text-muted hover:text-ink transition-colors" data-i18n="nav.workflow">Workflow</a>
       <div class="relative group">
         <button
           class="text-nav-link text-muted hover:text-ink transition-colors flex items-center gap-1"
           aria-haspopup="true"
           aria-expanded="false"
         >
-          Categories
+          <span data-i18n="nav.categories">Categories</span>
           <svg class="w-3 h-3" aria-hidden="true" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M2 4l4 4 4-4"/>
           </svg>
@@ -66,7 +66,7 @@ import SearchModal from "../ui/SearchModal";
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
           </svg>
         </a>
-        <span class="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-charcoal text-on-dark text-[11px] px-2.5 py-1.5 rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 transition-all duration-150 shadow-md whitespace-nowrap z-50 transform translate-y-1 group-hover:translate-y-0">
+        <span class="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-charcoal text-on-dark text-[11px] px-2.5 py-1.5 rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 transition-all duration-150 shadow-md whitespace-nowrap z-50 transform translate-y-1 group-hover:translate-y-0" data-i18n="nav.changelog">
           Changelog
         </span>
       </div>
@@ -83,7 +83,7 @@ import SearchModal from "../ui/SearchModal";
             <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
           </svg>
         </a>
-        <span class="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-charcoal text-on-dark text-[11px] px-2.5 py-1.5 rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 transition-all duration-150 shadow-md whitespace-nowrap z-50 transform translate-y-1 group-hover:translate-y-0">
+        <span class="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-charcoal text-on-dark text-[11px] px-2.5 py-1.5 rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 transition-all duration-150 shadow-md whitespace-nowrap z-50 transform translate-y-1 group-hover:translate-y-0" data-i18n="nav.settings">
           Settings
         </span>
       </div>
@@ -106,9 +106,9 @@ import SearchModal from "../ui/SearchModal";
   {/* Mobile Menu */}
   <div id="mobile-menu" class="hidden md:hidden bg-surface-card border-t border-hairline" role="navigation" aria-label="Mobile navigation">
     <nav class="px-4 py-4 space-y-1">
-      <a href="/" class="block px-3 py-2 text-body-sm text-body hover:text-ink hover:bg-surface-elevated rounded-md transition-colors">Home</a>
-      <a href="/blog" class="block px-3 py-2 text-body-sm text-body hover:text-ink hover:bg-surface-elevated rounded-md transition-colors">Blog</a>
-      <a href="/workflow" class="block px-3 py-2 text-body-sm text-body hover:text-ink hover:bg-surface-elevated rounded-md transition-colors">Workflow</a>
+      <a href="/" class="block px-3 py-2 text-body-sm text-body hover:text-ink hover:bg-surface-elevated rounded-md transition-colors" data-i18n="nav.home">Home</a>
+      <a href="/blog" class="block px-3 py-2 text-body-sm text-body hover:text-ink hover:bg-surface-elevated rounded-md transition-colors" data-i18n="nav.blog">Blog</a>
+      <a href="/workflow" class="block px-3 py-2 text-body-sm text-body hover:text-ink hover:bg-surface-elevated rounded-md transition-colors" data-i18n="nav.workflow">Workflow</a>
       {categories.map((cat) => (
         <a
           href={`/${cat.id}`}

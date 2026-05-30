@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "preact/hooks";
+import { translations } from "../../utils/translations";
 
 interface Tool {
 	id: string;
@@ -23,6 +24,7 @@ export default function FavoritesSection({ tools, categories }: Props) {
 	const [favoriteIds, setFavoriteIds] = useState<string[]>([]);
 	const [recentIds, setRecentIds] = useState<string[]>([]);
 	const [activeTab, setActiveTab] = useState<"favorites" | "recent">("favorites");
+	const [lang, setLang] = useState<"en" | "vi">("en");
 
 	const loadData = useCallback(() => {
 		try {
@@ -46,6 +48,15 @@ export default function FavoritesSection({ tools, categories }: Props) {
 		window.addEventListener("storage", handler);
 		return () => window.removeEventListener("storage", handler);
 	}, [loadData]);
+
+	useEffect(() => {
+		const savedLang = localStorage.getItem("toolbundle_lang");
+		if (savedLang === "vi" || savedLang === "en") {
+			setLang(savedLang as "vi" | "en");
+		}
+	}, []);
+
+	const t = translations[lang];
 
 	const getCategory = (catId: string) => categories.find((c) => c.id === catId);
 
@@ -75,7 +86,7 @@ export default function FavoritesSection({ tools, categories }: Props) {
 			{/* Tabs */}
 			<div class="flex items-center justify-between mb-6">
 				<h2 class="text-heading-xl" id="favorites-heading">
-					{activeTab === "favorites" ? "Your Favorites" : "Recently Used"}
+					{activeTab === "favorites" ? t["fav.your_favorites"] : t["fav.recently_used"]}
 				</h2>
 				<div class="flex gap-2" role="tablist" aria-label="Favorites and recent tools">
 					<button
@@ -85,7 +96,7 @@ export default function FavoritesSection({ tools, categories }: Props) {
 						role="tab"
 						aria-selected={activeTab === "favorites"}
 					>
-						Favorites {favoriteIds.length > 0 && `(${favoriteIds.length})`}
+						{t["fav.favorites_btn"]} {favoriteIds.length > 0 && `(${favoriteIds.length})`}
 					</button>
 					<button
 						class={activeTab === "recent" ? "btn-primary" : "btn-secondary"}
@@ -94,7 +105,7 @@ export default function FavoritesSection({ tools, categories }: Props) {
 						role="tab"
 						aria-selected={activeTab === "recent"}
 					>
-						Recent {recentIds.length > 0 && `(${recentIds.length})`}
+						{t["fav.recent_btn"]} {recentIds.length > 0 && `(${recentIds.length})`}
 					</button>
 				</div>
 			</div>
@@ -102,9 +113,7 @@ export default function FavoritesSection({ tools, categories }: Props) {
 			{isEmpty ? (
 				<div class="text-center py-12" role="status">
 					<p class="text-body-sm text-muted">
-						{activeTab === "favorites"
-							? "No favorites yet. Click the heart icon on any tool to save it here."
-							: "No recently visited tools yet. Start using tools to see your history."}
+						{activeTab === "favorites" ? t["fav.no_favorites"] : t["fav.no_recent"]}
 					</p>
 				</div>
 			) : (
@@ -115,6 +124,8 @@ export default function FavoritesSection({ tools, categories }: Props) {
 				>
 					{displayTools.map((tool) => {
 						const cat = getCategory(tool.category);
+						const categoryBadge =
+							t[`cat.${tool.category}` as keyof typeof t] || cat?.name?.replace(" Tools", "");
 						return (
 							<a
 								href={`/${tool.category}/${tool.slug}`}
@@ -126,9 +137,7 @@ export default function FavoritesSection({ tools, categories }: Props) {
 								/>
 								<div class="flex-1 min-w-0">
 									<div class="text-body-sm-strong truncate">{tool.name}</div>
-									<div class="text-caption text-muted truncate">
-										{cat?.name?.replace(" Tools", "")}
-									</div>
+									<div class="text-caption text-muted truncate">{categoryBadge}</div>
 								</div>
 								{activeTab === "favorites" && (
 									<button

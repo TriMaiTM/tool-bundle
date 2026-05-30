@@ -10,7 +10,7 @@ import { categories } from "../../data/categories";
         <a href="/" class="text-xl font-bold text-on-dark tracking-tight no-underline">
           Tool<span class="text-primary">Bundle</span>
         </a>
-        <p class="text-body-sm text-muted mt-3 max-w-[320px]">
+        <p class="text-body-sm text-muted mt-3 max-w-[320px]" data-i18n="footer.desc">
           Free, privacy-first tools that run 100% in your browser. No uploads. No accounts. No limits.
         </p>
         <div class="flex items-center gap-2 mt-4 text-caption text-muted">
@@ -21,7 +21,7 @@ import { categories } from "../../data/categories";
 
       {/* Categories */}
       <nav aria-label="Category links">
-        <h3 class="text-caption-uppercase text-on-dark mb-4">Categories</h3>
+        <h3 class="text-caption-uppercase text-on-dark mb-4" data-i18n="footer.tools">Categories</h3>
         <ul class="space-y-2">
           {categories.map((cat) => (
             <li>
@@ -35,7 +35,7 @@ import { categories } from "../../data/categories";
 
       {/* Popular Tools */}
       <nav aria-label="Popular tools">
-        <h3 class="text-caption-uppercase text-on-dark mb-4">Popular Tools</h3>
+        <h3 class="text-caption-uppercase text-on-dark mb-4" data-i18n="home.popular_title">Popular Tools</h3>
         <ul class="space-y-2">
           <li><a href="/image/png-to-jpg" class="text-body-sm text-muted hover:text-on-dark transition-colors no-underline">PNG to JPG</a></li>
           <li><a href="/image/image-resizer" class="text-body-sm text-muted hover:text-on-dark transition-colors no-underline">Image Resizer</a></li>
@@ -47,12 +47,12 @@ import { categories } from "../../data/categories";
 
       {/* Info */}
       <nav aria-label="Information links">
-        <h3 class="text-caption-uppercase text-on-dark mb-4">Info</h3>
+        <h3 class="text-caption-uppercase text-on-dark mb-4" data-i18n="footer.system">Info</h3>
         <ul class="space-y-2">
           <li><a href="/" class="text-body-sm text-muted hover:text-on-dark transition-colors no-underline">About</a></li>
-          <li><a href="/blog" class="text-body-sm text-muted hover:text-on-dark transition-colors no-underline">Blog</a></li>
-          <li><a href="/" class="text-body-sm text-muted hover:text-on-dark transition-colors no-underline">Privacy Policy</a></li>
-          <li><a href="/" class="text-body-sm text-muted hover:text-on-dark transition-colors no-underline">Terms of Service</a></li>
+          <li><a href="/blog" class="text-body-sm text-muted hover:text-on-dark transition-colors no-underline" data-i18n="nav.blog">Blog</a></li>
+          <li><a href="/" class="text-body-sm text-muted hover:text-on-dark transition-colors no-underline" data-i18n="footer.privacy">Privacy Policy</a></li>
+          <li><a href="/" class="text-body-sm text-muted hover:text-on-dark transition-colors no-underline" data-i18n="footer.terms">Terms of Service</a></li>
         </ul>
       </nav>
     </div>

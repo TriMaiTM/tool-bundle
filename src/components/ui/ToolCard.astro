@@ -26,7 +26,7 @@ const href = `/${tool.category}/${tool.slug}`;
       </svg>
     </div>
     {/* Category badge */}
-    <span class="text-caption-uppercase text-muted-soft" aria-hidden="true">{cat?.name.replace(" Tools", "")}</span>
+    <span class="text-caption-uppercase text-muted-soft" aria-hidden="true" data-i18n={`cat.${tool.category}`}>{cat?.name.replace(" Tools", "")}</span>
   </div>
 
   <h3 class="text-title-sm text-on-dark mb-1.5 group-hover:text-primary transition-colors">{tool.name}</h3>

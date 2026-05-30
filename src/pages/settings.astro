@@ -5,30 +5,30 @@ import Base from "../layouts/Base.astro";
 <Base title="Settings">
   <div class="w-full max-w-2xl mx-auto py-12 px-4 sm:px-6">
     <div class="mb-8">
-      <h1 class="text-display-lg text-ink font-bold mb-2">Settings</h1>
-      <p class="text-body-md text-muted">Customize your ToolBundle experience. All preferences are saved locally in your browser.</p>
+      <h1 class="text-display-lg text-ink font-bold mb-2" data-i18n="settings.title">Settings</h1>
+      <p class="text-body-md text-muted" data-i18n="settings.desc">Customize your ToolBundle experience. All preferences are saved locally in your browser.</p>
     </div>
 
     <div class="card p-6 sm:p-8 flex flex-col gap-8 shadow-sm">
       {/* Theme Setting */}
       <div class="flex flex-col gap-3">
-        <label class="text-body-sm-strong font-bold text-ink">Appearance</label>
+        <label class="text-body-sm-strong font-bold text-ink" data-i18n="settings.appearance">Appearance</label>
         <div class="grid grid-cols-3 gap-2">
           <button id="theme-light-btn" class="theme-btn">
-            <span>Light</span>
+            <span data-i18n="settings.light">Light</span>
           </button>
           <button id="theme-dark-btn" class="theme-btn">
-            <span>Dark</span>
+            <span data-i18n="settings.dark">Dark</span>
           </button>
           <button id="theme-system-btn" class="theme-btn">
-            <span>System</span>
+            <span data-i18n="settings.system">System</span>
           </button>
         </div>
       </div>
 
       {/* Accent Color Setting */}
       <div class="flex flex-col gap-3">
-        <label class="text-body-sm-strong font-bold text-ink">Primary Accent Color</label>
+        <label class="text-body-sm-strong font-bold text-ink" data-i18n="settings.accent">Primary Accent Color</label>
         <div class="flex items-center gap-4 pl-1 py-1">
           <button data-color="red" style="background-color: #e60023;" class="color-badge" aria-label="Red theme"></button>
           <button data-color="blue" style="background-color: #435ee5;" class="color-badge" aria-label="Blue theme"></button>
@@ -40,7 +40,7 @@ import Base from "../layouts/Base.astro";
 
       {/* Language Setting */}
       <div class="flex flex-col gap-3">
-        <label for="lang-select" class="text-body-sm-strong font-bold text-ink">Language</label>
+        <label for="lang-select" class="text-body-sm-strong font-bold text-ink" data-i18n="settings.lang">Language</label>
         <div class="relative">
           <select id="lang-select" class="input py-2 px-3 h-11 bg-canvas border border-hairline text-ink rounded-xl w-full">
             <option value="en">English</option>
@@ -51,11 +51,11 @@ import Base from "../layouts/Base.astro";
 
       {/* Workflow Builder Preferences */}
       <div class="flex flex-col gap-3 border-t border-hairline pt-6">
-        <label class="text-body-sm-strong font-bold text-ink">Workflows</label>
+        <label class="text-body-sm-strong font-bold text-ink" data-i18n="settings.workflows">Workflows</label>
         <div class="flex items-center justify-between py-1">
           <div class="flex flex-col gap-0.5 max-w-[80%]">
-            <label for="autorun-toggle" class="text-body-sm font-semibold text-ink cursor-pointer">Auto-run scripts</label>
-            <span class="text-caption text-muted">Execute pipeline workflow steps automatically when block inputs change.</span>
+            <label for="autorun-toggle" class="text-body-sm font-semibold text-ink cursor-pointer" data-i18n="settings.autorun">Auto-run scripts</label>
+            <span class="text-caption text-muted" data-i18n="settings.autorun_desc">Execute pipeline workflow steps automatically when block inputs change.</span>
           </div>
           <input type="checkbox" id="autorun-toggle" class="w-5 h-5 accent-primary cursor-pointer rounded border-hairline" />
         </div>
@@ -64,10 +64,10 @@ import Base from "../layouts/Base.astro";
       {/* Local Storage & Reset Setting */}
       <div class="flex flex-col gap-4 border-t border-hairline pt-6">
         <div class="flex justify-between items-center text-body-sm text-muted">
-          <span>Browser cache used:</span>
+          <span data-i18n="settings.cache">Browser cache used:</span>
           <span id="storage-usage-text" class="font-mono font-semibold text-ink">0 KB</span>
         </div>
-        <button id="reset-data-btn" class="reset-btn">
+        <button id="reset-data-btn" class="reset-btn" data-i18n="settings.reset">
           Clear Data & Reset App
         </button>
       </div>
@@ -230,6 +230,8 @@ import Base from "../layouts/Base.astro";
     (langSelect as HTMLSelectElement).value = storedLang;
     langSelect.addEventListener("change", () => {
       localStorage.setItem("toolbundle_lang", (langSelect as HTMLSelectElement).value);
+      window.dispatchEvent(new CustomEvent("toolbundle:lang-change"));
+      window.location.reload();
     });
   }
 
@@ -265,7 +267,12 @@ import Base from "../layouts/Base.astro";
 
   const resetBtn = document.getElementById("reset-data-btn");
   resetBtn?.addEventListener("click", () => {
-    if (confirm("Are you sure you want to clear all browser data and reset the settings? This will delete your workflow canvas blocks and personal preferences.")) {
+    const lang = localStorage.getItem("toolbundle_lang") || "en";
+    const confirmMsg = lang === "vi"
+      ? "Bạn có chắc chắn muốn xóa toàn bộ dữ liệu trình duyệt và đặt lại cài đặt không? Thao tác này sẽ xóa các khối quy trình và tùy chọn cá nhân của bạn."
+      : "Are you sure you want to clear all browser data and reset the settings? This will delete your workflow canvas blocks and personal preferences.";
+      
+    if (confirm(confirmMsg)) {
       localStorage.clear();
       sessionStorage.clear();
       window.location.href = "/";

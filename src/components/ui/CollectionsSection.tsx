@@ -6,6 +6,7 @@ import {
 	addToolToCollection,
 } from "../../utils/collections";
 import CollectionManager from "./CollectionManager";
+import { translations } from "../../utils/translations";
 
 interface Tool {
 	id: string;
@@ -26,48 +27,10 @@ interface Props {
 	categories: Category[];
 }
 
-const SUGGESTED_COLLECTIONS = [
-	{
-		name: "Developer Essentials",
-		description: "Must-have tools for software development",
-		color: "#a855f7",
-		toolIds: [
-			"json-formatter",
-			"base64-encoder",
-			"hash-generator",
-			"regex-tester",
-			"uuid-generator",
-		],
-	},
-	{
-		name: "Content Creator",
-		description: "Tools for writers, bloggers, and social media managers",
-		color: "#ec4899",
-		toolIds: [
-			"word-counter",
-			"case-converter",
-			"image-compressor",
-			"text-to-speech",
-			"qr-code-generator",
-		],
-	},
-	{
-		name: "Student Toolkit",
-		description: "Study smarter with these essential student tools",
-		color: "#6366f1",
-		toolIds: [
-			"flashcard-maker",
-			"grade-calculator",
-			"citation-generator",
-			"word-counter",
-			"text-to-speech",
-		],
-	},
-];
-
 export default function CollectionsSection({ tools, categories }: Props) {
 	const [collections, setCollections] = useState<ToolCollection[]>([]);
 	const [showManager, setShowManager] = useState(false);
+	const [lang, setLang] = useState<"en" | "vi">("en");
 
 	const loadCollections = useCallback(() => {
 		try {
@@ -82,12 +45,69 @@ export default function CollectionsSection({ tools, categories }: Props) {
 		return () => window.removeEventListener("storage", handler);
 	}, [loadCollections]);
 
+	useEffect(() => {
+		const savedLang = localStorage.getItem("toolbundle_lang");
+		if (savedLang === "vi" || savedLang === "en") {
+			setLang(savedLang as "vi" | "en");
+		}
+	}, []);
+
+	const t = translations[lang];
+
+	const suggestedCollections = [
+		{
+			name: lang === "vi" ? "Lập trình Cơ bản" : "Developer Essentials",
+			description:
+				lang === "vi"
+					? "Các công cụ cần thiết cho phát triển phần mềm"
+					: "Must-have tools for software development",
+			color: "#a855f7",
+			toolIds: [
+				"json-formatter",
+				"base64-encoder",
+				"hash-generator",
+				"regex-tester",
+				"uuid-generator",
+			],
+		},
+		{
+			name: lang === "vi" ? "Sáng tạo Nội dung" : "Content Creator",
+			description:
+				lang === "vi"
+					? "Công cụ cho người viết lách, blogger và quản lý mạng xã hội"
+					: "Tools for writers, bloggers, and social media managers",
+			color: "#ec4899",
+			toolIds: [
+				"word-counter",
+				"case-converter",
+				"image-compressor",
+				"text-to-speech",
+				"qr-code-generator",
+			],
+		},
+		{
+			name: lang === "vi" ? "Học tập & Nghiên cứu" : "Student Toolkit",
+			description:
+				lang === "vi"
+					? "Học tập thông minh hơn với các công cụ học tập thiết yếu này"
+					: "Study smarter with these essential student tools",
+			color: "#6366f1",
+			toolIds: [
+				"flashcard-maker",
+				"grade-calculator",
+				"citation-generator",
+				"word-counter",
+				"text-to-speech",
+			],
+		},
+	];
+
 	const getCategory = (catId: string) => categories.find((c) => c.id === catId);
 
 	const getTool = (toolId: string) => tools.find((t) => t.id === toolId);
 
 	const handleAddSuggested = useCallback(
-		(suggested: (typeof SUGGESTED_COLLECTIONS)[0]) => {
+		(suggested: (typeof suggestedCollections)[0]) => {
 			const col = createCollection(suggested.name, suggested.description, suggested.color);
 			for (const toolId of suggested.toolIds) {
 				if (tools.find((t) => t.id === toolId)) {
@@ -114,11 +134,9 @@ export default function CollectionsSection({ tools, categories }: Props) {
 			<div class="flex items-center justify-between mb-6">
 				<div>
 					<h2 class="text-heading-xl font-bold" id="collections-heading">
-						Your Collections
+						{t["coll.your_collections"]}
 					</h2>
-					<p class="text-body-sm text-muted mt-1">
-						Organize tools into custom groups for quick access
-					</p>
+					<p class="text-body-sm text-muted mt-1">{t["coll.desc"]}</p>
 				</div>
 			</div>
 
@@ -220,21 +238,18 @@ export default function CollectionsSection({ tools, categories }: Props) {
 						<path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
 					</svg>
 				</div>
-				<p class="text-body-sm text-muted mb-2 font-bold">No collections yet</p>
-				<p class="text-caption text-muted mb-6">
-					Create your first collection to organize your favorite tools, or start with a suggestion
-					below.
-				</p>
+				<p class="text-body-sm text-muted mb-2 font-bold">{t["coll.no_collections"]}</p>
+				<p class="text-caption text-muted mb-6">{t["coll.no_collections_desc"]}</p>
 				<button class="btn-primary mb-2" onClick={() => setShowManager(true)}>
-					Create Custom Collection
+					{t["coll.create_custom"]}
 				</button>
 			</div>
 
 			{/* Suggested Collections */}
 			<div>
-				<h3 class="text-body-sm-strong mb-6">Suggested Collections</h3>
+				<h3 class="text-body-sm-strong mb-6">{t["coll.suggested"]}</h3>
 				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
-					{SUGGESTED_COLLECTIONS.map((suggested) => {
+					{suggestedCollections.map((suggested) => {
 						const collTools = suggested.toolIds.map((id) => getTool(id)).filter(Boolean) as Tool[];
 						const previewTools = collTools.slice(0, 5);
 
@@ -313,7 +328,7 @@ export default function CollectionsSection({ tools, categories }: Props) {
 												<line x1="12" y1="5" x2="12" y2="19" />
 												<line x1="5" y1="12" x2="19" y2="12" />
 											</svg>
-											Add to My Collections
+											{t["coll.add_to_my"]}
 										</button>
 									</div>
 								</div>

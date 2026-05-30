@@ -8,6 +8,7 @@ import {
 	removeToolFromCollection,
 	DEFAULT_COLORS,
 } from "../../utils/collections";
+import { translations } from "../../utils/translations";
 
 interface Tool {
 	id: string;
@@ -37,6 +38,7 @@ export default function CollectionManager({ tools, categories }: Props) {
 	const [formName, setFormName] = useState("");
 	const [formDescription, setFormDescription] = useState("");
 	const [formColor, setFormColor] = useState(DEFAULT_COLORS[0]);
+	const [lang, setLang] = useState<"en" | "vi">("en");
 	const nameInputRef = useRef<HTMLInputElement>(null);
 
 	const loadCollections = useCallback(() => {
@@ -51,6 +53,15 @@ export default function CollectionManager({ tools, categories }: Props) {
 		window.addEventListener("storage", handler);
 		return () => window.removeEventListener("storage", handler);
 	}, [loadCollections]);
+
+	useEffect(() => {
+		const savedLang = localStorage.getItem("toolbundle_lang");
+		if (savedLang === "vi" || savedLang === "en") {
+			setLang(savedLang as "vi" | "en");
+		}
+	}, []);
+
+	const t = translations[lang];
 
 	useEffect(() => {
 		if (showCreateForm && nameInputRef.current) {
@@ -120,11 +131,9 @@ export default function CollectionManager({ tools, categories }: Props) {
 			<div class="flex items-center justify-between mb-6">
 				<div>
 					<h2 class="text-heading-xl font-bold" id="collections-heading">
-						Your Collections
+						{t["coll.your_collections"]}
 					</h2>
-					<p class="text-body-sm text-muted mt-1">
-						Organize tools into custom groups for quick access
-					</p>
+					<p class="text-body-sm text-muted mt-1">{t["coll.desc"]}</p>
 				</div>
 
 				<style>{`
@@ -224,7 +233,7 @@ export default function CollectionManager({ tools, categories }: Props) {
 							<line x1="12" y1="5" x2="12" y2="19" />
 							<line x1="5" y1="12" x2="19" y2="12" />
 						</svg>
-						New Collection
+						{t["coll.new_collection"]}
 					</button>
 				)}
 			</div>
@@ -233,36 +242,40 @@ export default function CollectionManager({ tools, categories }: Props) {
 			{showCreateForm && (
 				<div class="bg-surface-card border border-hairline rounded-lg p-6 mb-6">
 					<h3 class="text-title-sm mb-4 font-bold">
-						{editId ? "Edit Collection" : "Create New Collection"}
+						{editId ? t["coll.edit"] : t["coll.create_new"]}
 					</h3>
 					<div class="flex flex-col gap-4">
 						<div>
-							<label class="text-caption-uppercase text-muted block mb-2">Collection Name *</label>
+							<label class="text-caption-uppercase text-muted block mb-2">
+								{t["coll.name_label"]}
+							</label>
 							<input
 								ref={nameInputRef}
 								type="text"
 								class="input"
 								value={formName}
 								onInput={(e: Event) => setFormName((e.target as HTMLInputElement).value)}
-								placeholder="e.g., My Dev Toolkit"
+								placeholder={t["coll.name_placeholder"]}
 								maxLength={50}
 							/>
 						</div>
 						<div>
 							<label class="text-caption-uppercase text-muted block mb-2">
-								Description (optional)
+								{t["coll.desc_label"]}
 							</label>
 							<textarea
 								class="textarea"
 								value={formDescription}
 								onInput={(e: Event) => setFormDescription((e.target as HTMLTextAreaElement).value)}
-								placeholder="What's this collection for?"
+								placeholder={t["coll.desc_placeholder"]}
 								rows={2}
 								maxLength={200}
 							/>
 						</div>
 						<div>
-							<label class="text-caption-uppercase text-muted block mb-2">Accent Color</label>
+							<label class="text-caption-uppercase text-muted block mb-2">
+								{t["coll.color_label"]}
+							</label>
 							<div class="flex gap-2 flex-wrap">
 								{DEFAULT_COLORS.map((color) => (
 									<button
@@ -277,10 +290,10 @@ export default function CollectionManager({ tools, categories }: Props) {
 						</div>
 						<div class="flex gap-2 justify-end">
 							<button class="btn-secondary" onClick={handleCancel}>
-								Cancel
+								{t["coll.cancel"]}
 							</button>
 							<button class="btn-primary" onClick={handleCreate} disabled={!formName.trim()}>
-								{editId ? "Save Changes" : "Create Collection"}
+								{editId ? t["coll.save"] : t["coll.create"]}
 							</button>
 						</div>
 					</div>
@@ -305,12 +318,10 @@ export default function CollectionManager({ tools, categories }: Props) {
 							<path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
 						</svg>
 					</div>
-					<p class="text-body-sm text-muted mb-2 font-bold">No collections yet</p>
-					<p class="text-caption text-muted mb-4">
-						Create your first collection to organize your favorite tools.
-					</p>
+					<p class="text-body-sm text-muted mb-2 font-bold">{t["coll.no_collections"]}</p>
+					<p class="text-caption text-muted mb-4">{t["coll.no_collections_desc"]}</p>
 					<button class="btn-primary" onClick={() => setShowCreateForm(true)}>
-						Create Your First Collection
+						{t["coll.create_first"]}
 					</button>
 				</div>
 			) : (
@@ -405,7 +416,7 @@ export default function CollectionManager({ tools, categories }: Props) {
 
 										{previewTools.length === 0 && (
 											<p class="text-caption text-muted mt-4 h-8 flex items-center">
-												No tools added yet
+												{t["coll.no_tools"]}
 											</p>
 										)}
 									</div>
@@ -416,7 +427,7 @@ export default function CollectionManager({ tools, categories }: Props) {
 											<div class="p-4">
 												<div class="flex items-center justify-between mb-3">
 													<span class="text-caption-uppercase text-muted">
-														Tools in this collection
+														{t["coll.tools_in_coll"]}
 													</span>
 													<div class="flex gap-2">
 														<button
@@ -427,7 +438,7 @@ export default function CollectionManager({ tools, categories }: Props) {
 																handleEdit(collection);
 															}}
 														>
-															Edit
+															{t["coll.edit_btn"]}
 														</button>
 														{deleteConfirmId === collection.id ? (
 															<div class="flex gap-1 items-center">
@@ -438,7 +449,7 @@ export default function CollectionManager({ tools, categories }: Props) {
 																		handleDelete(collection.id);
 																	}}
 																>
-																	Confirm
+																	{t["coll.confirm_btn"]}
 																</button>
 																<button
 																	class="btn-secondary"
@@ -448,7 +459,7 @@ export default function CollectionManager({ tools, categories }: Props) {
 																		setDeleteConfirmId(null);
 																	}}
 																>
-																	Cancel
+																	{t["coll.cancel"]}
 																</button>
 															</div>
 														) : (
@@ -460,7 +471,7 @@ export default function CollectionManager({ tools, categories }: Props) {
 																	setDeleteConfirmId(collection.id);
 																}}
 															>
-																Delete
+																{t["coll.delete_btn"]}
 															</button>
 														)}
 													</div>
@@ -533,8 +544,7 @@ export default function CollectionManager({ tools, categories }: Props) {
 													</div>
 												) : (
 													<p class="text-caption text-muted text-center py-4">
-														No tools in this collection yet. Use the "Add to Collection" button on
-														any tool page.
+														{t["coll.no_tools_in_coll"]}
 													</p>
 												)}
 											</div>
