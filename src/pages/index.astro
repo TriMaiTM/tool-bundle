@@ -29,6 +29,9 @@ const otherFeaturedTools = featuredTools.slice(1, 7); // Show 6 other popular to
 
   {/* Asymmetric Hero Section */}
   <section class="relative overflow-hidden py-16 sm:py-24 border-b border-hairline">
+    {/* Canvas for interactive particle dots grid background */}
+    <canvas id="hero-interactive-bg" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
     {/* Clean subtle brand accent glow */}
     <div class="absolute top-0 right-10 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
 
@@ -385,4 +388,164 @@ const otherFeaturedTools = featuredTools.slice(1, 7); // Show 6 other popular to
       </div>
     </div>
   </section>
+
+  <script>
+    function initHeroBackground() {
+      const canvas = document.getElementById("hero-interactive-bg") as HTMLCanvasElement;
+      if (!canvas) return;
+
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+
+      let width = 0;
+      let height = 0;
+      let particles: { x: number; y: number; ox: number; oy: number; vx: number; vy: number }[] = [];
+      
+      const spacing = 20; // Khoảng cách chấm tối ưu cho hiển thị đậm nét
+      const radius = 120; // Bán kính tác động tương tác rộng hơn
+      const forceFactor = 0.22;
+      const springFactor = 0.05;
+      const damping = 0.82;
+      
+      let mouse = { x: -1000, y: -1000, active: false };
+
+      function hexToRgba(hex: string, alpha: number) {
+        hex = hex.replace('#', '').trim();
+        if (hex.length === 3) {
+          hex = hex.split('').map(char => char + char).join('');
+        }
+        const r = parseInt(hex.substring(0, 2), 16) || 230;
+        const g = parseInt(hex.substring(2, 4), 16) || 0;
+        const b = parseInt(hex.substring(4, 6), 16) || 35;
+        return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+      }
+
+      function resize() {
+        const rect = canvas.parentElement?.getBoundingClientRect();
+        width = rect ? rect.width : window.innerWidth;
+        height = rect ? rect.height : 500;
+        canvas.width = width;
+        canvas.height = height;
+        
+        initParticles();
+      }
+
+      function initParticles() {
+        particles = [];
+        const cols = Math.floor(width / spacing) + 2;
+        const rows = Math.floor(height / spacing) + 2;
+        
+        for (let c = 0; c < cols; c++) {
+          for (let r = 0; r < rows; r++) {
+            const x = (c - 0.5) * spacing;
+            const y = (r - 0.5) * spacing;
+            particles.push({
+              x: x,
+              y: y,
+              ox: x,
+              oy: y,
+              vx: 0,
+              vy: 0
+            });
+          }
+        }
+      }
+
+      const parent = canvas.parentElement;
+      if (parent) {
+        parent.addEventListener("mousemove", (e: MouseEvent) => {
+          const rect = parent.getBoundingClientRect();
+          mouse.x = e.clientX - rect.left;
+          mouse.y = e.clientY - rect.top;
+          mouse.active = true;
+        });
+
+        parent.addEventListener("mouseleave", () => {
+          mouse.x = -1000;
+          mouse.y = -1000;
+          mouse.active = false;
+        });
+        
+        parent.addEventListener("touchmove", (e: TouchEvent) => {
+          if (e.touches.length > 0) {
+            const rect = parent.getBoundingClientRect();
+            mouse.x = e.touches[0].clientX - rect.left;
+            mouse.y = e.touches[0].clientY - rect.top;
+            mouse.active = true;
+          }
+        });
+        
+        parent.addEventListener("touchend", () => {
+          mouse.x = -1000;
+          mouse.y = -1000;
+          mouse.active = false;
+        });
+      }
+
+      function animate() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, width, height);
+
+        const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+        // Tăng độ đậm của chấm thường
+        const dotColor = isDark ? "rgba(255, 255, 255, 0.18)" : "rgba(0, 0, 0, 0.12)";
+        
+        // Lấy primary color động từ CSS
+        const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--color-primary').trim() || '#e60023';
+        // Tăng độ đậm và rực rỡ của màu hover
+        const hoverColor = hexToRgba(primaryColor, isDark ? 0.85 : 0.75);
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          
+          let dx = p.x - mouse.x;
+          let dy = p.y - mouse.y;
+          let dist = Math.sqrt(dx * dx + dy * dy);
+          
+          let fx = 0;
+          let fy = 0;
+
+          if (dist < radius && mouse.active) {
+            const force = (radius - dist) / radius;
+            const angle = Math.atan2(dy, dx);
+            const push = force * radius * forceFactor;
+            fx = Math.cos(angle) * push;
+            fy = Math.sin(angle) * push;
+          }
+
+          const sx = (p.ox - p.x) * springFactor;
+          const sy = (p.oy - p.y) * springFactor;
+
+          p.vx = (p.vx + sx) * damping;
+          p.vy = (p.vy + sy) * damping;
+
+          p.x += p.vx + fx;
+          p.y += p.vy + fy;
+
+          ctx.beginPath();
+          if (dist < radius && mouse.active) {
+            const pct = (radius - dist) / radius;
+            ctx.fillStyle = hoverColor;
+            // Co giãn phóng to chấm hover rõ rệt hơn: 1.5px -> 3.5px
+            ctx.arc(p.x, p.y, 1.5 + pct * 2.0, 0, Math.PI * 2);
+          } else {
+            ctx.fillStyle = dotColor;
+            // Chấm tĩnh to hơn và rõ nét hơn: 1.2px
+            ctx.arc(p.x, p.y, 1.2, 0, Math.PI * 2);
+          }
+          ctx.fill();
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      resize();
+      window.addEventListener("resize", resize);
+      requestAnimationFrame(animate);
+    }
+
+    // Initialize backgrounds
+    initHeroBackground();
+    document.addEventListener("astro:page-load", initHeroBackground);
+  </script>
 </Base>
