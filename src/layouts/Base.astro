@@ -242,6 +242,63 @@ const organizationSchema = generateOrganizationSchema();
         if (installBanner) installBanner.style.display = "none";
         deferredPrompt = null;
       });
+
+      // Global Toast Notification function
+      (window as any).showToast = function (text: string, type: "success" | "error" = "success") {
+        const oldToast = document.getElementById("global-toast");
+        if (oldToast) oldToast.remove();
+
+        const toast = document.createElement("div");
+        toast.id = "global-toast";
+        toast.style.position = "fixed";
+        toast.style.bottom = "32px";
+        toast.style.left = "50%";
+        toast.style.transform = "translateX(-50%)";
+        toast.style.backgroundColor = "var(--color-surface-card)";
+        toast.style.color = "var(--color-ink)";
+        toast.style.border = "1px solid var(--color-hairline)";
+        toast.style.backdropFilter = "blur(8px)";
+        toast.style.webkitBackdropFilter = "blur(8px)";
+        toast.style.padding = "10px 20px";
+        toast.style.borderRadius = "9999px";
+        toast.style.boxShadow = "0 10px 30px rgba(0,0,0,0.15)";
+        toast.style.fontSize = "13px";
+        toast.style.fontWeight = "600";
+        toast.style.zIndex = "99999";
+        toast.style.display = "flex";
+        toast.style.alignItems = "center";
+        toast.style.gap = "10px";
+        toast.style.animation = "fadeInUp 0.2s ease-out";
+
+        const iconHtml =
+          type === "success"
+            ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-emerald)" stroke-width="3" style="flex-shrink: 0;"><polyline points="20 6 9 17 4 12" /></svg>`
+            : `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-error)" stroke-width="3" style="flex-shrink: 0;"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg>`;
+
+        toast.innerHTML = `${iconHtml}<span>${text}</span>`;
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+          toast.style.transition = "opacity 0.2s ease-out, transform 0.2s ease-out";
+          toast.style.opacity = "0";
+          toast.style.transform = "translate(-50%, 10px)";
+          setTimeout(() => {
+            if (toast.parentNode) toast.remove();
+          }, 200);
+        }, 2500);
+      };
+
+      // Intercept and auto-toast all copy events
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        const originalWriteText = navigator.clipboard.writeText.bind(navigator.clipboard);
+        navigator.clipboard.writeText = async function (text: string) {
+          await originalWriteText(text);
+          const lang = localStorage.getItem("toolbundle_lang") || "en";
+          const message = lang === "vi" ? "Đã sao chép vào bộ nhớ tạm!" : "Copied to clipboard!";
+          (window as any).showToast?.(message, "success");
+          return Promise.resolve();
+        };
+      }
     </script>
   </body>
 </html>

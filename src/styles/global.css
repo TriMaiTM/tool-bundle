@@ -843,3 +843,56 @@ a:focus-visible {
 		scroll-behavior: auto !important;
 	}
 }
+
+/* ============================================
+   Custom UI Enhancements
+   ============================================ */
+
+/* 1. Sửa lỗi lệch border radius của các card con bên trong tool (.card) */
+.card .rounded-lg {
+	border-radius: var(--radius-md) !important;
+}
+
+/* 2. Cải tiến nút Copy lơ lửng thành button hiện đại, có phản hồi lực nhấn */
+button.text-primary,
+.flex.items-center.justify-between button.text-primary,
+button.text-body-sm.text-primary {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 4px 12px;
+	height: 28px;
+	background-color: var(--color-surface-card);
+	color: var(--color-primary) !important;
+	border: 1px solid var(--color-hairline);
+	border-radius: var(--radius-sm); /* 8px */
+	font-size: var(--text-caption-md); /* 12px */
+	font-weight: 700;
+	cursor: pointer;
+	transition: background-color 0.15s ease, transform 0.1s ease, border-color 0.15s ease;
+}
+
+button.text-primary:hover,
+.flex.items-center.justify-between button.text-primary:hover,
+button.text-body-sm.text-primary:hover {
+	background-color: var(--color-secondary-bg);
+	border-color: var(--color-ash);
+}
+
+button.text-primary:active,
+.flex.items-center.justify-between button.text-primary:active,
+button.text-body-sm.text-primary:active {
+	transform: scale(0.95) translateY(0.5px);
+}
+
+/* 3. Animation fadeInUp dùng chung cho Toast */
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translate(-50%, 10px);
+	}
+	to {
+		opacity: 1;
+		transform: translate(-50%, 0);
+	}
+}
