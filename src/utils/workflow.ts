@@ -22,19 +22,6 @@ export interface WorkflowSetting {
 	options?: { label: string; value: string | number }[];
 }
 
-export interface WorkflowStep {
-	id: string;
-	toolId: string;
-	settings?: Record<string, any>;
-}
-
-export interface WorkflowTemplate {
-	id: string;
-	name: string;
-	description: string;
-	steps: { toolId: string; settings?: Record<string, any> }[];
-}
-
 export interface StepResult {
 	stepId: string;
 	toolId: string;
@@ -44,6 +31,13 @@ export interface StepResult {
 	success: boolean;
 	error?: string;
 	duration: number;
+}
+
+export interface WorkflowTemplate {
+	id: string;
+	name: string;
+	description: string;
+	steps: { toolId: string; settings?: Record<string, any> }[];
 }
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -57,10 +51,1115 @@ function escapeXml(s: string): string {
 		.replace(/'/g, "&apos;");
 }
 
-// ─── Workflow-Compatible Tool Registry ───────────────────────────────────────
+function formatCss(css: string, indentSize: number): string {
+	let result = "";
+	let indent = 0;
+	const indentStr = " ".repeat(indentSize);
+	const cleaned = css.replace(/\/\*[\s\S]*?\*\//g, "");
+	const normalized = cleaned.replace(/\s+/g, " ").trim();
+	let i = 0;
+	while (i < normalized.length) {
+		const ch = normalized[i];
+		if (ch === "{") {
+			result = `${result.trimEnd()} {\n`;
+			indent++;
+			result += indentStr.repeat(indent);
+			i++;
+			while (i < normalized.length && normalized[i] === " ") i++;
+			continue;
+		}
+		if (ch === "}") {
+			result = `${result.trimEnd()}\n`;
+			indent = Math.max(0, indent - 1);
+			result += `${indentStr.repeat(indent)}}\n${indentStr.repeat(indent)}`;
+			i++;
+			while (i < normalized.length && normalized[i] === " ") i++;
+			continue;
+		}
+		if (ch === ";") {
+			result = `${result.trimEnd()};\n${indentStr.repeat(indent)}`;
+			i++;
+			while (i < normalized.length && normalized[i] === " ") i++;
+			continue;
+		}
+		result += ch;
+		i++;
+	}
+	return result
+		.split("\n")
+		.map((line) => line.trimEnd())
+		.join("\n")
+		.replace(/\n{3,}/g, "\n\n")
+		.trim();
+}
+
+function minifyCss(css: string): string {
+	return css
+		.replace(/\/\*[\s\S]*?\*\//g, "")
+		.replace(/\s+/g, " ")
+		.replace(/\s*{\s*/g, "{")
+		.replace(/\s*}\s*/g, "}")
+		.replace(/\s*;\s*/g, ";")
+		.replace(/\s*:\s*/g, ":")
+		.replace(/\s*,\s*/g, ",")
+		.replace(/;}/g, "}")
+		.trim();
+}
+
+const SELF_CLOSING_TAGS = new Set([
+	"br",
+	"hr",
+	"img",
+	"input",
+	"meta",
+	"link",
+	"area",
+	"base",
+	"col",
+	"embed",
+	"param",
+	"source",
+	"track",
+	"wbr",
+]);
+
+interface HtmlToken {
+	type: "tag" | "text" | "comment" | "doctype";
+	value: string;
+	raw: string;
+	tagName: string;
+	closing: boolean;
+	selfClosing: boolean;
+}
+
+function tokenizeHtml(html: string): HtmlToken[] {
+	const tokens: HtmlToken[] = [];
+	let i = 0;
+	while (i < html.length) {
+		if (html.startsWith("<!--", i)) {
+			const end = html.indexOf("-->", i + 4);
+			if (end !== -1) {
+				tokens.push({
+					type: "comment",
+					value: html.substring(i + 4, end),
+					raw: "",
+					tagName: "",
+					closing: false,
+					selfClosing: false,
+				});
+				i = end + 3;
+				continue;
+			}
+		}
+		if (html.startsWith("<!", i) && !html.startsWith("<!--", i)) {
+			const end = html.indexOf(">", i);
+			if (end !== -1) {
+				tokens.push({
+					type: "doctype",
+					value: html.substring(i + 2, end).trim(),
+					raw: "",
+					tagName: "",
+					closing: false,
+					selfClosing: false,
+				});
+				i = end + 1;
+				continue;
+			}
+		}
+		if (html[i] === "<") {
+			const end = html.indexOf(">", i);
+			if (end !== -1) {
+				const tagContent = html.substring(i + 1, end);
+				const closing = tagContent.startsWith("/");
+				const selfClosing = tagContent.endsWith("/");
+				const raw = closing
+					? tagContent.substring(1)
+					: selfClosing
+						? tagContent.slice(0, -1)
+						: tagContent;
+				const tagNameMatch = raw.match(/^([a-zA-Z][a-zA-Z0-9-]*)/);
+				tokens.push({
+					type: "tag",
+					value: "",
+					raw: raw.trim(),
+					tagName: tagNameMatch ? tagNameMatch[1] : "",
+					closing,
+					selfClosing,
+				});
+				i = end + 1;
+				continue;
+			}
+		}
+		let textEnd = html.indexOf("<", i);
+		if (textEnd === -1) textEnd = html.length;
+		const text = html.substring(i, textEnd);
+		if (text.trim()) {
+			tokens.push({
+				type: "text",
+				value: text,
+				raw: "",
+				tagName: "",
+				closing: false,
+				selfClosing: false,
+			});
+		}
+		i = textEnd;
+	}
+	return tokens;
+}
+
+function formatHtml(html: string, options: { indentSize: number; wrapLineLength: number }): string {
+	const { indentSize, wrapLineLength } = options;
+	const indentStr = indentSize === -1 ? "\t" : " ".repeat(indentSize);
+	const tokens = tokenizeHtml(html);
+	let result = "";
+	let indent = 0;
+	let lineLength = 0;
+	for (const token of tokens) {
+		if (token.type === "comment") {
+			const commentStr = `<!--${token.value}-->`;
+			if (lineLength + commentStr.length > wrapLineLength && lineLength > 0) {
+				result += `\n${indentStr.repeat(indent)}`;
+				lineLength = indent * indentSize;
+			}
+			result += commentStr;
+			lineLength += commentStr.length;
+			continue;
+		}
+		if (token.type === "doctype") {
+			result += `<!DOCTYPE ${token.value}>\n`;
+			lineLength = 0;
+			continue;
+		}
+		if (token.type === "text") {
+			const text = token.value.trim();
+			if (!text) continue;
+			if (lineLength + text.length > wrapLineLength && lineLength > 0) {
+				result += `\n${indentStr.repeat(indent)}`;
+				lineLength = indent * indentSize;
+			}
+			result += text;
+			lineLength += text.length;
+			continue;
+		}
+		if (token.type === "tag") {
+			const tagName = token.tagName.toLowerCase();
+			const isSelfClosing = SELF_CLOSING_TAGS.has(tagName) || token.selfClosing;
+			if (token.closing) {
+				indent = Math.max(0, indent - 1);
+				result = `${result.trimEnd()}\n${indentStr.repeat(indent)}<${token.raw}>`;
+				lineLength = indent * indentSize + token.raw.length + 2;
+			} else if (isSelfClosing) {
+				const tagStr = token.selfClosing ? `<${token.raw}/>` : `<${token.raw}>`;
+				if (lineLength + tagStr.length > wrapLineLength && lineLength > 0) {
+					result += `\n${indentStr.repeat(indent)}`;
+					lineLength = indent * indentSize;
+				}
+				result += tagStr;
+				lineLength += tagStr.length;
+			} else {
+				if (lineLength > 0) {
+					result += `\n${indentStr.repeat(indent)}`;
+					lineLength = indent * indentSize;
+				}
+				result += `<${token.raw}>`;
+				lineLength += token.raw.length + 2;
+				indent++;
+			}
+		}
+	}
+	return result
+		.split("\n")
+		.map((line) => line.trimEnd())
+		.join("\n")
+		.replace(/\n{3,}/g, "\n\n")
+		.trim();
+}
+
+function minifyHtml(
+	html: string,
+	options: { removeComments: boolean; collapseWhitespace: boolean; removeOptionalTags: boolean },
+): string {
+	let result = html;
+	if (options.removeComments) result = result.replace(/<!--[\s\S]*?-->/g, "");
+	if (options.collapseWhitespace)
+		result = result
+			.replace(/>\s+</g, "><")
+			.replace(/\s{2,}/g, " ")
+			.replace(/\s*>\s*/g, ">")
+			.replace(/\s*<\s*/g, "<");
+	if (options.removeOptionalTags) {
+		result = result.replace(
+			/<\/(li|dt|dd|p|rt|rp|optgroup|option|colgroup|caption|thead|tbody|tfoot|tr|td|th)>/gi,
+			"",
+		);
+		result = result
+			.replace(/<html[^>]*>/gi, "")
+			.replace(/<\/html>/gi, "")
+			.replace(/<head[^>]*>/gi, "")
+			.replace(/<\/head>/gi, "")
+			.replace(/<body[^>]*>/gi, "")
+			.replace(/<\/body>/gi, "");
+	}
+	return result.trim();
+}
+
+const SQL_MAJOR_KEYWORDS = new Set([
+	"SELECT",
+	"FROM",
+	"WHERE",
+	"JOIN",
+	"LEFT JOIN",
+	"RIGHT JOIN",
+	"INNER JOIN",
+	"OUTER JOIN",
+	"FULL JOIN",
+	"CROSS JOIN",
+	"ON",
+	"AND",
+	"OR",
+	"ORDER BY",
+	"GROUP BY",
+	"HAVING",
+	"LIMIT",
+	"OFFSET",
+	"INSERT",
+	"INTO",
+	"VALUES",
+	"UPDATE",
+	"SET",
+	"DELETE",
+	"CREATE",
+	"ALTER",
+	"DROP",
+	"TABLE",
+	"INDEX",
+	"VIEW",
+	"UNION",
+	"UNION ALL",
+	"EXCEPT",
+	"INTERSECT",
+	"CASE",
+	"WHEN",
+	"THEN",
+	"ELSE",
+	"END",
+	"AS",
+	"WITH",
+	"DISTINCT",
+	"TOP",
+]);
+const SQL_NEWLINE_BEFORE_KEYWORDS = new Set([
+	"SELECT",
+	"FROM",
+	"WHERE",
+	"JOIN",
+	"LEFT JOIN",
+	"RIGHT JOIN",
+	"INNER JOIN",
+	"OUTER JOIN",
+	"FULL JOIN",
+	"CROSS JOIN",
+	"ON",
+	"ORDER BY",
+	"GROUP BY",
+	"HAVING",
+	"LIMIT",
+	"OFFSET",
+	"UNION",
+	"UNION ALL",
+	"EXCEPT",
+	"INTERSECT",
+	"INSERT",
+	"INTO",
+	"VALUES",
+	"UPDATE",
+	"SET",
+	"DELETE",
+	"CREATE",
+	"ALTER",
+	"DROP",
+]);
+
+function tokenizeSql(sql: string): string[] {
+	const tokens: string[] = [];
+	let i = 0;
+	const len = sql.length;
+	while (i < len) {
+		if (/\s/.test(sql[i])) {
+			i++;
+			continue;
+		}
+		if (sql[i] === "'") {
+			let j = i + 1;
+			while (j < len) {
+				if (sql[j] === "'" && sql[j + 1] === "'") j += 2;
+				else if (sql[j] === "'") {
+					j++;
+					break;
+				} else j++;
+			}
+			tokens.push(sql.substring(i, j));
+			i = j;
+			continue;
+		}
+		if (sql[i] === '"') {
+			let j = i + 1;
+			while (j < len && sql[j] !== '"') j++;
+			if (j < len) j++;
+			tokens.push(sql.substring(i, j));
+			i = j;
+			continue;
+		}
+		if (sql[i] === "(" || sql[i] === ")" || sql[i] === "," || sql[i] === ";") {
+			tokens.push(sql[i]);
+			i++;
+			continue;
+		}
+		if (/[a-zA-Z_$#]/.test(sql[i])) {
+			let j = i;
+			while (j < len && /[a-zA-Z0-9_$#]/.test(sql[j])) j++;
+			tokens.push(sql.substring(i, j));
+			i = j;
+			continue;
+		}
+		tokens.push(sql[i]);
+		i++;
+	}
+	return tokens;
+}
+
+function matchMultiWordKeyword(
+	tokens: string[],
+	pos: number,
+): { keyword: string; length: number } | null {
+	const multiWordPatterns = [
+		["ORDER", "BY"],
+		["GROUP", "BY"],
+		["LEFT", "JOIN"],
+		["RIGHT", "JOIN"],
+		["INNER", "JOIN"],
+		["OUTER", "JOIN"],
+		["FULL", "JOIN"],
+		["CROSS", "JOIN"],
+		["UNION", "ALL"],
+	];
+	for (const pattern of multiWordPatterns) {
+		let match = true;
+		for (let k = 0; k < pattern.length; k++) {
+			if (pos + k >= tokens.length || tokens[pos + k].toUpperCase() !== pattern[k]) {
+				match = false;
+				break;
+			}
+		}
+		if (match) return { keyword: pattern.join(" "), length: pattern.length };
+	}
+	return null;
+}
+
+function formatSql(sql: string, indentSize: number, uppercaseKeywords: boolean): string {
+	const tokens = tokenizeSql(sql);
+	const indentStr = indentSize === -1 ? "\t" : " ".repeat(indentSize);
+	let result = "";
+	let indent = 0;
+	let lineStart = true;
+	let parenDepth = 0;
+	let i = 0;
+	while (i < tokens.length) {
+		const token = tokens[i];
+		const upper = token.toUpperCase();
+		const multiWord = matchMultiWordKeyword(tokens, i);
+		if (token === ";") {
+			result += ";\n";
+			lineStart = true;
+			i++;
+			continue;
+		}
+		if (token === "(") {
+			parenDepth++;
+			result += "(";
+			if (i + 1 < tokens.length && /^(SELECT|WITH|INSERT|UPDATE|DELETE)$/i.test(tokens[i + 1])) {
+				indent++;
+				result += `\n${indentStr.repeat(indent)}`;
+				lineStart = true;
+			}
+			i++;
+			continue;
+		}
+		if (token === ")") {
+			parenDepth--;
+			if (parenDepth < 0) parenDepth = 0;
+			if (indent > 0 && result.trimEnd().endsWith(indentStr.trimEnd() || indentStr)) {
+				indent = Math.max(0, indent - 1);
+				result = `${result.trimEnd()}\n${indentStr.repeat(indent)})`;
+			} else result += ")";
+			lineStart = false;
+			i++;
+			continue;
+		}
+		if (token === ",") {
+			result = `${result.trimEnd()},`;
+			if (parenDepth === 0) {
+				result += `\n${indentStr.repeat(indent + 1)}`;
+				lineStart = true;
+			}
+			i++;
+			continue;
+		}
+		if (multiWord) {
+			const keyword = uppercaseKeywords ? multiWord.keyword : multiWord.keyword.toLowerCase();
+			if (SQL_NEWLINE_BEFORE_KEYWORDS.has(multiWord.keyword)) {
+				if (!lineStart) result = `${result.trimEnd()}\n`;
+				result += `${indentStr.repeat(indent) + keyword} `;
+				lineStart = false;
+			} else {
+				if (!lineStart) result += " ";
+				result += `${keyword} `;
+				lineStart = false;
+			}
+			i += multiWord.length;
+			continue;
+		}
+		if (SQL_MAJOR_KEYWORDS.has(upper)) {
+			const keyword = uppercaseKeywords ? upper : upper.toLowerCase();
+			if (SQL_NEWLINE_BEFORE_KEYWORDS.has(upper)) {
+				if (!lineStart) result = `${result.trimEnd()}\n`;
+				result += `${indentStr.repeat(indent) + keyword} `;
+				lineStart = false;
+			} else {
+				if (!lineStart) result += " ";
+				result += `${keyword} `;
+				lineStart = false;
+			}
+			i++;
+			continue;
+		}
+		if (!lineStart) {
+			const lastChar = result.trimEnd().slice(-1);
+			if (lastChar && !["(", ",", ".", " "].includes(lastChar)) result += " ";
+		}
+		result += token;
+		lineStart = false;
+		i++;
+	}
+	return result
+		.split("\n")
+		.map((line) => line.trimEnd())
+		.join("\n")
+		.replace(/\n{3,}/g, "\n\n")
+		.trim();
+}
+
+function minifySql(sql: string): string {
+	return sql
+		.replace(/--[^\n]*/g, "")
+		.replace(/\/\*[\s\S]*?\*\//g, "")
+		.replace(/\s+/g, " ")
+		.replace(/\s*([(),;])\s*/g, "$1")
+		.trim();
+}
+
+function uppercaseKeywords(sql: string): string {
+	const keywords = [
+		"SELECT",
+		"FROM",
+		"WHERE",
+		"JOIN",
+		"LEFT",
+		"RIGHT",
+		"INNER",
+		"OUTER",
+		"FULL",
+		"CROSS",
+		"ON",
+		"AND",
+		"OR",
+		"ORDER",
+		"BY",
+		"GROUP",
+		"HAVING",
+		"LIMIT",
+		"OFFSET",
+		"INSERT",
+		"INTO",
+		"VALUES",
+		"UPDATE",
+		"SET",
+		"DELETE",
+		"CREATE",
+		"ALTER",
+		"DROP",
+		"TABLE",
+		"INDEX",
+		"VIEW",
+		"UNION",
+		"EXCEPT",
+		"INTERSECT",
+		"AS",
+		"DISTINCT",
+		"TOP",
+		"ALL",
+		"CASE",
+		"WHEN",
+		"THEN",
+		"ELSE",
+		"END",
+		"WITH",
+		"NULL",
+		"NOT",
+		"IS",
+		"IN",
+		"LIKE",
+		"BETWEEN",
+		"EXISTS",
+		"TRUE",
+		"FALSE",
+	];
+	let result = sql;
+	for (const kw of keywords) {
+		const regex = new RegExp(`\\b${kw}\\b`, "gi");
+		result = result.replace(regex, kw);
+	}
+	return result;
+}
+
+interface XmlToken {
+	type: "open" | "close" | "selfclose" | "text" | "comment" | "cdata" | "declaration" | "doctype";
+	content: string;
+	tagName?: string;
+	line: number;
+}
+
+function tokenizeXml(xml: string): XmlToken[] {
+	const tokens: XmlToken[] = [];
+	let i = 0;
+	let line = 1;
+	while (i < xml.length) {
+		if (xml[i] === "\n") {
+			line++;
+			i++;
+			continue;
+		}
+		if (xml.startsWith("<![CDATA[", i)) {
+			const end = xml.indexOf("]]>", i);
+			if (end !== -1) {
+				tokens.push({ type: "cdata", content: xml.substring(i, end + 3), line });
+				i = end + 3;
+				continue;
+			}
+		}
+		if (xml.startsWith("<!--", i)) {
+			const end = xml.indexOf("-->", i + 4);
+			if (end !== -1) {
+				tokens.push({ type: "comment", content: xml.substring(i, end + 3), line });
+				i = end + 3;
+				continue;
+			}
+		}
+		if (xml[i] === "<") {
+			const end = xml.indexOf(">", i);
+			if (end !== -1) {
+				const tagContent = xml.substring(i + 1, end);
+				const isClosing = tagContent.startsWith("/");
+				const isSelfClosing = tagContent.endsWith("/");
+				const raw = isClosing
+					? tagContent.substring(1).trim()
+					: isSelfClosing
+						? tagContent.slice(0, -1).trim()
+						: tagContent.trim();
+				const tagNameMatch = raw.match(/^([a-zA-Z_:][a-zA-Z0-9._:-]*)/);
+				tokens.push({
+					type: isClosing ? "close" : isSelfClosing ? "selfclose" : "open",
+					content: xml.substring(i, end + 1),
+					tagName: tagNameMatch ? tagNameMatch[1] : undefined,
+					line,
+				});
+				i = end + 1;
+				continue;
+			}
+		}
+		let textEnd = i;
+		while (textEnd < xml.length && xml[textEnd] !== "<") {
+			if (xml[textEnd] === "\n") line++;
+			textEnd++;
+		}
+		if (textEnd > i) {
+			tokens.push({ type: "text", content: xml.substring(i, textEnd), line });
+			i = textEnd;
+		} else i++;
+	}
+	return tokens;
+}
+
+function formatXml(xml: string, indentSize: number, selfClose: boolean): string {
+	const tokens = tokenizeXml(xml);
+	const is = indentSize === -1 ? "\t" : " ".repeat(indentSize);
+	let result = "";
+	let indent = 0;
+	for (const token of tokens) {
+		switch (token.type) {
+			case "declaration":
+			case "doctype":
+				result += `${token.content}\n`;
+				break;
+			case "comment":
+			case "cdata":
+				result += `${is.repeat(indent) + token.content}\n`;
+				break;
+			case "open":
+				result += `${is.repeat(indent) + token.content}\n`;
+				indent++;
+				break;
+			case "close":
+				indent = Math.max(0, indent - 1);
+				result += `${is.repeat(indent) + token.content}\n`;
+				break;
+			case "selfclose":
+				if (selfClose) result += `${is.repeat(indent) + token.content}\n`;
+				else {
+					const tagName = token.tagName || "";
+					const attrs = token.content
+						.replace(/<\//, "")
+						.replace(/\/>$/, "")
+						.replace(new RegExp(`^${tagName}\\s*`, "i"), "")
+						.trim();
+					result += `${is.repeat(indent) + (attrs ? `<${tagName} ${attrs}>` : `<${tagName}>`)}</${tagName}>\n`;
+				}
+				break;
+			case "text": {
+				const text = token.content.trim();
+				if (text) result += `${is.repeat(indent) + text}\n`;
+				break;
+			}
+		}
+	}
+	return result
+		.split("\n")
+		.map((line) => line.trimEnd())
+		.filter((line, idx, arr) => !(line === "" && idx > 0 && arr[idx - 1] === ""))
+		.join("\n")
+		.trim();
+}
+
+function minifyXml(xml: string): string {
+	return xml
+		.replace(/<!--[\s\S]*?-->/g, "")
+		.replace(/>\s+</g, "><")
+		.replace(/\s{2,}/g, " ")
+		.replace(/\n/g, "")
+		.trim();
+}
+
+function elementToObj(el: Element): any {
+	const obj: any = {};
+	if (el.attributes) {
+		for (let i = 0; i < el.attributes.length; i++)
+			obj[`@${el.attributes[i].name}`] = el.attributes[i].value;
+	}
+	const children = el.childNodes;
+	if (children.length === 1 && children[0].nodeType === 3) return el.textContent?.trim() || "";
+	for (let i = 0; i < children.length; i++) {
+		const child = children[i];
+		if (child.nodeType !== 1) continue;
+		const childEl = child as Element;
+		const value = elementToObj(childEl);
+		if (obj[childEl.nodeName]) {
+			if (!Array.isArray(obj[childEl.nodeName])) obj[childEl.nodeName] = [obj[childEl.nodeName]];
+			obj[childEl.nodeName].push(value);
+		} else obj[childEl.nodeName] = value;
+	}
+	return obj;
+}
+
+function xmlToJson(xml: string): any {
+	const parser = new DOMParser();
+	const doc = parser.parseFromString(xml, "text/xml");
+	const errorNode = doc.querySelector("parsererror");
+	if (errorNode) throw new Error("Invalid XML");
+	return elementToObj(doc.documentElement);
+}
+
+function htmlToText(html: string): string {
+	let text = html;
+	text = text.replace(/<\/(p|div|h[1-6]|li|tr|blockquote|pre|section|article)>/gi, "\n");
+	text = text.replace(/<(br|hr)\s*\/?>/gi, "\n");
+	text = text.replace(/<li[^>]*>/gi, "• ");
+	text = text.replace(/<h[1-6][^>]*>/gi, "\n");
+	text = text.replace(/<[^>]+>/g, "");
+	text = text
+		.replace(/&amp;/g, "&")
+		.replace(/&lt;/g, "<")
+		.replace(/&gt;/g, ">")
+		.replace(/&quot;/g, '"')
+		.replace(/&#39;/g, "'")
+		.replace(/&nbsp;/g, " ");
+	return text
+		.replace(/\n{3,}/g, "\n\n")
+		.replace(/[ \t]+/g, " ")
+		.trim();
+}
+
+const HASHTAG_STOP_WORDS = new Set([
+	"a",
+	"an",
+	"the",
+	"and",
+	"or",
+	"but",
+	"in",
+	"on",
+	"at",
+	"to",
+	"for",
+	"of",
+	"with",
+	"by",
+	"from",
+	"as",
+	"is",
+	"was",
+	"are",
+	"were",
+	"been",
+	"be",
+	"have",
+	"has",
+	"had",
+	"do",
+	"does",
+	"did",
+	"will",
+	"would",
+	"could",
+	"should",
+	"may",
+	"might",
+	"shall",
+	"can",
+	"this",
+	"that",
+	"these",
+	"those",
+	"i",
+	"me",
+	"my",
+	"myself",
+	"we",
+	"our",
+	"ours",
+	"ourselves",
+	"you",
+	"your",
+	"yours",
+	"yourself",
+	"yourselves",
+	"he",
+	"him",
+	"his",
+	"himself",
+	"she",
+	"her",
+	"hers",
+	"herself",
+	"it",
+	"its",
+	"itself",
+	"they",
+	"them",
+	"their",
+	"theirs",
+	"themselves",
+	"what",
+	"which",
+	"who",
+	"whom",
+	"when",
+	"where",
+	"why",
+	"how",
+	"all",
+	"each",
+	"every",
+	"both",
+	"few",
+	"more",
+	"most",
+	"other",
+	"some",
+	"such",
+	"no",
+	"nor",
+	"not",
+	"only",
+	"own",
+	"same",
+	"so",
+	"than",
+	"too",
+	"very",
+	"s",
+	"t",
+	"just",
+	"don",
+	"now",
+	"here",
+	"there",
+	"then",
+	"also",
+	"about",
+	"up",
+	"out",
+	"if",
+	"into",
+	"over",
+	"after",
+	"before",
+	"between",
+	"through",
+	"during",
+	"without",
+	"again",
+	"further",
+	"once",
+	"while",
+	"because",
+	"until",
+	"above",
+	"below",
+	"under",
+	"since",
+	"along",
+	"among",
+	"around",
+	"behind",
+	"beside",
+	"beyond",
+	"near",
+	"toward",
+	"upon",
+	"against",
+	"within",
+	"even",
+	"still",
+	"already",
+	"much",
+	"many",
+	"well",
+	"back",
+	"down",
+	"off",
+	"away",
+	"quite",
+	"really",
+	"always",
+	"never",
+	"often",
+	"sometimes",
+	"usually",
+	"almost",
+	"enough",
+	"however",
+	"although",
+	"though",
+	"yet",
+	"either",
+	"neither",
+	"whether",
+	"whose",
+	"whichever",
+	"whatever",
+	"anything",
+	"everything",
+	"nothing",
+	"something",
+	"anyone",
+	"everyone",
+	"someone",
+	"everybody",
+	"anybody",
+	"somebody",
+	"nobody",
+	"let",
+	"make",
+	"made",
+	"like",
+	"going",
+	"get",
+	"got",
+	"new",
+	"one",
+	"two",
+	"three",
+	"first",
+	"last",
+	"long",
+	"great",
+	"little",
+	"old",
+	"right",
+	"big",
+	"high",
+	"different",
+	"small",
+	"large",
+	"next",
+	"early",
+	"young",
+	"important",
+	"used",
+	"use",
+	"using",
+	"per",
+	"via",
+]);
+
+function extractKeywords(
+	text: string,
+	removeStopWords: boolean,
+): { word: string; count: number }[] {
+	const cleaned = text
+		.toLowerCase()
+		.replace(/[^a-z0-9\s]/g, " ")
+		.split(/\s+/)
+		.filter((w) => w.length >= 2);
+	const filtered = removeStopWords ? cleaned.filter((w) => !HASHTAG_STOP_WORDS.has(w)) : cleaned;
+	const freq: Record<string, number> = {};
+	for (const word of filtered) freq[word] = (freq[word] || 0) + 1;
+	return Object.entries(freq)
+		.map(([word, count]) => ({ word, count }))
+		.sort((a, b) => b.count - a.count);
+}
+
+const fancyCharMap: Record<string, string> = {
+	a: "𝕒",
+	b: "𝕓",
+	c: "𝕔",
+	d: "𝕕",
+	e: "𝕖",
+	f: "𝕗",
+	g: "𝕘",
+	h: "𝕙",
+	i: "𝕚",
+	j: "𝕛",
+	k: "𝕜",
+	l: "𝕝",
+	m: "𝕞",
+	n: "𝕟",
+	o: "𝕠",
+	p: "𝕡",
+	q: "𝕢",
+	r: "𝕣",
+	s: "𝕤",
+	t: "𝕥",
+	u: "𝕦",
+	v: "𝕧",
+	w: "𝕨",
+	x: "𝕩",
+	y: "𝕪",
+	z: "𝕫",
+	A: "mathbb{A}",
+	B: "𝔹",
+	C: "ℂ",
+	D: "𝔻",
+	E: "𝔼",
+	F: "𝔽",
+	G: "𝔾",
+	H: "ℍ",
+	I: "𝕀",
+	J: "𝕁",
+	K: "𝕂",
+	L: "𝕃",
+	M: "𝕄",
+	N: "ℕ",
+	O: "𝕆",
+	P: "ℙ",
+	Q: "ℚ",
+	R: "ℝ",
+	S: "𝕊",
+	T: "𝕋",
+	U: "𝕌",
+	V: "𝕍",
+	W: "𝕎",
+	X: "𝕏",
+	Y: "𝕐",
+	Z: "ℤ",
+	"0": "0",
+	"1": "1",
+	"2": "2",
+	"3": "3",
+	"4": "4",
+	"5": "5",
+	"6": "6",
+	"7": "7",
+	"8": "8",
+	"9": "9",
+};
+
+function convertFancyText(text: string): string {
+	return text
+		.split("")
+		.map((ch) => fancyCharMap[ch] ?? ch)
+		.join("");
+}
+
+function escapeCsvField(value: unknown, delimiter: string): string {
+	const str = value === null || value === undefined ? "" : String(value);
+	if (str.includes(delimiter) || str.includes('"') || str.includes("\n") || str.includes("\r")) {
+		return `"${str.replace(/"/g, '""')}"`;
+	}
+	return str;
+}
+
+function parseBrowser(ua: string): { name: string; version: string } {
+	const patterns: [RegExp, string][] = [
+		[/Edg\/([\d.]+)/, "Edge"],
+		[/OPR\/([\d.]+)/, "Opera"],
+		[/Vivaldi\/([\d.]+)/, "Vivaldi"],
+		[/Chrome\/([\d.]+)/, "Chrome"],
+		[/Firefox\/([\d.]+)/, "Firefox"],
+		[/Version\/([\d.]+).*Safari/, "Safari"],
+	];
+	for (const [regex, name] of patterns) {
+		const match = ua.match(regex);
+		if (match) return { name, version: match[1] };
+	}
+	return { name: "Unknown", version: "" };
+}
+
+function parseOS(ua: string): { name: string; version: string } {
+	const patterns: [RegExp, string, () => string][] = [
+		[/Windows NT 10\.0/, "Windows", () => "10"],
+		[/Windows NT 6\.1/, "Windows", () => "7"],
+		[/Mac OS X ([\d_]+)/, "macOS", () => "macOS"],
+		[/Android ([\d.]+)/, "Android", () => "Android"],
+		[/iPhone OS ([\d_]+)/, "iOS", () => "iOS"],
+	];
+	for (const [regex, name, getVersion] of patterns) {
+		const match = ua.match(regex);
+		if (match) return { name, version: getVersion() };
+	}
+	return { name: "Unknown", version: "" };
+}
+
+function parseUA(ua: string): any {
+	const browser = parseBrowser(ua);
+	const os = parseOS(ua);
+	return {
+		browser: browser.name,
+		browserVersion: browser.version,
+		os: os.name,
+		osVersion: os.version,
+		device: /Mobile|iPhone/i.test(ua) ? "Mobile" : "Desktop",
+	};
+}
+
+export interface WorkflowStep {
+	id: string;
+	toolId: string;
+	settings?: Record<string, any>;
+}
 
 export const workflowTools: Record<string, WorkflowTool> = {
-	// ── Text Transforms ─────────────────────────────────────────────────────
 	"case-converter": {
 		id: "case-converter",
 		name: "Case Converter",
@@ -706,9 +1805,741 @@ export const workflowTools: Record<string, WorkflowTool> = {
 			}
 		},
 	},
+	"slug-generator": {
+		id: "slug-generator",
+		name: "Slug Generator",
+		category: "text",
+		description: "Generate clean URL slugs from any text",
+		process: async (input, settings) => {
+			const separator = settings?.separator || "-";
+			const lowercase = settings?.lowercase !== "no";
+			if (!input.trim()) return "";
+			let slug = input
+				.normalize("NFD")
+				.replace(/[\u0300-\u036f]/g, "")
+				.replace(/[^a-zA-Z0-9\s-]/g, "")
+				.trim()
+				.replace(/[\s-]+/g, separator);
+			if (lowercase) slug = slug.toLowerCase();
+			return slug;
+		},
+		settings: [
+			{
+				key: "separator",
+				label: "Separator",
+				type: "select",
+				default: "-",
+				options: [
+					{ label: "Hyphen (-)", value: "-" },
+					{ label: "Underscore (_)", value: "_" },
+					{ label: "Dot (.)", value: "." },
+				],
+			},
+			{
+				key: "lowercase",
+				label: "Lowercase",
+				type: "select",
+				default: "yes",
+				options: [
+					{ label: "Yes", value: "yes" },
+					{ label: "No", value: "no" },
+				],
+			},
+		],
+	},
+	"word-counter": {
+		id: "word-counter",
+		name: "Word Counter",
+		category: "text",
+		description: "Count words, characters, sentences, paragraphs, or lines",
+		process: async (input, settings) => {
+			const mode = settings?.mode || "report";
+			const trimmed = input.trim();
+			if (!trimmed) {
+				if (mode === "report")
+					return "Words: 0\nCharacters: 0\nSentences: 0\nParagraphs: 0\nLines: 0";
+				return "0";
+			}
+			const stats = {
+				characters: input.length,
+				charactersNoSpaces: input.replace(/\s/g, "").length,
+				words: trimmed.split(/\s+/).filter(Boolean).length,
+				sentences: trimmed.split(/[.!?]+/).filter((s) => s.trim().length > 0).length,
+				paragraphs: trimmed.split(/\n\s*\n/).filter((p) => p.trim().length > 0).length,
+				lines: input.split("\n").length,
+			};
+			if (mode === "words") return String(stats.words);
+			if (mode === "characters") return String(stats.characters);
+			if (mode === "sentences") return String(stats.sentences);
+			if (mode === "paragraphs") return String(stats.paragraphs);
+			if (mode === "lines") return String(stats.lines);
+			return `Words: ${stats.words}\nCharacters: ${stats.characters}\nNo Spaces: ${stats.charactersNoSpaces}\nSentences: ${stats.sentences}\nParagraphs: ${stats.paragraphs}\nLines: ${stats.lines}`;
+		},
+		settings: [
+			{
+				key: "mode",
+				label: "Output Mode",
+				type: "select",
+				default: "report",
+				options: [
+					{ label: "Full Report", value: "report" },
+					{ label: "Word Count Only", value: "words" },
+					{ label: "Character Count Only", value: "characters" },
+					{ label: "Sentence Count Only", value: "sentences" },
+					{ label: "Paragraph Count Only", value: "paragraphs" },
+					{ label: "Line Count Only", value: "lines" },
+				],
+			},
+		],
+	},
+	"lorem-generator": {
+		id: "lorem-generator",
+		name: "Lorem Generator",
+		category: "text",
+		description: "Generate placeholder Lorem Ipsum text",
+		process: async (_input, settings) => {
+			const mode = settings?.mode || "paragraphs";
+			const count = Number(settings?.count ?? 3);
+			const LOREM_WORDS =
+				"lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamco laboris nisi aliquip ex ea commodo consequat duis aute irure in reprehenderit voluptate velit esse cillum fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt culpa qui officia deserunt mollit anim id est laborum".split(
+					" ",
+				);
+			function generateWords(n: number): string {
+				const result: string[] = [];
+				for (let i = 0; i < n; i++) {
+					result.push(LOREM_WORDS[Math.floor(Math.random() * LOREM_WORDS.length)]);
+				}
+				return result.join(" ");
+			}
+			function generateSentence(): string {
+				const length = 8 + Math.floor(Math.random() * 12);
+				const words = generateWords(length);
+				return `${words.charAt(0).toUpperCase() + words.slice(1)}.`;
+			}
+			function generateParagraph(): string {
+				const sentenceCount = 3 + Math.floor(Math.random() * 5);
+				return Array.from({ length: sentenceCount }, () => generateSentence()).join(" ");
+			}
+			if (mode === "paragraphs") {
+				return Array.from({ length: count }, () => generateParagraph()).join("\n\n");
+			}
+			if (mode === "sentences") {
+				return Array.from({ length: count }, () => generateSentence()).join(" ");
+			}
+			return generateWords(count);
+		},
+		settings: [
+			{
+				key: "mode",
+				label: "Mode",
+				type: "select",
+				default: "paragraphs",
+				options: [
+					{ label: "Paragraphs", value: "paragraphs" },
+					{ label: "Sentences", value: "sentences" },
+					{ label: "Words", value: "words" },
+				],
+			},
+			{ key: "count", label: "Count", type: "number", default: 3 },
+		],
+	},
+	"uuid-generator": {
+		id: "uuid-generator",
+		name: "UUID Generator",
+		category: "utility",
+		description: "Generate unique UUID v4 values",
+		process: async (_input, settings) => {
+			const count = Number(settings?.count ?? 1);
+			const format = settings?.format || "standard";
+			function generateUUID(): string {
+				if (typeof crypto !== "undefined" && crypto.randomUUID) {
+					return crypto.randomUUID();
+				}
+				return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
+					const r = ((crypto.getRandomValues(new Uint8Array(1))[0] / 256) * 16) | 0;
+					const v = c === "x" ? r : (r & 0x3) | 0x8;
+					return v.toString(16);
+				});
+			}
+			function formatUUID(uuid: string, f: string): string {
+				const raw = uuid.replace(/-/g, "");
+				switch (f) {
+					case "standard":
+						return uuid;
+					case "no-dash":
+						return raw;
+					case "uppercase":
+						return uuid.toUpperCase();
+					case "braces":
+						return `{${uuid}}`;
+					case "url":
+						return `urn:uuid:${uuid}`;
+					case "base64":
+						return btoa(raw);
+					default:
+						return uuid;
+				}
+			}
+			const uuids = Array.from({ length: count }, () => generateUUID());
+			return uuids.map((u) => formatUUID(u, format)).join("\n");
+		},
+		settings: [
+			{ key: "count", label: "Generate Count", type: "number", default: 1 },
+			{
+				key: "format",
+				label: "Format Style",
+				type: "select",
+				default: "standard",
+				options: [
+					{ label: "Standard", value: "standard" },
+					{ label: "UPPERCASE", value: "uppercase" },
+					{ label: "No Dashes", value: "no-dash" },
+					{ label: "With Braces", value: "braces" },
+					{ label: "URN Format", value: "url" },
+					{ label: "Base64", value: "base64" },
+				],
+			},
+		],
+	},
+	"html-to-markdown": {
+		id: "html-to-markdown",
+		name: "HTML to Markdown",
+		category: "developer",
+		description: "Convert HTML markup into Markdown syntax",
+		process: async (input) => {
+			function decodeHtml(html: string): string {
+				return html
+					.replace(/&amp;/g, "&")
+					.replace(/&lt;/g, "<")
+					.replace(/&gt;/g, ">")
+					.replace(/&quot;/g, '"')
+					.replace(/&#39;/g, "'")
+					.replace(/&nbsp;/g, " ");
+			}
+			let md = input;
+			md = md.replace(
+				/<pre[^>]*>\s*<code[^>]*>([\s\S]*?)<\/code>\s*<\/pre>/gi,
+				(_: string, code: string) => {
+					const decoded = decodeHtml(code).replace(/\n$/, "");
+					return `\n\`\`\`\n${decoded}\n\`\`\`\n`;
+				},
+			);
+			md = md.replace(/<h1[^>]*>([\s\S]*?)<\/h1>/gi, "\n# $1\n");
+			md = md.replace(/<h2[^>]*>([\s\S]*?)<\/h2>/gi, "\n## $1\n");
+			md = md.replace(/<h3[^>]*>([\s\S]*?)<\/h3>/gi, "\n### $1\n");
+			md = md.replace(/<h4[^>]*>([\s\S]*?)<\/h4>/gi, "\n#### $1\n");
+			md = md.replace(/<h5[^>]*>([\s\S]*?)<\/h5>/gi, "\n##### $1\n");
+			md = md.replace(/<h6[^>]*>([\s\S]*?)<\/h6>/gi, "\n###### $1\n");
+			md = md.replace(/<(strong|b)[^>]*>([\s\S]*?)<\/\1>/gi, "**$2**");
+			md = md.replace(/<(em|i)[^>]*>([\s\S]*?)<\/\1>/gi, "*$2*");
+			md = md.replace(/<code[^>]*>([\s\S]*?)<\/code>/gi, "`$1`");
+			md = md.replace(/<a[^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/gi, "[$2]($1)");
+			md = md.replace(/<img[^>]*src="([^"]*)"[^>]*alt="([^"]*)"[^>]*\/?>/gi, "![$2]($1)");
+			md = md.replace(/<img[^>]*alt="([^"]*)"[^>]*src="([^"]*)"[^>]*\/?>/gi, "![$1]($2)");
+			md = md.replace(/<img[^>]*src="([^"]*)"[^>]*\/?>/gi, "![]($1)");
+			md = md.replace(/<hr[^>]*\/?>/gi, "\n---\n");
+			md = md.replace(
+				/<blockquote[^>]*>([\s\S]*?)<\/blockquote>/gi,
+				(_: string, content: string) => {
+					const lines = content
+						.trim()
+						.split("\n")
+						.map((l) => `> ${l.trim()}`)
+						.join("\n");
+					return `\n${lines}\n`;
+				},
+			);
+			md = md.replace(/<ul[^>]*>([\s\S]*?)<\/ul>/gi, (_: string, content: string) => {
+				const items = content.replace(/<li[^>]*>([\s\S]*?)<\/li>/gi, "- $1\n");
+				return `\n${items.trim()}\n`;
+			});
+			let olCounter = 0;
+			md = md.replace(/<ol[^>]*>([\s\S]*?)<\/ol>/gi, (_: string, content: string) => {
+				olCounter = 0;
+				const items = content.replace(/<li[^>]*>([\s\S]*?)<\/li>/gi, () => {
+					olCounter++;
+					return `${olCounter}. $1\n`;
+				});
+				return `\n${items.trim()}\n`;
+			});
+			md = md.replace(/<p[^>]*>([\s\S]*?)<\/p>/gi, "\n\n$1\n\n");
+			md = md.replace(/<br\s*\/?>/gi, "\n");
+			md = md.replace(/<[^>]+>/g, "");
+			md = decodeHtml(md);
+			md = md.replace(/\n{3,}/g, "\n\n");
+			return md.trim();
+		},
+	},
+	"css-formatter": {
+		id: "css-formatter",
+		name: "CSS Formatter",
+		category: "developer",
+		description: "Format and beautify CSS with custom indentation",
+		process: async (input, settings) => {
+			const indent = Number(settings?.indent ?? 2);
+			return formatCss(input, indent);
+		},
+		settings: [
+			{
+				key: "indent",
+				label: "Indent size",
+				type: "select",
+				default: 2,
+				options: [
+					{ label: "2 spaces", value: 2 },
+					{ label: "4 spaces", value: 4 },
+				],
+			},
+		],
+	},
+	"css-minifier": {
+		id: "css-minifier",
+		name: "CSS Minifier",
+		category: "developer",
+		description: "Minify CSS code, removing comments and collapsing spaces",
+		process: async (input) => minifyCss(input),
+	},
+	"html-formatter": {
+		id: "html-formatter",
+		name: "HTML Formatter",
+		category: "developer",
+		description: "Format and beautify HTML markup with custom indentation",
+		process: async (input, settings) => {
+			const indentSize = Number(settings?.indentSize ?? 2);
+			const wrapLineLength = Number(settings?.wrapLineLength ?? 80);
+			return formatHtml(input, { indentSize, wrapLineLength });
+		},
+		settings: [
+			{
+				key: "indentSize",
+				label: "Indent size",
+				type: "select",
+				default: 2,
+				options: [
+					{ label: "2 spaces", value: 2 },
+					{ label: "4 spaces", value: 4 },
+				],
+			},
+			{ key: "wrapLineLength", label: "Wrap Line Length", type: "number", default: 80 },
+		],
+	},
+	"html-to-text": {
+		id: "html-to-text",
+		name: "HTML to Text",
+		category: "text",
+		description: "Extract clean plain text from HTML markup",
+		process: async (input) => htmlToText(input),
+	},
+	"sql-formatter": {
+		id: "sql-formatter",
+		name: "SQL Formatter",
+		category: "developer",
+		description: "Format SQL queries with uppercase keywords and proper indent",
+		process: async (input, settings) => {
+			const mode = settings?.mode || "format";
+			if (mode === "minify") return minifySql(input);
+			if (mode === "uppercase") return uppercaseKeywords(input);
+			const indentSize = Number(settings?.indentSize ?? 2);
+			const uppercase = settings?.uppercase !== "no";
+			return formatSql(input, indentSize, uppercase);
+		},
+		settings: [
+			{
+				key: "mode",
+				label: "Mode",
+				type: "select",
+				default: "format",
+				options: [
+					{ label: "Format / Beautify", value: "format" },
+					{ label: "Minify", value: "minify" },
+					{ label: "Uppercase keywords only", value: "uppercase" },
+				],
+			},
+			{
+				key: "indentSize",
+				label: "Indent size",
+				type: "select",
+				default: 2,
+				options: [
+					{ label: "2 spaces", value: 2 },
+					{ label: "4 spaces", value: 4 },
+				],
+			},
+			{
+				key: "uppercase",
+				label: "Uppercase Keywords",
+				type: "select",
+				default: "yes",
+				options: [
+					{ label: "Yes", value: "yes" },
+					{ label: "No", value: "no" },
+				],
+			},
+		],
+	},
+	"xml-formatter": {
+		id: "xml-formatter",
+		name: "XML Formatter",
+		category: "developer",
+		description: "Format and beautify XML data with validation",
+		process: async (input, settings) => {
+			const mode = settings?.mode || "format";
+			if (mode === "minify") return minifyXml(input);
+			const indentSize = Number(settings?.indentSize ?? 2);
+			const selfClose = settings?.selfClose !== "no";
+			return formatXml(input, indentSize, selfClose);
+		},
+		settings: [
+			{
+				key: "mode",
+				label: "Mode",
+				type: "select",
+				default: "format",
+				options: [
+					{ label: "Format / Beautify", value: "format" },
+					{ label: "Minify", value: "minify" },
+				],
+			},
+			{
+				key: "indentSize",
+				label: "Indent size",
+				type: "select",
+				default: 2,
+				options: [
+					{ label: "2 spaces", value: 2 },
+					{ label: "4 spaces", value: 4 },
+				],
+			},
+			{
+				key: "selfClose",
+				label: "Keep self-closing",
+				type: "select",
+				default: "yes",
+				options: [
+					{ label: "Yes", value: "yes" },
+					{ label: "No", value: "no" },
+				],
+			},
+		],
+	},
+	"yaml-formatter": {
+		id: "yaml-formatter",
+		name: "YAML Formatter",
+		category: "developer",
+		description: "Format, validate, and beautify YAML configurations",
+		process: async (input) => {
+			const yamlLib = await import("js-yaml");
+			const parsed = yamlLib.load(input);
+			return yamlLib.dump(parsed, { indent: 2, lineWidth: 120, noRefs: true });
+		},
+	},
+	"line-counter": {
+		id: "line-counter",
+		name: "Line Counter",
+		category: "text",
+		description: "Count total lines, blank lines, and non-blank lines in text",
+		process: async (input) => {
+			if (!input) return "Total Lines: 0\nNon-Blank: 0\nBlank: 0";
+			const lines = input.split("\n");
+			const blank = lines.filter((l) => l.trim().length === 0).length;
+			return `Total Lines: ${lines.length}\nNon-Blank: ${lines.length - blank}\nBlank: ${blank}`;
+		},
+	},
+	"reading-time-calculator": {
+		id: "reading-time-calculator",
+		name: "Reading Time Calculator",
+		category: "text",
+		description: "Estimate reading and speaking time based on word count",
+		process: async (input, settings) => {
+			const readingWpm = Number(settings?.readingWpm ?? 200);
+			const speakingWpm = Number(settings?.speakingWpm ?? 150);
+			const trimmed = input.trim();
+			if (!trimmed) return "Reading: 0s\nSpeaking: 0s";
+			const words = trimmed.split(/\s+/).filter(Boolean).length;
+			const readingSec = Math.round((words / readingWpm) * 60);
+			const speakingSec = Math.round((words / speakingWpm) * 60);
+			return `Reading Time: ${readingSec} sec\nSpeaking Time: ${speakingSec} sec\nWords: ${words}`;
+		},
+		settings: [
+			{ key: "readingWpm", label: "Reading WPM", type: "number", default: 200 },
+			{ key: "speakingWpm", label: "Speaking WPM", type: "number", default: 150 },
+		],
+	},
+	"text-to-hashtags": {
+		id: "text-to-hashtags",
+		name: "Text to Hashtags",
+		category: "text",
+		description: "Extract top keywords from text and convert to hashtags",
+		process: async (input, settings) => {
+			const maxCount = Number(settings?.maxCount ?? 10);
+			const removeStopWords = settings?.removeStopWords !== "no";
+			const keywords = extractKeywords(input, removeStopWords).slice(0, maxCount);
+			return keywords.map((k) => `#${k.word}`).join(" ");
+		},
+		settings: [
+			{ key: "maxCount", label: "Max Hashtags", type: "number", default: 10 },
+			{
+				key: "removeStopWords",
+				label: "Remove stop words",
+				type: "select",
+				default: "yes",
+				options: [
+					{ label: "Yes", value: "yes" },
+					{ label: "No", value: "no" },
+				],
+			},
+		],
+	},
+	"fancy-text": {
+		id: "fancy-text",
+		name: "Fancy Text Generator",
+		category: "text",
+		description: "Generate fancy Unicode text in various artistic styles",
+		process: async (input) => convertFancyText(input),
+	},
+	"xml-to-json": {
+		id: "xml-to-json",
+		name: "XML to JSON",
+		category: "data",
+		description: "Convert XML data into JSON format",
+		process: async (input) => {
+			const json = xmlToJson(input);
+			return JSON.stringify(json, null, 2);
+		},
+	},
+	"json-to-csv": {
+		id: "json-to-csv",
+		name: "JSON to CSV",
+		category: "data",
+		description: "Convert JSON array to CSV spreadsheet format",
+		process: async (input, settings) => {
+			const delimiter = settings?.delimiter || ",";
+			const parsed = JSON.parse(input);
+			if (!Array.isArray(parsed) || parsed.length === 0) return "";
+			const keySet = new Set<string>();
+			for (const obj of parsed) {
+				for (const k of Object.keys(obj)) keySet.add(k);
+			}
+			const headers = Array.from(keySet);
+			const lines = [headers.map((h) => escapeCsvField(h, delimiter)).join(delimiter)];
+			for (const obj of parsed) {
+				lines.push(headers.map((h) => escapeCsvField(obj[h], delimiter)).join(delimiter));
+			}
+			return lines.join("\n");
+		},
+		settings: [
+			{
+				key: "delimiter",
+				label: "Delimiter",
+				type: "select",
+				default: ",",
+				options: [
+					{ label: "Comma (,)", value: "," },
+					{ label: "Semicolon (;)", value: ";" },
+					{ label: "Tab (\\t)", value: "\t" },
+					{ label: "Pipe (|)", value: "|" },
+				],
+			},
+		],
+	},
+	"json-to-tsv": {
+		id: "json-to-tsv",
+		name: "JSON to TSV",
+		category: "data",
+		description: "Convert JSON array to TSV spreadsheet format",
+		process: async (input) => {
+			const parsed = JSON.parse(input);
+			if (!Array.isArray(parsed) || parsed.length === 0) return "";
+			const keySet = new Set<string>();
+			for (const obj of parsed) {
+				for (const k of Object.keys(obj)) keySet.add(k);
+			}
+			const headers = Array.from(keySet);
+			const lines = [headers.map((h) => escapeCsvField(h, "\t")).join("\t")];
+			for (const obj of parsed) {
+				lines.push(headers.map((h) => escapeCsvField(obj[h], "\t")).join("\t"));
+			}
+			return lines.join("\n");
+		},
+	},
+	"tsv-to-json": {
+		id: "tsv-to-json",
+		name: "TSV to JSON",
+		category: "data",
+		description: "Convert TSV spreadsheet format to JSON array",
+		process: async (input) => {
+			const lines = input
+				.trim()
+				.split("\n")
+				.map((l) => l.trim())
+				.filter(Boolean);
+			if (lines.length < 2) return "[]";
+			const headers = lines[0].split("\t").map((h) => h.trim().replace(/^"|"$/g, ""));
+			const result = [];
+			for (let i = 1; i < lines.length; i++) {
+				const values = lines[i].split("\t").map((v) => v.trim().replace(/^"|"$/g, ""));
+				const row: any = {};
+				headers.forEach((h, j) => {
+					row[h] = values[j] || "";
+				});
+				result.push(row);
+			}
+			return JSON.stringify(result, null, 2);
+		},
+	},
+	"password-generator": {
+		id: "password-generator",
+		name: "Password Generator",
+		category: "security",
+		description: "Generate secure random passwords with customizable options",
+		process: async (_input, settings) => {
+			const length = Number(settings?.length ?? 16);
+			const uppercase = settings?.uppercase !== "no";
+			const lowercase = settings?.lowercase !== "no";
+			const numbers = settings?.numbers !== "no";
+			const symbols = settings?.symbols !== "no";
+			let pool = "";
+			if (uppercase) pool += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+			if (lowercase) pool += "abcdefghijklmnopqrstuvwxyz";
+			if (numbers) pool += "0123456789";
+			if (symbols) pool += "!@#$%^&*()_+-=[]{}|;:,.<>?";
+			if (!pool) return "";
+			const array = new Uint32Array(length);
+			crypto.getRandomValues(array);
+			let password = "";
+			for (let i = 0; i < length; i++) {
+				password += pool[array[i] % pool.length];
+			}
+			return password;
+		},
+		settings: [
+			{ key: "length", label: "Password Length", type: "number", default: 16 },
+			{
+				key: "uppercase",
+				label: "Include Uppercase",
+				type: "select",
+				default: "yes",
+				options: [
+					{ label: "Yes", value: "yes" },
+					{ label: "No", value: "no" },
+				],
+			},
+			{
+				key: "lowercase",
+				label: "Include Lowercase",
+				type: "select",
+				default: "yes",
+				options: [
+					{ label: "Yes", value: "yes" },
+					{ label: "No", value: "no" },
+				],
+			},
+			{
+				key: "numbers",
+				label: "Include Numbers",
+				type: "select",
+				default: "yes",
+				options: [
+					{ label: "Yes", value: "yes" },
+					{ label: "No", value: "no" },
+				],
+			},
+			{
+				key: "symbols",
+				label: "Include Symbols",
+				type: "select",
+				default: "yes",
+				options: [
+					{ label: "Yes", value: "yes" },
+					{ label: "No", value: "no" },
+				],
+			},
+		],
+	},
+	"password-strength-checker": {
+		id: "password-strength-checker",
+		name: "Password Strength Checker",
+		category: "security",
+		description: "Check password strength, entropy and crack time estimates",
+		process: async (input) => {
+			if (!input) return "Please enter a password.";
+			let score = 0;
+			if (input.length >= 8) score += 1;
+			if (input.length >= 12) score += 1;
+			if (input.length >= 16) score += 1;
+			if (/[A-Z]/.test(input)) score += 1;
+			if (/[a-z]/.test(input)) score += 1;
+			if (/[0-9]/.test(input)) score += 1;
+			if (/[^A-Za-z0-9]/.test(input)) score += 1;
+			let label = "Weak";
+			if (score > 2) label = "Medium";
+			if (score > 4) label = "Strong";
+			if (score > 6) label = "Very Strong";
+			return `Password Strength: ${label}\nCharacter Count: ${input.length}\nEntropy Score: ${score}/7`;
+		},
+	},
+	"random-number-generator": {
+		id: "random-number-generator",
+		name: "Random Number Generator",
+		category: "utility",
+		description: "Generate random numbers within a min/max range",
+		process: async (_input, settings) => {
+			const min = Number(settings?.min ?? 1);
+			const max = Number(settings?.max ?? 100);
+			const count = Number(settings?.count ?? 1);
+			const results = [];
+			for (let i = 0; i < count; i++) {
+				results.push(Math.floor(Math.random() * (max - min + 1)) + min);
+			}
+			return results.join("\n");
+		},
+		settings: [
+			{ key: "min", label: "Min Value", type: "number", default: 1 },
+			{ key: "max", label: "Max Value", type: "number", default: 100 },
+			{ key: "count", label: "Generate Count", type: "number", default: 1 },
+		],
+	},
+	"unix-timestamp-converter": {
+		id: "unix-timestamp-converter",
+		name: "Unix Timestamp Converter",
+		category: "utility",
+		description: "Convert Unix timestamp to dates and vice versa",
+		process: async (input, settings) => {
+			const mode = settings?.mode || "to-date";
+			const clean = input.trim();
+			if (!clean) return "";
+			if (mode === "to-date") {
+				const num = Number(clean);
+				const date = new Date(num * 1000);
+				return date.toISOString();
+			}
+			const date = new Date(clean);
+			return String(Math.floor(date.getTime() / 1000));
+		},
+		settings: [
+			{
+				key: "mode",
+				label: "Convert Mode",
+				type: "select",
+				default: "to-date",
+				options: [
+					{ label: "Timestamp to ISO Date", value: "to-date" },
+					{ label: "Date string to Timestamp", value: "to-timestamp" },
+				],
+			},
+		],
+	},
+	"user-agent-parser": {
+		id: "user-agent-parser",
+		name: "User Agent Parser",
+		category: "utility",
+		description: "Extract browser, OS, and device details from a User-Agent string",
+		process: async (input) => {
+			const info = parseUA(input);
+			return JSON.stringify(info, null, 2);
+		},
+	},
 };
-
-// ─── Pre-built Workflow Templates ────────────────────────────────────────────
 
 export const workflowTemplates: WorkflowTemplate[] = [
 	{
@@ -765,6 +2596,82 @@ export const workflowTemplates: WorkflowTemplate[] = [
 		name: "JSON → XML + TypeScript",
 		description: "Convert JSON to both XML and TypeScript formats",
 		steps: [{ toolId: "json-formatter", settings: { mode: "format" } }, { toolId: "json-to-xml" }],
+	},
+	{
+		id: "html-cleanup-markdown",
+		name: "HTML Cleanup & Markdown Conversion",
+		description: "HTML Input → Convert to Markdown → Clean blank lines",
+		steps: [
+			{ toolId: "html-to-markdown" },
+			{ toolId: "whitespace-remover", settings: { mode: "remove-empty" } },
+		],
+	},
+	{
+		id: "uuid-generator-pipeline",
+		name: "Unique ID Generation Chain",
+		description: "Generate 5 UUIDs → Base64 encode the batch",
+		steps: [
+			{ toolId: "uuid-generator", settings: { count: 5, format: "standard" } },
+			{ toolId: "base64-encoder", settings: { mode: "encode" } },
+		],
+	},
+	{
+		id: "lorem-sorter-pipeline",
+		name: "Lorem Sorter & Stats",
+		description: "Generate Lorem Words → Sort Alphabetically → Count Stats",
+		steps: [
+			{ toolId: "lorem-generator", settings: { mode: "words", count: 20 } },
+			{ toolId: "whitespace-remover", settings: { mode: "trim" } },
+			{ toolId: "text-sorter", settings: { order: "asc" } },
+			{ toolId: "word-counter", settings: { mode: "report" } },
+		],
+	},
+	{
+		id: "css-pipeline",
+		name: "CSS Formatting & Optimization",
+		description: "Beautify input raw CSS then compress it to minimized CSS",
+		steps: [{ toolId: "css-formatter", settings: { indent: 2 } }, { toolId: "css-minifier" }],
+	},
+	{
+		id: "html-translation",
+		name: "HTML Translation & Extraction",
+		description: "Convert HTML to clean Markdown and extract pure text content",
+		steps: [{ toolId: "html-to-markdown" }, { toolId: "html-to-text" }],
+	},
+	{
+		id: "sql-cleaning",
+		name: "SQL Cleaning Pipeline",
+		description: "Format SQL query and uppercase keywords",
+		steps: [
+			{ toolId: "sql-formatter", settings: { mode: "format", indentSize: 2, uppercase: "yes" } },
+		],
+	},
+	{
+		id: "credentials-hub",
+		name: "Credentials Security Hub",
+		description: "Generate random passwords and measure their strength instantly",
+		steps: [
+			{ toolId: "password-generator", settings: { length: 16 } },
+			{ toolId: "password-strength-checker" },
+		],
+	},
+	{
+		id: "hash-randomizer",
+		name: "Hash Utilities & Randomizer",
+		description: "Generate a random number and compute its SHA-256 cryptographic hash",
+		steps: [
+			{ toolId: "random-number-generator", settings: { min: 1, max: 100000, count: 1 } },
+			{ toolId: "hash-generator", settings: { algorithm: "sha256" } },
+		],
+	},
+	{
+		id: "social-content",
+		name: "Social Content Prep",
+		description: "Analyze content keywords to hashtags and truncate it to post limit",
+		steps: [
+			{ toolId: "text-to-hashtags", settings: { maxCount: 8, removeStopWords: "yes" } },
+			{ toolId: "text-truncate", settings: { max: 280 } },
+		],
 	},
 ];
 

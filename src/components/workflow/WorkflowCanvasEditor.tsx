@@ -6,6 +6,7 @@ import {
 	getToolsByCategory,
 	executeWorkflow,
 } from "../../utils/workflow";
+import { translations } from "../../utils/translations";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -49,13 +50,61 @@ function getNodeCenter(node: CanvasNode): { x: number; y: number } {
 }
 
 function getPortPos(node: CanvasNode, port: "out" | "in"): { x: number; y: number } {
-	if (port === "out") return { x: node.x + 240, y: node.y + 30 };
-	return { x: node.x, y: node.y + 30 };
+	if (port === "out") return { x: node.x + 240, y: node.y + 34 };
+	return { x: node.x, y: node.y + 34 };
 }
 
-function bezierPath(x1: number, y1: number, x2: number, y2: number): string {
-	const dx = Math.abs(x2 - x1) * 0.5;
-	return `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`;
+function orthogonalPath(x1: number, y1: number, x2: number, y2: number): string {
+	const offset = 24;
+	const r = 8;
+	const points: { x: number; y: number }[] = [];
+
+	points.push({ x: x1, y: y1 });
+
+	if (x2 >= x1 + offset * 2) {
+		const xMid = (x1 + x2) / 2;
+		points.push({ x: xMid, y: y1 });
+		points.push({ x: xMid, y: y2 });
+	} else {
+		const yMid = (y1 + y2) / 2;
+		points.push({ x: x1 + offset, y: y1 });
+		points.push({ x: x1 + offset, y: yMid });
+		points.push({ x: x2 - offset, y: yMid });
+		points.push({ x: x2 - offset, y: y2 });
+	}
+
+	points.push({ x: x2, y: y2 });
+
+	let path = `M ${points[0].x} ${points[0].y}`;
+
+	for (let i = 1; i < points.length - 1; i++) {
+		const pPrev = points[i - 1];
+		const pCurr = points[i];
+		const pNext = points[i + 1];
+
+		const dxIn = pCurr.x - pPrev.x;
+		const dyIn = pCurr.y - pPrev.y;
+		const lenIn = Math.sqrt(dxIn * dxIn + dyIn * dyIn);
+
+		const dxOut = pNext.x - pCurr.x;
+		const dyOut = pNext.y - pCurr.y;
+		const lenOut = Math.sqrt(dxOut * dxOut + dyOut * dyOut);
+
+		if (lenIn === 0 || lenOut === 0) continue;
+
+		const currentR = Math.min(r, lenIn / 2, lenOut / 2);
+
+		const ax = pCurr.x - (dxIn / lenIn) * currentR;
+		const ay = pCurr.y - (dyIn / lenIn) * currentR;
+
+		const bx = pCurr.x + (dxOut / lenOut) * currentR;
+		const by = pCurr.y + (dyOut / lenOut) * currentR;
+
+		path += ` L ${ax} ${ay} Q ${pCurr.x} ${pCurr.y} ${bx} ${by}`;
+	}
+
+	path += ` L ${points[points.length - 1].x} ${points[points.length - 1].y}`;
+	return path;
 }
 
 // ─── Component ───────────────────────────────────────────────────────────────
@@ -68,6 +117,48 @@ export default function WorkflowCanvasEditor() {
 	const [panX, setPanX] = useState(0);
 	const [panY, setPanY] = useState(0);
 
+	// i18n Language detection
+	const [lang, setLang] = useState<"en" | "vi">("en");
+	useEffect(() => {
+		const savedLang = localStorage.getItem("toolbundle_lang");
+		if (savedLang === "vi" || savedLang === "en") {
+			setLang(savedLang as "vi" | "en");
+		}
+	}, []);
+	const t = translations[lang];
+
+	const getToolName = useCallback(
+		(toolId: string) => {
+			const key = `wf.tool.${toolId}.name`;
+			return (t as any)[key] || workflowTools[toolId]?.name || toolId;
+		},
+		[t],
+	);
+
+	const getToolDesc = useCallback(
+		(toolId: string) => {
+			const key = `wf.tool.${toolId}.desc`;
+			return (t as any)[key] || workflowTools[toolId]?.description || "";
+		},
+		[t],
+	);
+
+	const getTemplateName = useCallback(
+		(templateId: string, defaultName: string) => {
+			const key = `wf.template.${templateId}.name`;
+			return (t as any)[key] || defaultName;
+		},
+		[t],
+	);
+
+	const getTemplateDesc = useCallback(
+		(templateId: string, defaultDesc: string) => {
+			const key = `wf.template.${templateId}.desc`;
+			return (t as any)[key] || defaultDesc;
+		},
+		[t],
+	);
+
 	// UI state
 	const [selectedNode, setSelectedNode] = useState<string | null>(null);
 	const [showSidebar, setShowSidebar] = useState(true);
@@ -79,11 +170,21 @@ export default function WorkflowCanvasEditor() {
 	const [outputText, setOutputText] = useState("");
 	const [error, setError] = useState("");
 	const [showIO, setShowIO] = useState(false);
+	const [toast, setToast] = useState<{ text: string; type: "success" | "error" } | null>(null);
+
+	useEffect(() => {
+		if (!toast) return;
+		const timer = setTimeout(() => {
+			setToast(null);
+		}, 3000);
+		return () => clearTimeout(timer);
+	}, [toast]);
 
 	// Drag state
 	const dragRef = useRef<DragState | null>(null);
 	const connectRef = useRef<ConnectState | null>(null);
 	const canvasRef = useRef<HTMLDivElement>(null);
+	const fileInputRef = useRef<HTMLInputElement>(null);
 	const [connectingEdge, setConnectingEdge] = useState<ConnectState | null>(null);
 
 	const toolsByCategory = useMemo(() => getToolsByCategory(), []);
@@ -294,7 +395,7 @@ export default function WorkflowCanvasEditor() {
 
 		const sorted = getSortedNodes();
 		if (sorted.length === 0) {
-			setError("No nodes to execute");
+			setError(t["wf.no_nodes"]);
 			setRunning(false);
 			return;
 		}
@@ -322,7 +423,7 @@ export default function WorkflowCanvasEditor() {
 		if (success) setOutputText(finalOutput);
 		else setError(stepResults.find((r) => !r.success)?.error || "Unknown error");
 		setRunning(false);
-	}, [nodes, inputText, getSortedNodes]);
+	}, [nodes, inputText, getSortedNodes, t]);
 
 	// ─── Template Loader ─────────────────────────────────────────────────
 
@@ -379,6 +480,62 @@ export default function WorkflowCanvasEditor() {
 		if (outputText) await navigator.clipboard.writeText(outputText);
 	}, [outputText]);
 
+	// ─── Import / Export ─────────────────────────────────────────────────
+
+	const handleExportJSON = useCallback(() => {
+		if (nodes.length === 0) return;
+		const data = {
+			version: "1.0",
+			nodes,
+			edges,
+		};
+		const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+		const url = URL.createObjectURL(blob);
+		const a = document.createElement("a");
+		a.href = url;
+		a.download = `toolbundle-workflow-${new Date().toISOString().slice(0, 10)}.json`;
+		document.body.appendChild(a);
+		a.click();
+		document.body.removeChild(a);
+		URL.revokeObjectURL(url);
+		setToast({ text: t["wf.export_success"], type: "success" });
+	}, [nodes, edges, t]);
+
+	const handleImportButtonClick = useCallback(() => {
+		fileInputRef.current?.click();
+	}, []);
+
+	const handleImportJSON = useCallback(
+		(e: Event) => {
+			const target = e.target as HTMLInputElement;
+			const file = target.files?.[0];
+			if (!file) return;
+
+			const reader = new FileReader();
+			reader.onload = (event) => {
+				try {
+					const data = JSON.parse(event.target?.result as string);
+					if (Array.isArray(data.nodes) && Array.isArray(data.edges)) {
+						setNodes(data.nodes);
+						setEdges(data.edges);
+						setSelectedNode(null);
+						setResults([]);
+						setOutputText("");
+						setError("");
+						setToast({ text: t["wf.import_success"], type: "success" });
+					} else {
+						setToast({ text: t["wf.import_error"], type: "error" });
+					}
+				} catch (err) {
+					setToast({ text: t["wf.import_error"], type: "error" });
+				}
+				target.value = "";
+			};
+			reader.readAsText(file);
+		},
+		[t],
+	);
+
 	// ─── Render ──────────────────────────────────────────────────────────
 
 	return (
@@ -396,13 +553,13 @@ export default function WorkflowCanvasEditor() {
 									{/* Inspector Header */}
 									<div style="padding: 12px 16px; border-bottom: 1px solid var(--color-hairline); display: flex; align-items: center; justify-content: space-between;">
 										<span style="font-size: 13px; font-weight: 600; color: var(--color-ink);">
-											Settings
+											{t["wf.settings"]}
 										</span>
 										<button
 											onClick={() => setSelectedNode(null)}
 											style="font-size: 11px; background: none; border: none; cursor: pointer; color: var(--color-primary); font-weight: 600;"
 										>
-											Back to Tools
+											{t["wf.back_tools"]}
 										</button>
 									</div>
 
@@ -410,10 +567,10 @@ export default function WorkflowCanvasEditor() {
 									<div style="flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 16px;">
 										<div>
 											<div style="font-size: 14px; font-weight: 700; color: var(--color-ink);">
-												{selectedTool.name}
+												{getToolName(selectedNodeData.toolId)}
 											</div>
 											<div style="font-size: 11px; color: var(--color-mute); margin-top: 4px; line-height: 1.4;">
-												{selectedTool.description}
+												{getToolDesc(selectedNodeData.toolId)}
 											</div>
 										</div>
 
@@ -482,7 +639,7 @@ export default function WorkflowCanvasEditor() {
 											</div>
 										) : (
 											<div style="font-size: 12px; color: var(--color-mute); font-style: italic; border-top: 1px solid var(--color-hairline); padding-top: 12px;">
-												No configurations available.
+												{t["wf.no_configs"]}
 											</div>
 										)}
 
@@ -493,7 +650,7 @@ export default function WorkflowCanvasEditor() {
 												class="btn-secondary"
 												style="width: 100%; padding: 8px; font-size: 12px; color: var(--color-primary); border-color: var(--color-hairline);"
 											>
-												Delete Node
+												{t["wf.delete_node"]}
 											</button>
 										</div>
 									</div>
@@ -506,7 +663,7 @@ export default function WorkflowCanvasEditor() {
 								{/* Sidebar header */}
 								<div style="padding: 12px 16px; border-bottom: 1px solid var(--color-hairline); display: flex; align-items: center; justify-content: space-between;">
 									<span style="font-size: 13px; font-weight: 600; color: var(--color-ink);">
-										Tools
+										{t["wf.tools"]}
 									</span>
 									<div style="display: flex; gap: 4px;">
 										<button
@@ -514,7 +671,7 @@ export default function WorkflowCanvasEditor() {
 											aria-label="Templates"
 											style={`padding: 4px 8px; background: ${showTemplates ? "var(--color-primary)" : "var(--color-surface-card)"}; color: ${showTemplates ? "var(--color-on-primary)" : "var(--color-mute)"}; border: none; border-radius: 8px; cursor: pointer; font-size: 11px; font-weight: 600;`}
 										>
-											Templates
+											{t["wf.templates"]}
 										</button>
 										<button
 											onClick={() => setShowSidebar(false)}
@@ -552,10 +709,10 @@ export default function WorkflowCanvasEditor() {
 												}}
 											>
 												<div style="font-size: 13px; font-weight: 600; color: var(--color-ink);">
-													{t.name}
+													{getTemplateName(t.id, t.name)}
 												</div>
 												<div style="font-size: 11px; color: var(--color-mute); margin-top: 2px;">
-													{t.description}
+													{getTemplateDesc(t.id, t.description)}
 												</div>
 											</button>
 										))}
@@ -588,7 +745,7 @@ export default function WorkflowCanvasEditor() {
 												>
 													<span style="width: 6px; height: 6px; border-radius: 9999px; background: var(--color-primary); flex-shrink: 0;" />
 													<span style="font-size: 13px; color: var(--color-body);">
-														{tool.name}
+														{getToolName(tool.id)}
 													</span>
 												</button>
 											))}
@@ -626,17 +783,19 @@ export default function WorkflowCanvasEditor() {
 						</button>
 					)}
 					<div style="flex: 1; display: flex; align-items: center; gap: 4px;">
-						<span style="font-size: 12px; color: var(--color-mute);">{nodes.length} nodes</span>
+						<span style="font-size: 12px; color: var(--color-mute);">
+							{nodes.length} {t["wf.nodes"]}
+						</span>
 						<span style="font-size: 12px; color: var(--color-mute);">·</span>
 						<span style="font-size: 12px; color: var(--color-mute);">
-							{edges.length} connections
+							{edges.length} {t["wf.connections"]}
 						</span>
 					</div>
 					<button
 						onClick={() => setShowIO(!showIO)}
 						style={`padding: 6px 12px; border-radius: 8px; border: none; cursor: pointer; font-size: 12px; font-weight: 600; background: ${showIO ? "var(--color-primary)" : "var(--color-surface-card)"}; color: ${showIO ? "var(--color-on-primary)" : "var(--color-mute)"};`}
 					>
-						Input / Output
+						{t["wf.input_output"]}
 					</button>
 					<button
 						onClick={handleRun}
@@ -644,14 +803,53 @@ export default function WorkflowCanvasEditor() {
 						class="btn-primary"
 						style="padding: 6px 16px; font-size: 13px;"
 					>
-						{running ? "Running..." : "▶ Run"}
+						{running ? t["wf.running"] : `▶ ${t["wf.run"]}`}
 					</button>
 					<button
 						onClick={handleClear}
 						class="btn-secondary"
 						style="padding: 6px 12px; font-size: 12px;"
 					>
-						Clear
+						{t["wf.clear"]}
+					</button>
+					<button
+						onClick={handleImportButtonClick}
+						class="btn-secondary"
+						style="padding: 6px 12px; font-size: 12px; display: flex; align-items: center; gap: 4px;"
+					>
+						<svg
+							width="13"
+							height="13"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2.5"
+						>
+							<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+							<polyline points="17 8 12 3 7 8" />
+							<line x1="12" y1="3" x2="12" y2="15" />
+						</svg>
+						{t["wf.import_json"]}
+					</button>
+					<button
+						onClick={handleExportJSON}
+						disabled={nodes.length === 0}
+						class="btn-secondary"
+						style="padding: 6px 12px; font-size: 12px; display: flex; align-items: center; gap: 4px;"
+					>
+						<svg
+							width="13"
+							height="13"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2.5"
+						>
+							<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+							<polyline points="7 10 12 15 17 10" />
+							<line x1="12" y1="15" x2="12" y2="3" />
+						</svg>
+						{t["wf.export_json"]}
 					</button>
 					<button
 						onClick={() => setZoom((z) => Math.min(2, z * 1.2))}
@@ -712,7 +910,7 @@ export default function WorkflowCanvasEditor() {
 								return (
 									<g key={edge.id}>
 										<path
-											d={bezierPath(from.x, from.y, to.x, to.y)}
+											d={orthogonalPath(from.x, from.y, to.x, to.y)}
 											fill="none"
 											stroke={isSelected ? "var(--color-primary)" : "var(--color-ash)"}
 											stroke-width={isSelected ? 2.5 : 2}
@@ -741,7 +939,12 @@ export default function WorkflowCanvasEditor() {
 									const from = getPortPos(source, "out");
 									return (
 										<path
-											d={bezierPath(from.x, from.y, connectingEdge.mouseX, connectingEdge.mouseY)}
+											d={orthogonalPath(
+												from.x,
+												from.y,
+												connectingEdge.mouseX,
+												connectingEdge.mouseY,
+											)}
 											fill="none"
 											stroke="var(--color-primary)"
 											stroke-width="2"
@@ -772,7 +975,6 @@ export default function WorkflowCanvasEditor() {
 										style={`position: absolute; left: -8px; top: 26px; width: 16px; height: 16px; border-radius: 9999px; background: ${hasInput ? "var(--color-primary)" : "var(--color-surface-card)"}; border: 2px solid ${hasInput ? "var(--color-primary)" : "var(--color-ash)"}; cursor: crosshair; z-index: 2;`}
 										onMouseDown={(e: MouseEvent) => {
 											e.stopPropagation();
-											// Click on input port: could be used for connecting
 										}}
 									/>
 
@@ -828,7 +1030,7 @@ export default function WorkflowCanvasEditor() {
 											<div
 												style={`font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; ${isRunning ? "color: var(--color-on-primary);" : "color: var(--color-ink);"}`}
 											>
-												{tool?.name || node.toolId}
+												{getToolName(node.toolId)}
 											</div>
 											{result?.success && (
 												<div style="font-size: 10px; color: var(--color-accent-emerald);">
@@ -870,7 +1072,7 @@ export default function WorkflowCanvasEditor() {
 									{/* Node body: description */}
 									<div style="padding: 8px 14px;">
 										<div style="font-size: 11px; color: var(--color-mute); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-											{tool?.description || ""}
+											{getToolDesc(node.toolId)}
 										</div>
 									</div>
 
@@ -901,11 +1103,10 @@ export default function WorkflowCanvasEditor() {
 									<path d="M8 12h8M12 8v8" />
 								</svg>
 								<p style="font-size: 14px; font-weight: 600; color: var(--color-ink); margin-bottom: 8px;">
-									Build your workflow
+									{t["wf.build_workflow"]}
 								</p>
 								<p style="font-size: 13px; color: var(--color-mute); line-height: 1.5;">
-									Drag tools from the sidebar or click "Templates" to start with a pre-built
-									workflow. Connect nodes by dragging from output ports to input ports.
+									{t["wf.drag_instructions"]}
 								</p>
 							</div>
 						</div>
@@ -919,12 +1120,12 @@ export default function WorkflowCanvasEditor() {
 						<div style="flex: 1; display: flex; flex-direction: column; border-right: 1px solid var(--color-hairline);">
 							<div style="padding: 8px 16px; border-bottom: 1px solid var(--color-hairline); display: flex; align-items: center; justify-content: space-between;">
 								<span style="font-size: 12px; font-weight: 600; color: var(--color-ink);">
-									Input
+									{t["wf.input"]}
 								</span>
 							</div>
 							<textarea
 								style="flex: 1; padding: 10px 16px; background: transparent; border: none; outline: none; resize: none; font-size: 13px; font-family: var(--font-mono); color: var(--color-ink);"
-								placeholder="Paste your input text here..."
+								placeholder={t["wf.input_placeholder"]}
 								value={inputText}
 								onInput={(e) => setInputText((e.target as HTMLTextAreaElement).value)}
 							/>
@@ -934,20 +1135,20 @@ export default function WorkflowCanvasEditor() {
 						<div style="flex: 1; display: flex; flex-direction: column;">
 							<div style="padding: 8px 16px; border-bottom: 1px solid var(--color-hairline); display: flex; align-items: center; justify-content: space-between;">
 								<span style="font-size: 12px; font-weight: 600; color: var(--color-ink);">
-									Output
+									{t["wf.output"]}
 								</span>
 								{outputText && (
 									<button
 										onClick={handleCopyOutput}
 										style="font-size: 11px; background: none; border: none; cursor: pointer; color: var(--color-primary); font-weight: 600;"
 									>
-										Copy
+										{t["wf.copy"]}
 									</button>
 								)}
 							</div>
 							<textarea
 								style="flex: 1; padding: 10px 16px; background: transparent; border: none; outline: none; resize: none; font-size: 13px; font-family: var(--font-mono); color: var(--color-ink);"
-								placeholder="Output will appear here..."
+								placeholder={t["wf.output_placeholder"]}
 								value={outputText}
 								readOnly
 							/>
@@ -963,10 +1164,67 @@ export default function WorkflowCanvasEditor() {
 				)}
 			</div>
 
-			{/* Spin animation */}
+			{/* Hidden file input for import */}
+			<input
+				type="file"
+				ref={fileInputRef}
+				onChange={handleImportJSON}
+				accept=".json"
+				style="display: none;"
+			/>
+
+			{/* Toast Notification */}
+			{toast && (
+				<div
+					style={
+						"position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%); background: var(--color-surface-card); color: var(--color-ink); border: 1px solid var(--color-hairline); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 10px 20px; border-radius: 9999px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); font-size: 13px; font-weight: 600; z-index: 99999; display: flex; align-items: center; gap: 10px; animation: fadeInUp 0.2s ease-out;"
+					}
+				>
+					{toast.type === "success" ? (
+						<svg
+							width="14"
+							height="14"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="var(--color-accent-emerald)"
+							stroke-width="3"
+							style="flex-shrink: 0;"
+						>
+							<polyline points="20 6 9 17 4 12" />
+						</svg>
+					) : (
+						<svg
+							width="14"
+							height="14"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="var(--color-error)"
+							stroke-width="3"
+							style="flex-shrink: 0;"
+						>
+							<circle cx="12" cy="12" r="10" />
+							<line x1="12" y1="8" x2="12" y2="12" />
+							<line x1="12" y1="16" x2="12.01" y2="16" />
+						</svg>
+					)}
+					<span>{toast.text}</span>
+				</div>
+			)}
+
+			{/* Custom animations */}
 			<style>{`
         @keyframes spin {
           to { transform: rotate(360deg); }
+        }
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translate(-50%, 10px);
+          }
+          to {
+            opacity: 1;
+            transform: translate(-50%, 0);
+          }
         }
       `}</style>
 		</div>
