@@ -2031,6 +2031,47 @@ export const tools: Tool[] = [
 		slug: "notepad",
 		tags: ["notepad", "notes", "write", "save", "text"],
 	},
+	{
+		id: "meme-generator",
+		name: "Meme Generator",
+		description: "Create funny memes with custom templates or your own images.",
+		category: "image",
+		icon: "smile",
+		slug: "meme-generator",
+		featured: true,
+		tags: ["meme", "create", "generator", "fun", "text", "canvas"],
+	},
+	{
+		id: "typing-speed-test",
+		name: "Typing Speed Test",
+		description: "Test and improve your typing speed (WPM) and accuracy in English or Vietnamese.",
+		category: "fun",
+		icon: "keyboard",
+		slug: "typing-speed-test",
+		featured: true,
+		tags: ["typing", "speed", "test", "wpm", "words", "game"],
+	},
+	{
+		id: "bill-splitter",
+		name: "Bill Splitter & Tip Calculator",
+		description: "Split bills and calculate tips easily with custom currency and formats.",
+		category: "math",
+		icon: "wallet",
+		slug: "bill-splitter",
+		featured: true,
+		tags: ["bill", "split", "tip", "calculator", "money", "finance"],
+	},
+	{
+		id: "period-tracker",
+		name: "Period & Ovulation Tracker",
+		description:
+			"Track your cycle and predict fertile/ovulation windows offline with absolute privacy.",
+		category: "health",
+		icon: "calendar",
+		slug: "period-tracker",
+		featured: true,
+		tags: ["period", "tracker", "health", "ovulation", "fertile", "women", "calendar"],
+	},
 ];
 
 /**

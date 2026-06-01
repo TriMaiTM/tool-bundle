@@ -15,6 +15,7 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
 	"image-watermark": lazy(() => import("./ImageWatermark")),
 	"photo-filters": lazy(() => import("./PhotoFilters")),
 	"svg-optimizer": lazy(() => import("./SvgOptimizer")),
+	"meme-generator": lazy(() => import("./MemeGenerator")),
 
 	// Text Tools
 	"word-counter": lazy(() => import("./WordCounter")),
@@ -83,6 +84,7 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
 	"bmi-calculator": lazy(() => import("./BmiCalculator")),
 	"loan-calculator": lazy(() => import("./LoanCalculator")),
 	"age-calculator": lazy(() => import("./AgeCalculator")),
+	"bill-splitter": lazy(() => import("./BillSplitter")),
 
 	// Security Tools
 	"password-generator": lazy(() => import("./PasswordGenerator")),
@@ -134,6 +136,7 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
 	"wheel-spinner": lazy(() => import("./WheelSpinner")),
 	"decision-maker": lazy(() => import("./DecisionMaker")),
 	"placeholder-image": lazy(() => import("./PlaceholderImage")),
+	"typing-speed-test": lazy(() => import("./TypingSpeedTest")),
 
 	// Education Tools
 	"flashcard-maker": lazy(() => import("./FlashcardMaker")),
@@ -159,6 +162,7 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
 	"sleep-cycle": lazy(() => import("./SleepCycleCalculator")),
 	"body-fat-calculator": lazy(() => import("./BodyFatCalculator")),
 	"pregnancy-due-date": lazy(() => import("./PregnancyDueDate")),
+	"period-tracker": lazy(() => import("./PeriodTracker")),
 
 	// Video & Audio Tools
 	"video-to-audio": lazy(() => import("./VideoToAudio")),
