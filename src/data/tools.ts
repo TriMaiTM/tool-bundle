@@ -230,6 +230,109 @@ export const tools: Tool[] = [
 		slug: "line-counter",
 		tags: ["count", "lines"],
 	},
+	{
+		id: "vi-lorem-generator",
+		name: "Vietnamese Lorem & Fake Data Generator",
+		description:
+			"Generate Vietnamese placeholder text and realistic mock developer data (names, phones, bank details).",
+		category: "text",
+		icon: "text",
+		slug: "vi-lorem-generator",
+		featured: true,
+		tags: ["lorem", "vietnamese", "fake", "data", "generator"],
+	},
+	{
+		id: "text-cleaner",
+		name: "Text Cleaner & Unicode Normalizer",
+		description:
+			"Normalize Unicode representations (NFC/NFD), strip HTML, standardise quotes, and remove invisible characters.",
+		category: "text",
+		icon: "eraser",
+		slug: "text-cleaner",
+		tags: ["clean", "normalize", "unicode", "html", "whitespace"],
+	},
+	{
+		id: "remove-accents",
+		name: "Vietnamese Accent Remover",
+		description:
+			"Convert accented Vietnamese text into clean non-accented text or URL slugs offline.",
+		category: "text",
+		icon: "type",
+		slug: "remove-accents",
+		featured: true,
+		tags: ["remove", "accent", "vietnamese", "slug", "seo"],
+	},
+	{
+		id: "add-line-numbers",
+		name: "Add Line Numbers",
+		description:
+			"Add customizable prefix line numbers to text blocks with padding and step options.",
+		category: "text",
+		icon: "list-ordered",
+		slug: "add-line-numbers",
+		tags: ["line", "number", "prefix", "format"],
+	},
+	{
+		id: "prefix-suffix-lines",
+		name: "Prefix/Suffix Lines",
+		description: "Prepend and append custom text to each line, with options to skip blank lines.",
+		category: "text",
+		icon: "arrow-right-left",
+		slug: "prefix-suffix-lines",
+		tags: ["prefix", "suffix", "wrap", "format"],
+	},
+	{
+		id: "text-splitter",
+		name: "Text Splitter",
+		description:
+			"Split large texts into segments by characters, words, or custom delimiters, with ZIP downloading.",
+		category: "text",
+		icon: "scissors",
+		slug: "text-splitter",
+		tags: ["split", "cut", "divide", "part", "zip"],
+	},
+	{
+		id: "text-joiner",
+		name: "Text Joiner",
+		description: "Merge text items using custom separators, quotes formatting, and space trimming.",
+		category: "text",
+		icon: "plus",
+		slug: "text-joiner",
+		tags: ["join", "merge", "combine", "separator", "sql"],
+	},
+	{
+		id: "csv-column-extractor",
+		name: "CSV / Text Column Extractor",
+		description:
+			"Extract specific column cells from CSV, TSV, or logs with custom delimiters and full quote parsing.",
+		category: "text",
+		icon: "columns",
+		slug: "csv-column-extractor",
+		featured: true,
+		tags: ["csv", "tsv", "column", "extract", "log"],
+	},
+	{
+		id: "regex-replace-builder",
+		name: "Regex Find & Replace Builder",
+		description:
+			"Build find and replace regular expressions visually using pre-defined patterns and instant testing.",
+		category: "text",
+		icon: "regex",
+		slug: "regex-replace-builder",
+		featured: true,
+		tags: ["regex", "find", "replace", "builder", "test"],
+	},
+	{
+		id: "profanity-filter",
+		name: "Profanity Filter & Bad Words Detector",
+		description:
+			"Detect, censor, or highlight offensive and bad words in English and Vietnamese texts.",
+		category: "text",
+		icon: "shield-alert",
+		slug: "profanity-filter",
+		featured: true,
+		tags: ["profanity", "censor", "bad", "words", "filter"],
+	},
 
 	// ============================================
 	// Developer Tools
