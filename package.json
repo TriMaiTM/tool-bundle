@@ -20,6 +20,7 @@
     "@tailwindcss/vite": "^4.1.4",
     "astro": "^5.7.10",
     "fuse.js": "7.3.0",
+    "heic2any": "0.0.4",
     "js-yaml": "^4.1.0",
     "jsbarcode": "3.12.3",
     "jszip": "3.10.1",

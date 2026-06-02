@@ -386,7 +386,7 @@ export default function MemeGenerator() {
 					<div>
 						<label class="text-body-sm-strong text-ink block mb-2">{t.template}</label>
 						<select
-							class="select w-full"
+							class="input w-full"
 							value={selectedTemplate}
 							onChange={(e) => {
 								setSelectedTemplate((e.target as HTMLSelectElement).value);
@@ -496,7 +496,7 @@ export default function MemeGenerator() {
 						<div>
 							<label class="text-caption text-muted block mb-1">{t.fontFamily}</label>
 							<select
-								class="select w-full py-1 text-xs"
+								class="input w-full"
 								value={fontFamily}
 								onChange={(e) => setFontFamily((e.target as HTMLSelectElement).value)}
 							>
@@ -577,7 +577,7 @@ export default function MemeGenerator() {
 							<div>
 								<label class="text-caption text-muted block mb-1">{t.selectToEdit}</label>
 								<select
-									class="select w-full py-1 text-xs"
+									class="input w-full"
 									value={activeTextId || ""}
 									onChange={(e) => setActiveTextId((e.target as HTMLSelectElement).value || null)}
 								>

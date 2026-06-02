@@ -16,6 +16,15 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
 	"photo-filters": lazy(() => import("./PhotoFilters")),
 	"svg-optimizer": lazy(() => import("./SvgOptimizer")),
 	"meme-generator": lazy(() => import("./MemeGenerator")),
+	"avif-converter": lazy(() => import("./AvifConverter")),
+	"heic-converter": lazy(() => import("./HeicConverter")),
+	"image-enlarger": lazy(() => import("./ImageEnlarger")),
+	"bg-color-changer": lazy(() => import("./BgColorChanger")),
+	"image-blur-pixel": lazy(() => import("./ImageBlurPixel")),
+	"passport-photo-maker": lazy(() => import("./PassportPhotoMaker")),
+	"social-media-resizer": lazy(() => import("./SocialMediaResizer")),
+	"exif-manager": lazy(() => import("./ExifManager")),
+	"color-extractor": lazy(() => import("./ColorExtractor")),
 
 	// Text Tools
 	"word-counter": lazy(() => import("./WordCounter")),

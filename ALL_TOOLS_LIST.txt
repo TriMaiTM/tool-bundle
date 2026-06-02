@@ -1,0 +1,723 @@
+================================================================================
+DỰ ÁN TOOLBUNDLE - DANH SÁCH TẤT CẢ CÁC CATEGORIES VÀ TOOLS HIỆN CÓ
+Tạo lúc: 6/2/2026, 11:47:04 AM
+Tổng số danh mục: 19
+Tổng số công cụ: 207
+================================================================================
+
+1. DANH MỤC: IMAGE TOOLS (ID: image)
+Mô tả: Convert, resize, compress, and edit images: 100% in your browser.
+Số lượng công cụ: 14
+--------------------------------------------------------------------------------
+   [1] Tên: PNG to JPG (ID: png-to-jpg)
+       Mô tả: Convert PNG images to JPG with quality control and batch support.
+
+   [2] Tên: JPG to PNG (ID: jpg-to-png)
+       Mô tả: Convert JPG images to lossless PNG format.
+
+   [3] Tên: JPG to WebP (ID: jpg-to-webp)
+       Mô tả: Convert JPG to WebP for smaller, higher-quality files.
+
+   [4] Tên: PNG to WebP (ID: png-to-webp)
+       Mô tả: Convert PNG to WebP for dramatically smaller file sizes.
+
+   [5] Tên: WebP to PNG (ID: webp-to-png)
+       Mô tả: Convert WebP images to universally compatible PNG format.
+
+   [6] Tên: Image Resizer (ID: image-resizer)
+       Mô tả: Resize images by pixels, percentage, or social media presets.
+
+   [7] Tên: Image Compressor (ID: image-compressor)
+       Mô tả: Compress images with quality control and before/after preview.
+
+   [8] Tên: Image Cropper (ID: image-cropper)
+       Mô tả: Crop images with aspect ratio presets and rotation.
+
+   [9] Tên: Image to Base64 (ID: image-to-base64)
+       Mô tả: Convert images to Base64: data URI or raw.
+
+   [10] Tên: Image Rotator & Flipper (ID: image-rotator)
+       Mô tả: Rotate and flip images: 90, 180, 270 or custom.
+
+   [11] Tên: Image Watermark Adder (ID: image-watermark)
+       Mô tả: Add text watermarks to images: position, opacity, rotation.
+
+   [12] Tên: Photo Filters (ID: photo-filters)
+       Mô tả: Apply photo filters: Vintage, Cool, Warm, Dramatic and more.
+
+   [13] Tên: SVG Optimizer (ID: svg-optimizer)
+       Mô tả: Optimize SVG: remove comments, whitespace, shorten colors.
+
+   [14] Tên: Meme Generator (ID: meme-generator)
+       Mô tả: Create funny memes with custom templates or your own images.
+
+
+2. DANH MỤC: TEXT TOOLS (ID: text)
+Mô tả: Count words, convert cases, generate slugs, and transform text instantly.
+Số lượng công cụ: 23
+--------------------------------------------------------------------------------
+   [1] Tên: Word Counter (ID: word-counter)
+       Mô tả: Count words, characters, sentences, and paragraphs instantly.
+
+   [2] Tên: Case Converter (ID: case-converter)
+       Mô tả: Convert text between uppercase, lowercase, title case, and more.
+
+   [3] Tên: Slug Generator (ID: slug-generator)
+       Mô tả: Generate clean URL slugs from any text with bulk mode.
+
+   [4] Tên: Text Reverser (ID: text-reverser)
+       Mô tả: Reverse text, words, or character order instantly.
+
+   [5] Tên: Line Counter (ID: line-counter)
+       Mô tả: Count lines, blank lines, and non-blank lines.
+
+   [6] Tên: Text Repeater (ID: text-repeater)
+       Mô tả: Repeat text N times with custom separator options.
+
+   [7] Tên: Remove Duplicate Lines (ID: remove-duplicate-lines)
+       Mô tả: Remove duplicate lines from text: case-sensitive or insensitive.
+
+   [8] Tên: Text Sorter (ID: text-sorter)
+       Mô tả: Sort lines alphabetically, by length, or randomly.
+
+   [9] Tên: Reading Time Calculator (ID: reading-time-calculator)
+       Mô tả: Estimate reading and speaking time with adjustable WPM.
+
+   [10] Tên: Fancy Text Generator (ID: fancy-text)
+       Mô tả: Generate fancy Unicode text: multiple styles.
+
+   [11] Tên: Readability Score (ID: readability-score)
+       Mô tả: Calculate readability scores: 6 formulas with grade levels.
+
+   [12] Tên: Text to Hashtags (ID: text-to-hashtags)
+       Mô tả: Generate hashtags from text: keywords extraction.
+
+   [13] Tên: Emoji Picker & Search (ID: emoji-picker)
+       Mô tả: Browse and search emojis: click to copy.
+
+   [14] Tên: Find & Replace (ID: find-replace)
+       Mô tả: Find and replace text with regex support, case sensitivity, and whole word matching.
+
+   [15] Tên: Whitespace Remover (ID: whitespace-remover)
+       Mô tả: Remove extra whitespace, blank lines, and normalize spaces in text.
+
+   [16] Tên: Text Statistics (ID: text-statistics)
+       Mô tả: Analyze text with detailed statistics: words, characters, sentences, reading time.
+
+   [17] Tên: Text Wrap (ID: text-wrap)
+       Mô tả: Wrap text at a specified character limit with word boundary support.
+
+   [18] Tên: Text Truncate (ID: text-truncate)
+       Mô tả: Truncate text to a max length with custom ellipsis and word boundary options.
+
+   [19] Tên: Text to Speech (ID: text-to-speech)
+       Mô tả: Convert text to speech with voice selection, speed, pitch, and volume control: instant, no download.
+
+   [20] Tên: Morse Code Converter (ID: morse-code-converter)
+       Mô tả: Convert text to Morse code and Morse code back to text with reference table.
+
+   [21] Tên: Roman Numeral Converter (ID: roman-numeral-converter)
+       Mô tả: Convert between Roman numerals (I, V, X, L, C, D, M) and decimal numbers (1-3999).
+
+   [22] Tên: Text to ASCII Art (ID: text-to-ascii-art)
+       Mô tả: Convert text to ASCII art using block-style letters. Fun text transformer.
+
+   [23] Tên: Upside Down Text (ID: upside-down-text)
+       Mô tả: Flip text upside down using Unicode characters. Fun text transformer.
+
+
+3. DANH MỤC: DEVELOPER TOOLS (ID: developer)
+Mô tả: Format JSON, encode Base64, test regex, and more dev utilities.
+Số lượng công cụ: 61
+--------------------------------------------------------------------------------
+   [1] Tên: JSON Formatter (ID: json-formatter)
+       Mô tả: Format, validate, and minify JSON with syntax highlighting.
+
+   [2] Tên: Base64 Encoder/Decoder (ID: base64-encoder)
+       Mô tả: Encode and decode Base64 for text and files.
+
+   [3] Tên: URL Encoder/Decoder (ID: url-encoder)
+       Mô tả: Encode and decode URLs and URI components.
+
+   [4] Tên: Hash Generator (ID: hash-generator)
+       Mô tả: Generate MD5, SHA-1, SHA-256, SHA-512 hashes from text.
+
+   [5] Tên: Regex Tester (ID: regex-tester)
+       Mô tả: Test regular expressions with live highlighting and match details.
+
+   [6] Tên: Lorem Ipsum Generator (ID: lorem-generator)
+       Mô tả: Generate placeholder text by paragraphs, sentences, or words.
+
+   [7] Tên: Markdown to HTML (ID: markdown-to-html)
+       Mô tả: Convert Markdown to HTML with live preview.
+
+   [8] Tên: HTML to Markdown (ID: html-to-markdown)
+       Mô tả: Convert HTML to clean Markdown: all elements supported.
+
+   [9] Tên: CSS Formatter (ID: css-formatter)
+       Mô tả: Format, beautify, and minify CSS with custom indentation.
+
+   [10] Tên: YAML Formatter (ID: yaml-formatter)
+       Mô tả: Format, validate, and beautify YAML with error details.
+
+   [11] Tên: HTML Formatter (ID: html-formatter)
+       Mô tả: Format and beautify HTML with custom indentation.
+
+   [12] Tên: SQL Formatter (ID: sql-formatter)
+       Mô tả: Format SQL queries with uppercase keywords and proper indentation.
+
+   [13] Tên: XML Formatter (ID: xml-formatter)
+       Mô tả: Format, beautify, and minify XML with validation.
+
+   [14] Tên: JS Formatter (ID: js-formatter)
+       Mô tả: Format and beautify JavaScript with proper indentation.
+
+   [15] Tên: TypeScript to JS Converter (ID: typescript-to-js)
+       Mô tả: Convert TypeScript to JavaScript: strip type annotations.
+
+   [16] Tên: Color System Generator (ID: color-system-generator)
+       Mô tả: Generate a full color system from one color.
+
+   [17] Tên: Regex Explainer (ID: regex-explainer)
+       Mô tả: Understand regular expressions: tokenize and explain each part.
+
+   [18] Tên: .gitignore Generator (ID: gitignore-generator)
+       Mô tả: Generate .gitignore files for 30+ languages, frameworks, and tools.
+
+   [19] Tên: JSON to TypeScript (ID: json-to-typescript)
+       Mô tả: Convert JSON objects to TypeScript interfaces or types instantly.
+
+   [20] Tên: JWT Decoder (ID: jwt-decoder)
+       Mô tả: Decode and inspect JWT tokens: header, payload, and signature.
+
+   [21] Tên: UUID Generator (ID: uuid-generator)
+       Mô tả: Generate UUID v4 values: batch mode, multiple formats.
+
+   [22] Tên: Text Diff (ID: text-diff)
+       Mô tả: Compare two texts side by side: line-by-line diff with colors.
+
+   [23] Tên: Box Shadow Generator (ID: box-shadow-generator)
+       Mô tả: Create CSS box-shadow with live preview and copy.
+
+   [24] Tên: CSS Grid Generator (ID: css-grid-generator)
+       Mô tả: Build CSS Grid layouts visually: generate code instantly.
+
+   [25] Tên: CSS Flexbox Generator (ID: css-flexbox-generator)
+       Mô tả: Build Flexbox layouts visually: all properties.
+
+   [26] Tên: Border Radius Generator (ID: border-radius-generator)
+       Mô tả: Create CSS border-radius with live preview and layers.
+
+   [27] Tên: CSS Units Converter (ID: css-units-converter)
+       Mô tả: Convert between CSS units: px, em, rem, %, vh, vw, pt and more.
+
+   [28] Tên: URL Parser (ID: url-parser)
+       Mô tả: Parse URL into components: protocol, host, path, query params, fragment.
+
+   [29] Tên: User Agent Parser (ID: user-agent-parser)
+       Mô tả: Parse browser User-Agent string: OS, browser, device, engine info.
+
+   [30] Tên: MIME Type Lookup (ID: mime-type-lookup)
+       Mô tả: Look up MIME types by file extension or vice versa: 50+ types.
+
+   [31] Tên: HTTP Status Codes (ID: http-status-codes)
+       Mô tả: Searchable reference of HTTP status codes with descriptions.
+
+   [32] Tên: CSS Minifier (ID: css-minifier)
+       Mô tả: Minify CSS code: remove comments, whitespace, shorten values.
+
+   [33] Tên: Number Base Converter (ID: number-base-converter)
+       Mô tả: Convert numbers between any bases (2-36): binary, octal, decimal, hex, and more.
+
+   [34] Tên: Binary to Decimal (ID: binary-to-decimal)
+       Mô tả: Convert binary (base-2) numbers to decimal (base-10) instantly.
+
+   [35] Tên: Decimal to Binary (ID: decimal-to-binary)
+       Mô tả: Convert decimal numbers to binary with configurable bit width (8, 16, 32-bit).
+
+   [36] Tên: Hex to Decimal (ID: hex-to-decimal)
+       Mô tả: Convert hexadecimal (base-16) numbers to decimal format.
+
+   [37] Tên: Decimal to Hex (ID: decimal-to-hex)
+       Mô tả: Convert decimal numbers to hexadecimal (base-16) format.
+
+   [38] Tên: JSON to XML (ID: json-to-xml)
+       Mô tả: Convert JSON data to XML format with custom root element and indentation.
+
+   [39] Tên: XML to JSON (ID: xml-to-json)
+       Mô tả: Convert XML documents to JSON format with automatic parsing.
+
+   [40] Tên: CSV to XML (ID: csv-to-xml)
+       Mô tả: Convert CSV data to XML format with custom row tags and delimiters.
+
+   [41] Tên: XML to CSV (ID: xml-to-csv)
+       Mô tả: Convert XML data to CSV format with download support.
+
+   [42] Tên: HTML Entity Encoder/Decoder (ID: html-entity-encoder)
+       Mô tả: Encode text to HTML entities and decode HTML entities back to text.
+
+   [43] Tên: Unicode Encoder/Decoder (ID: unicode-encoder)
+       Mô tả: Convert text to Unicode escape sequences (\\uXXXX) and back.
+
+   [44] Tên: Text to Binary / Binary to Text (ID: text-to-binary)
+       Mô tả: Convert text to binary code and binary code back to text. Supports 7-bit and 8-bit.
+
+   [45] Tên: Punycode Converter (ID: punycode-converter)
+       Mô tả: Convert between Unicode domain names and Punycode (IDN encoding).
+
+   [46] Tên: Binary to Hex (ID: binary-to-hex)
+       Mô tả: Convert binary (base-2) numbers to hexadecimal (base-16) format.
+
+   [47] Tên: Hex to Binary (ID: hex-to-binary)
+       Mô tả: Convert hexadecimal (base-16) numbers to binary with configurable bit width.
+
+   [48] Tên: Number to Words (ID: number-to-words)
+       Mô tả: Convert numbers to English words: supports negatives, decimals, up to trillions.
+
+   [49] Tên: Scientific Notation Converter (ID: scientific-notation-converter)
+       Mô tả: Convert between decimal numbers and scientific notation with both formats.
+
+   [50] Tên: Octal Converter (ID: octal-converter)
+       Mô tả: Convert between octal (base-8) and decimal: includes Unix permission reference.
+
+   [51] Tên: TOML to JSON (ID: toml-to-json)
+       Mô tả: Convert TOML configuration files to JSON format.
+
+   [52] Tên: JSON to TOML (ID: json-to-toml)
+       Mô tả: Convert JSON data to TOML configuration format.
+
+   [53] Tên: YAML to JSON (ID: yaml-to-json)
+       Mô tả: Convert YAML to JSON format using js-yaml library.
+
+   [54] Tên: Base32 Encoder/Decoder (ID: base32-encoder)
+       Mô tả: Encode and decode Base32: used in TOTP, IPFS, and other systems.
+
+   [55] Tên: Text to Hex / Hex to Text (ID: text-to-hex)
+       Mô tả: Convert text to hexadecimal and back. Useful for debugging and encoding.
+
+   [56] Tên: ROT13 Encoder/Decoder (ID: rot13-encoder)
+       Mô tả: Encode and decode text with ROT13 and custom ROT-N cipher shifts.
+
+   [57] Tên: Quoted-Printable Encoder/Decoder (ID: quoted-printable-encoder)
+       Mô tả: Encode and decode Quoted-Printable format used in email encoding.
+
+   [58] Tên: Seconds to HH:MM:SS (ID: seconds-to-time)
+       Mô tả: Convert seconds to human-readable time format with days, hours, minutes breakdown.
+
+   [59] Tên: HH:MM:SS to Seconds (ID: time-to-seconds)
+       Mô tả: Convert time formats (HH:MM:SS, 2h 30m 15s) to total seconds.
+
+   [60] Tên: HTML to Text (ID: html-to-text)
+       Mô tả: Strip HTML tags and convert to plain text: preserves structure and list items.
+
+   [61] Tên: Workflow Builder (ID: workflow-builder)
+       Mô tả: Chain multiple tools into a pipeline: format, convert, encode, and hash in one flow.
+
+
+4. DANH MỤC: PDF TOOLS (ID: pdf)
+Mô tả: Merge, split, compress, and edit PDF files privately in your browser.
+Số lượng công cụ: 5
+--------------------------------------------------------------------------------
+   [1] Tên: PDF Merger (ID: pdf-merger)
+       Mô tả: Combine multiple PDFs into one: private and instant.
+
+   [2] Tên: PDF Splitter (ID: pdf-splitter)
+       Mô tả: Split PDFs by page range or extract specific pages.
+
+   [3] Tên: PDF Compressor (ID: pdf-compressor)
+       Mô tả: Reduce PDF file size: no uploads, instant compression.
+
+   [4] Tên: PDF Rotator (ID: pdf-rotator)
+       Mô tả: Rotate PDF pages: 90°, 180°, 270° clockwise.
+
+   [5] Tên: PDF to Text (ID: pdf-to-text)
+       Mô tả: Extract text from any PDF: search, copy, or download.
+
+
+5. DANH MỤC: MATH & CALCULATORS (ID: math)
+Mô tả: Calculators, converters, and math solvers for everyday use.
+Số lượng công cụ: 6
+--------------------------------------------------------------------------------
+   [1] Tên: Percentage Calculator (ID: percentage-calculator)
+       Mô tả: Calculate percentages, tips, discounts, and tax instantly.
+
+   [2] Tên: Unit Converter (ID: unit-converter)
+       Mô tả: Convert units across 5 categories: length, weight, temperature, speed, data.
+
+   [3] Tên: BMI Calculator (ID: bmi-calculator)
+       Mô tả: Calculate Body Mass Index with ideal weight and health insights.
+
+   [4] Tên: Loan Calculator (ID: loan-calculator)
+       Mô tả: Calculate loan payments with amortization schedule.
+
+   [5] Tên: Age Calculator (ID: age-calculator)
+       Mô tả: Calculate exact age with zodiac sign and next birthday countdown.
+
+   [6] Tên: Bill Splitter & Tip Calculator (ID: bill-splitter)
+       Mô tả: Split bills and calculate tips easily with custom currency and formats.
+
+
+6. DANH MỤC: SECURITY TOOLS (ID: security)
+Mô tả: Generate passwords, QR codes, hashes, and encrypt data securely.
+Số lượng công cụ: 12
+--------------------------------------------------------------------------------
+   [1] Tên: Password Generator (ID: password-generator)
+       Mô tả: Generate secure passwords with custom length and character sets.
+
+   [2] Tên: Password Strength Checker (ID: password-strength-checker)
+       Mô tả: Test password strength with entropy and crack time estimates.
+
+   [3] Tên: OTP Generator (ID: otp-generator)
+       Mô tả: Generate TOTP 2FA codes with countdown timer and auto-refresh.
+
+   [4] Tên: QR Code Generator (ID: qr-code-generator)
+       Mô tả: Generate QR codes from any text or URL: download PNG or SVG.
+
+   [5] Tên: Barcode Generator (ID: barcode-generator)
+       Mô tả: Generate barcodes \u2014 CODE128, EAN-13, UPC, and more.
+
+   [6] Tên: JWT Encoder (ID: jwt-encoder)
+       Mô tả: Encode JWT tokens with custom header, payload, and secret key.
+
+   [7] Tên: Hash File (ID: hash-file)
+       Mô tả: Generate SHA-1, SHA-256, SHA-384, SHA-512 hash of any file.
+
+   [8] Tên: IP Address Lookup (ID: ip-lookup)
+       Mô tả: Look up your public IP address with geolocation, ISP, and timezone info.
+
+   [9] Tên: DNS Lookup (ID: dns-lookup)
+       Mô tả: Query DNS records for any domain: A, AAAA, MX, NS, TXT, CNAME.
+
+   [10] Tên: SSL Checker (ID: ssl-checker)
+       Mô tả: Check SSL certificate details for any domain: issuer, expiry, chain.
+
+   [11] Tên: Password Breach Checker (ID: password-breach)
+       Mô tả: Check if a password has been exposed in data breaches: privacy-first k-anonymity.
+
+   [12] Tên: CSP Evaluator (ID: csp-evaluator)
+       Mô tả: Analyze Content Security Policy headers for security issues and best practices.
+
+
+7. DANH MỤC: COLOR TOOLS (ID: color)
+Mô tả: Pick, convert, generate, and test colors for design and development.
+Số lượng công cụ: 10
+--------------------------------------------------------------------------------
+   [1] Tên: Color Picker (ID: color-picker)
+       Mô tả: Pick and convert colors between HEX, RGB, and HSL with live preview.
+
+   [2] Tên: Color Palette Generator (ID: color-palette-generator)
+       Mô tả: Generate harmonious color palettes from any base color.
+
+   [3] Tên: Contrast Checker WCAG (ID: contrast-checker)
+       Mô tả: Check WCAG color contrast: AA and AAA compliance.
+
+   [4] Tên: CSS Gradient Generator (ID: css-gradient-generator)
+       Mô tả: Create CSS gradients with live preview and presets.
+
+   [5] Tên: Color Mixer (ID: color-mixer)
+       Mô tả: Mix two colors with adjustable ratio \u2014 output HEX, RGB, HSL.
+
+   [6] Tên: Color Shades (ID: color-shades)
+       Mô tả: Generate 10 darker shades of any color \u2014 perfect for palettes.
+
+   [7] Tên: Color Tints (ID: color-tints)
+       Mô tả: Generate 10 lighter tints of any color \u2014 perfect for palettes.
+
+   [8] Tên: HEX to RGB Converter (ID: hex-to-rgb)
+       Mô tả: Convert HEX color codes to RGB with color preview and HSL output.
+
+   [9] Tên: RGB to HSL Converter (ID: rgb-to-hsl)
+       Mô tả: Convert between RGB and HSL color formats with interactive sliders.
+
+   [10] Tên: Color Format Converter (ID: color-format-converter)
+       Mô tả: Universal color converter: enter any format (HEX, RGB, HSL, CMYK) and get all formats.
+
+
+8. DANH MỤC: DATE & TIME TOOLS (ID: datetime)
+Mô tả: Countdown timers, timezone converters, date calculators, and more.
+Số lượng công cụ: 4
+--------------------------------------------------------------------------------
+   [1] Tên: Countdown Timer (ID: countdown-timer)
+       Mô tả: Countdown to any date with presets and alerts.
+
+   [2] Tên: Timezone Converter (ID: timezone-converter)
+       Mô tả: Convert time between timezones with world clock.
+
+   [3] Tên: Date Difference Calculator (ID: date-difference-calculator)
+       Mô tả: Calculate the exact difference between two dates.
+
+   [4] Tên: Unix Timestamp Converter (ID: unix-timestamp-converter)
+       Mô tả: Convert Unix timestamps to dates and back.
+
+
+9. DANH MỤC: SEO & MARKETING (ID: seo)
+Mô tả: Generate meta tags, robots.txt, sitemaps, and optimize for search engines.
+Số lượng công cụ: 3
+--------------------------------------------------------------------------------
+   [1] Tên: Meta Tag Generator (ID: meta-tag-generator)
+       Mô tả: Generate SEO meta tags with Open Graph and SERP preview.
+
+   [2] Tên: Robots.txt Generator (ID: robots-txt-generator)
+       Mô tả: Generate robots.txt with rules and sitemap.
+
+   [3] Tên: Sitemap Generator (ID: sitemap-generator)
+       Mô tả: Generate XML sitemaps with priority and frequency.
+
+
+10. DANH MỤC: DATA & SPREADSHEET (ID: data)
+Mô tả: Convert between CSV, JSON, and other data formats instantly.
+Số lượng công cụ: 6
+--------------------------------------------------------------------------------
+   [1] Tên: CSV to JSON (ID: csv-to-json)
+       Mô tả: Convert CSV to JSON with auto-delimiter detection.
+
+   [2] Tên: JSON to CSV (ID: json-to-csv)
+       Mô tả: Convert JSON arrays to CSV with nested object flattening.
+
+   [3] Tên: CSV Formatter (ID: csv-formatter)
+       Mô tả: Format, validate, and preview CSV data with table view.
+
+   [4] Tên: JSON to YAML (ID: json-to-yaml)
+       Mô tả: Convert JSON data to YAML format with customizable indentation.
+
+   [5] Tên: TSV to JSON (ID: tsv-to-json)
+       Mô tả: Convert TSV (tab-separated values) to JSON array with auto-header detection.
+
+   [6] Tên: JSON to TSV (ID: json-to-tsv)
+       Mô tả: Convert JSON arrays to TSV (tab-separated values) format.
+
+
+11. DANH MỤC: FUN & UTILITY (ID: fun)
+Mô tả: Random generators, dice rollers, wheel spinners, and fun tools.
+Số lượng công cụ: 8
+--------------------------------------------------------------------------------
+   [1] Tên: Random Number Generator (ID: random-number-generator)
+       Mô tả: Generate secure random numbers with batch mode and formatting.
+
+   [2] Tên: Dice Roller (ID: dice-roller)
+       Mô tả: Roll virtual dice: D4 to D100 with stats and history.
+
+   [3] Tên: Coin Flipper (ID: coin-flipper)
+       Mô tả: Flip a coin with animation: track history and stats.
+
+   [4] Tên: Random Name Picker (ID: random-name-picker)
+       Mô tả: Pick random names with animation from a list.
+
+   [5] Tên: Wheel Spinner (ID: wheel-spinner)
+       Mô tả: Spin the wheel to pick a random winner.
+
+   [6] Tên: Decision Maker Spinner (ID: decision-maker)
+       Mô tả: Spin the wheel to decide: add custom options.
+
+   [7] Tên: Placeholder Image Generator (ID: placeholder-image)
+       Mô tả: Generate custom placeholder images instantly.
+
+   [8] Tên: Typing Speed Test (ID: typing-speed-test)
+       Mô tả: Test and improve your typing speed (WPM) and accuracy in English or Vietnamese.
+
+
+12. DANH MỤC: EDUCATION & STUDENTS (ID: education)
+Mô tả: Flashcards, quizzes, grade calculators, citation generators, and study tools.
+Số lượng công cụ: 7
+--------------------------------------------------------------------------------
+   [1] Tên: Flashcard Maker (ID: flashcard-maker)
+       Mô tả: Create and study flashcards: saved locally.
+
+   [2] Tên: Quiz Maker (ID: quiz-maker)
+       Mô tả: Create and take quizzes: free and private.
+
+   [3] Tên: Grade Calculator (ID: grade-calculator)
+       Mô tả: Calculate weighted average grades.
+
+   [4] Tên: GPA Calculator (ID: gpa-calculator)
+       Mô tả: Calculate GPA from course grades.
+
+   [5] Tên: Citation Generator (ID: citation-generator)
+       Mô tả: Generate APA, MLA, Chicago citations instantly.
+
+   [6] Tên: Study Planner (ID: study-planner)
+       Mô tả: Plan your study schedule around exams.
+
+   [7] Tên: Fraction Calculator (ID: fraction-calculator)
+       Mô tả: Calculate fractions with step-by-step solutions.
+
+
+13. DANH MỤC: FINANCE & MONEY (ID: finance)
+Mô tả: Currency converters, loan calculators, budget trackers, and investment tools.
+Số lượng công cụ: 7
+--------------------------------------------------------------------------------
+   [1] Tên: Currency Converter (ID: currency-converter)
+       Mô tả: Convert between major currencies with live rates.
+
+   [2] Tên: Compound Interest Calculator (ID: compound-interest)
+       Mô tả: Calculate compound interest with charts and goals.
+
+   [3] Tên: Tax Calculator (ID: tax-calculator)
+       Mô tả: Calculate US federal income tax with brackets.
+
+   [4] Tên: Budget Tracker (ID: budget-tracker)
+       Mô tả: Track income and expenses with categories.
+
+   [5] Tên: Investment Calculator (ID: investment-calculator)
+       Mô tả: Project investment growth with compound returns.
+
+   [6] Tên: Net Worth Calculator (ID: net-worth-calculator)
+       Mô tả: Calculate your net worth: assets minus liabilities.
+
+   [7] Tên: Break Even Calculator (ID: break-even-calculator)
+       Mô tả: Calculate your break-even point for business.
+
+
+14. DANH MỤC: HEALTH & MEDICAL (ID: health)
+Mô tả: BMI, calorie, sleep cycle, body fat calculators and health tools.
+Số lượng công cụ: 6
+--------------------------------------------------------------------------------
+   [1] Tên: Calorie Calculator TDEE (ID: calorie-calculator)
+       Mô tả: Calculate your daily calorie needs: BMR and TDEE.
+
+   [2] Tên: Water Intake Calculator (ID: water-intake)
+       Mô tả: Calculate your daily water intake needs.
+
+   [3] Tên: Sleep Cycle Calculator (ID: sleep-cycle)
+       Mô tả: Calculate optimal sleep and wake times.
+
+   [4] Tên: Body Fat Calculator (ID: body-fat-calculator)
+       Mô tả: Calculate body fat percentage: Navy method.
+
+   [5] Tên: Pregnancy Due Date Calculator (ID: pregnancy-due-date)
+       Mô tả: Calculate your due date and track milestones.
+
+   [6] Tên: Period & Ovulation Tracker (ID: period-tracker)
+       Mô tả: Track your cycle and predict fertile/ovulation windows offline with absolute privacy.
+
+
+15. DANH MỤC: VIDEO & AUDIO (ID: video)
+Mô tả: Convert, trim, compress video and audio files in your browser.
+Số lượng công cụ: 5
+--------------------------------------------------------------------------------
+   [1] Tên: Video to MP3 (ID: video-to-audio)
+       Mô tả: Extract audio from any video file: private.
+
+   [2] Tên: Audio Trimmer (ID: audio-trimmer)
+       Mô tả: Trim and cut audio files: browser-based.
+
+   [3] Tên: Audio Volume Booster (ID: volume-booster)
+       Mô tả: Boost or reduce audio volume: preview and download.
+
+   [4] Tên: Audio Converter (ID: audio-converter)
+       Mô tả: Convert audio files to WAV or OGG: browser-based.
+
+   [5] Tên: Video Speed Changer (ID: video-speed-changer)
+       Mô tả: Speed up or slow down any video: 0.25x to 4x.
+
+
+16. DANH MỤC: AI TOOLS (ID: ai)
+Mô tả: AI-powered tools running 100% in your browser: private, fast, free.
+Số lượng công cụ: 15
+--------------------------------------------------------------------------------
+   [1] Tên: OCR: Image to Text (ID: ocr)
+       Mô tả: Extract text from images using AI-powered OCR. Supports 15 languages.
+
+   [2] Tên: Background Remover (ID: background-remover)
+       Mô tả: Remove image backgrounds instantly with AI. 100% in-browser.
+
+   [3] Tên: Text Summarizer (ID: text-summarizer)
+       Mô tả: Summarize long articles and texts using AI. Adjustable length.
+
+   [4] Tên: Object Detection (ID: object-detection)
+       Mô tả: Detect and label objects in images using AI. Annotated results.
+
+   [5] Tên: Grammar Checker (ID: grammar-checker)
+       Mô tả: Check and fix grammar mistakes using AI. Supports English text.
+
+   [6] Tên: Image Captioning (ID: image-captioning)
+       Mô tả: Generate natural language descriptions for any image using AI.
+
+   [7] Tên: Sentiment Analysis (ID: sentiment-analysis)
+       Mô tả: Analyze the emotional tone of text: positive, negative, or neutral.
+
+   [8] Tên: Question Answering (ID: question-answering)
+       Mô tả: Ask questions about a passage and get AI-powered answers instantly.
+
+   [9] Tên: AI Translator (ID: text-translator)
+       Mô tả: Translate text between 9 languages using AI: EN, VI, ZH, JA, KO, FR, DE, ES, RU. Multilingual models, only 2 models for all languages.
+
+   [10] Tên: Speech to Text (ID: speech-to-text)
+       Mô tả: Transcribe audio files or microphone recordings to text using AI: Whisper model.
+
+   [11] Tên: Named Entity Recognition (ID: ner)
+       Mô tả: Detect and highlight names, places, and organizations in text using AI.
+
+   [12] Tên: Face Detection (ID: face-detection)
+       Mô tả: Detect and blur faces in images using AI. Privacy protection made easy.
+
+   [13] Tên: Paraphrase Generator (ID: paraphrase-generator)
+       Mô tả: Rewrite text in different ways using AI. Generate multiple paraphrased versions.
+
+   [14] Tên: Language Detector (ID: language-detector)
+       Mô tả: Detect the language of any text instantly using Unicode analysis. No model download.
+
+   [15] Tên: Keyword Extractor (ID: keyword-extractor)
+       Mô tả: Extract the most relevant keywords and phrases from text using AI embeddings.
+
+
+17. DANH MỤC: UTILITY TOOLS (ID: utility)
+Mô tả: Link shortener, invoice generator, signature maker, favicon generator, notepad.
+Số lượng công cụ: 5
+--------------------------------------------------------------------------------
+   [1] Tên: Link Shortener (ID: link-shortener)
+       Mô tả: Shorten URLs and generate QR codes: client-side hash-based shortening.
+
+   [2] Tên: Invoice Generator (ID: invoice-generator)
+       Mô tả: Create professional invoices with line items, tax, and print support.
+
+   [3] Tên: Signature Generator (ID: signature-generator)
+       Mô tả: Draw and download digital signatures as PNG or SVG.
+
+   [4] Tên: Favicon Generator (ID: favicon-generator)
+       Mô tả: Generate favicons from text or images: multiple sizes and formats.
+
+   [5] Tên: Online Notepad (ID: notepad)
+       Mô tả: Quick notes with auto-save, export, and multiple note support.
+
+
+18. DANH MỤC: ACCOUNT & IDENTITY (ID: account)
+Mô tả: Generate usernames, validate emails, phones, credit cards, and IBANs.
+Số lượng công cụ: 5
+--------------------------------------------------------------------------------
+   [1] Tên: Username Generator (ID: username-generator)
+       Mô tả: Generate unique usernames: gamer, professional, funny, or random styles.
+
+   [2] Tên: Email Validator (ID: email-validator)
+       Mô tả: Validate email addresses: format check, disposable detection, bulk support.
+
+   [3] Tên: Phone Validator (ID: phone-validator)
+       Mô tả: Validate phone numbers: country detection, format E.164, bulk support.
+
+   [4] Tên: Credit Card Validator (ID: credit-card-validator)
+       Mô tả: Validate credit card numbers: Luhn algorithm, card type detection, formatting.
+
+   [5] Tên: IBAN Validator (ID: iban-validator)
+       Mô tả: Validate IBAN numbers: checksum, country detection, bank info, formatting.
+
+
+19. DANH MỤC: GAME TOOLS (ID: game)
+Mô tả: Error code lookup, DPI calculator, sensitivity converter, crosshair generator, and more.
+Số lượng công cụ: 5
+--------------------------------------------------------------------------------
+   [1] Tên: Error Code Lookup (ID: error-code-lookup)
+       Mô tả: Look up error codes for Riot, Steam, PlayStation, Xbox, Epic Games, and Windows.
+
+   [2] Tên: DPI Calculator (ID: dpi-calculator)
+       Mô tả: Calculate eDPI, cm/360\u00b0, and sensitivity for FPS games.
+
+   [3] Tên: Sensitivity Converter (ID: sensitivity-converter)
+       Mô tả: Convert mouse sensitivity between 12+ FPS games.
+
+   [4] Tên: Crosshair Generator (ID: crosshair-generator)
+       Mô tả: Create and customize crosshairs for Valorant, CS2, and Overwatch 2.
+
+   [5] Tên: Game Timer (ID: game-timer)
+       Mô tả: Pomodoro timer, session tracker, and stopwatch for gamers.
+
+

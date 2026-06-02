@@ -367,7 +367,7 @@ export default function TypingSpeedTest() {
 					<div>
 						<label class="text-body-sm-strong text-ink block mb-2">{t.textLang}</label>
 						<select
-							class="select w-full"
+							class="input w-full"
 							value={textLang}
 							onChange={(e) => setTextLang((e.target as HTMLSelectElement).value as "en" | "vi")}
 						>
@@ -378,7 +378,7 @@ export default function TypingSpeedTest() {
 					<div>
 						<label class="text-body-sm-strong text-ink block mb-2">{t.duration}</label>
 						<select
-							class="select w-full"
+							class="input w-full"
 							value={duration}
 							onChange={(e) => setDuration(Number.parseInt((e.target as HTMLSelectElement).value))}
 						>

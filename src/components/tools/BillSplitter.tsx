@@ -109,7 +109,7 @@ export default function BillSplitter() {
 				<div>
 					<label class="text-body-sm-strong text-ink block mb-2">{t.currencyLabel}</label>
 					<select
-						class="select w-full"
+						class="input w-full"
 						value={currency}
 						onChange={(e) => setCurrency((e.target as HTMLSelectElement).value)}
 					>
