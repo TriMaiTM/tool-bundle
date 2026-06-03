@@ -51,7 +51,7 @@
 
 | Metric | Value |
 |---|---|
-| **Tổng tools** | 204+ |
+| **Tổng tools** | 226 |
 | **Tổng categories** | 19 |
 | **Tổng pages** | 228 |
 | **Tổng files** | 247 |
@@ -64,27 +64,27 @@
 
 | # | Category | ID | Tools | Color |
 |---|---|---|---|---|
-| 1 | Image Tools | `image` | 13 | `#3b82f6` |
-| 2 | Text Tools | `text` | 18 | `#22c55e` |
-| 3 | Developer Tools | `developer` | 55 | `#a855f7` |
+| 1 | Image Tools | `image` | 23 | `#3b82f6` |
+| 2 | Text Tools | `text` | 33 | `#22c55e` |
+| 3 | Developer Tools | `developer` | 61 | `#a855f7` |
 | 4 | PDF Tools | `pdf` | 5 | `#ef4444` |
-| 5 | Math & Calculators | `math` | 5 | `#f59e0b` |
-| 6 | Security Tools | `security` | 5 | `#06b6d4` |
-| 7 | Color Tools | `color` | 7 | `#ec4899` |
+| 5 | Math & Calculators | `math` | 6 | `#f59e0b` |
+| 6 | Security Tools | `security` | 12 | `#06b6d4` |
+| 7 | Color Tools | `color` | 10 | `#ec4899` |
 | 8 | Date & Time Tools | `datetime` | 4 | `#14b8a6` |
 | 9 | SEO & Marketing | `seo` | 3 | `#8b5cf6` |
-| 10 | Data & Spreadsheet | `data` | 3 | `#10b981` |
-| 11 | Fun & Utility | `fun` | 7 | `#f97316` |
+| 10 | Data & Spreadsheet | `data` | 6 | `#10b981` |
+| 11 | Fun & Utility | `fun` | 8 | `#f97316` |
 | 12 | Education & Students | `education` | 7 | `#6366f1` |
 | 13 | Finance & Money | `finance` | 7 | `#84cc16` |
-| 14 | Health & Medical | `health` | 5 | `#f43f5e` |
+| 14 | Health & Medical | `health` | 6 | `#f43f5e` |
 | 15 | Video & Audio | `video` | 5 | `#d946ef` |
-| 16 | AI Tools | `ai` | 11 | `#8b5cf6` |
+| 16 | AI Tools | `ai` | 15 | `#8b5cf6` |
 | 17 | Account & Identity | `account` | 5 | `#0ea5e9` |
 | 18 | Game Tools | `game` | 5 | `#f97316` |
 | 19 | Utility Tools | `utility` | 5 | `#78716c` |
 
-### Danh sách đầy đủ 204+ tools
+### Danh sách đầy đủ 226 tools
 
 Xem chi tiết tại `docs/tools-list.md`.
 
@@ -104,7 +104,7 @@ Xem chi tiết trong `docs/tools-list.md`.
 | Open Graph tags | ✅ | og:title, og:description, og:url, og:type, og:site_name |
 | Twitter Card tags | ✅ | twitter:card, twitter:title, twitter:description |
 | Canonical URLs | ✅ | Mọi page có `<link rel="canonical">` |
-| XML Sitemap | ✅ | @astrojs/sitemap auto-generate 228 URLs |
+| XML Sitemap | ✅ | @astrojs/sitemap auto-generate 254 URLs |
 | robots.txt | ✅ | Allow all, link to sitemap |
 | Meta descriptions | ✅ | Unique per page từ tool description |
 
@@ -200,7 +200,7 @@ Xem chi tiết trong `docs/tools-list.md`.
 
 | Task | Status | Chi tiết |
 |---|---|---|
-| Knowledge base | ✅ | 204+ tools with keywords, descriptions, use cases |
+| Knowledge base | ✅ | 226 tools with keywords, descriptions, use cases |
 | Pattern matching engine | ✅ | Intent detection + tool matching |
 | Chat UI component | ✅ | Floating button, modal, quick actions |
 | Smart responses | ✅ | Direct tool links, category listings, recommendations |
@@ -323,7 +323,7 @@ Xem chi tiết trong `docs/tools-list.md`.
 | Task | Status | Chi tiết |
 |---|---|---|
 | Dynamic speech bubble | ✅ | Periodic "Ask..." bubble, 6 random texts, 45s interval |
-| Knowledge base expanded | ✅ | 204+ tools with keywords, descriptions, use cases |
+| Knowledge base expanded | ✅ | 226 tools with keywords, descriptions, use cases |
 
 ### Phase 28: UI/UX Improvements ✅
 
@@ -579,7 +579,7 @@ npm run format       # Format with Biome
 Copy prompt dưới đây và paste vào session mới:
 
 ```
-Tôi đang phát triển dự án ToolBundle — một web app tổng hợp 204+ tools miễn phí chạy 100% client-side.
+Tôi đang phát triển dự án ToolBundle — một web app tổng hợp 226 tools miễn phí chạy 100% client-side.
 
 ## Tech Stack
 - Astro 5 (SSG) + Preact 10 (~3KB) + Tailwind CSS 4 + TypeScript
@@ -591,7 +591,7 @@ Tôi đang phát triển dự án ToolBundle — một web app tổng hợp 204+
 - Deploy: Cloudflare Pages (GitHub Actions CI/CD)
 
 ## Trạng thái hiện tại
-- 204+ tools / 19 categories / 228 pages / 247 files / 182 tests
+- 226 tools / 19 categories / 254 pages / 247 files / 182 tests
 - Design: Pinterest-inspired light theme + dark mode toggle
 - Features: PWA, offline, Cmd+K search, favorites & history, AI assistant, batch processing, collections
 - SEO: JSON-LD, OG tags, sitemap, robots.txt
@@ -601,7 +601,7 @@ Tôi đang phát triển dự án ToolBundle — một web app tổng hợp 204+
 - CI/CD: GitHub Actions → Cloudflare Pages
 - Workflow Builder: n8n-style canvas editor với 25 workflow-compatible tools
 - Converter Tools: 35+ converter tools (number, data format, encoding, color, text, time)
-- AI Assistant: Rule-based chat widget với 204+ tool knowledge base, dynamic speech bubble
+- AI Assistant: Rule-based chat widget với 226 tool knowledge base, dynamic speech bubble
 - Account Tools: Username, Email, Phone, Credit Card, IBAN validators
 - Game Tools: Error codes, DPI calculator, sensitivity converter, crosshair generator, game timer
 - Utility Tools: Link shortener, invoice generator, signature generator, favicon generator, notepad
@@ -609,7 +609,7 @@ Tôi đang phát triển dự án ToolBundle — một web app tổng hợp 204+
 
 ## Đọc các file sau để hiểu dự án:
 1. docs/HANDOFF.md — Tài liệu bàn giao (ĐỌC TRƯỚC)
-2. docs/tools-list.md — Danh sách đầy đủ 204+ tools
+2. docs/tools-list.md — Danh sách đầy đủ 226 tools
 3. docs/adding-tools.md — Hướng dẫn thêm tool mới
 4. docs/ai-tools-research.md — Nghiên cứu AI tools
 5. DESIGN.md — Design system specification (Pinterest-inspired)
@@ -646,7 +646,7 @@ Tôi đang phát triển dự án ToolBundle — một web app tổng hợp 204+
 | `docs/ai-tools-research.md` | Nghiên cứu AI tools |
 | `docs/strategy.md` | Chiến lược phát triển |
 | `DESIGN.md` | Design system (Pinterest-inspired) |
-| `src/data/tools.ts` | Tool registry (204+ tools) |
+| `src/data/tools.ts` | Tool registry (226 tools) |
 | `src/data/categories.ts` | Category definitions (19 categories) |
 | `src/components/tools/ToolRenderer.tsx` | Tool routing (lazy loading) |
 | `src/utils/workflow.ts` | Workflow engine + tool registry |
@@ -663,4 +663,4 @@ Tôi đang phát triển dự án ToolBundle — một web app tổng hợp 204+
 
 ---
 
-*Cập nhật lần cuối: 2026-05-29*
+*Cập nhật lần cuối: 2026-06-03*

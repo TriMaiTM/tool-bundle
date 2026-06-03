@@ -7,7 +7,7 @@
 | Metric | Before | After |
 |---|---|---|
 | AI Tools | 8 | 16 |
-| Total Tools | 108 | 204+ |
+| Total Tools | 108 | 226 |
 | Tech Stack | Transformers.js v3.8.1 + Tesseract.js | — |
 | Models | ONNX Runtime WASM/WebGPU | — |
 | Cache | IndexedDB | — |
@@ -287,10 +287,10 @@
 | Metric | Trước | Hiện tại | Mục tiêu tiếp theo |
 |---|---|---|---|
 | AI Tools | 8 | 16 | 19 (+3) |
-| Total Tools | 108 | 204+ | 207+ |
+| Total Tools | 108 | 226 | 229+ |
 | Categories | 16 | 16 | 16 (vẫn trong AI) |
-| Pages | 126 | — | — |
+| Pages | 126 | 254 | — |
 
 ---
 
-*Cập nhật: 2026-05-29*
+*Cập nhật: 2026-06-03*

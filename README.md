@@ -12,7 +12,7 @@ A collection of free, privacy-first browser tools for images, text, PDFs, math, 
 - **Privacy First** — No server uploads, no data collection, no cookies. What you process stays on your device.
 - **Instant Results** — No upload waits, no queues. Results appear instantly because everything runs on your machine.
 - **Free Forever** — No accounts, no subscriptions, no paywalls. Every tool is free for everyone.
-- **123 Tools** — Across 16 categories: Image, Text, Developer, PDF, Math, Security, Color, Date & Time, SEO, Data, Fun & Utility, Education, Finance, Health, Video & Audio, and **AI Tools**.
+- **226 Tools** — Across 19 categories: Image, Text, Developer, PDF, Math, Security, Color, Date & Time, SEO, Data, Fun & Utility, Education, Finance, Health, Video & Audio, and **AI Tools**.
 - **Dark UI** — Clean dark canvas with electric yellow accent. Built with a consistent design system.
 - **New: Workflow Builder** — Build and automate your workflows with a visual drag-and-drop interface.
 ![Preview](./preview5.png)
@@ -48,31 +48,31 @@ Full documentation is available in the [`docs/`](./docs/) directory:
 | [Tech Stack](./docs/tech-stack.md) | Technologies and architecture decisions |
 | [Project Structure](./docs/project-structure.md) | Directory layout and file organization |
 | [Adding New Tools](./docs/adding-tools.md) | Step-by-step guide to add a new tool |
-| [Tools List](./docs/tools-list.md) | Complete list of all 32 tools |
+| [Tools List](./docs/tools-list.md) | Complete list of all 226 tools |
 | [Design System](./docs/design-system.md) | UI components, colors, typography |
 
 ## Available Tools
 
-### Image Tools (13)
-PNG to JPG, JPG to PNG, JPG to WebP, PNG to WebP, WebP to PNG, Image Resizer, Image Compressor, Image Cropper, Image to Base64, Image Rotator & Flipper, Image Watermark, Photo Filters, SVG Optimizer
+### Image Tools (23)
+PNG to JPG, JPG to PNG, JPG to WebP, PNG to WebP, WebP to PNG, Image Resizer, Image Compressor, Image Cropper, AVIF Converter, HEIC Converter, Image Enlarger / Upscaler, Image Background Color Changer, Image Blur & Pixelate, Passport Photo Maker, Social Media Resizer, EXIF Metadata Manager, Image Color Extractor, Image to Base64, Image Rotator & Flipper, Image Watermark Adder, Photo Filters, SVG Optimizer, Meme Generator
 
-### Text Tools (14)
-Word Counter, Case Converter, Slug Generator, Text Reverser, Line Counter, Text Repeater, Remove Duplicate Lines, Text Sorter, Reading Time Calculator, Fancy Text Generator, Readability Score, Text to Hashtags, Emoji Picker, Text to Speech
+### Text Tools (33)
+Word Counter, Case Converter, Slug Generator, Text Reverser, Line Counter, Vietnamese Lorem & Fake Data Generator, Text Cleaner & Unicode Normalizer, Vietnamese Accent Remover, Add Line Numbers, Prefix/Suffix Lines, Text Splitter, Text Joiner, CSV / Text Column Extractor, Regex Find & Replace Builder, Profanity Filter & Bad Words Detector, Text Repeater, Remove Duplicate Lines, Text Sorter, Reading Time Calculator, Fancy Text Generator, Readability Score, Text to Hashtags, Emoji Picker & Search, Find & Replace, Whitespace Remover, Text Statistics, Text Wrap, Text Truncate, Text to Speech, Morse Code Converter, Roman Numeral Converter, Text to ASCII Art, Upside Down Text
 
-### Developer Tools (26)
-JSON Formatter, Base64 Encoder/Decoder, URL Encoder/Decoder, Hash Generator, Regex Tester, Lorem Ipsum Generator, Markdown to HTML, HTML to Markdown, CSS Formatter, YAML Formatter, HTML Formatter, SQL Formatter, XML Formatter, JavaScript Formatter, TypeScript to JS, Color System Generator, Regex Explainer, .gitignore Generator, JSON to TypeScript, JWT Decoder, UUID Generator, Text Diff, Box Shadow Generator, CSS Grid Generator, CSS Flexbox Generator, Border Radius Generator
+### Developer Tools (61)
+JSON Formatter, Base64 Encoder/Decoder, URL Encoder/Decoder, Hash Generator, Regex Tester, Lorem Ipsum Generator, Markdown to HTML, HTML to Markdown, CSS Formatter, YAML Formatter, HTML Formatter, SQL Formatter, XML Formatter, JS Formatter, TypeScript to JS Converter, Color System Generator, Regex Explainer, .gitignore Generator, JSON to TypeScript, JWT Decoder, UUID Generator, Text Diff, Box Shadow Generator, CSS Grid Generator, CSS Flexbox Generator, Border Radius Generator, CSS Units Converter, URL Parser, User Agent Parser, MIME Type Lookup, HTTP Status Codes, CSS Minifier, Number Base Converter, Binary to Decimal, Decimal to Binary, Hex to Decimal, Decimal to Hex, JSON to XML, XML to JSON, CSV to XML, XML to CSV, HTML Entity Encoder/Decoder, Unicode Encoder/Decoder, Text to Binary / Binary to Text, Punycode Converter, Binary to Hex, Hex to Binary, Number to Words, Scientific Notation Converter, Octal Converter, TOML to JSON, JSON to TOML, YAML to JSON, Base32 Encoder/Decoder, Text to Hex / Hex to Text, ROT13 Encoder/Decoder, Quoted-Printable Encoder/Decoder, Seconds to HH:MM:SS, HH:MM:SS to Seconds, HTML to Text, Workflow Builder
 
 ### PDF Tools (5)
 PDF Merger, PDF Splitter, PDF Compressor, PDF Rotator, PDF to Text
 
-### Math & Calculators (5)
-Percentage Calculator, Unit Converter, BMI Calculator, Loan Calculator, Age Calculator
+### Math & Calculators (6)
+Percentage Calculator, Unit Converter, BMI Calculator, Loan Calculator, Age Calculator, Bill Splitter & Tip Calculator
 
-### Security Tools (5)
-Password Generator, Password Strength Checker, OTP Generator, QR Code Generator, Barcode Generator
+### Security Tools (12)
+Password Generator, Password Strength Checker, OTP Generator, QR Code Generator, Barcode Generator, JWT Encoder, Hash File, IP Address Lookup, DNS Lookup, SSL Checker, Password Breach Checker, CSP Evaluator
 
-### Color Tools (4)
-Color Picker, Color Palette Generator, Contrast Checker WCAG, CSS Gradient Generator
+### Color Tools (10)
+Color Picker, Color Palette Generator, Contrast Checker WCAG, CSS Gradient Generator, Color Mixer, Color Shades, Color Tints, HEX to RGB Converter, RGB to HSL Converter, Color Format Converter
 
 ### Date & Time Tools (4)
 Countdown Timer, Timezone Converter, Date Difference Calculator, Unix Timestamp Converter
@@ -80,11 +80,11 @@ Countdown Timer, Timezone Converter, Date Difference Calculator, Unix Timestamp 
 ### SEO & Marketing (3)
 Meta Tag Generator, Robots.txt Generator, Sitemap Generator
 
-### Data & Spreadsheet (3)
-CSV to JSON, JSON to CSV, CSV Formatter
+### Data & Spreadsheet (6)
+CSV to JSON, JSON to CSV, CSV Formatter, JSON to YAML, TSV to JSON, JSON to TSV
 
-### Fun & Utility (7)
-Random Number Generator, Dice Roller, Coin Flipper, Random Name Picker, Wheel Spinner, Decision Maker, Placeholder Image Generator
+### Fun & Utility (8)
+Random Number Generator, Dice Roller, Coin Flipper, Random Name Picker, Wheel Spinner, Decision Maker Spinner, Placeholder Image Generator, Typing Speed Test
 
 ### Education & Students (7)
 Flashcard Maker, Quiz Maker, Grade Calculator, GPA Calculator, Citation Generator, Study Planner, Fraction Calculator
@@ -92,14 +92,23 @@ Flashcard Maker, Quiz Maker, Grade Calculator, GPA Calculator, Citation Generato
 ### Finance & Money (7)
 Currency Converter, Compound Interest Calculator, Tax Calculator, Budget Tracker, Investment Calculator, Net Worth Calculator, Break Even Calculator
 
-### Health & Medical (5)
-Calorie Calculator, Water Intake Calculator, Sleep Cycle Calculator, Body Fat Calculator, Pregnancy Due Date Calculator
+### Health & Medical (6)
+Calorie Calculator TDEE, Water Intake Calculator, Sleep Cycle Calculator, Body Fat Calculator, Pregnancy Due Date Calculator, Period & Ovulation Tracker
 
 ### Video & Audio (5)
-Video to MP3, Audio Trimmer, Volume Booster, Audio Converter, Video Speed Changer
+Video to MP3, Audio Trimmer, Audio Volume Booster, Audio Converter, Video Speed Changer
 
-### AI Tools (10)
-OCR — Image to Text, Background Remover, Text Summarizer, Object Detection, Grammar Checker, Image Captioning, Sentiment Analysis, Question Answering, AI Translator, Speech to Text
+### AI Tools (15)
+OCR: Image to Text, Background Remover, Text Summarizer, Object Detection, Grammar Checker, Image Captioning, Sentiment Analysis, Question Answering, AI Translator, Speech to Text, Named Entity Recognition, Face Detection, Paraphrase Generator, Language Detector, Keyword Extractor
+
+### Utility Tools (5)
+Link Shortener, Invoice Generator, Signature Generator, Favicon Generator, Online Notepad
+
+### Account & Identity (5)
+Username Generator, Email Validator, Phone Validator, Credit Card Validator, IBAN Validator
+
+### Game Tools (5)
+Error Code Lookup, DPI Calculator, Sensitivity Converter, Crosshair Generator, Game Timer
 
 ## License
 

@@ -1,13 +1,13 @@
 ================================================================================
 DỰ ÁN TOOLBUNDLE - DANH SÁCH TẤT CẢ CÁC CATEGORIES VÀ TOOLS HIỆN CÓ
-Tạo lúc: 6/2/2026, 11:47:04 AM
+Tạo lúc: 23:43:20 3/6/2026
 Tổng số danh mục: 19
-Tổng số công cụ: 207
+Tổng số công cụ: 226
 ================================================================================
 
 1. DANH MỤC: IMAGE TOOLS (ID: image)
 Mô tả: Convert, resize, compress, and edit images: 100% in your browser.
-Số lượng công cụ: 14
+Số lượng công cụ: 23
 --------------------------------------------------------------------------------
    [1] Tên: PNG to JPG (ID: png-to-jpg)
        Mô tả: Convert PNG images to JPG with quality control and batch support.
@@ -33,28 +33,55 @@ Số lượng công cụ: 14
    [8] Tên: Image Cropper (ID: image-cropper)
        Mô tả: Crop images with aspect ratio presets and rotation.
 
-   [9] Tên: Image to Base64 (ID: image-to-base64)
+   [9] Tên: AVIF Converter (ID: avif-converter)
+       Mô tả: Convert JPG, PNG, and WebP to AVIF, and vice versa.
+
+   [10] Tên: HEIC Converter (ID: heic-converter)
+       Mô tả: Convert Apple HEIC images to JPG or PNG format offline.
+
+   [11] Tên: Image Enlarger / Upscaler (ID: image-enlarger)
+       Mô tả: Enlarge and upscale images without losing quality using Lanczos interpolation.
+
+   [12] Tên: Image Background Color Changer (ID: bg-color-changer)
+       Mô tả: Change or replace the background color of transparent or solid background images.
+
+   [13] Tên: Image Blur & Pixelate (ID: image-blur-pixel)
+       Mô tả: Apply fast blur effects or pixelate images to create retro pixel art.
+
+   [14] Tên: Passport Photo Maker (ID: passport-photo-maker)
+       Mô tả: Create passport, visa, and ID photos with standard size presets and print sheet grids.
+
+   [15] Tên: Social Media Resizer (ID: social-media-resizer)
+       Mô tả: Crop and resize images to standard formats for Facebook, Instagram, YouTube, and TikTok.
+
+   [16] Tên: EXIF Metadata Manager (ID: exif-manager)
+       Mô tả: View and completely remove metadata (EXIF/GPS) from your images for privacy.
+
+   [17] Tên: Image Color Extractor (ID: color-extractor)
+       Mô tả: Extract the dominant color palette from any image using Median Cut quantization.
+
+   [18] Tên: Image to Base64 (ID: image-to-base64)
        Mô tả: Convert images to Base64: data URI or raw.
 
-   [10] Tên: Image Rotator & Flipper (ID: image-rotator)
+   [19] Tên: Image Rotator & Flipper (ID: image-rotator)
        Mô tả: Rotate and flip images: 90, 180, 270 or custom.
 
-   [11] Tên: Image Watermark Adder (ID: image-watermark)
+   [20] Tên: Image Watermark Adder (ID: image-watermark)
        Mô tả: Add text watermarks to images: position, opacity, rotation.
 
-   [12] Tên: Photo Filters (ID: photo-filters)
+   [21] Tên: Photo Filters (ID: photo-filters)
        Mô tả: Apply photo filters: Vintage, Cool, Warm, Dramatic and more.
 
-   [13] Tên: SVG Optimizer (ID: svg-optimizer)
+   [22] Tên: SVG Optimizer (ID: svg-optimizer)
        Mô tả: Optimize SVG: remove comments, whitespace, shorten colors.
 
-   [14] Tên: Meme Generator (ID: meme-generator)
+   [23] Tên: Meme Generator (ID: meme-generator)
        Mô tả: Create funny memes with custom templates or your own images.
 
 
 2. DANH MỤC: TEXT TOOLS (ID: text)
 Mô tả: Count words, convert cases, generate slugs, and transform text instantly.
-Số lượng công cụ: 23
+Số lượng công cụ: 33
 --------------------------------------------------------------------------------
    [1] Tên: Word Counter (ID: word-counter)
        Mô tả: Count words, characters, sentences, and paragraphs instantly.
@@ -71,58 +98,88 @@ Số lượng công cụ: 23
    [5] Tên: Line Counter (ID: line-counter)
        Mô tả: Count lines, blank lines, and non-blank lines.
 
-   [6] Tên: Text Repeater (ID: text-repeater)
+   [6] Tên: Vietnamese Lorem & Fake Data Generator (ID: vi-lorem-generator)
+       Mô tả: Generate Vietnamese placeholder text and realistic mock developer data (names, phones, bank details).
+
+   [7] Tên: Text Cleaner & Unicode Normalizer (ID: text-cleaner)
+       Mô tả: Normalize Unicode representations (NFC/NFD), strip HTML, standardise quotes, and remove invisible characters.
+
+   [8] Tên: Vietnamese Accent Remover (ID: remove-accents)
+       Mô tả: Convert accented Vietnamese text into clean non-accented text or URL slugs offline.
+
+   [9] Tên: Add Line Numbers (ID: add-line-numbers)
+       Mô tả: Add customizable prefix line numbers to text blocks with padding and step options.
+
+   [10] Tên: Prefix/Suffix Lines (ID: prefix-suffix-lines)
+       Mô tả: Prepend and append custom text to each line, with options to skip blank lines.
+
+   [11] Tên: Text Splitter (ID: text-splitter)
+       Mô tả: Split large texts into segments by characters, words, or custom delimiters, with ZIP downloading.
+
+   [12] Tên: Text Joiner (ID: text-joiner)
+       Mô tả: Merge text items using custom separators, quotes formatting, and space trimming.
+
+   [13] Tên: CSV / Text Column Extractor (ID: csv-column-extractor)
+       Mô tả: Extract specific column cells from CSV, TSV, or logs with custom delimiters and full quote parsing.
+
+   [14] Tên: Regex Find & Replace Builder (ID: regex-replace-builder)
+       Mô tả: Build find and replace regular expressions visually using pre-defined patterns and instant testing.
+
+   [15] Tên: Profanity Filter & Bad Words Detector (ID: profanity-filter)
+       Mô tả: Detect, censor, or highlight offensive and bad words in English and Vietnamese texts.
+
+   [16] Tên: Text Repeater (ID: text-repeater)
        Mô tả: Repeat text N times with custom separator options.
 
-   [7] Tên: Remove Duplicate Lines (ID: remove-duplicate-lines)
+   [17] Tên: Remove Duplicate Lines (ID: remove-duplicate-lines)
        Mô tả: Remove duplicate lines from text: case-sensitive or insensitive.
 
-   [8] Tên: Text Sorter (ID: text-sorter)
+   [18] Tên: Text Sorter (ID: text-sorter)
        Mô tả: Sort lines alphabetically, by length, or randomly.
 
-   [9] Tên: Reading Time Calculator (ID: reading-time-calculator)
+   [19] Tên: Reading Time Calculator (ID: reading-time-calculator)
        Mô tả: Estimate reading and speaking time with adjustable WPM.
 
-   [10] Tên: Fancy Text Generator (ID: fancy-text)
+   [20] Tên: Fancy Text Generator (ID: fancy-text)
        Mô tả: Generate fancy Unicode text: multiple styles.
 
-   [11] Tên: Readability Score (ID: readability-score)
+   [21] Tên: Readability Score (ID: readability-score)
        Mô tả: Calculate readability scores: 6 formulas with grade levels.
 
-   [12] Tên: Text to Hashtags (ID: text-to-hashtags)
+   [22] Tên: Text to Hashtags (ID: text-to-hashtags)
        Mô tả: Generate hashtags from text: keywords extraction.
 
-   [13] Tên: Emoji Picker & Search (ID: emoji-picker)
+   [23] Tên: Emoji Picker & Search (ID: emoji-picker)
        Mô tả: Browse and search emojis: click to copy.
 
-   [14] Tên: Find & Replace (ID: find-replace)
+   [24] Tên: Find & Replace (ID: find-replace)
        Mô tả: Find and replace text with regex support, case sensitivity, and whole word matching.
 
-   [15] Tên: Whitespace Remover (ID: whitespace-remover)
+   [25] Tên: Whitespace Remover (ID: whitespace-remover)
        Mô tả: Remove extra whitespace, blank lines, and normalize spaces in text.
 
-   [16] Tên: Text Statistics (ID: text-statistics)
+   [26] Tên: Text Statistics (ID: text-statistics)
        Mô tả: Analyze text with detailed statistics: words, characters, sentences, reading time.
 
-   [17] Tên: Text Wrap (ID: text-wrap)
+   [27] Tên: Text Wrap (ID: text-wrap)
        Mô tả: Wrap text at a specified character limit with word boundary support.
 
-   [18] Tên: Text Truncate (ID: text-truncate)
+   [28] Tên: Text Truncate (ID: text-truncate)
        Mô tả: Truncate text to a max length with custom ellipsis and word boundary options.
 
-   [19] Tên: Text to Speech (ID: text-to-speech)
+   [29] Tên: Text to Speech (ID: text-to-speech)
        Mô tả: Convert text to speech with voice selection, speed, pitch, and volume control: instant, no download.
 
-   [20] Tên: Morse Code Converter (ID: morse-code-converter)
+   [30] Tên: Morse Code Converter (ID: morse-code-converter)
        Mô tả: Convert text to Morse code and Morse code back to text with reference table.
 
-   [21] Tên: Roman Numeral Converter (ID: roman-numeral-converter)
+   [31] Tên: Roman Numeral Converter (ID: roman-numeral-converter)
        Mô tả: Convert between Roman numerals (I, V, X, L, C, D, M) and decimal numbers (1-3999).
 
-   [22] Tên: Text to ASCII Art (ID: text-to-ascii-art)
+   [32] Tên: Text to ASCII Art (ID: text-to-ascii-art)
        Mô tả: Convert text to ASCII art using block-style letters. Fun text transformer.
 
-   [23] Tên: Upside Down Text (ID: upside-down-text)
+   [33] Tên: Upside Down Text (ID: upside-down-text)
        Mô tả: Flip text upside down using Unicode characters. Fun text transformer.
 
 

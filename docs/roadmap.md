@@ -1,6 +1,6 @@
 # ToolBundle Roadmap
 
-Kế hoạch phát triển ToolBundle — từ 100 tools ban đầu đến 204+ tools hiện tại.
+Kế hoạch phát triển ToolBundle — từ 100 tools ban đầu đến 226 tools hiện tại.
 
 ---
 
@@ -8,13 +8,13 @@ Kế hoạch phát triển ToolBundle — từ 100 tools ban đầu đến 204+ 
 
 | Metric | Value |
 |---|---|
-| **Total tools** | 204+ |
+| **Total tools** | 226 |
 | **Categories** | 19 |
-| **Pages** | 228 |
+| **Pages** | 254 |
 | **Tests** | 182+ (all pass) |
 | **Lint errors** | 0 (Biome) |
 | **Build time** | ~24s |
-| **AI Tools** | 16 |
+| **AI Tools** | 15 |
 | **SW Version** | v4 |
 
 ---
@@ -149,22 +149,22 @@ Xem chi tiết trong `docs/tools-list.md`.
 
 | # | Category | ID | Tools | Color |
 |---|---|---|---|---|
-| 1 | Image Tools | `image` | 13 | `#3b82f6` |
-| 2 | Text Tools | `text` | 19 | `#22c55e` |
-| 3 | Developer Tools | `developer` | 32 | `#a855f7` |
+| 1 | Image Tools | `image` | 23 | `#3b82f6` |
+| 2 | Text Tools | `text` | 33 | `#22c55e` |
+| 3 | Developer Tools | `developer` | 61 | `#a855f7` |
 | 4 | PDF Tools | `pdf` | 5 | `#ef4444` |
-| 5 | Math & Calculators | `math` | 5 | `#f59e0b` |
+| 5 | Math & Calculators | `math` | 6 | `#f59e0b` |
 | 6 | Security Tools | `security` | 12 | `#06b6d4` |
-| 7 | Color Tools | `color` | 7 | `#ec4899` |
+| 7 | Color Tools | `color` | 10 | `#ec4899` |
 | 8 | Date & Time Tools | `datetime` | 4 | `#14b8a6` |
 | 9 | SEO & Marketing | `seo` | 3 | `#8b5cf6` |
 | 10 | Data & Spreadsheet | `data` | 6 | `#10b981` |
-| 11 | Fun & Utility | `fun` | 7 | `#f97316` |
+| 11 | Fun & Utility | `fun` | 8 | `#f97316` |
 | 12 | Education & Students | `education` | 7 | `#6366f1` |
 | 13 | Finance & Money | `finance` | 7 | `#84cc16` |
-| 14 | Health & Medical | `health` | 5 | `#f43f5e` |
+| 14 | Health & Medical | `health` | 6 | `#f43f5e` |
 | 15 | Video & Audio | `video` | 5 | `#d946ef` |
-| 16 | AI Tools | `ai` | 16 | `#8b5cf6` |
+| 16 | AI Tools | `ai` | 15 | `#8b5cf6` |
 | 17 | Account & Identity | `account` | 5 | `#0ea5e9` |
 | 18 | Game Tools | `game` | 5 | `#f97316` |
 | 19 | Utility Tools | `utility` | 5 | `#78716c` |
@@ -226,4 +226,4 @@ Xem chi tiết trong `docs/tools-list.md`.
 
 ---
 
-*Cập nhật: 2026-05-29*
+*Cập nhật: 2026-06-03*
