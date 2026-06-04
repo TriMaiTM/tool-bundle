@@ -4,7 +4,6 @@
 
 A collection of free, privacy-first browser tools for images, text, PDFs, math, developer utilities, and security. Every tool runs entirely in your browser — no file uploads, no accounts, no limits.
 ![Preview](./preview3.png)
-![Preview](./preview4.png)
 
 ## Features
 
