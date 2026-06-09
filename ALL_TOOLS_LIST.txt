@@ -1,8 +1,8 @@
 ================================================================================
 DỰ ÁN TOOLBUNDLE - DANH SÁCH TẤT CẢ CÁC CATEGORIES VÀ TOOLS HIỆN CÓ
-Tạo lúc: 23:43:20 3/6/2026
+Tạo lúc: 23:42:05 9/6/2026
 Tổng số danh mục: 19
-Tổng số công cụ: 226
+Tổng số công cụ: 246
 ================================================================================
 
 1. DANH MỤC: IMAGE TOOLS (ID: image)
@@ -185,7 +185,7 @@ Số lượng công cụ: 33
 
 3. DANH MỤC: DEVELOPER TOOLS (ID: developer)
 Mô tả: Format JSON, encode Base64, test regex, and more dev utilities.
-Số lượng công cụ: 61
+Số lượng công cụ: 81
 --------------------------------------------------------------------------------
    [1] Tên: JSON Formatter (ID: json-formatter)
        Mô tả: Format, validate, and minify JSON with syntax highlighting.
@@ -369,6 +369,66 @@ Số lượng công cụ: 61
 
    [61] Tên: Workflow Builder (ID: workflow-builder)
        Mô tả: Chain multiple tools into a pipeline: format, convert, encode, and hash in one flow.
+
+   [62] Tên: API Request Tester (ID: api-tester)
+       Mô tả: Test API endpoints client-side with headers, params, and body payload configurations.
+
+   [63] Tên: cURL Builder (ID: curl-builder)
+       Mô tả: Visually construct single-line or multi-line cURL queries with headers and body parameters.
+
+   [64] Tên: cURL Converter (ID: curl-converter)
+       Mô tả: Parse raw cURL requests and generate Fetch, Axios, Python, Go, and Rust snippets.
+
+   [65] Tên: JSON Path Tester (ID: json-path-tester)
+       Mô tả: Query and extract data from JSON objects with live JSONPath expressions.
+
+   [66] Tên: JSON Schema Validator (ID: json-schema-validator)
+       Mô tả: Validate JSON instance data against JSON Schema Draft-07 rules offline.
+
+   [67] Tên: GraphQL Formatter & Tester (ID: graphql-tester)
+       Mô tả: Format GraphQL query strings, configure variables, and run API requests.
+
+   [68] Tên: Cron Expression Generator (ID: cron-generator)
+       Mô tả: Visually build cron schedules and explain expressions in plain language.
+
+   [69] Tên: Dockerfile Generator (ID: dockerfile-generator)
+       Mô tả: Generate optimized Dockerfiles for Node.js, Python, Go, PHP, and Java.
+
+   [70] Tên: Nginx Config Generator (ID: nginx-generator)
+       Mô tả: Generate Nginx server configuration files with proxy, SSL, and compression.
+
+   [71] Tên: .htaccess Generator (ID: htaccess-generator)
+       Mô tả: Generate Apache .htaccess files with redirects, security, and caching rules.
+
+   [72] Tên: OpenAPI & Swagger Viewer (ID: swagger-viewer)
+       Mô tả: View and interact with OpenAPI specification files in JSON or YAML offline.
+
+   [73] Tên: ENV File Parser & Converter (ID: env-parser)
+       Mô tả: Parse .env files, hide/mask secret values, and export to JSON, Shell, or YAML.
+
+   [74] Tên: JWT Verifier (ID: jwt-verifier)
+       Mô tả: Decode and inspect JWT headers, payloads, and verify HMAC signatures.
+
+   [75] Tên: HMAC Hash Generator (ID: hmac-generator)
+       Mô tả: Compute cryptographic HMAC hashes client-side with SHA-1, SHA-256, and SHA-512.
+
+   [76] Tên: UUID Validator & Extractor (ID: uuid-validator)
+       Mô tả: Validate UUID formats and decode version metadata single or in bulk.
+
+   [77] Tên: ULID Generator & Decoder (ID: ulid-generator)
+       Mô tả: Generate sortable ULIDs and decode creation timestamps offline.
+
+   [78] Tên: NanoID Generator (ID: nanoid-generator)
+       Mô tả: Create secure unique string IDs with custom alphabets and lengths.
+
+   [79] Tên: QR Payload Decoder (ID: qr-decoder)
+       Mô tả: Scan and decode QR codes from files, camera, or clipboard with Wi-Fi parsing.
+
+   [80] Tên: HTML / CSS / JS Sandbox (ID: html-sandbox)
+       Mô tả: Playground to write HTML, CSS, and JS with real-time sandboxed preview.
+
+   [81] Tên: CSS Specificity Calculator (ID: css-specificity)
+       Mô tả: Calculate specificity score (ID, class, element) and override comparisons.
 
 
 4. DANH MỤC: PDF TOOLS (ID: pdf)

@@ -66,7 +66,7 @@
 |---|---|---|---|---|
 | 1 | Image Tools | `image` | 23 | `#3b82f6` |
 | 2 | Text Tools | `text` | 33 | `#22c55e` |
-| 3 | Developer Tools | `developer` | 61 | `#a855f7` |
+| 3 | Developer Tools | `developer` | 81 | `#a855f7` |
 | 4 | PDF Tools | `pdf` | 5 | `#ef4444` |
 | 5 | Math & Calculators | `math` | 6 | `#f59e0b` |
 | 6 | Security Tools | `security` | 12 | `#06b6d4` |
@@ -663,4 +663,4 @@ Tôi đang phát triển dự án ToolBundle — một web app tổng hợp 226 
 
 ---
 
-*Cập nhật lần cuối: 2026-06-03*
+*Cập nhật lần cuối: 2026-06-09*

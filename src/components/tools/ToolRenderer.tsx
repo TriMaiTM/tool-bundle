@@ -90,6 +90,28 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
 	"http-status-codes": lazy(() => import("./HttpStatusCodes")),
 	"css-minifier": lazy(() => import("./CssMinifier")),
 
+	// 20 New Developer Tools
+	"api-tester": lazy(() => import("./ApiTester")),
+	"curl-builder": lazy(() => import("./CurlBuilder")),
+	"curl-converter": lazy(() => import("./CurlConverter")),
+	"json-path-tester": lazy(() => import("./JsonPathTester")),
+	"json-schema-validator": lazy(() => import("./JsonSchemaValidator")),
+	"graphql-tester": lazy(() => import("./GraphqlTester")),
+	"cron-generator": lazy(() => import("./CronGenerator")),
+	"dockerfile-generator": lazy(() => import("./DockerfileGenerator")),
+	"nginx-generator": lazy(() => import("./NginxGenerator")),
+	"htaccess-generator": lazy(() => import("./HtaccessGenerator")),
+	"swagger-viewer": lazy(() => import("./SwaggerViewer")),
+	"env-parser": lazy(() => import("./EnvParser")),
+	"jwt-verifier": lazy(() => import("./JwtVerifier")),
+	"hmac-generator": lazy(() => import("./HmacGenerator")),
+	"uuid-validator": lazy(() => import("./UuidValidator")),
+	"ulid-generator": lazy(() => import("./UlidGenerator")),
+	"nanoid-generator": lazy(() => import("./NanoidGenerator")),
+	"qr-decoder": lazy(() => import("./QrDecoder")),
+	"html-sandbox": lazy(() => import("./HtmlSandbox")),
+	"css-specificity": lazy(() => import("./CssSpecificity")),
+
 	// PDF Tools
 	"pdf-merger": lazy(() => import("./PdfMerger")),
 	"pdf-splitter": lazy(() => import("./PdfSplitter")),

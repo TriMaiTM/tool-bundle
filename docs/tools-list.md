@@ -68,7 +68,7 @@ Complete list of all tools in ToolBundle, organized by category.
 | Text to ASCII Art | `/text/text-to-ascii-art` | Convert text to ASCII art using block-style letters. Fun text transformer. | ✅ Live |
 | Upside Down Text | `/text/upside-down-text` | Flip text upside down using Unicode characters. Fun text transformer. | ✅ Live |
 
-## Developer Tools (61)
+## Developer Tools (81)
 
 | Tool | Slug | Description | Status |
 |---|---|---|---|
@@ -133,6 +133,26 @@ Complete list of all tools in ToolBundle, organized by category.
 | HH:MM:SS to Seconds | `/developer/time-to-seconds` | Convert time formats (HH:MM:SS, 2h 30m 15s) to total seconds. | ✅ Live |
 | HTML to Text | `/developer/html-to-text` | Strip HTML tags and convert to plain text: preserves structure and list items. | ✅ Live |
 | Workflow Builder | `/developer/workflow-builder` | Chain multiple tools into a pipeline: format, convert, encode, and hash in one flow. | ✅ Live |
+| API Request Tester | `/developer/api-tester` | Test API endpoints client-side with headers, params, and body payload configurations. | ✅ Live |
+| cURL Builder | `/developer/curl-builder` | Visually construct single-line or multi-line cURL queries with headers and body parameters. | ✅ Live |
+| cURL Converter | `/developer/curl-converter` | Parse raw cURL requests and generate Fetch, Axios, Python, Go, and Rust snippets. | ✅ Live |
+| JSON Path Tester | `/developer/json-path-tester` | Query and extract data from JSON objects with live JSONPath expressions. | ✅ Live |
+| JSON Schema Validator | `/developer/json-schema-validator` | Validate JSON instance data against JSON Schema Draft-07 rules offline. | ✅ Live |
+| GraphQL Formatter & Tester | `/developer/graphql-tester` | Format GraphQL query strings, configure variables, and run API requests. | ✅ Live |
+| Cron Expression Generator | `/developer/cron-generator` | Visually build cron schedules and explain expressions in plain language. | ✅ Live |
+| Dockerfile Generator | `/developer/dockerfile-generator` | Generate optimized Dockerfiles for Node.js, Python, Go, PHP, and Java. | ✅ Live |
+| Nginx Config Generator | `/developer/nginx-generator` | Generate Nginx server configuration files with proxy, SSL, and compression. | ✅ Live |
+| .htaccess Generator | `/developer/htaccess-generator` | Generate Apache .htaccess files with redirects, security, and caching rules. | ✅ Live |
+| OpenAPI & Swagger Viewer | `/developer/swagger-viewer` | View and interact with OpenAPI specification files in JSON or YAML offline. | ✅ Live |
+| ENV File Parser & Converter | `/developer/env-parser` | Parse .env files, hide/mask secret values, and export to JSON, Shell, or YAML. | ✅ Live |
+| JWT Verifier | `/developer/jwt-verifier` | Decode and inspect JWT headers, payloads, and verify HMAC signatures. | ✅ Live |
+| HMAC Hash Generator | `/developer/hmac-generator` | Compute cryptographic HMAC hashes client-side with SHA-1, SHA-256, and SHA-512. | ✅ Live |
+| UUID Validator & Extractor | `/developer/uuid-validator` | Validate UUID formats and decode version metadata single or in bulk. | ✅ Live |
+| ULID Generator & Decoder | `/developer/ulid-generator` | Generate sortable ULIDs and decode creation timestamps offline. | ✅ Live |
+| NanoID Generator | `/developer/nanoid-generator` | Create secure unique string IDs with custom alphabets and lengths. | ✅ Live |
+| QR Payload Decoder | `/developer/qr-decoder` | Scan and decode QR codes from files, camera, or clipboard with Wi-Fi parsing. | ✅ Live |
+| HTML / CSS / JS Sandbox | `/developer/html-sandbox` | Playground to write HTML, CSS, and JS with real-time sandboxed preview. | ✅ Live |
+| CSS Specificity Calculator | `/developer/css-specificity` | Calculate specificity score (ID, class, element) and override comparisons. | ✅ Live |
 
 ## PDF Tools (5)
 
@@ -325,4 +345,4 @@ Complete list of all tools in ToolBundle, organized by category.
 
 ---
 
-**Total: 226 tools** — all live and working, 100% client-side.
+**Total: 246 tools** — all live and working, 100% client-side.

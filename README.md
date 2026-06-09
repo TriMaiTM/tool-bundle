@@ -12,7 +12,7 @@ A collection of free, privacy-first browser tools for images, text, PDFs, math, 
 - **Privacy First** — No server uploads, no data collection, no cookies. What you process stays on your device.
 - **Instant Results** — No upload waits, no queues. Results appear instantly because everything runs on your machine.
 - **Free Forever** — No accounts, no subscriptions, no paywalls. Every tool is free for everyone.
-- **226 Tools** — Across 19 categories: Image, Text, Developer, PDF, Math, Security, Color, Date & Time, SEO, Data, Fun & Utility, Education, Finance, Health, Video & Audio, and **AI Tools**.
+- **246 Tools** — Across 19 categories: Image, Text, Developer, PDF, Math, Security, Color, Date & Time, SEO, Data, Fun & Utility, Education, Finance, Health, Video & Audio, and **AI Tools**.
 - **Dark UI** — Clean dark canvas with electric yellow accent. Built with a consistent design system.
 - **New: Workflow Builder** — Build and automate your workflows with a visual drag-and-drop interface.
 ![Preview](./preview5.png)
@@ -48,7 +48,7 @@ Full documentation is available in the [`docs/`](./docs/) directory:
 | [Tech Stack](./docs/tech-stack.md) | Technologies and architecture decisions |
 | [Project Structure](./docs/project-structure.md) | Directory layout and file organization |
 | [Adding New Tools](./docs/adding-tools.md) | Step-by-step guide to add a new tool |
-| [Tools List](./docs/tools-list.md) | Complete list of all 226 tools |
+| [Tools List](./docs/tools-list.md) | Complete list of all 246 tools |
 | [Design System](./docs/design-system.md) | UI components, colors, typography |
 
 ## Available Tools
@@ -59,8 +59,8 @@ PNG to JPG, JPG to PNG, JPG to WebP, PNG to WebP, WebP to PNG, Image Resizer, Im
 ### Text Tools (33)
 Word Counter, Case Converter, Slug Generator, Text Reverser, Line Counter, Vietnamese Lorem & Fake Data Generator, Text Cleaner & Unicode Normalizer, Vietnamese Accent Remover, Add Line Numbers, Prefix/Suffix Lines, Text Splitter, Text Joiner, CSV / Text Column Extractor, Regex Find & Replace Builder, Profanity Filter & Bad Words Detector, Text Repeater, Remove Duplicate Lines, Text Sorter, Reading Time Calculator, Fancy Text Generator, Readability Score, Text to Hashtags, Emoji Picker & Search, Find & Replace, Whitespace Remover, Text Statistics, Text Wrap, Text Truncate, Text to Speech, Morse Code Converter, Roman Numeral Converter, Text to ASCII Art, Upside Down Text
 
-### Developer Tools (61)
-JSON Formatter, Base64 Encoder/Decoder, URL Encoder/Decoder, Hash Generator, Regex Tester, Lorem Ipsum Generator, Markdown to HTML, HTML to Markdown, CSS Formatter, YAML Formatter, HTML Formatter, SQL Formatter, XML Formatter, JS Formatter, TypeScript to JS Converter, Color System Generator, Regex Explainer, .gitignore Generator, JSON to TypeScript, JWT Decoder, UUID Generator, Text Diff, Box Shadow Generator, CSS Grid Generator, CSS Flexbox Generator, Border Radius Generator, CSS Units Converter, URL Parser, User Agent Parser, MIME Type Lookup, HTTP Status Codes, CSS Minifier, Number Base Converter, Binary to Decimal, Decimal to Binary, Hex to Decimal, Decimal to Hex, JSON to XML, XML to JSON, CSV to XML, XML to CSV, HTML Entity Encoder/Decoder, Unicode Encoder/Decoder, Text to Binary / Binary to Text, Punycode Converter, Binary to Hex, Hex to Binary, Number to Words, Scientific Notation Converter, Octal Converter, TOML to JSON, JSON to TOML, YAML to JSON, Base32 Encoder/Decoder, Text to Hex / Hex to Text, ROT13 Encoder/Decoder, Quoted-Printable Encoder/Decoder, Seconds to HH:MM:SS, HH:MM:SS to Seconds, HTML to Text, Workflow Builder
+### Developer Tools (81)
+JSON Formatter, Base64 Encoder/Decoder, URL Encoder/Decoder, Hash Generator, Regex Tester, Lorem Ipsum Generator, Markdown to HTML, HTML to Markdown, CSS Formatter, YAML Formatter, HTML Formatter, SQL Formatter, XML Formatter, JS Formatter, TypeScript to JS Converter, Color System Generator, Regex Explainer, .gitignore Generator, JSON to TypeScript, JWT Decoder, UUID Generator, Text Diff, Box Shadow Generator, CSS Grid Generator, CSS Flexbox Generator, Border Radius Generator, CSS Units Converter, URL Parser, User Agent Parser, MIME Type Lookup, HTTP Status Codes, CSS Minifier, Number Base Converter, Binary to Decimal, Decimal to Binary, Hex to Decimal, Decimal to Hex, JSON to XML, XML to JSON, CSV to XML, XML to CSV, HTML Entity Encoder/Decoder, Unicode Encoder/Decoder, Text to Binary / Binary to Text, Punycode Converter, Binary to Hex, Hex to Binary, Number to Words, Scientific Notation Converter, Octal Converter, TOML to JSON, JSON to TOML, YAML to JSON, Base32 Encoder/Decoder, Text to Hex / Hex to Text, ROT13 Encoder/Decoder, Quoted-Printable Encoder/Decoder, Seconds to HH:MM:SS, HH:MM:SS to Seconds, HTML to Text, Workflow Builder, API Request Tester, cURL Builder, cURL Converter, JSON Path Tester, JSON Schema Validator, GraphQL Formatter & Tester, Cron Expression Generator, Dockerfile Generator, Nginx Config Generator, .htaccess Generator, OpenAPI & Swagger Viewer, ENV File Parser & Converter, JWT Verifier, HMAC Hash Generator, UUID Validator & Extractor, ULID Generator & Decoder, NanoID Generator, QR Payload Decoder, HTML / CSS / JS Sandbox, CSS Specificity Calculator
 
 ### PDF Tools (5)
 PDF Merger, PDF Splitter, PDF Compressor, PDF Rotator, PDF to Text
