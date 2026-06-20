@@ -154,7 +154,7 @@ Complete list of all tools in ToolBundle, organized by category.
 | HTML / CSS / JS Sandbox | `/developer/html-sandbox` | Playground to write HTML, CSS, and JS with real-time sandboxed preview. | ✅ Live |
 | CSS Specificity Calculator | `/developer/css-specificity` | Calculate specificity score (ID, class, element) and override comparisons. | ✅ Live |
 
-## PDF Tools (5)
+## PDF Tools (17)
 
 | Tool | Slug | Description | Status |
 |---|---|---|---|
@@ -163,6 +163,18 @@ Complete list of all tools in ToolBundle, organized by category.
 | PDF Compressor | `/pdf/pdf-compressor` | Reduce PDF file size: no uploads, instant compression. | ✅ Live |
 | PDF Rotator | `/pdf/pdf-rotator` | Rotate PDF pages: 90°, 180°, 270° clockwise. | ✅ Live |
 | PDF to Text | `/pdf/pdf-to-text` | Extract text from any PDF: search, copy, or download. | ✅ Live |
+| Image to PDF | `/pdf/pdf-from-images` | Convert PNG, JPG, WebP, SVG, and other images into a single PDF. | ✅ Live |
+| PDF to Images | `/pdf/pdf-to-images` | Extract and convert PDF pages into PNG or JPG images. | ✅ Live |
+| PDF Page Reorder | `/pdf/pdf-reorder` | Rearrange the pages of a PDF document visually by drag and drop. | ✅ Live |
+| PDF Page Delete | `/pdf/pdf-delete-pages` | Remove one or multiple pages from your PDF file. | ✅ Live |
+| Add Page Numbers | `/pdf/pdf-page-numbers` | Add customized page numbers to your PDF document automatically. | ✅ Live |
+| Add Watermark | `/pdf/pdf-watermark` | Stamp text or image watermarks onto all or selected PDF pages. | ✅ Live |
+| PDF Password Protect | `/pdf/pdf-encrypt` | Encrypt and secure your PDF with open and owner passwords. | ✅ Live |
+| PDF Unlock | `/pdf/pdf-decrypt` | Remove passwords and restrictions from your secured PDF files. | ✅ Live |
+| PDF Metadata Viewer | `/pdf/pdf-metadata` | View and edit PDF metadata, including Title, Author, and Keywords. | ✅ Live |
+| PDF Form Filler | `/pdf/pdf-form-filler` | Fill out interactive PDF forms (AcroForms) entirely in the browser. | ✅ Live |
+| PDF OCR | `/pdf/pdf-ocr` | Extract text from scanned PDF documents using Tesseract OCR. | ✅ Live |
+| PDF Signature Tool | `/pdf/pdf-sign` | Sign PDF documents with drawn, typed, or uploaded signatures. | ✅ Live |
 
 ## Math & Calculators (6)
 
@@ -345,4 +357,4 @@ Complete list of all tools in ToolBundle, organized by category.
 
 ---
 
-**Total: 246 tools** — all live and working, 100% client-side.
+**Total: 258 tools** — all live and working, 100% client-side.

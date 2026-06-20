@@ -17,6 +17,8 @@
     "@astrojs/preact": "^4.0.8",
     "@astrojs/sitemap": "3.7.2",
     "@huggingface/transformers": "3.8.1",
+    "@pdfsmaller/pdf-decrypt": "1.0.1",
+    "@pdfsmaller/pdf-encrypt-lite": "1.0.2",
     "@tailwindcss/vite": "^4.1.4",
     "astro": "^5.7.10",
     "fuse.js": "7.3.0",

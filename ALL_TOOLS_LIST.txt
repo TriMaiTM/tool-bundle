@@ -1,8 +1,8 @@
 ================================================================================
 DỰ ÁN TOOLBUNDLE - DANH SÁCH TẤT CẢ CÁC CATEGORIES VÀ TOOLS HIỆN CÓ
-Tạo lúc: 23:42:05 9/6/2026
+Tạo lúc: 00:24:43 21/6/2026
 Tổng số danh mục: 19
-Tổng số công cụ: 246
+Tổng số công cụ: 258
 ================================================================================
 
 1. DANH MỤC: IMAGE TOOLS (ID: image)
@@ -433,7 +433,7 @@ Số lượng công cụ: 81
 
 4. DANH MỤC: PDF TOOLS (ID: pdf)
 Mô tả: Merge, split, compress, and edit PDF files privately in your browser.
-Số lượng công cụ: 5
+Số lượng công cụ: 17
 --------------------------------------------------------------------------------
    [1] Tên: PDF Merger (ID: pdf-merger)
        Mô tả: Combine multiple PDFs into one: private and instant.
@@ -449,6 +449,42 @@ Số lượng công cụ: 5
 
    [5] Tên: PDF to Text (ID: pdf-to-text)
        Mô tả: Extract text from any PDF: search, copy, or download.
+
+   [6] Tên: Image to PDF (ID: pdf-from-images)
+       Mô tả: Convert PNG, JPG, WebP, SVG, and other images into a single PDF.
+
+   [7] Tên: PDF to Images (ID: pdf-to-images)
+       Mô tả: Extract and convert PDF pages into PNG or JPG images.
+
+   [8] Tên: PDF Page Reorder (ID: pdf-reorder)
+       Mô tả: Rearrange the pages of a PDF document visually by drag and drop.
+
+   [9] Tên: PDF Page Delete (ID: pdf-delete-pages)
+       Mô tả: Remove one or multiple pages from your PDF file.
+
+   [10] Tên: Add Page Numbers (ID: pdf-page-numbers)
+       Mô tả: Add customized page numbers to your PDF document automatically.
+
+   [11] Tên: Add Watermark (ID: pdf-watermark)
+       Mô tả: Stamp text or image watermarks onto all or selected PDF pages.
+
+   [12] Tên: PDF Password Protect (ID: pdf-encrypt)
+       Mô tả: Encrypt and secure your PDF with open and owner passwords.
+
+   [13] Tên: PDF Unlock (ID: pdf-decrypt)
+       Mô tả: Remove passwords and restrictions from your secured PDF files.
+
+   [14] Tên: PDF Metadata Viewer (ID: pdf-metadata)
+       Mô tả: View and edit PDF metadata, including Title, Author, and Keywords.
+
+   [15] Tên: PDF Form Filler (ID: pdf-form-filler)
+       Mô tả: Fill out interactive PDF forms (AcroForms) entirely in the browser.
+
+   [16] Tên: PDF OCR (ID: pdf-ocr)
+       Mô tả: Extract text from scanned PDF documents using Tesseract OCR.
+
+   [17] Tên: PDF Signature Tool (ID: pdf-sign)
+       Mô tả: Sign PDF documents with drawn, typed, or uploaded signatures.
 
 
 5. DANH MỤC: MATH & CALCULATORS (ID: math)
