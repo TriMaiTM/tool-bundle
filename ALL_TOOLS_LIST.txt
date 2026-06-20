@@ -1,8 +1,8 @@
 ================================================================================
 DỰ ÁN TOOLBUNDLE - DANH SÁCH TẤT CẢ CÁC CATEGORIES VÀ TOOLS HIỆN CÓ
-Tạo lúc: 00:24:43 21/6/2026
+Tạo lúc: 00:57:37 21/6/2026
 Tổng số danh mục: 19
-Tổng số công cụ: 258
+Tổng số công cụ: 270
 ================================================================================
 
 1. DANH MỤC: IMAGE TOOLS (ID: image)
@@ -489,24 +489,60 @@ Số lượng công cụ: 17
 
 5. DANH MỤC: MATH & CALCULATORS (ID: math)
 Mô tả: Calculators, converters, and math solvers for everyday use.
-Số lượng công cụ: 6
+Số lượng công cụ: 18
 --------------------------------------------------------------------------------
    [1] Tên: Percentage Calculator (ID: percentage-calculator)
        Mô tả: Calculate percentages, tips, discounts, and tax instantly.
 
-   [2] Tên: Unit Converter (ID: unit-converter)
+   [2] Tên: Scientific Calculator (ID: scientific-calculator)
+       Mô tả: Perform advanced arithmetic, trigonometric, logarithmic, and factorial calculations.
+
+   [3] Tên: Fraction to Decimal Converter (ID: fraction-to-decimal)
+       Mô tả: Convert fractions to decimal values (with repeating periods) and vice versa.
+
+   [4] Tên: Ratio Calculator (ID: ratio-calculator)
+       Mô tả: Solve proportions (A:B = C:D), scale ratios, and simplify multi-value ratios.
+
+   [5] Tên: Proportion Calculator (ID: proportion-calculator)
+       Mô tả: Check if two ratios are proportional, and solve direct or inverse proportions.
+
+   [6] Tên: Average Calculator (Mean, Median, Mode) (ID: average-calculator)
+       Mô tả: Calculate the mean, median, mode, range, min, max, and count of a data set.
+
+   [7] Tên: Standard Deviation Calculator (ID: standard-deviation)
+       Mô tả: Calculate population and sample standard deviation, variance, and mean with step-by-step breakdown.
+
+   [8] Tên: Triangle Calculator (ID: triangle-calculator)
+       Mô tả: Solve triangles by sides or angles, compute area/perimeter, heights, inradius/circumradius, and view drawing.
+
+   [9] Tên: Area & Perimeter Calculator (ID: area-calculator)
+       Mô tả: Compute the area and perimeter of flat shapes including rectangles, circles, triangles, and polygons.
+
+   [10] Tên: Volume & Surface Area Calculator (ID: volume-calculator)
+       Mô tả: Calculate the volume and surface area of solids like spheres, cylinders, cones, and prisms.
+
+   [11] Tên: Probability Calculator (ID: probability-calculator)
+       Mô tả: Calculate permutations/combinations (nPr, nCr), single/multi-event probabilities, and binomial distribution.
+
+   [12] Tên: Matrix Calculator (ID: matrix-calculator)
+       Mô tả: Perform matrix addition, subtraction, multiplication, determinants, transpose, and inverses up to 4x4.
+
+   [13] Tên: Equation Solver (ID: equation-solver)
+       Mô tả: Solve linear, quadratic, and cubic equations, or 2x2 and 3x3 linear equation systems with step-by-step math.
+
+   [14] Tên: Unit Converter (ID: unit-converter)
        Mô tả: Convert units across 5 categories: length, weight, temperature, speed, data.
 
-   [3] Tên: BMI Calculator (ID: bmi-calculator)
+   [15] Tên: BMI Calculator (ID: bmi-calculator)
        Mô tả: Calculate Body Mass Index with ideal weight and health insights.
 
-   [4] Tên: Loan Calculator (ID: loan-calculator)
+   [16] Tên: Loan Calculator (ID: loan-calculator)
        Mô tả: Calculate loan payments with amortization schedule.
 
-   [5] Tên: Age Calculator (ID: age-calculator)
+   [17] Tên: Age Calculator (ID: age-calculator)
        Mô tả: Calculate exact age with zodiac sign and next birthday countdown.
 
-   [6] Tên: Bill Splitter & Tip Calculator (ID: bill-splitter)
+   [18] Tên: Bill Splitter & Tip Calculator (ID: bill-splitter)
        Mô tả: Split bills and calculate tips easily with custom currency and formats.
 
 

@@ -133,6 +133,18 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
 
 	// Math Tools
 	"percentage-calculator": lazy(() => import("./PercentageCalculator")),
+	"scientific-calculator": lazy(() => import("./ScientificCalculator")),
+	"fraction-to-decimal": lazy(() => import("./FractionToDecimal")),
+	"ratio-calculator": lazy(() => import("./RatioCalculator")),
+	"proportion-calculator": lazy(() => import("./ProportionCalculator")),
+	"average-calculator": lazy(() => import("./AverageCalculator")),
+	"standard-deviation": lazy(() => import("./StandardDeviation")),
+	"triangle-calculator": lazy(() => import("./TriangleCalculator")),
+	"area-calculator": lazy(() => import("./AreaCalculator")),
+	"volume-calculator": lazy(() => import("./VolumeCalculator")),
+	"probability-calculator": lazy(() => import("./ProbabilityCalculator")),
+	"matrix-calculator": lazy(() => import("./MatrixCalculator")),
+	"equation-solver": lazy(() => import("./EquationSolver")),
 	"unit-converter": lazy(() => import("./UnitConverter")),
 	"bmi-calculator": lazy(() => import("./BmiCalculator")),
 	"loan-calculator": lazy(() => import("./LoanCalculator")),

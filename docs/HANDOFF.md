@@ -68,7 +68,7 @@
 | 2 | Text Tools | `text` | 33 | `#22c55e` |
 | 3 | Developer Tools | `developer` | 81 | `#a855f7` |
 | 4 | PDF Tools | `pdf` | 17 | `#ef4444` |
-| 5 | Math & Calculators | `math` | 6 | `#f59e0b` |
+| 5 | Math & Calculators | `math` | 18 | `#f59e0b` |
 | 6 | Security Tools | `security` | 12 | `#06b6d4` |
 | 7 | Color Tools | `color` | 10 | `#ec4899` |
 | 8 | Date & Time Tools | `datetime` | 4 | `#14b8a6` |
