@@ -118,6 +118,18 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
 	"pdf-compressor": lazy(() => import("./PdfCompressor")),
 	"pdf-rotator": lazy(() => import("./PdfRotator")),
 	"pdf-to-text": lazy(() => import("./PdfToText")),
+	"pdf-from-images": lazy(() => import("./PdfFromImages")),
+	"pdf-to-images": lazy(() => import("./PdfToImages")),
+	"pdf-reorder": lazy(() => import("./PdfReorder")),
+	"pdf-delete-pages": lazy(() => import("./PdfDeletePages")),
+	"pdf-page-numbers": lazy(() => import("./PdfPageNumbers")),
+	"pdf-watermark": lazy(() => import("./PdfWatermark")),
+	"pdf-encrypt": lazy(() => import("./PdfEncrypt")),
+	"pdf-decrypt": lazy(() => import("./PdfDecrypt")),
+	"pdf-metadata": lazy(() => import("./PdfMetadata")),
+	"pdf-form-filler": lazy(() => import("./PdfFormFiller")),
+	"pdf-ocr": lazy(() => import("./PdfOcr")),
+	"pdf-sign": lazy(() => import("./PdfSign")),
 
 	// Math Tools
 	"percentage-calculator": lazy(() => import("./PercentageCalculator")),
