@@ -11,7 +11,7 @@ A collection of free, privacy-first browser tools for images, text, PDFs, math, 
 - **Privacy First** — No server uploads, no data collection, no cookies. What you process stays on your device.
 - **Instant Results** — No upload waits, no queues. Results appear instantly because everything runs on your machine.
 - **Free Forever** — No accounts, no subscriptions, no paywalls. Every tool is free for everyone.
-- **270 Tools** — Across 19 categories: Image, Text, Developer, PDF, Math, Security, Color, Date & Time, SEO, Data, Fun & Utility, Education, Finance, Health, Video & Audio, and **AI Tools**.
+- **282 Tools** — Across 19 categories: Image, Text, Developer, PDF, Math, Security, Color, Date & Time, SEO, Data, Fun & Utility, Education, Finance, Health, Video & Audio, and **AI Tools**.
 - **Dark UI** — Clean dark canvas with electric yellow accent. Built with a consistent design system.
 - **New: Workflow Builder** — Build and automate your workflows with a visual drag-and-drop interface.
 ![Preview](./preview5.png)
@@ -47,7 +47,7 @@ Full documentation is available in the [`docs/`](./docs/) directory:
 | [Tech Stack](./docs/tech-stack.md) | Technologies and architecture decisions |
 | [Project Structure](./docs/project-structure.md) | Directory layout and file organization |
 | [Adding New Tools](./docs/adding-tools.md) | Step-by-step guide to add a new tool |
-| [Tools List](./docs/tools-list.md) | Complete list of all 270 tools |
+| [Tools List](./docs/tools-list.md) | Complete list of all 282 tools |
 | [Design System](./docs/design-system.md) | UI components, colors, typography |
 
 ## Available Tools
@@ -67,8 +67,8 @@ PDF Merger, PDF Splitter, PDF Compressor, PDF Rotator, PDF to Text, Image to PDF
 ### Math & Calculators (18)
 Percentage Calculator, Scientific Calculator, Fraction to Decimal Converter, Ratio Calculator, Proportion Calculator, Average Calculator (Mean, Median, Mode), Standard Deviation Calculator, Triangle Calculator, Area & Perimeter Calculator, Volume & Surface Area Calculator, Probability Calculator, Matrix Calculator, Equation Solver, Unit Converter, BMI Calculator, Loan Calculator, Age Calculator, Bill Splitter & Tip Calculator
 
-### Security Tools (12)
-Password Generator, Password Strength Checker, OTP Generator, QR Code Generator, Barcode Generator, JWT Encoder, Hash File, IP Address Lookup, DNS Lookup, SSL Checker, Password Breach Checker, CSP Evaluator
+### Security Tools (24)
+Password Generator, Password Strength Checker, OTP Generator, AES Encrypt/Decrypt, RSA Key Generator, Public/Private Key Matcher, SSH Key Generator, PGP Encrypt/Decrypt, HMAC Signature Validator, Checksum Verifier, Secure Notes Encryptor, Random Token Generator, API Key Generator, Common Ports & Services Reference, Security Headers Evaluator, QR Code Generator, Barcode Generator, JWT Encoder, Hash File, IP Address Lookup, DNS Lookup, SSL Checker, Password Breach Checker, CSP Evaluator
 
 ### Color Tools (10)
 Color Picker, Color Palette Generator, Contrast Checker WCAG, CSS Gradient Generator, Color Mixer, Color Shades, Color Tints, HEX to RGB Converter, RGB to HSL Converter, Color Format Converter

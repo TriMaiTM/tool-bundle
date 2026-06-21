@@ -199,13 +199,25 @@ Complete list of all tools in ToolBundle, organized by category.
 | Age Calculator | `/math/age-calculator` | Calculate exact age with zodiac sign and next birthday countdown. | ✅ Live |
 | Bill Splitter & Tip Calculator | `/math/bill-splitter` | Split bills and calculate tips easily with custom currency and formats. | ✅ Live |
 
-## Security Tools (12)
+## Security Tools (24)
 
 | Tool | Slug | Description | Status |
 |---|---|---|---|
 | Password Generator | `/security/password-generator` | Generate secure passwords with custom length and character sets. | ✅ Live |
 | Password Strength Checker | `/security/password-strength-checker` | Test password strength with entropy and crack time estimates. | ✅ Live |
 | OTP Generator | `/security/otp-generator` | Generate TOTP 2FA codes with countdown timer and auto-refresh. | ✅ Live |
+| AES Encrypt/Decrypt | `/security/aes-encrypt-decrypt` | Encrypt and decrypt text securely using AES-GCM 256-bit client-side. | ✅ Live |
+| RSA Key Generator | `/security/rsa-key-generator` | Generate cryptographically secure public/private RSA key pairs client-side. | ✅ Live |
+| Public/Private Key Matcher | `/security/key-matcher` | Verify if a public key matches a private key for RSA, DSA, or ECDSA. | ✅ Live |
+| SSH Key Generator | `/security/ssh-key-generator` | Generate standard SSH keys (ED25519, RSA) with passphrase option entirely client-side. | ✅ Live |
+| PGP Encrypt/Decrypt | `/security/pgp-tool` | Encrypt/decrypt text and manage keys using OpenPGP completely in browser. | ✅ Live |
+| HMAC Signature Validator | `/security/hmac-validator` | Verify message integrity and authenticity against an expected HMAC signature. | ✅ Live |
+| Checksum Verifier | `/security/checksum-verifier` | Verify file and text integrity against MD5, SHA-1, SHA-256, and SHA-512 values. | ✅ Live |
+| Secure Notes Encryptor | `/security/secure-notes` | Write, encrypt, and download password-protected notes locally in your browser. | ✅ Live |
+| Random Token Generator | `/security/random-token` | Generate cryptographically secure random tokens (Hex, Base64, Base32, Custom). | ✅ Live |
+| API Key Generator | `/security/api-key-generator` | Create standard-compliant API keys (Stripe, GitHub, OpenAI format) with prefixes. | ✅ Live |
+| Common Ports & Services Reference | `/security/common-ports` | Educational guide for network ports, vulnerability risks, and firewall advice. | ✅ Live |
+| Security Headers Evaluator | `/security/security-headers` | Parse and audit raw HTTP response headers for security configuration best practices. | ✅ Live |
 | QR Code Generator | `/security/qr-code-generator` | Generate QR codes from any text or URL: download PNG or SVG. | ✅ Live |
 | Barcode Generator | `/security/barcode-generator` | Generate barcodes \u2014 CODE128, EAN-13, UPC, and more. | ✅ Live |
 | JWT Encoder | `/security/jwt-encoder` | Encode JWT tokens with custom header, payload, and secret key. | ✅ Live |
@@ -369,4 +381,4 @@ Complete list of all tools in ToolBundle, organized by category.
 
 ---
 
-**Total: 270 tools** — all live and working, 100% client-side.
+**Total: 282 tools** — all live and working, 100% client-side.

@@ -1,6 +1,6 @@
 # ToolBundle Roadmap
 
-Kế hoạch phát triển ToolBundle — từ 100 tools ban đầu đến 270 tools hiện tại.
+Kế hoạch phát triển ToolBundle — từ 100 tools ban đầu đến 282 tools hiện tại.
 
 ---
 
@@ -8,7 +8,7 @@ Kế hoạch phát triển ToolBundle — từ 100 tools ban đầu đến 270 t
 
 | Metric | Value |
 |---|---|
-| **Total tools** | 270 |
+| **Total tools** | 282 |
 | **Categories** | 19 |
 | **Pages** | 254 |
 | **Tests** | 182+ (all pass) |
@@ -154,7 +154,7 @@ Xem chi tiết trong `docs/tools-list.md`.
 | 3 | Developer Tools | `developer` | 81 | `#a855f7` |
 | 4 | PDF Tools | `pdf` | 17 | `#ef4444` |
 | 5 | Math & Calculators | `math` | 18 | `#f59e0b` |
-| 6 | Security Tools | `security` | 12 | `#06b6d4` |
+| 6 | Security Tools | `security` | 24 | `#06b6d4` |
 | 7 | Color Tools | `color` | 10 | `#ec4899` |
 | 8 | Date & Time Tools | `datetime` | 4 | `#14b8a6` |
 | 9 | SEO & Marketing | `seo` | 3 | `#8b5cf6` |
@@ -226,4 +226,4 @@ Xem chi tiết trong `docs/tools-list.md`.
 
 ---
 
-*Cập nhật: 2026-06-20*
+*Cập nhật: 2026-06-21*

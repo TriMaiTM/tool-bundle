@@ -1,8 +1,8 @@
 ================================================================================
 DỰ ÁN TOOLBUNDLE - DANH SÁCH TẤT CẢ CÁC CATEGORIES VÀ TOOLS HIỆN CÓ
-Tạo lúc: 00:57:37 21/6/2026
+Tạo lúc: 12:25:01 21/6/2026
 Tổng số danh mục: 19
-Tổng số công cụ: 270
+Tổng số công cụ: 282
 ================================================================================
 
 1. DANH MỤC: IMAGE TOOLS (ID: image)
@@ -548,7 +548,7 @@ Số lượng công cụ: 18
 
 6. DANH MỤC: SECURITY TOOLS (ID: security)
 Mô tả: Generate passwords, QR codes, hashes, and encrypt data securely.
-Số lượng công cụ: 12
+Số lượng công cụ: 24
 --------------------------------------------------------------------------------
    [1] Tên: Password Generator (ID: password-generator)
        Mô tả: Generate secure passwords with custom length and character sets.
@@ -559,31 +559,67 @@ Số lượng công cụ: 12
    [3] Tên: OTP Generator (ID: otp-generator)
        Mô tả: Generate TOTP 2FA codes with countdown timer and auto-refresh.
 
-   [4] Tên: QR Code Generator (ID: qr-code-generator)
+   [4] Tên: AES Encrypt/Decrypt (ID: aes-encrypt-decrypt)
+       Mô tả: Encrypt and decrypt text securely using AES-GCM 256-bit client-side.
+
+   [5] Tên: RSA Key Generator (ID: rsa-key-generator)
+       Mô tả: Generate cryptographically secure public/private RSA key pairs client-side.
+
+   [6] Tên: Public/Private Key Matcher (ID: key-matcher)
+       Mô tả: Verify if a public key matches a private key for RSA, DSA, or ECDSA.
+
+   [7] Tên: SSH Key Generator (ID: ssh-key-generator)
+       Mô tả: Generate standard SSH keys (ED25519, RSA) with passphrase option entirely client-side.
+
+   [8] Tên: PGP Encrypt/Decrypt (ID: pgp-tool)
+       Mô tả: Encrypt/decrypt text and manage keys using OpenPGP completely in browser.
+
+   [9] Tên: HMAC Signature Validator (ID: hmac-validator)
+       Mô tả: Verify message integrity and authenticity against an expected HMAC signature.
+
+   [10] Tên: Checksum Verifier (ID: checksum-verifier)
+       Mô tả: Verify file and text integrity against MD5, SHA-1, SHA-256, and SHA-512 values.
+
+   [11] Tên: Secure Notes Encryptor (ID: secure-notes)
+       Mô tả: Write, encrypt, and download password-protected notes locally in your browser.
+
+   [12] Tên: Random Token Generator (ID: random-token)
+       Mô tả: Generate cryptographically secure random tokens (Hex, Base64, Base32, Custom).
+
+   [13] Tên: API Key Generator (ID: api-key-generator)
+       Mô tả: Create standard-compliant API keys (Stripe, GitHub, OpenAI format) with prefixes.
+
+   [14] Tên: Common Ports & Services Reference (ID: common-ports)
+       Mô tả: Educational guide for network ports, vulnerability risks, and firewall advice.
+
+   [15] Tên: Security Headers Evaluator (ID: security-headers)
+       Mô tả: Parse and audit raw HTTP response headers for security configuration best practices.
+
+   [16] Tên: QR Code Generator (ID: qr-code-generator)
        Mô tả: Generate QR codes from any text or URL: download PNG or SVG.
 
-   [5] Tên: Barcode Generator (ID: barcode-generator)
+   [17] Tên: Barcode Generator (ID: barcode-generator)
        Mô tả: Generate barcodes \u2014 CODE128, EAN-13, UPC, and more.
 
-   [6] Tên: JWT Encoder (ID: jwt-encoder)
+   [18] Tên: JWT Encoder (ID: jwt-encoder)
        Mô tả: Encode JWT tokens with custom header, payload, and secret key.
 
-   [7] Tên: Hash File (ID: hash-file)
+   [19] Tên: Hash File (ID: hash-file)
        Mô tả: Generate SHA-1, SHA-256, SHA-384, SHA-512 hash of any file.
 
-   [8] Tên: IP Address Lookup (ID: ip-lookup)
+   [20] Tên: IP Address Lookup (ID: ip-lookup)
        Mô tả: Look up your public IP address with geolocation, ISP, and timezone info.
 
-   [9] Tên: DNS Lookup (ID: dns-lookup)
+   [21] Tên: DNS Lookup (ID: dns-lookup)
        Mô tả: Query DNS records for any domain: A, AAAA, MX, NS, TXT, CNAME.
 
-   [10] Tên: SSL Checker (ID: ssl-checker)
+   [22] Tên: SSL Checker (ID: ssl-checker)
        Mô tả: Check SSL certificate details for any domain: issuer, expiry, chain.
 
-   [11] Tên: Password Breach Checker (ID: password-breach)
+   [23] Tên: Password Breach Checker (ID: password-breach)
        Mô tả: Check if a password has been exposed in data breaches: privacy-first k-anonymity.
 
-   [12] Tên: CSP Evaluator (ID: csp-evaluator)
+   [24] Tên: CSP Evaluator (ID: csp-evaluator)
        Mô tả: Analyze Content Security Policy headers for security issues and best practices.
 
 
