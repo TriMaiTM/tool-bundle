@@ -176,11 +176,23 @@ Complete list of all tools in ToolBundle, organized by category.
 | PDF OCR | `/pdf/pdf-ocr` | Extract text from scanned PDF documents using Tesseract OCR. | ✅ Live |
 | PDF Signature Tool | `/pdf/pdf-sign` | Sign PDF documents with drawn, typed, or uploaded signatures. | ✅ Live |
 
-## Math & Calculators (6)
+## Math & Calculators (18)
 
 | Tool | Slug | Description | Status |
 |---|---|---|---|
 | Percentage Calculator | `/math/percentage-calculator` | Calculate percentages, tips, discounts, and tax instantly. | ✅ Live |
+| Scientific Calculator | `/math/scientific-calculator` | Perform advanced arithmetic, trigonometric, logarithmic, and factorial calculations. | ✅ Live |
+| Fraction to Decimal Converter | `/math/fraction-to-decimal` | Convert fractions to decimal values (with repeating periods) and vice versa. | ✅ Live |
+| Ratio Calculator | `/math/ratio-calculator` | Solve proportions (A:B = C:D), scale ratios, and simplify multi-value ratios. | ✅ Live |
+| Proportion Calculator | `/math/proportion-calculator` | Check if two ratios are proportional, and solve direct or inverse proportions. | ✅ Live |
+| Average Calculator (Mean, Median, Mode) | `/math/average-calculator` | Calculate the mean, median, mode, range, min, max, and count of a data set. | ✅ Live |
+| Standard Deviation Calculator | `/math/standard-deviation` | Calculate population and sample standard deviation, variance, and mean with step-by-step breakdown. | ✅ Live |
+| Triangle Calculator | `/math/triangle-calculator` | Solve triangles by sides or angles, compute area/perimeter, heights, inradius/circumradius, and view drawing. | ✅ Live |
+| Area & Perimeter Calculator | `/math/area-calculator` | Compute the area and perimeter of flat shapes including rectangles, circles, triangles, and polygons. | ✅ Live |
+| Volume & Surface Area Calculator | `/math/volume-calculator` | Calculate the volume and surface area of solids like spheres, cylinders, cones, and prisms. | ✅ Live |
+| Probability Calculator | `/math/probability-calculator` | Calculate permutations/combinations (nPr, nCr), single/multi-event probabilities, and binomial distribution. | ✅ Live |
+| Matrix Calculator | `/math/matrix-calculator` | Perform matrix addition, subtraction, multiplication, determinants, transpose, and inverses up to 4x4. | ✅ Live |
+| Equation Solver | `/math/equation-solver` | Solve linear, quadratic, and cubic equations, or 2x2 and 3x3 linear equation systems with step-by-step math. | ✅ Live |
 | Unit Converter | `/math/unit-converter` | Convert units across 5 categories: length, weight, temperature, speed, data. | ✅ Live |
 | BMI Calculator | `/math/bmi-calculator` | Calculate Body Mass Index with ideal weight and health insights. | ✅ Live |
 | Loan Calculator | `/math/loan-calculator` | Calculate loan payments with amortization schedule. | ✅ Live |
@@ -357,4 +369,4 @@ Complete list of all tools in ToolBundle, organized by category.
 
 ---
 
-**Total: 258 tools** — all live and working, 100% client-side.
+**Total: 270 tools** — all live and working, 100% client-side.
