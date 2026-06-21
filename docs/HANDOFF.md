@@ -69,7 +69,7 @@
 | 3 | Developer Tools | `developer` | 81 | `#a855f7` |
 | 4 | PDF Tools | `pdf` | 17 | `#ef4444` |
 | 5 | Math & Calculators | `math` | 18 | `#f59e0b` |
-| 6 | Security Tools | `security` | 12 | `#06b6d4` |
+| 6 | Security Tools | `security` | 24 | `#06b6d4` |
 | 7 | Color Tools | `color` | 10 | `#ec4899` |
 | 8 | Date & Time Tools | `datetime` | 4 | `#14b8a6` |
 | 9 | SEO & Marketing | `seo` | 3 | `#8b5cf6` |
@@ -663,4 +663,4 @@ Tôi đang phát triển dự án ToolBundle — một web app tổng hợp 226 
 
 ---
 
-*Cập nhật lần cuối: 2026-06-20*
+*Cập nhật lần cuối: 2026-06-21*
