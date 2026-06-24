@@ -114,5 +114,3 @@ Error Code Lookup, DPI Calculator, Sensitivity Converter, Crosshair Generator, G
 MIT
 
 ---
-
-Built with Astro + Preact + Tailwind CSS
