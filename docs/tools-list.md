@@ -255,7 +255,7 @@ Complete list of all tools in ToolBundle, organized by category.
 | RGB to HSL Converter | `/color/rgb-to-hsl` | Convert between RGB and HSL color formats with interactive sliders. | ✅ Live |
 | Color Format Converter | `/color/color-format-converter` | Universal color converter: enter any format (HEX, RGB, HSL, CMYK) and get all formats. | ✅ Live |
 
-## Date & Time Tools (4)
+## Date & Time Tools (16)
 
 | Tool | Slug | Description | Status |
 |---|---|---|---|
@@ -263,6 +263,18 @@ Complete list of all tools in ToolBundle, organized by category.
 | Timezone Converter | `/datetime/timezone-converter` | Convert time between timezones with world clock. | ✅ Live |
 | Date Difference Calculator | `/datetime/date-difference-calculator` | Calculate the exact difference between two dates. | ✅ Live |
 | Unix Timestamp Converter | `/datetime/unix-timestamp-converter` | Convert Unix timestamps to dates and back. | ✅ Live |
+| World Clock | `/datetime/world-clock` | Display current time in multiple global cities simultaneously. | ✅ Live |
+| Business Days Calculator | `/datetime/business-days-calculator` | Calculate working days between dates or add/subtract business days. | ✅ Live |
+| Add/Subtract Date Calculator | `/datetime/date-adder` | Add or subtract days, weeks, months, or years to/from any date. | ✅ Live |
+| Week Number Calculator | `/datetime/week-number-calculator` | Find the ISO-8601 and US calendar week number for any date. | ✅ Live |
+| Time Duration Calculator | `/datetime/time-duration-calculator` | Calculate the duration between two times of day in hours, minutes, and seconds. | ✅ Live |
+| Meeting Time Planner | `/datetime/meeting-planner` | Find optimal overlap hours for virtual meetings across timezones. | ✅ Live |
+| Stopwatch | `/datetime/stopwatch` | Measure elapsed time with millisecond precision and lap times logging. | ✅ Live |
+| Pomodoro Timer | `/datetime/pomodoro-timer` | Work/break interval focus timer following the Pomodoro technique. | ✅ Live |
+| Calendar Generator | `/datetime/calendar-generator` | Generate and print calendar layouts with custom event markers. | ✅ Live |
+| ISO Date Converter | `/datetime/iso-date-converter` | Convert date strings to ISO-8601 standard, Unix timestamps, and Julian dates. | ✅ Live |
+| Time Ago Calculator | `/datetime/time-ago-calculator` | Find relative verbal descriptions and unit offsets from any point in time. | ✅ Live |
+| Date Format Converter | `/datetime/date-format-converter` | Format dates into national standard presets or define custom formats. | ✅ Live |
 
 ## SEO & Marketing (3)
 
@@ -393,4 +405,4 @@ Complete list of all tools in ToolBundle, organized by category.
 
 ---
 
-**Total: 294 tools** — all live and working, 100% client-side.
+**Total: 306 tools** — all live and working, 100% client-side.
