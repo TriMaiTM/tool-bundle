@@ -1,8 +1,8 @@
 ================================================================================
 DỰ ÁN TOOLBUNDLE - DANH SÁCH TẤT CẢ CÁC CATEGORIES VÀ TOOLS HIỆN CÓ
-Tạo lúc: 12:25:01 21/6/2026
+Tạo lúc: 23:43:55 30/6/2026
 Tổng số danh mục: 19
-Tổng số công cụ: 282
+Tổng số công cụ: 294
 ================================================================================
 
 1. DANH MỤC: IMAGE TOOLS (ID: image)
@@ -625,7 +625,7 @@ Số lượng công cụ: 24
 
 7. DANH MỤC: COLOR TOOLS (ID: color)
 Mô tả: Pick, convert, generate, and test colors for design and development.
-Số lượng công cụ: 10
+Số lượng công cụ: 22
 --------------------------------------------------------------------------------
    [1] Tên: Color Picker (ID: color-picker)
        Mô tả: Pick and convert colors between HEX, RGB, and HSL with live preview.
@@ -648,13 +648,49 @@ Số lượng công cụ: 10
    [7] Tên: Color Tints (ID: color-tints)
        Mô tả: Generate 10 lighter tints of any color \u2014 perfect for palettes.
 
-   [8] Tên: HEX to RGB Converter (ID: hex-to-rgb)
+   [8] Tên: CMYK Converter (ID: cmyk-converter)
+       Mô tả: Convert CMYK print colors to digital formats (HEX, RGB, HSL) with live previews.
+
+   [9] Tên: RGB to HEX Converter (ID: rgb-to-hex)
+       Mô tả: Convert RGB and RGBA color models to Hexadecimal formats with opacity support.
+
+   [10] Tên: HSL to HEX Converter (ID: hsl-to-hex)
+       Mô tả: Convert HSL and HSLA color values to 6-character and 8-character HEX codes.
+
+   [11] Tên: OKLCH Color Converter (ID: oklch-converter)
+       Mô tả: Explore and convert the modern OKLCH color space to standard HEX, RGB, and HSL formats.
+
+   [12] Tên: Color Blindness Simulator (ID: color-blindness-simulator)
+       Mô tả: Simulate color vision deficiencies on uploaded images or custom color swatches.
+
+   [13] Tên: Palette From Image (ID: palette-from-image)
+       Mô tả: Upload an image to extract a dominant, harmonious color palette and export it.
+
+   [14] Tên: Material Color Generator (ID: material-color-generator)
+       Mô tả: Generate standard Material Design color weights (50-900) from any single base color.
+
+   [15] Tên: Tailwind Color Palette Generator (ID: tailwind-color-palette-generator)
+       Mô tả: Generate custom Tailwind CSS 50-950 color shades from any base color.
+
+   [16] Tên: Brand Color Palette Extractor (ID: brand-color-extractor)
+       Mô tả: Browse popular brand schemes, or paste code to extract all dominant hex colors.
+
+   [17] Tên: Gradient Palette Generator (ID: gradient-palette-generator)
+       Mô tả: Generate aesthetic gradient combinations (complementary, analogous, etc.) from a single color.
+
+   [18] Tên: Duotone Generator (ID: duotone-generator)
+       Mô tả: Apply a custom duotone filter mapping highlights and shadows to two specific colors.
+
+   [19] Tên: Color Name Finder (ID: color-name-finder)
+       Mô tả: Pick or enter any color value to instantly retrieve its closest named color.
+
+   [20] Tên: HEX to RGB Converter (ID: hex-to-rgb)
        Mô tả: Convert HEX color codes to RGB with color preview and HSL output.
 
-   [9] Tên: RGB to HSL Converter (ID: rgb-to-hsl)
+   [21] Tên: RGB to HSL Converter (ID: rgb-to-hsl)
        Mô tả: Convert between RGB and HSL color formats with interactive sliders.
 
-   [10] Tên: Color Format Converter (ID: color-format-converter)
+   [22] Tên: Color Format Converter (ID: color-format-converter)
        Mô tả: Universal color converter: enter any format (HEX, RGB, HSL, CMYK) and get all formats.
 
 

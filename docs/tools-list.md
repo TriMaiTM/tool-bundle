@@ -228,7 +228,7 @@ Complete list of all tools in ToolBundle, organized by category.
 | Password Breach Checker | `/security/password-breach` | Check if a password has been exposed in data breaches: privacy-first k-anonymity. | ✅ Live |
 | CSP Evaluator | `/security/csp-evaluator` | Analyze Content Security Policy headers for security issues and best practices. | ✅ Live |
 
-## Color Tools (10)
+## Color Tools (22)
 
 | Tool | Slug | Description | Status |
 |---|---|---|---|
@@ -239,6 +239,18 @@ Complete list of all tools in ToolBundle, organized by category.
 | Color Mixer | `/color/color-mixer` | Mix two colors with adjustable ratio \u2014 output HEX, RGB, HSL. | ✅ Live |
 | Color Shades | `/color/color-shades` | Generate 10 darker shades of any color \u2014 perfect for palettes. | ✅ Live |
 | Color Tints | `/color/color-tints` | Generate 10 lighter tints of any color \u2014 perfect for palettes. | ✅ Live |
+| CMYK Converter | `/color/cmyk-converter` | Convert CMYK print colors to digital formats (HEX, RGB, HSL) with live previews. | ✅ Live |
+| RGB to HEX Converter | `/color/rgb-to-hex` | Convert RGB and RGBA color models to Hexadecimal formats with opacity support. | ✅ Live |
+| HSL to HEX Converter | `/color/hsl-to-hex` | Convert HSL and HSLA color values to 6-character and 8-character HEX codes. | ✅ Live |
+| OKLCH Color Converter | `/color/oklch-converter` | Explore and convert the modern OKLCH color space to standard HEX, RGB, and HSL formats. | ✅ Live |
+| Color Blindness Simulator | `/color/color-blindness-simulator` | Simulate color vision deficiencies on uploaded images or custom color swatches. | ✅ Live |
+| Palette From Image | `/color/palette-from-image` | Upload an image to extract a dominant, harmonious color palette and export it. | ✅ Live |
+| Material Color Generator | `/color/material-color-generator` | Generate standard Material Design color weights (50-900) from any single base color. | ✅ Live |
+| Tailwind Color Palette Generator | `/color/tailwind-color-palette-generator` | Generate custom Tailwind CSS 50-950 color shades from any base color. | ✅ Live |
+| Brand Color Palette Extractor | `/color/brand-color-extractor` | Browse popular brand schemes, or paste code to extract all dominant hex colors. | ✅ Live |
+| Gradient Palette Generator | `/color/gradient-palette-generator` | Generate aesthetic gradient combinations (complementary, analogous, etc.) from a single color. | ✅ Live |
+| Duotone Generator | `/color/duotone-generator` | Apply a custom duotone filter mapping highlights and shadows to two specific colors. | ✅ Live |
+| Color Name Finder | `/color/color-name-finder` | Pick or enter any color value to instantly retrieve its closest named color. | ✅ Live |
 | HEX to RGB Converter | `/color/hex-to-rgb` | Convert HEX color codes to RGB with color preview and HSL output. | ✅ Live |
 | RGB to HSL Converter | `/color/rgb-to-hsl` | Convert between RGB and HSL color formats with interactive sliders. | ✅ Live |
 | Color Format Converter | `/color/color-format-converter` | Universal color converter: enter any format (HEX, RGB, HSL, CMYK) and get all formats. | ✅ Live |
@@ -381,4 +393,4 @@ Complete list of all tools in ToolBundle, organized by category.
 
 ---
 
-**Total: 282 tools** — all live and working, 100% client-side.
+**Total: 294 tools** — all live and working, 100% client-side.
