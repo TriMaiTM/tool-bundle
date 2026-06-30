@@ -185,6 +185,18 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
 	"color-mixer": lazy(() => import("./ColorMixer")),
 	"color-shades": lazy(() => import("./ColorShades")),
 	"color-tints": lazy(() => import("./ColorTints")),
+	"cmyk-converter": lazy(() => import("./CmykConverter")),
+	"rgb-to-hex": lazy(() => import("./RgbToHexConverter")),
+	"hsl-to-hex": lazy(() => import("./HslToHexConverter")),
+	"oklch-converter": lazy(() => import("./OklchConverter")),
+	"color-blindness-simulator": lazy(() => import("./ColorBlindnessSimulator")),
+	"palette-from-image": lazy(() => import("./PaletteFromImage")),
+	"material-color-generator": lazy(() => import("./MaterialColorGenerator")),
+	"tailwind-color-palette-generator": lazy(() => import("./TailwindColorGenerator")),
+	"brand-color-extractor": lazy(() => import("./BrandColorExtractor")),
+	"gradient-palette-generator": lazy(() => import("./GradientPaletteGenerator")),
+	"duotone-generator": lazy(() => import("./DuotoneGenerator")),
+	"color-name-finder": lazy(() => import("./ColorNameFinder")),
 
 	// Date & Time Tools
 	"countdown-timer": lazy(() => import("./CountdownTimer")),
