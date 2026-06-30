@@ -203,6 +203,18 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
 	"timezone-converter": lazy(() => import("./TimezoneConverter")),
 	"date-difference-calculator": lazy(() => import("./DateDifferenceCalculator")),
 	"unix-timestamp-converter": lazy(() => import("./UnixTimestampConverter")),
+	"world-clock": lazy(() => import("./WorldClock")),
+	"business-days-calculator": lazy(() => import("./BusinessDaysCalculator")),
+	"date-adder": lazy(() => import("./DateAdder")),
+	"week-number-calculator": lazy(() => import("./WeekNumberCalculator")),
+	"time-duration-calculator": lazy(() => import("./TimeDurationCalculator")),
+	"meeting-planner": lazy(() => import("./MeetingPlanner")),
+	stopwatch: lazy(() => import("./Stopwatch")),
+	"pomodoro-timer": lazy(() => import("./PomodoroTimer")),
+	"calendar-generator": lazy(() => import("./CalendarGenerator")),
+	"iso-date-converter": lazy(() => import("./IsoDateConverter")),
+	"time-ago-calculator": lazy(() => import("./TimeAgoCalculator")),
+	"date-format-converter": lazy(() => import("./DateFormatConverter")),
 
 	// SEO Tools
 	"meta-tag-generator": lazy(() => import("./MetaTagGenerator")),

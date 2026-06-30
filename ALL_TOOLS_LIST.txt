@@ -1,8 +1,8 @@
 ================================================================================
 DỰ ÁN TOOLBUNDLE - DANH SÁCH TẤT CẢ CÁC CATEGORIES VÀ TOOLS HIỆN CÓ
-Tạo lúc: 23:43:55 30/6/2026
+Tạo lúc: 01:26:01 1/7/2026
 Tổng số danh mục: 19
-Tổng số công cụ: 294
+Tổng số công cụ: 306
 ================================================================================
 
 1. DANH MỤC: IMAGE TOOLS (ID: image)
@@ -696,7 +696,7 @@ Số lượng công cụ: 22
 
 8. DANH MỤC: DATE & TIME TOOLS (ID: datetime)
 Mô tả: Countdown timers, timezone converters, date calculators, and more.
-Số lượng công cụ: 4
+Số lượng công cụ: 16
 --------------------------------------------------------------------------------
    [1] Tên: Countdown Timer (ID: countdown-timer)
        Mô tả: Countdown to any date with presets and alerts.
@@ -709,6 +709,42 @@ Số lượng công cụ: 4
 
    [4] Tên: Unix Timestamp Converter (ID: unix-timestamp-converter)
        Mô tả: Convert Unix timestamps to dates and back.
+
+   [5] Tên: World Clock (ID: world-clock)
+       Mô tả: Display current time in multiple global cities simultaneously.
+
+   [6] Tên: Business Days Calculator (ID: business-days-calculator)
+       Mô tả: Calculate working days between dates or add/subtract business days.
+
+   [7] Tên: Add/Subtract Date Calculator (ID: date-adder)
+       Mô tả: Add or subtract days, weeks, months, or years to/from any date.
+
+   [8] Tên: Week Number Calculator (ID: week-number-calculator)
+       Mô tả: Find the ISO-8601 and US calendar week number for any date.
+
+   [9] Tên: Time Duration Calculator (ID: time-duration-calculator)
+       Mô tả: Calculate the duration between two times of day in hours, minutes, and seconds.
+
+   [10] Tên: Meeting Time Planner (ID: meeting-planner)
+       Mô tả: Find optimal overlap hours for virtual meetings across timezones.
+
+   [11] Tên: Stopwatch (ID: stopwatch)
+       Mô tả: Measure elapsed time with millisecond precision and lap times logging.
+
+   [12] Tên: Pomodoro Timer (ID: pomodoro-timer)
+       Mô tả: Work/break interval focus timer following the Pomodoro technique.
+
+   [13] Tên: Calendar Generator (ID: calendar-generator)
+       Mô tả: Generate and print calendar layouts with custom event markers.
+
+   [14] Tên: ISO Date Converter (ID: iso-date-converter)
+       Mô tả: Convert date strings to ISO-8601 standard, Unix timestamps, and Julian dates.
+
+   [15] Tên: Time Ago Calculator (ID: time-ago-calculator)
+       Mô tả: Find relative verbal descriptions and unit offsets from any point in time.
+
+   [16] Tên: Date Format Converter (ID: date-format-converter)
+       Mô tả: Format dates into national standard presets or define custom formats.
 
 
 9. DANH MỤC: SEO & MARKETING (ID: seo)

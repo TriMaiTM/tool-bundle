@@ -11,7 +11,7 @@ A collection of free, privacy-first browser tools for images, text, PDFs, math, 
 - **Privacy First** — No server uploads, no data collection, no cookies. What you process stays on your device.
 - **Instant Results** — No upload waits, no queues. Results appear instantly because everything runs on your machine.
 - **Free Forever** — No accounts, no subscriptions, no paywalls. Every tool is free for everyone.
-- **294 Tools** — Across 19 categories: Image, Text, Developer, PDF, Math, Security, Color, Date & Time, SEO, Data, Fun & Utility, Education, Finance, Health, Video & Audio, and **AI Tools**.
+- **306 Tools** — Across 19 categories: Image, Text, Developer, PDF, Math, Security, Color, Date & Time, SEO, Data, Fun & Utility, Education, Finance, Health, Video & Audio, and **AI Tools**.
 - **Dark UI** — Clean dark canvas with electric yellow accent. Built with a consistent design system.
 - **New: Workflow Builder** — Build and automate your workflows with a visual drag-and-drop interface.
 ![Preview](./preview5.png)
@@ -47,7 +47,7 @@ Full documentation is available in the [`docs/`](./docs/) directory:
 | [Tech Stack](./docs/tech-stack.md) | Technologies and architecture decisions |
 | [Project Structure](./docs/project-structure.md) | Directory layout and file organization |
 | [Adding New Tools](./docs/adding-tools.md) | Step-by-step guide to add a new tool |
-| [Tools List](./docs/tools-list.md) | Complete list of all 294 tools |
+| [Tools List](./docs/tools-list.md) | Complete list of all 306 tools |
 | [Design System](./docs/design-system.md) | UI components, colors, typography |
 
 ## Available Tools
@@ -73,8 +73,8 @@ Password Generator, Password Strength Checker, OTP Generator, AES Encrypt/Decryp
 ### Color Tools (22)
 Color Picker, Color Palette Generator, Contrast Checker WCAG, CSS Gradient Generator, Color Mixer, Color Shades, Color Tints, CMYK Converter, RGB to HEX Converter, HSL to HEX Converter, OKLCH Color Converter, Color Blindness Simulator, Palette From Image, Material Color Generator, Tailwind Color Palette Generator, Brand Color Palette Extractor, Gradient Palette Generator, Duotone Generator, Color Name Finder, HEX to RGB Converter, RGB to HSL Converter, Color Format Converter
 
-### Date & Time Tools (4)
-Countdown Timer, Timezone Converter, Date Difference Calculator, Unix Timestamp Converter
+### Date & Time Tools (16)
+Countdown Timer, Timezone Converter, Date Difference Calculator, Unix Timestamp Converter, World Clock, Business Days Calculator, Add/Subtract Date Calculator, Week Number Calculator, Time Duration Calculator, Meeting Time Planner, Stopwatch, Pomodoro Timer, Calendar Generator, ISO Date Converter, Time Ago Calculator, Date Format Converter
 
 ### SEO & Marketing (3)
 Meta Tag Generator, Robots.txt Generator, Sitemap Generator

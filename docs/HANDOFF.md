@@ -71,7 +71,7 @@
 | 5 | Math & Calculators | `math` | 18 | `#f59e0b` |
 | 6 | Security Tools | `security` | 24 | `#06b6d4` |
 | 7 | Color Tools | `color` | 22 | `#ec4899` |
-| 8 | Date & Time Tools | `datetime` | 4 | `#14b8a6` |
+| 8 | Date & Time Tools | `datetime` | 16 | `#14b8a6` |
 | 9 | SEO & Marketing | `seo` | 3 | `#8b5cf6` |
 | 10 | Data & Spreadsheet | `data` | 6 | `#10b981` |
 | 11 | Fun & Utility | `fun` | 8 | `#f97316` |

@@ -10,7 +10,7 @@ Welcome to the ToolBundle documentation. This directory contains all project doc
 | [Tech Stack](./tech-stack.md) | Technologies, libraries, and architecture decisions |
 | [Project Structure](./project-structure.md) | Directory layout and file organization |
 | [Adding New Tools](./adding-tools.md) | Step-by-step guide to add a new tool |
-| [Tools List](./tools-list.md) | Complete list of all 294 available tools |
+| [Tools List](./tools-list.md) | Complete list of all 306 available tools |
 | [Design System](./design-system.md) | UI components, colors, typography, and spacing |
 | [AI Tools Research](./ai-tools-research.md) | AI models, implementation status, and roadmap |
 | [Roadmap](./roadmap.md) | Development phases and future plans |
@@ -27,7 +27,7 @@ Welcome to the ToolBundle documentation. This directory contains all project doc
 
 | Metric | Value |
 |---|---|
-| Total Tools | 294 |
+| Total Tools | 306 |
 | Categories | 19 |
 | AI Tools | 16 |
 | Pages | 254 |
