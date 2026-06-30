@@ -207,15 +207,15 @@ export default function HslToHexConverter() {
 							].map((item) => (
 								<div key={item.label} class="space-y-1.5">
 									<label class="text-caption-uppercase text-muted block">{item.label}</label>
-									<div class="relative">
+									<div class="flex gap-2">
 										<input
 											readOnly
 											type="text"
-											class="input w-full font-mono text-body-sm bg-surface-soft pr-20"
+											class="input w-full font-mono text-body-sm bg-surface-soft"
 											value={item.val}
 										/>
 										<button
-											class="absolute top-1/2 right-2 -translate-y-1/2 btn-secondary py-1 px-2.5 text-[10px]"
+											class="btn-secondary py-1.5 px-3 text-xs whitespace-nowrap"
 											onClick={() => handleCopy(item.val, item.label)}
 										>
 											{copiedFormat === item.label ? t.copied : t.copy}
