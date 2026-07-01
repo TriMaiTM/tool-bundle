@@ -220,6 +220,18 @@ const toolComponents: Record<string, ReturnType<typeof lazy>> = {
 	"meta-tag-generator": lazy(() => import("./MetaTagGenerator")),
 	"robots-txt-generator": lazy(() => import("./RobotsTxtGenerator")),
 	"sitemap-generator": lazy(() => import("./SitemapGenerator")),
+	"serp-preview": lazy(() => import("./SerpPreview")),
+	"open-graph-preview": lazy(() => import("./OgPreview")),
+	"twitter-card-preview": lazy(() => import("./TwitterCardPreview")),
+	"schema-markup-generator": lazy(() => import("./SchemaGenerator")),
+	"keyword-density-checker": lazy(() => import("./KeywordDensity")),
+	"utm-builder": lazy(() => import("./UtmBuilder")),
+	"canonical-url-checker": lazy(() => import("./CanonicalChecker")),
+	"hreflang-generator": lazy(() => import("./HreflangGenerator")),
+	"meta-title-length-checker": lazy(() => import("./MetaLengthChecker")),
+	"youtube-tags-generator": lazy(() => import("./YoutubeTags")),
+	"blog-title-generator": lazy(() => import("./BlogTitleGenerator")),
+	"faq-schema-generator": lazy(() => import("./FaqSchemaGenerator")),
 
 	// Data Tools
 	"csv-to-json": lazy(() => import("./CsvToJson")),
