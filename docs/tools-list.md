@@ -276,13 +276,25 @@ Complete list of all tools in ToolBundle, organized by category.
 | Time Ago Calculator | `/datetime/time-ago-calculator` | Find relative verbal descriptions and unit offsets from any point in time. | ✅ Live |
 | Date Format Converter | `/datetime/date-format-converter` | Format dates into national standard presets or define custom formats. | ✅ Live |
 
-## SEO & Marketing (3)
+## SEO & Marketing (15)
 
 | Tool | Slug | Description | Status |
 |---|---|---|---|
 | Meta Tag Generator | `/seo/meta-tag-generator` | Generate SEO meta tags with Open Graph and SERP preview. | ✅ Live |
 | Robots.txt Generator | `/seo/robots-txt-generator` | Generate robots.txt with rules and sitemap. | ✅ Live |
 | Sitemap Generator | `/seo/sitemap-generator` | Generate XML sitemaps with priority and frequency. | ✅ Live |
+| SERP Preview Tool | `/seo/serp-preview` | Simulate and preview how your webpage looks in Google search results. | ✅ Live |
+| Open Graph Preview | `/seo/open-graph-preview` | Preview how your website page looks when shared on social media sites. | ✅ Live |
+| Twitter Card Preview | `/seo/twitter-card-preview` | Simulate how shared webpage links look on Twitter/X feeds. | ✅ Live |
+| Schema Markup Generator | `/seo/schema-markup-generator` | Generate standard JSON-LD Schema structured markups for rich search snippets. | ✅ Live |
+| Keyword Density Checker | `/seo/keyword-density-checker` | Analyze keyword frequency and check for stuffing indicators in your content. | ✅ Live |
+| UTM Campaign Builder | `/seo/utm-builder` | Quickly build campaign URLs with UTM tracking parameters. | ✅ Live |
+| Canonical URL Checker | `/seo/canonical-url-checker` | Inspect HTML sources to locate and audit technical canonical links compliance. | ✅ Live |
+| Hreflang Generator | `/seo/hreflang-generator` | Generate multilingual alternate links for international SEO tags. | ✅ Live |
+| Meta Title Length Checker | `/seo/meta-title-length-checker` | Optimize title and description pixel and character lengths for search results. | ✅ Live |
+| YouTube Tags Generator | `/seo/youtube-tags-generator` | Compile and build Youtube tags and keywords lists under 500 characters. | ✅ Live |
+| Blog Title Generator | `/seo/blog-title-generator` | Generate catchy, SEO-friendly headlines for listicles, guides, and questions. | ✅ Live |
+| FAQ Schema Generator | `/seo/faq-schema-generator` | Generate copyable JSON-LD and HTML codes for FAQ structured snippets. | ✅ Live |
 
 ## Data & Spreadsheet (6)
 
@@ -405,4 +417,4 @@ Complete list of all tools in ToolBundle, organized by category.
 
 ---
 
-**Total: 306 tools** — all live and working, 100% client-side.
+**Total: 318 tools** — all live and working, 100% client-side.

@@ -11,7 +11,7 @@ A collection of free, privacy-first browser tools for images, text, PDFs, math, 
 - **Privacy First** — No server uploads, no data collection, no cookies. What you process stays on your device.
 - **Instant Results** — No upload waits, no queues. Results appear instantly because everything runs on your machine.
 - **Free Forever** — No accounts, no subscriptions, no paywalls. Every tool is free for everyone.
-- **306 Tools** — Across 19 categories: Image, Text, Developer, PDF, Math, Security, Color, Date & Time, SEO, Data, Fun & Utility, Education, Finance, Health, Video & Audio, and **AI Tools**.
+- **318 Tools** — Across 19 categories: Image, Text, Developer, PDF, Math, Security, Color, Date & Time, SEO, Data, Fun & Utility, Education, Finance, Health, Video & Audio, and **AI Tools**.
 - **Dark UI** — Clean dark canvas with electric yellow accent. Built with a consistent design system.
 - **New: Workflow Builder** — Build and automate your workflows with a visual drag-and-drop interface.
 ![Preview](./preview5.png)
@@ -47,7 +47,7 @@ Full documentation is available in the [`docs/`](./docs/) directory:
 | [Tech Stack](./docs/tech-stack.md) | Technologies and architecture decisions |
 | [Project Structure](./docs/project-structure.md) | Directory layout and file organization |
 | [Adding New Tools](./docs/adding-tools.md) | Step-by-step guide to add a new tool |
-| [Tools List](./docs/tools-list.md) | Complete list of all 306 tools |
+| [Tools List](./docs/tools-list.md) | Complete list of all 318 tools |
 | [Design System](./docs/design-system.md) | UI components, colors, typography |
 
 ## Available Tools
@@ -76,8 +76,8 @@ Color Picker, Color Palette Generator, Contrast Checker WCAG, CSS Gradient Gener
 ### Date & Time Tools (16)
 Countdown Timer, Timezone Converter, Date Difference Calculator, Unix Timestamp Converter, World Clock, Business Days Calculator, Add/Subtract Date Calculator, Week Number Calculator, Time Duration Calculator, Meeting Time Planner, Stopwatch, Pomodoro Timer, Calendar Generator, ISO Date Converter, Time Ago Calculator, Date Format Converter
 
-### SEO & Marketing (3)
-Meta Tag Generator, Robots.txt Generator, Sitemap Generator
+### SEO & Marketing (15)
+Meta Tag Generator, Robots.txt Generator, Sitemap Generator, SERP Preview Tool, Open Graph Preview, Twitter Card Preview, Schema Markup Generator, Keyword Density Checker, UTM Campaign Builder, Canonical URL Checker, Hreflang Generator, Meta Title Length Checker, YouTube Tags Generator, Blog Title Generator, FAQ Schema Generator
 
 ### Data & Spreadsheet (6)
 CSV to JSON, JSON to CSV, CSV Formatter, JSON to YAML, TSV to JSON, JSON to TSV

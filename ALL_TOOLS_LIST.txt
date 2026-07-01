@@ -1,8 +1,8 @@
 ================================================================================
 DỰ ÁN TOOLBUNDLE - DANH SÁCH TẤT CẢ CÁC CATEGORIES VÀ TOOLS HIỆN CÓ
-Tạo lúc: 01:26:01 1/7/2026
+Tạo lúc: 23:51:52 1/7/2026
 Tổng số danh mục: 19
-Tổng số công cụ: 306
+Tổng số công cụ: 318
 ================================================================================
 
 1. DANH MỤC: IMAGE TOOLS (ID: image)
@@ -749,7 +749,7 @@ Số lượng công cụ: 16
 
 9. DANH MỤC: SEO & MARKETING (ID: seo)
 Mô tả: Generate meta tags, robots.txt, sitemaps, and optimize for search engines.
-Số lượng công cụ: 3
+Số lượng công cụ: 15
 --------------------------------------------------------------------------------
    [1] Tên: Meta Tag Generator (ID: meta-tag-generator)
        Mô tả: Generate SEO meta tags with Open Graph and SERP preview.
@@ -759,6 +759,42 @@ Số lượng công cụ: 3
 
    [3] Tên: Sitemap Generator (ID: sitemap-generator)
        Mô tả: Generate XML sitemaps with priority and frequency.
+
+   [4] Tên: SERP Preview Tool (ID: serp-preview)
+       Mô tả: Simulate and preview how your webpage looks in Google search results.
+
+   [5] Tên: Open Graph Preview (ID: open-graph-preview)
+       Mô tả: Preview how your website page looks when shared on social media sites.
+
+   [6] Tên: Twitter Card Preview (ID: twitter-card-preview)
+       Mô tả: Simulate how shared webpage links look on Twitter/X feeds.
+
+   [7] Tên: Schema Markup Generator (ID: schema-markup-generator)
+       Mô tả: Generate standard JSON-LD Schema structured markups for rich search snippets.
+
+   [8] Tên: Keyword Density Checker (ID: keyword-density-checker)
+       Mô tả: Analyze keyword frequency and check for stuffing indicators in your content.
+
+   [9] Tên: UTM Campaign Builder (ID: utm-builder)
+       Mô tả: Quickly build campaign URLs with UTM tracking parameters.
+
+   [10] Tên: Canonical URL Checker (ID: canonical-url-checker)
+       Mô tả: Inspect HTML sources to locate and audit technical canonical links compliance.
+
+   [11] Tên: Hreflang Generator (ID: hreflang-generator)
+       Mô tả: Generate multilingual alternate links for international SEO tags.
+
+   [12] Tên: Meta Title Length Checker (ID: meta-title-length-checker)
+       Mô tả: Optimize title and description pixel and character lengths for search results.
+
+   [13] Tên: YouTube Tags Generator (ID: youtube-tags-generator)
+       Mô tả: Compile and build Youtube tags and keywords lists under 500 characters.
+
+   [14] Tên: Blog Title Generator (ID: blog-title-generator)
+       Mô tả: Generate catchy, SEO-friendly headlines for listicles, guides, and questions.
+
+   [15] Tên: FAQ Schema Generator (ID: faq-schema-generator)
+       Mô tả: Generate copyable JSON-LD and HTML codes for FAQ structured snippets.
 
 
 10. DANH MỤC: DATA & SPREADSHEET (ID: data)
