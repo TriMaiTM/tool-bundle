@@ -195,7 +195,7 @@ export default function TwitterCardPreview() {
 
 						{cardType === "summary_large_image" ? (
 							/* Large Image Card */
-							<div class="bg-surface border border-[#cfd9de] rounded-2xl overflow-hidden max-w-md mx-auto text-left shadow-xs font-sans">
+							<div class="w-full bg-surface border border-[#cfd9de] rounded-2xl overflow-hidden max-w-md mx-auto text-left shadow-xs font-sans">
 								{/* Image */}
 								<div class="aspect-video bg-stone-medium flex items-center justify-center border-b border-[#cfd9de]">
 									{imageSrc ? (
@@ -221,7 +221,7 @@ export default function TwitterCardPreview() {
 							</div>
 						) : (
 							/* Summary Small Left Thumbnail Card */
-							<div class="bg-surface border border-[#cfd9de] rounded-2xl overflow-hidden max-w-md mx-auto text-left shadow-xs font-sans flex h-28">
+							<div class="w-full bg-surface border border-[#cfd9de] rounded-2xl overflow-hidden max-w-md mx-auto text-left shadow-xs font-sans flex h-28">
 								{/* Card Metadata on Left */}
 								<div class="p-3 flex-1 flex flex-col justify-center min-w-0 bg-[#ffffff] border-r border-[#cfd9de]">
 									<div class="text-[11px] text-[#536471] leading-none truncate font-mono mb-1">
