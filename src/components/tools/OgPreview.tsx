@@ -194,71 +194,81 @@ export default function OgPreview() {
 							Preview Card Layout
 						</h3>
 
-						{tab === "facebook" && (
-							/* Facebook Preview */
-							<div class="w-full bg-[#f0f2f5] border border-hairline rounded-lg overflow-hidden max-w-md mx-auto shadow-xs text-left">
-								{/* Card Image Area */}
-								<div class="aspect-video bg-stone-medium flex items-center justify-center border-b border-hairline relative">
-									{imageSrc ? (
-										<img src={imageSrc} alt="Shared thumbnail" class="w-full h-full object-cover" />
-									) : (
-										<span class="text-muted text-xs font-mono">1200 × 630 px</span>
-									)}
-								</div>
-								{/* Meta Info bar */}
-								<div class="bg-[#ffffff] p-3 space-y-1">
-									<div class="text-[12px] uppercase text-[#606770] font-mono leading-none tracking-wider truncate">
-										{domain}
+						<div class="w-full flex justify-center">
+							{tab === "facebook" && (
+								/* Facebook Preview */
+								<div class="w-full bg-[#f0f2f5] border border-hairline rounded-lg overflow-hidden max-w-md shadow-xs text-left">
+									{/* Card Image Area */}
+									<div class="aspect-video bg-stone flex items-center justify-center border-b border-hairline relative">
+										{imageSrc ? (
+											<img
+												src={imageSrc}
+												alt="Shared thumbnail"
+												class="w-full h-full object-cover"
+											/>
+										) : (
+											<span class="text-muted text-xs font-mono">1200 × 630 px</span>
+										)}
 									</div>
-									<div class="text-[16px] font-bold text-[#1c1e21] leading-snug truncate">
+									{/* Meta Info bar */}
+									<div class="bg-[#ffffff] p-3 space-y-1">
+										<div class="text-[12px] uppercase text-[#606770] font-mono leading-none tracking-wider truncate">
+											{domain}
+										</div>
+										<div class="text-[16px] font-bold text-[#1c1e21] leading-snug truncate">
+											{title}
+										</div>
+										<div class="text-[14px] text-[#606770] leading-snug line-clamp-2">{desc}</div>
+									</div>
+								</div>
+							)}
+
+							{tab === "linkedin" && (
+								/* LinkedIn Preview */
+								<div class="w-full bg-[#ffffff] border border-hairline rounded-lg overflow-hidden max-w-md shadow-xs text-left">
+									{/* Card Image Area */}
+									<div class="aspect-video bg-stone flex items-center justify-center border-b border-hairline">
+										{imageSrc ? (
+											<img
+												src={imageSrc}
+												alt="Shared thumbnail"
+												class="w-full h-full object-cover"
+											/>
+										) : (
+											<span class="text-muted text-xs font-mono">1200 × 627 px</span>
+										)}
+									</div>
+									{/* Metadata bar */}
+									<div class="p-3 space-y-1 bg-[#f3f6f8]">
+										<div class="text-[14px] font-bold text-[#000000e6] leading-snug line-clamp-1">
+											{title}
+										</div>
+										<div class="text-[12px] text-[#00000099] leading-none truncate">{domain}</div>
+									</div>
+								</div>
+							)}
+
+							{tab === "discord" && (
+								/* Discord Dark theme preview */
+								<div class="w-full bg-[#2f3136] rounded-lg border-l-4 border-[#00d4b2] p-4 max-w-md text-left shadow-md space-y-2">
+									<div class="text-[12px] text-[#dcddde] font-medium leading-none">{siteName}</div>
+									<div class="text-[16px] font-semibold text-[#00b0f4] hover:underline cursor-pointer leading-tight">
 										{title}
 									</div>
-									<div class="text-[14px] text-[#606770] leading-snug line-clamp-2">{desc}</div>
-								</div>
-							</div>
-						)}
-
-						{tab === "linkedin" && (
-							/* LinkedIn Preview */
-							<div class="w-full bg-[#ffffff] border border-hairline rounded-lg overflow-hidden max-w-md mx-auto shadow-xs text-left">
-								{/* Card Image Area */}
-								<div class="aspect-video bg-stone-medium flex items-center justify-center border-b border-hairline">
-									{imageSrc ? (
-										<img src={imageSrc} alt="Shared thumbnail" class="w-full h-full object-cover" />
-									) : (
-										<span class="text-muted text-xs font-mono">1200 × 627 px</span>
+									<div class="text-[14px] text-[#b9bbbe] leading-relaxed line-clamp-3">{desc}</div>
+									{/* Shared Image */}
+									{imageSrc && (
+										<div class="rounded overflow-hidden aspect-video border border-[#202225] mt-2 max-h-48 bg-[#202225]">
+											<img
+												src={imageSrc}
+												alt="Discord card preview"
+												class="w-full h-full object-cover"
+											/>
+										</div>
 									)}
 								</div>
-								{/* Metadata bar */}
-								<div class="p-3 space-y-1 bg-[#f3f6f8]">
-									<div class="text-[14px] font-bold text-[#000000e6] leading-snug line-clamp-1">
-										{title}
-									</div>
-									<div class="text-[12px] text-[#00000099] leading-none truncate">{domain}</div>
-								</div>
-							</div>
-						)}
-
-						{tab === "discord" && (
-							/* Discord Dark theme preview */
-							<div class="w-full bg-[#2f3136] rounded-lg border-l-4 border-[#00d4b2] p-4 max-w-md mx-auto text-left shadow-md space-y-2">
-								<div class="text-[12px] text-[#dcddde] font-medium leading-none">{siteName}</div>
-								<div class="text-[16px] font-semibold text-[#00b0f4] hover:underline cursor-pointer leading-tight">
-									{title}
-								</div>
-								<div class="text-[14px] text-[#b9bbbe] leading-relaxed line-clamp-3">{desc}</div>
-								{/* Shared Image */}
-								{imageSrc && (
-									<div class="rounded overflow-hidden aspect-video border border-[#202225] mt-2 max-h-48 bg-[#202225]">
-										<img
-											src={imageSrc}
-											alt="Discord card preview"
-											class="w-full h-full object-cover"
-										/>
-									</div>
-								)}
-							</div>
-						)}
+							)}
+						</div>
 					</div>
 
 					{/* Code tags exporter */}

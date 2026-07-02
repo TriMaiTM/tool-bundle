@@ -193,59 +193,61 @@ export default function TwitterCardPreview() {
 							Twitter/X Feed Preview
 						</h3>
 
-						{cardType === "summary_large_image" ? (
-							/* Large Image Card */
-							<div class="w-full bg-surface border border-[#cfd9de] rounded-2xl overflow-hidden max-w-md mx-auto text-left shadow-xs font-sans">
-								{/* Image */}
-								<div class="aspect-video bg-stone-medium flex items-center justify-center border-b border-[#cfd9de]">
-									{imageSrc ? (
-										<img
-											src={imageSrc}
-											alt="Twitter card preview"
-											class="w-full h-full object-cover"
-										/>
-									) : (
-										<span class="text-muted text-xs font-mono">1200 × 628 px</span>
-									)}
-								</div>
-								{/* Card Metadata */}
-								<div class="p-3 space-y-1 bg-[#ffffff]">
-									<div class="text-[12px] text-[#536471] leading-none truncate font-mono">
-										{getDomain()}
+						<div class="w-full flex justify-center">
+							{cardType === "summary_large_image" ? (
+								/* Large Image Card */
+								<div class="w-full bg-surface border border-[#cfd9de] rounded-2xl overflow-hidden max-w-md shadow-xs font-sans">
+									{/* Image */}
+									<div class="aspect-video bg-stone flex items-center justify-center border-b border-[#cfd9de]">
+										{imageSrc ? (
+											<img
+												src={imageSrc}
+												alt="Twitter card preview"
+												class="w-full h-full object-cover"
+											/>
+										) : (
+											<span class="text-muted text-xs font-mono">1200 × 628 px</span>
+										)}
 									</div>
-									<div class="text-[14px] font-bold text-[#0f1419] leading-snug truncate">
-										{title}
+									{/* Card Metadata */}
+									<div class="p-3 space-y-1 bg-[#ffffff]">
+										<div class="text-[12px] text-[#536471] leading-none truncate font-mono">
+											{getDomain()}
+										</div>
+										<div class="text-[14px] font-bold text-[#0f1419] leading-snug truncate">
+											{title}
+										</div>
+										<div class="text-[14px] text-[#536471] leading-snug line-clamp-2">{desc}</div>
 									</div>
-									<div class="text-[14px] text-[#536471] leading-snug line-clamp-2">{desc}</div>
 								</div>
-							</div>
-						) : (
-							/* Summary Small Left Thumbnail Card */
-							<div class="w-full bg-surface border border-[#cfd9de] rounded-2xl overflow-hidden max-w-md mx-auto text-left shadow-xs font-sans flex h-28">
-								{/* Card Metadata on Left */}
-								<div class="p-3 flex-1 flex flex-col justify-center min-w-0 bg-[#ffffff] border-r border-[#cfd9de]">
-									<div class="text-[11px] text-[#536471] leading-none truncate font-mono mb-1">
-										{getDomain()}
+							) : (
+								/* Summary Small Left Thumbnail Card */
+								<div class="w-full bg-surface border border-[#cfd9de] rounded-2xl overflow-hidden max-w-md shadow-xs font-sans flex h-28">
+									{/* Card Metadata on Left */}
+									<div class="p-3 flex-1 flex flex-col justify-center min-w-0 bg-[#ffffff] border-r border-[#cfd9de]">
+										<div class="text-[11px] text-[#536471] leading-none truncate font-mono mb-1">
+											{getDomain()}
+										</div>
+										<div class="text-[13px] font-bold text-[#0f1419] leading-snug truncate">
+											{title}
+										</div>
+										<div class="text-[13px] text-[#536471] leading-snug line-clamp-2">{desc}</div>
 									</div>
-									<div class="text-[13px] font-bold text-[#0f1419] leading-snug truncate">
-										{title}
+									{/* Left square Image */}
+									<div class="w-28 h-full bg-stone flex items-center justify-center shrink-0">
+										{imageSrc ? (
+											<img
+												src={imageSrc}
+												alt="Twitter summary card preview"
+												class="w-full h-full object-cover"
+											/>
+										) : (
+											<span class="text-muted text-[10px] font-mono">150 × 150 px</span>
+										)}
 									</div>
-									<div class="text-[13px] text-[#536471] leading-snug line-clamp-2">{desc}</div>
 								</div>
-								{/* Left square Image */}
-								<div class="w-28 h-full bg-stone-medium flex items-center justify-center shrink-0">
-									{imageSrc ? (
-										<img
-											src={imageSrc}
-											alt="Twitter summary card preview"
-											class="w-full h-full object-cover"
-										/>
-									) : (
-										<span class="text-muted text-[10px] font-mono">150 × 150 px</span>
-									)}
-								</div>
-							</div>
-						)}
+							)}
+						</div>
 					</div>
 
 					{/* Meta tags exporter */}
