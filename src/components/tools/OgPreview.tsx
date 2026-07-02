@@ -196,7 +196,7 @@ export default function OgPreview() {
 
 						{tab === "facebook" && (
 							/* Facebook Preview */
-							<div class="bg-[#f0f2f5] border border-hairline rounded-lg overflow-hidden max-w-md mx-auto shadow-xs text-left">
+							<div class="w-full bg-[#f0f2f5] border border-hairline rounded-lg overflow-hidden max-w-md mx-auto shadow-xs text-left">
 								{/* Card Image Area */}
 								<div class="aspect-video bg-stone-medium flex items-center justify-center border-b border-hairline relative">
 									{imageSrc ? (
@@ -220,7 +220,7 @@ export default function OgPreview() {
 
 						{tab === "linkedin" && (
 							/* LinkedIn Preview */
-							<div class="bg-[#ffffff] border border-hairline rounded-lg overflow-hidden max-w-md mx-auto shadow-xs text-left">
+							<div class="w-full bg-[#ffffff] border border-hairline rounded-lg overflow-hidden max-w-md mx-auto shadow-xs text-left">
 								{/* Card Image Area */}
 								<div class="aspect-video bg-stone-medium flex items-center justify-center border-b border-hairline">
 									{imageSrc ? (
@@ -241,7 +241,7 @@ export default function OgPreview() {
 
 						{tab === "discord" && (
 							/* Discord Dark theme preview */
-							<div class="bg-[#2f3136] rounded-lg border-l-4 border-[#00d4b2] p-4 max-w-md mx-auto text-left shadow-md space-y-2">
+							<div class="w-full bg-[#2f3136] rounded-lg border-l-4 border-[#00d4b2] p-4 max-w-md mx-auto text-left shadow-md space-y-2">
 								<div class="text-[12px] text-[#dcddde] font-medium leading-none">{siteName}</div>
 								<div class="text-[16px] font-semibold text-[#00b0f4] hover:underline cursor-pointer leading-tight">
 									{title}
